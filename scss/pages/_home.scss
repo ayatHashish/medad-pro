@@ -1,0 +1,89 @@
+
+.home-page{
+.card {
+  padding: 0 35px;
+  text-align: center;
+  padding: 10px;
+  background-color: #8b8b8b1a;
+  .card-content {
+    padding: 20px;
+    border-radius: 10px;
+    border-color: #8b8b8b1a;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    color: #0f75c0;
+  }
+  p {
+    font-size: 1rem;
+  }
+}
+// about
+.about-section{
+  .about{
+h3{
+  color: #0f75c0;
+}
+p{
+}
+  }
+
+.image{
+ position: relative;
+.arrow{
+  position: absolute;
+  top: 2px;
+}
+
+.girl2{
+  position: absolute;
+  top:32%;
+  left: 35%;
+}
+
+
+.heart{
+
+
+}
+}
+
+}
+///////// Our Process /////////////////
+.our-process {
+  padding-bottom: 6rem ;
+  .content-wrapper{
+    color: #0f75c0;
+  } 
+  .card {
+    margin: 10px 0 ;
+    .card-content {
+     padding: 0px;
+      display: flex;
+      .num {
+        color: #0f75c0;
+        font-size: 5rem;
+      }
+    }
+    .process-content {
+      text-align: start !important;
+      padding: 25px 15px;
+    }
+  }
+}
+///////// hurry-up /////////////////
+
+.hurry-up {
+  padding: 7rem 0;
+  color: white;
+
+  .buton-group {
+    a {
+      margin: 0 2rem;
+    }
+  }
+}
+
+}
+

@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: $off-white;
+  font-family: "Futura PT";
+  font-size: $font-size-base;
+  position: relative;
+  max-width: 100vw;
+  overflow-x: hidden;
+  /*     color: $ad-black; */
+  font-family: $font-base;
+  font-weight: 300;
+}
+h1 {
+  font-size: 3.125rem;
+  font-weight: 700;
+}
+h2 {
+  font-size: 2.625rem;
+  font-weight: 700;
+}
+h3 {
+  font-size: 1.975rem;
+  font-weight: 700;
+}
+h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+h5 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+h6 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+input,
+button {
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+
+section {
+  padding-top: 6rem ;
+}
+
+@media screen and (max-width: 769px) {
+}

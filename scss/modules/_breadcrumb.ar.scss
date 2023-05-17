@@ -1,0 +1,28 @@
+@import "breadcrumb";
+
+.ar{
+.breadcrumbs-wrapper {
+    .breadcrumb {
+        li {
+            margin-right: 0;
+            margin-left: 15px !important;
+            a {
+                &::before {
+                    content: "\e97a"; //icon
+                    
+                    right:unset;
+                    left: -10px;
+                }
+            }
+            &:last-child {
+                margin-right: 0px;
+            }
+        }
+    }
+}
+}
+
+
+
+
+
