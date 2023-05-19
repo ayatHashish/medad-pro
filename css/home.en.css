@@ -4892,3 +4892,13 @@ overflow: hidden; */ }
   border: 2px solid white;
   border-radius: 6px;
   background-color: transparent; }
+
+.send-btn {
+  width: 32%;
+  margin: auto;
+  padding: 0.5rem;
+  background: #84C356;
+  border: none;
+  margin: 2rem auto 6rem;
+  border-radius: 5px;
+  color: white; }

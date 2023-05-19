@@ -1,364 +1,3 @@
-.tooltip {
-  max-width: 500px; }
-  .tooltip .tooltip-inner {
-    background: white;
-    color: red;
-    /*       color: re; */
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-    max-width: 100%; }
-  .tooltip.bs-tooltip-top .tooltip-arrow::before {
-    display: none; }
-  .tooltip.bs-tooltip-bottom .tooltip-arrow::before {
-    display: none; }
-  .tooltip.bs-tooltip-start .tooltip-arrow::before {
-    display: none; }
-  .tooltip.bs-tooltip-end .tooltip-arrow::before {
-    display: none; }
-
-/* Underline From Center */
-/* .underline {
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    position: relative;
-    overflow: hidden;
-
-    &:before {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        left: 51%;
-        right: 51%;
-        bottom: 0;
-        background: #2077a5;
-        height: 2px;
-        -webkit-transition-property: left, right;
-        transition-property: left, right;
-        -webkit-transition-duration: 0.3s;
-        transition-duration: 0.3s;
-        -webkit-transition-timing-function: ease-out;
-        transition-timing-function: ease-out;
-    }
-    &:hover:before,
-    &:focus:before,
-    &:active:before {
-        left: 0;
-        right: 0;
-    }
-}
-
- */
-/* Icon Up */
-@-webkit-keyframes hover-icon-up {
-  0%,
-    50%,
-    100% {
-    transform: translateY(0); }
-  25%,
-    75% {
-    transform: translateY(-6px); } }
-@keyframes hover-icon-up {
-  0%,
-    50%,
-    100% {
-    transform: translateY(0); }
-  25%,
-    75% {
-    transform: translateY(-6px); } }
-/* Icon Up */
-.hover-icon-up {
-  display: inline-block;
-  vertical-align: middle;
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0); }
-  .hover-icon-up .hvr-icon {
-    transform: translateZ(0); }
-  .hover-icon-up:hover .hvr-icon, .hover-icon-up:focus .hvr-icon, .hover-icon-up:active .hvr-icon {
-    animation-name: hover-icon-up;
-    animation-duration: 0.75s;
-    animation-timing-function: ease-out; }
-
-/* Rectangle Out */
-.rectangle-out-hover {
-  transform: perspective(1px) translateZ(0);
-  position: relative;
-  transition-duration: 0.3s; }
-  .rectangle-out-hover:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #2098d1;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-    transition-property: transform;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-out; }
-  .rectangle-out-hover:hover, .rectangle-out-hover:focus, .rectangle-out-hover:active {
-    color: white; }
-  .rectangle-out-hover:hover:before, .rectangle-out-hover:focus:before, .rectangle-out-hover:active:before {
-    transform: scale(1); }
-
-@font-face {
-  font-family: "fiicons";
-  src: url("../fonts/fiicons/ficons.eot?bdl4ma");
-  src: url("../fonts/fiicons/ficons.eot?bdl4ma#iefix") format("embedded-opentype"), url("../fonts/fiicons/ficons.ttf?bdl4ma") format("truetype"), url("../fonts/fiicons/ficons.woff?bdl4ma") format("woff"), url("../fonts/fiicons/ficons.svg?bdl4ma#fiicons") format("svg");
-  font-weight: normal;
-  font-style: normal;
-  font-display: block; }
-[class^="fi-"],
-[class*=" fi-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "fiicons" !important;
-  speak: never;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.fi-tie:before {
-  content: "\e98b"; }
-
-.fi-arrow-circle-left .path1:before {
-  content: "\e98c";
-  color: black; }
-
-.fi-arrow-circle-left .path2:before {
-  content: "\e98d";
-  margin-left: -0.9501953125em;
-  color: white; }
-
-.fi-arrow-circle-right .path1:before {
-  content: "\e98e";
-  color: black; }
-
-.fi-arrow-circle-right .path2:before {
-  content: "\e98f";
-  margin-left: -1.26953125em;
-  color: white; }
-
-.fi-email1:before {
-  content: "\e96b"; }
-
-.fi-youtube2:before {
-  content: "\e96c"; }
-
-.fi-dg:before {
-  content: "\e96d"; }
-
-.fi-instgram:before {
-  content: "\e96e"; }
-
-.fi-live-chat:before {
-  content: "\e96f"; }
-
-.fi-to-way:before {
-  content: "\e970"; }
-
-.fi-circle-right:before {
-  content: "\e971"; }
-
-.fi-Target:before {
-  content: "\e972"; }
-
-.fi-binoculars:before {
-  content: "\e973"; }
-
-.fi-home1:before {
-  content: "\e974"; }
-
-.fi-idea1:before {
-  content: "\e975"; }
-
-.fi-people:before {
-  content: "\e976"; }
-
-.fi-tie1:before {
-  content: "\e977"; }
-
-.fi-user1:before {
-  content: "\e978"; }
-
-.fi-watch:before {
-  content: "\e979";
-  color: #747272; }
-
-.fi-chevron-left1:before {
-  content: "\e97a"; }
-
-.fi-chevron-right1:before {
-  content: "\e97b"; }
-
-.fi-facebook1:before {
-  content: "\e97c"; }
-
-.fi-phone1:before {
-  content: "\e97d"; }
-
-.fi-search2:before {
-  content: "\e97e"; }
-
-.fi-send1:before {
-  content: "\e97f"; }
-
-.fi-toll-free:before {
-  content: "\e980"; }
-
-.fi-youtube11 .path1:before {
-  content: "\e981";
-  color: #050505; }
-
-.fi-youtube11 .path2:before {
-  content: "\e991";
-  margin-left: -1em;
-  color: black; }
-
-.fi-twitter2:before {
-  content: "\e982"; }
-
-.fi-eva_menu-outline1:before {
-  content: "\e983"; }
-
-.fi-arrow-right:before {
-  content: "\e984"; }
-
-.fi-arrow-circle-left1:before {
-  content: "\e985"; }
-
-.fi-arrow-circle-right1:before {
-  content: "\e986"; }
-
-.fi-clock:before {
-  content: "\e987"; }
-
-.fi-circle-arrow-left1:before {
-  content: "\e988"; }
-
-.fi-circle-arrow-right1:before {
-  content: "\e989"; }
-
-.fi-settings1:before {
-  content: "\e98a"; }
-
-.fi-twitter1:before {
-  content: "\e967"; }
-
-.fi-trash:before {
-  content: "\e992"; }
-
-.fi-youtube1:before {
-  content: "\e993"; }
-
-.fi-camera:before {
-  content: "\e994"; }
-
-.fi-close:before {
-  content: "\e990"; }
-
-.fi-instagram-line:before {
-  content: "\e968"; }
-
-.fi-youtube-line:before {
-  content: "\e96a"; }
-
-.fi-play-line:before {
-  content: "\e907"; }
-
-.fi-virtual-tour:before {
-  content: "\e995"; }
-
-.fi-circle-right-check:before {
-  content: "\e969";
-  color: #fff; }
-
-/* English Font */
-/*
- * Futura PT (English)
- */
-@font-face {
-  font-family: "Futura PT";
-  src: url("../fonts/FuturaPTBold.otf");
-  font-weight: bold;
-  font-style: normal; }
-@font-face {
-  font-family: "Futura PT";
-  src: url("../fonts/FuturaPTBook.otf");
-  font-weight: 400;
-  font-style: normal; }
-@font-face {
-  font-family: "GE_SS_Two_Bold";
-  src: url("../fonts/GE_SS_Two_Bold.otf");
-  font-weight: 700;
-  font-style: normal; }
-@font-face {
-  font-family: "GE_SS_Two_Light";
-  src: url("../fonts/GE_SS_Two_Light.otf");
-  font-weight: 400;
-  font-style: normal; }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box; }
-
-body {
-  background-color: #f1f2f2;
-  font-family: "Futura PT";
-  font-size: 16px;
-  position: relative;
-  max-width: 100vw;
-  overflow-x: hidden;
-  /*     color: $ad-black; */
-  font-family: "Futura PT";
-  font-weight: 300; }
-
-h1 {
-  font-size: 3.125rem;
-  font-weight: 700; }
-
-h2 {
-  font-size: 2.625rem;
-  font-weight: 700; }
-
-h3 {
-  font-size: 1.975rem;
-  font-weight: 700; }
-
-h4 {
-  font-size: 1.5rem;
-  font-weight: 700; }
-
-h5 {
-  font-size: 1.25rem;
-  font-weight: 700; }
-
-h6 {
-  font-size: 1rem;
-  font-weight: 500; }
-
-input:focus,
-button:focus {
-  outline: none !important;
-  box-shadow: none !important; }
-
-ul {
-  list-style: none;
-  padding: 0; }
-
-a {
-  text-decoration: none; }
-
-section {
-  padding-top: 6rem; }
-
 /* @import "../../../../Content/scss/bootstrap";
 @import "../../../../Content/scss/bootstrap-tour";
 @import "../../../../Content/scss/_common.scss";
@@ -4254,6 +3893,367 @@ section {
   height: 100%;
   width: 100%; }
 
+.tooltip {
+  max-width: 500px; }
+  .tooltip .tooltip-inner {
+    background: white;
+    color: red;
+    /*       color: re; */
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    max-width: 100%; }
+  .tooltip.bs-tooltip-top .tooltip-arrow::before {
+    display: none; }
+  .tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    display: none; }
+  .tooltip.bs-tooltip-start .tooltip-arrow::before {
+    display: none; }
+  .tooltip.bs-tooltip-end .tooltip-arrow::before {
+    display: none; }
+
+/* Underline From Center */
+/* .underline {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    overflow: hidden;
+
+    &:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        left: 51%;
+        right: 51%;
+        bottom: 0;
+        background: #2077a5;
+        height: 2px;
+        -webkit-transition-property: left, right;
+        transition-property: left, right;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+    }
+    &:hover:before,
+    &:focus:before,
+    &:active:before {
+        left: 0;
+        right: 0;
+    }
+}
+
+ */
+/* Icon Up */
+@-webkit-keyframes hover-icon-up {
+  0%,
+    50%,
+    100% {
+    transform: translateY(0); }
+  25%,
+    75% {
+    transform: translateY(-6px); } }
+@keyframes hover-icon-up {
+  0%,
+    50%,
+    100% {
+    transform: translateY(0); }
+  25%,
+    75% {
+    transform: translateY(-6px); } }
+/* Icon Up */
+.hover-icon-up {
+  display: inline-block;
+  vertical-align: middle;
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0); }
+  .hover-icon-up .hvr-icon {
+    transform: translateZ(0); }
+  .hover-icon-up:hover .hvr-icon, .hover-icon-up:focus .hvr-icon, .hover-icon-up:active .hvr-icon {
+    animation-name: hover-icon-up;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-out; }
+
+/* Rectangle Out */
+.rectangle-out-hover {
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  transition-duration: 0.3s; }
+  .rectangle-out-hover:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #2098d1;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    transition-property: transform;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out; }
+  .rectangle-out-hover:hover, .rectangle-out-hover:focus, .rectangle-out-hover:active {
+    color: white; }
+  .rectangle-out-hover:hover:before, .rectangle-out-hover:focus:before, .rectangle-out-hover:active:before {
+    transform: scale(1); }
+
+@font-face {
+  font-family: "fiicons";
+  src: url("../fonts/fiicons/ficons.eot?bdl4ma");
+  src: url("../fonts/fiicons/ficons.eot?bdl4ma#iefix") format("embedded-opentype"), url("../fonts/fiicons/ficons.ttf?bdl4ma") format("truetype"), url("../fonts/fiicons/ficons.woff?bdl4ma") format("woff"), url("../fonts/fiicons/ficons.svg?bdl4ma#fiicons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block; }
+[class^="fi-"],
+[class*=" fi-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "fiicons" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.fi-tie:before {
+  content: "\e98b"; }
+
+.fi-arrow-circle-left .path1:before {
+  content: "\e98c";
+  color: black; }
+
+.fi-arrow-circle-left .path2:before {
+  content: "\e98d";
+  margin-left: -0.9501953125em;
+  color: white; }
+
+.fi-arrow-circle-right .path1:before {
+  content: "\e98e";
+  color: black; }
+
+.fi-arrow-circle-right .path2:before {
+  content: "\e98f";
+  margin-left: -1.26953125em;
+  color: white; }
+
+.fi-email1:before {
+  content: "\e96b"; }
+
+.fi-youtube2:before {
+  content: "\e96c"; }
+
+.fi-dg:before {
+  content: "\e96d"; }
+
+.fi-instgram:before {
+  content: "\e96e"; }
+
+.fi-live-chat:before {
+  content: "\e96f"; }
+
+.fi-to-way:before {
+  content: "\e970"; }
+
+.fi-circle-right:before {
+  content: "\e971"; }
+
+.fi-Target:before {
+  content: "\e972"; }
+
+.fi-binoculars:before {
+  content: "\e973"; }
+
+.fi-home1:before {
+  content: "\e974"; }
+
+.fi-idea1:before {
+  content: "\e975"; }
+
+.fi-people:before {
+  content: "\e976"; }
+
+.fi-tie1:before {
+  content: "\e977"; }
+
+.fi-user1:before {
+  content: "\e978"; }
+
+.fi-watch:before {
+  content: "\e979";
+  color: #747272; }
+
+.fi-chevron-left1:before {
+  content: "\e97a"; }
+
+.fi-chevron-right1:before {
+  content: "\e97b"; }
+
+.fi-facebook1:before {
+  content: "\e97c"; }
+
+.fi-phone1:before {
+  content: "\e97d"; }
+
+.fi-search2:before {
+  content: "\e97e"; }
+
+.fi-send1:before {
+  content: "\e97f"; }
+
+.fi-toll-free:before {
+  content: "\e980"; }
+
+.fi-youtube11 .path1:before {
+  content: "\e981";
+  color: #050505; }
+
+.fi-youtube11 .path2:before {
+  content: "\e991";
+  margin-left: -1em;
+  color: black; }
+
+.fi-twitter2:before {
+  content: "\e982"; }
+
+.fi-eva_menu-outline1:before {
+  content: "\e983"; }
+
+.fi-arrow-right:before {
+  content: "\e984"; }
+
+.fi-arrow-circle-left1:before {
+  content: "\e985"; }
+
+.fi-arrow-circle-right1:before {
+  content: "\e986"; }
+
+.fi-clock:before {
+  content: "\e987"; }
+
+.fi-circle-arrow-left1:before {
+  content: "\e988"; }
+
+.fi-circle-arrow-right1:before {
+  content: "\e989"; }
+
+.fi-settings1:before {
+  content: "\e98a"; }
+
+.fi-twitter1:before {
+  content: "\e967"; }
+
+.fi-trash:before {
+  content: "\e992"; }
+
+.fi-youtube1:before {
+  content: "\e993"; }
+
+.fi-camera:before {
+  content: "\e994"; }
+
+.fi-close:before {
+  content: "\e990"; }
+
+.fi-instagram-line:before {
+  content: "\e968"; }
+
+.fi-youtube-line:before {
+  content: "\e96a"; }
+
+.fi-play-line:before {
+  content: "\e907"; }
+
+.fi-virtual-tour:before {
+  content: "\e995"; }
+
+.fi-circle-right-check:before {
+  content: "\e969";
+  color: #fff; }
+
+/* English Font */
+/*
+ * Futura PT (English)
+ */
+@font-face {
+  font-family: "Futura PT";
+  src: url("../fonts/FuturaPTBold.otf");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: "Futura PT";
+  src: url("../fonts/FuturaPTBook.otf");
+  font-weight: 400;
+  font-style: normal; }
+@font-face {
+  font-family: "GE_SS_Two_Bold";
+  src: url("../fonts/GE_SS_Two_Bold.otf");
+  font-weight: 700;
+  font-style: normal; }
+@font-face {
+  font-family: "GE_SS_Two_Light";
+  src: url("../fonts/GE_SS_Two_Light.otf");
+  font-weight: 400;
+  font-style: normal; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  background-color: #f1f2f2;
+  font-family: "Futura PT";
+  font-size: 16px;
+  position: relative;
+  max-width: 100vw;
+  overflow-x: hidden;
+  /*     color: $ad-black; */
+  font-family: "Futura PT";
+  font-weight: 300; }
+
+h1 {
+  font-size: 3.125rem;
+  font-weight: 700; }
+
+h2 {
+  font-size: 2.625rem;
+  font-weight: 700; }
+
+h3 {
+  font-size: 1.975rem;
+  font-weight: 700; }
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: 700; }
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: 700; }
+
+h6 {
+  font-size: 1rem;
+  font-weight: 500; }
+
+input:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: none !important; }
+
+ul {
+  list-style: none;
+  padding: 0; }
+
+a {
+  text-decoration: none; }
+
+section {
+  padding-top: 6rem; }
+
 .breadcrumbs-wrapper {
   margin-top: 40px; }
   .breadcrumbs-wrapper .breadcrumb {
@@ -4892,98 +4892,3 @@ overflow: hidden; */ }
   border: 2px solid white;
   border-radius: 6px;
   background-color: transparent; }
-
-.send-btn {
-  width: 32%;
-  margin: auto;
-  padding: 0.5rem;
-  background: #84C356;
-  border: none;
-  margin: 2rem auto 6rem;
-  border-radius: 5px;
-  color: white; }
-
-.home-page .card {
-  padding: 0 35px;
-  text-align: center;
-  padding: 10px;
-  background-color: #8b8b8b1a; }
-  .home-page .card .card-content {
-    padding: 20px;
-    border-radius: 10px;
-    border-color: #8b8b8b1a; }
-  .home-page .card h3 {
-    font-size: 1.5rem;
-    color: #0f75c0; }
-  .home-page .card p {
-    font-size: 1rem; }
-.home-page .about-section .about h3 {
-  color: #0f75c0; }
-.home-page .about-section .image {
-  position: relative; }
-  .home-page .about-section .image .arrow {
-    position: absolute;
-    top: 2px; }
-  .home-page .about-section .image .girl2 {
-    position: absolute;
-    top: 32%;
-    left: 35%; }
-.home-page .our-process {
-  padding-bottom: 6rem; }
-  .home-page .our-process .content-wrapper {
-    color: #0f75c0; }
-  .home-page .our-process .card {
-    margin: 10px 0; }
-    .home-page .our-process .card .card-content {
-      padding: 0px;
-      display: flex; }
-      .home-page .our-process .card .card-content .num {
-        color: #0f75c0;
-        font-size: 5rem; }
-    .home-page .our-process .card .process-content {
-      text-align: start !important;
-      padding: 25px 15px; }
-.home-page .hurry-up {
-  padding: 7rem 0;
-  color: white; }
-  .home-page .hurry-up .buton-group a {
-    margin: 0 2rem; }
-
-.contact-page .bannar {
-  background-image: url(../../images/contact/top-view-blue-monday-concept-composition-with-telephone\ copy\ 1.png);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  height: 50vh;
-  position: relative; }
-  .contact-page .bannar h2 {
-    position: absolute;
-    top: 1rem;
-    left: 5rem;
-    color: #0f75c0; }
-.contact-page .paragraph p {
-  padding: 2rem 27rem;
-  color: #878483;
-  font-size: 20px; }
-.contact-page .stay-connected h2 {
-  color: #0f75c0;
-  font-size: 40px; }
-.contact-page .stay-connected p {
-  padding: 1rem 27rem;
-  color: #878483;
-  font-size: 20px; }
-.contact-page .stay-connected .card {
-  width: 36%;
-  padding: 2rem;
-  margin: 0 0.5rem;
-  border-radius: 19px;
-  text-align: center; }
-.contact-page .contact-form h2 {
-  padding: 1rem 0;
-  color: #0f75c0;
-  font-size: 40px; }
-.contact-page .contact-form input {
-  padding: 0.9rem 0.5rem; }
-.contact-page .contact-form ::placeholder {
-  padding: 0 0.5rem; }
-.contact-page .color-footer {
-  background-color: #84c356 !important; }

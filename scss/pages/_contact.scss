@@ -1,212 +1,61 @@
-
-
 .contact-page {
-    .contact-form {
-        .form-content {
-            margin-bottom: 40px;
-            p {
-                color: $brand-dark-gray;
-                font-size: 1.125rem;
-                font-weight: 500;
-                margin: 0;
-            }
-        }
+    .bannar {
+        background-image: url(../../images/contact/top-view-blue-monday-concept-composition-with-telephone\ copy\ 1.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        height: 50vh;
+        position: relative;
 
-        .contact-img {
-            position: absolute;
-            right: 0;
-            top: 36px;
-        }
-
-       
         h2 {
-            padding: 45px 0 50px 0;
-            font-size: 40px;
-            font-weight: 700;
-            color: #5f5f5f;
-            text-transform: uppercase;
-        }
-        .form-wrapper {
-            margin-bottom: 80px;
-            background: $pure-white;
-            /*  max-height: 521px; */
-            border-radius: 10px;
-            padding: 63px 0;
-            .filed-item {
-                position: relative;
-                padding: 0 40px;
-                .label {
-                    margin-bottom: 15px;
-                    display: block;
-                    color: $gray2;
-                    font-weight: 700;
-
-                    span {
-                        color: #e07c5e;
-                    }
-                }
-                input,
-                textarea {
-                    width: 100%;
-                    padding: 53px;
-                    height: 50px;
-                    border-radius: 10px;
-                    border: solid 1px transparent;
-                    padding: 20px;
-                    background-color: rgba(217, 217, 217, 0.3);
-                    outline: none;
-                    color: rgba(197, 197, 197, 0.6);
-                }
-                .textarea {
-                    height: 206px;
-                }
-
-                ::placeholder {
-                    color: $th-gray;
-                    font-size: 16px;
-                }
-                &.btn-filed {
-                    justify-content: flex-end;
-                }
-            }
-            .alert {
-                .btn-close {
-                    float: right;
-                }
-            }
+            position: absolute;
+            top: 1rem;
+            left: 5rem;
+            color: #0f75c0;
         }
     }
-    .stay-in-touch {
-        background-color: $pure-white;
-        position: relative;
-        .stay-img {
-            position: absolute;
-            left: 0;
-            top: -159px;
-            z-index: -1;
+    .paragraph {
+        p {
+            padding: 2rem 27rem;
+            color: #878483;
+            font-size: 20px;
         }
-        .statistics-items {
-            h2 {
-                padding: 60px 0;
-            }
-            .content-stay {
-                padding-bottom: 80px;
-                .statistics-card {
-                    border-radius: 10px;
-                    background-color: $pure-white;
-                    border: solid 1px rgba(0, 0, 0, 0.15);
-                    padding: 30px;
-                    height: 100%;
-                    display: -webkit-box;
-                    display: -ms-flexbox;
-                    display: flex;
-                    -webkit-box-orient: vertical;
-                    -webkit-box-direction: normal;
-                    -ms-flex-direction: column;
-                    flex-direction: column;
-                    cursor: pointer;
-                    .icon {
-                        width: 75px;
-                        height: 75px;
-                        background-color: $green;
-                        border-radius: 100%;
-                        display: -webkit-box;
-                        display: -ms-flexbox;
-                        display: flex;
-                        -webkit-box-align: center;
-                        -ms-flex-align: center;
-                        align-items: center;
-                        -webkit-box-pack: center;
-                        -ms-flex-pack: center;
-                        justify-content: center;
-                        margin: 0 auto;
-                        i {
-                            color: $pure-white;
-                            font-size: 30px;
-                        }
-                    }
-                    .wrapper {
-                        position: relative;
-                        display: inline-block;
-                        text-align: center;
-                        margin: 10px;
-                        .default,
-                        .hover {
-                            font-size: 18px;
-                            font-weight: bold;
-                            color: #a3c891;
-                            cursor: pointer;
-                            text-align: center;
-                            margin: 10px;
-                        }
-                        .hover {
-                            overflow: hidden;
-                            width: 0;
-                            position: absolute;
-                            left: 0;
-                            top: 0;
-                            color: white;
-                            white-space: nowrap;
-                        }
-                    }
-
-                    &:hover {
-                        i {
-                            transform: scale(2);
-                            transition: transform 2s ease-out;
-                            color: $pure-white;
-                        }
-                        &:hover .hover {
-                            width: 100%;
-                            animation: stagger 2s steps(14);
-                        }
-                    }
-                    @keyframes stagger {
-                        from {
-                            width: 0;
-                        }
-                        to {
-                            width: 100%;
-                        }
-                    }
-                }
-
-                .card-effects {
-                    position: relative;
-                    text-decoration: none;
-                    z-index: 0;
-                    overflow: hidden;
-                    &:before {
-                        content: "";
-                        position: absolute;
-                        z-index: -1;
-                        top: -16px;
-                        right: -102px;
-                        background: #a3c891;
-                        height: 80px;
-                        width: 80px;
-                        border-radius: 32px;
-                        transform: scale(1);
-                        transform-origin: 50% 50%;
-                        transition: transform 3s ease-out;
-                    }
-
-                    &:hover:before {
-                        transform: scale(21);
-                    }
-                }
-            }
+    }
+    .stay-connected {
+        h2 {
+            color: #0f75c0;
+            font-size: 40px;
         }
+
+        p {
+            padding: 1rem 27rem;
+            color: #878483;
+            font-size: 20px;
+        }
+
+        .card {
+            width: 36%;
+            padding: 2rem;
+            margin: 0 0.5rem;
+            border-radius: 19px;
+            text-align: center;
+        }
+    }
+    .contact-form {
+        h2 {
+            padding: 1rem 0;
+            color: #0f75c0;
+            font-size: 40px;
+        }
+
+        input {
+            padding: 0.9rem 0.5rem;
+        }
+        ::placeholder {
+            padding: 0 0.5rem;
+        }
+    }
+
+    .color-footer {
+        background-color: #84c356 !important;
     }
 }
-
-/* .card1:hover {
-    p {
-      transition: all 0.3s ease-out;
-      color: rgba(255, 255, 255, 0.8);
-    }
-    h3 {
-      transition: all 0.3s ease-out;
-      color: #ffffff;
-    }
-  } */
