@@ -44,7 +44,8 @@
                 height: 100%;
                 top: 0;
                 left: 0;
-                background: linear-gradient(45deg, rgba(36, 82, 122, 1) 40%, rgba(36, 82, 122, 0) 100%);
+               
+background: rgba(0, 0, 0, 0.48);
                 z-index: 999;
                 &::before {
                     content: "";

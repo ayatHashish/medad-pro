@@ -4031,58 +4031,6 @@ a {
 section {
   padding-top: 6rem; }
 
-.breadcrumbs-wrapper {
-  margin-top: 40px; }
-  .breadcrumbs-wrapper .breadcrumb {
-    width: 100%;
-    position: relative; }
-    .breadcrumbs-wrapper .breadcrumb li {
-      margin-right: 15px; }
-      .breadcrumbs-wrapper .breadcrumb li a {
-        color: #000000;
-        font-size: 0.9375em;
-        position: relative;
-        display: flex;
-        align-items: center;
-        position: relative;
-        gap: 5px;
-        text-decoration: none;
-        /* color: $pure-white; */
-        cursor: pointer; }
-        .breadcrumbs-wrapper .breadcrumb li a::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: -2px;
-          width: 0;
-          height: 2px;
-          background: #26537B;
-          transition-duration: 300ms; }
-        .breadcrumbs-wrapper .breadcrumb li a::before {
-          content: "\e910";
-          position: absolute;
-          right: -10px;
-          top: 71%;
-          color: #afafaf;
-          transform: translateY(-50%);
-          font-size: 0.75em;
-          font-family: "fiicons";
-          font-family: "fiicons"; }
-        .breadcrumbs-wrapper .breadcrumb li a.deactivate {
-          color: #a3c891;
-          cursor: default; }
-          .breadcrumbs-wrapper .breadcrumb li a.deactivate:hover::after {
-            display: none; }
-        .breadcrumbs-wrapper .breadcrumb li a:hover::after {
-          width: 100%; }
-      .breadcrumbs-wrapper .breadcrumb li:last-child {
-        margin-right: 0px; }
-        .breadcrumbs-wrapper .breadcrumb li:last-child a::before {
-          display: none; }
-
-@media screen and (max-width: 767px) {
-  .breadcrumbs-wrapper .breadcrumb li a {
-    font-size: 0.875rem; } }
 header {
   background-color: #ffffff; }
   header .header-section {
@@ -4393,7 +4341,7 @@ footer .footer-copyright {
       height: 100%;
       top: 0;
       left: 0;
-      background: linear-gradient(45deg, #24527a 40%, rgba(36, 82, 122, 0) 100%);
+      background: rgba(0, 0, 0, 0.48);
       z-index: 999; }
       .main-banner .banner-slide .item-slide .overlay::before {
         content: "";
