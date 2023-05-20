@@ -47,7 +47,6 @@ def __login__(email,password):
     #    __ = None
         
     password = password.encode('utf-8')
-    #email='shrouk'
     found_user = conn.execute("SELECT * FROM accounts WHERE email=?", (email,)).fetchone()
     if found_user :
         if bcrypt.checkpw(password, found_user[2]):
