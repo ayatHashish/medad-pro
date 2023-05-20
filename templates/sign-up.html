@@ -21,7 +21,7 @@
         <div class="loader-section section-right"></div>
     </div> -->
     <!-- header -->
-  
+
 
     <header class="header">
         <div class="container">
@@ -97,36 +97,36 @@
                             </div>
                         </div>
                         <div class="col-xl-6 ">
-                            <form>
+                          <form action="http://localhost:8080/signup" method="post">
 
-                                <!-- Email input -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example3">Full Name</label>
-                                    <input type="email" id="form3Example3" class="form-control form-control-lg" />
-                                </div>
+                              <!-- Email input -->
+                              <div class="form-outline mb-4">
+                                  <label class="form-label" for="form3Example3">Full Name</label>
+                                  <input type="text" name = 'username' id="form3Example3" class="form-control form-control-lg" />
+                              </div>
 
-                                <!-- Email input -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example3">Email address</label>
-                                    <input type="email" id="form3Example3" class="form-control form-control-lg" />
-                                </div>
-                                <!-- Password input -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="form2Example2">Password</label>
-                                    <input type="password" id="form2Example2" class="form-control" />
-                                </div>
+                              <!-- Email input -->
+                              <div class="form-outline mb-4">
+                                  <label class="form-label" for="form3Example3">Email address</label>
+                                  <input type="email" name = 'email' id="form3Example3" class="form-control form-control-lg" />
+                              </div>
+                              <!-- Password input -->
+                              <div class="form-outline mb-4">
+                                  <label class="form-label" for="form2Example2">Password</label>
+                                  <input type="password" name = 'password' id="form2Example2" class="form-control" />
+                              </div>
 
-                                <div class="form-check mb-0 mt-3">
-                                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                                    <label class="form-check-label" for="form2Example3">
-                                        I agree to the Terms of Service and Privacy Policy.
-                                    </label>
-                                </div>
-                                <div class="text-center text-lg-start mt-4 pt-2">
-                                    <button type="button" class="btn btn-primary">Create Account</button>
-                                    <p class="small fw-bold mt-2 pt-1 mb-0"> Already have Account? <a href="#!"
-                                            class="link-danger">Sign In</a></p>
-                                </div>
+                              <div class="form-check mb-0 mt-3">
+                                  <input class="form-check-input me-2" type="checkbox" name = 'checkbox' id="form2Example3" />
+                                  <label class="form-check-label" for="form2Example3">
+                                      I agree to the Terms of Service and Privacy Policy.
+                                  </label>
+                              </div>
+                              <div class="text-center text-lg-start mt-4 pt-2">
+                                  <button type="submit" class="btn btn-primary">Create Account</button>
+                                  <p class="small fw-bold mt-2 pt-1 mb-0"> Already have Account? <a href="#!"
+                                          class="link-danger">Sign In</a></p>
+                              </div>
 
 
 
