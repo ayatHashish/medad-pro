@@ -4424,7 +4424,8 @@ footer .footer-copyright {
 .btn-action,
 .btn-action-lg,
 .btn-action-lg-blue,
-.btn-link, .btn-edit {
+.btn-hurry,
+.btn-edit {
   width: 60%;
   padding: 0.75rem 2rem;
   border-radius: 6px;
@@ -4436,7 +4437,8 @@ footer .footer-copyright {
   .btn-action:hover,
   .btn-action-lg:hover,
   .btn-action-lg-blue:hover,
-  .btn-link:hover, .btn-edit:hover {
+  .btn-hurry:hover,
+  .btn-edit:hover {
     opacity: 0.8; }
 
 .btn-action {
@@ -4449,7 +4451,7 @@ footer .footer-copyright {
   width: 35%;
   background-color: #0F75C0; }
 
-.btn-link {
+.btn-hurry {
   padding: 0.75rem 4rem;
   width: 30%;
   background-color: transparent;
