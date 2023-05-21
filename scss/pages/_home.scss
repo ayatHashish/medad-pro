@@ -1,80 +1,107 @@
-
-.home-page{
-.card {
-  padding: 0 35px;
-  text-align: center;
-  padding: 10px;
-  background-color: #8b8b8b1a;
-  .card-content {
-    padding: 20px;
-    border-radius: 10px;
-    border-color: #8b8b8b1a;
-  }
-
-  h3 {
-    font-size: 1.5rem;
-    color: #0f75c0;
-  }
-  p {
-    font-size: 1rem;
-  }
-}
-// about
-.about-section{
-  .about{
-h3{
-  color: #0f75c0;
-}
-  }
-.image{
- position: relative;
-.arrow{
-  position: absolute;
-  top: 2px;
-}
-
-.girl2{
-  position: absolute;
-  top:32%;
-  left: 35%;
-}
-}
-
-}
-///////// Our Process /////////////////
-.our-process {
-  padding-bottom: 6rem ;
-  .content-wrapper{
-    color: #0f75c0;
-  } 
+.home-page {
   .card {
-    margin: 10px 0 ;
+    padding: 0 35px;
+    text-align: center;
+    padding: 10px;
+    background-color: #8b8b8b1a;
     .card-content {
-     padding: 0px;
-      display: flex;
-      .num {
+      padding: 20px;
+      border-radius: 10px;
+      border-color: #8b8b8b1a;
+    }
+    h3 {
+      font-size: 1.5rem;
+      color: #0f75c0;
+    }
+    p {
+      font-size: 1rem;
+    }
+
+    &:hover{
+      transform:scale(0.9)
+    }
+  }
+  // about
+  .about-section {
+    .about {
+      h3 {
         color: #0f75c0;
-        font-size: 5rem;
       }
     }
-    .process-content {
-      text-align: start !important;
-      padding: 25px 15px;
+    .image {
+      position: relative;
+      .arrow {
+        position: absolute;
+        top: -80px;
+      }
+
+      .girl2 {
+        position: absolute;
+        top: 11%;
+        left: 48%;
+      }
+      .right {
+        position: absolute;
+        right: 235px;
+        top: -12px;
+      }
+
+      .heart {
+        position: absolute;
+    right: 12rem;
+    top: 22rem;
+      }
+    }
+  }
+  ///////// Our Process /////////////////
+  .our-process {
+    padding-bottom: 6rem;
+    .content-wrapper {
+      color: #0f75c0;
+    }
+    .card {
+      margin: 10px 0;
+      .card-content {
+        padding: 0px;
+        display: flex;
+        .num {
+          color: #0f75c0;
+          font-size: 5rem;
+        }
+      }
+      .process-content {
+        text-align: start !important;
+        padding: 25px 15px;
+      }
+    }
+  }
+  ///////// hurry-up /////////////////
+
+  .hurry-up {
+    padding: 7rem 0;
+    color: white;
+
+    .buton-group {
+      a {
+        margin: 0 2rem;
+      }
     }
   }
 }
-///////// hurry-up /////////////////
 
-.hurry-up {
-  padding: 7rem 0;
-  color: white;
 
-  .buton-group {
-    a {
-      margin: 0 2rem;
-    }
-  }
+@media screen and (max-width:1399px) {
 }
 
+@media screen and (max-width:1199px) {
 }
+
+@media screen and (max-width:991px) {
+}
+
+@media screen and (max-width:767px) {
+}
+
+@media screen and (max-width:580px) {
+            }
 

@@ -1,4 +1,4 @@
-.main-banner{
+.main-banner {
     padding-top: 0;
     .banner-slide {
         background-color: $pure-white;
@@ -18,17 +18,14 @@
                     border-radius: 10px;
                     width: 36px;
                 }
-                
-                
             }
             .owl-dot {
-                    &:hover{
+                &:hover {
                     background: #a3c891 !important;
                 }
-                }
+            }
         }
         .item-slide {
-          
             .img-slider {
                 width: 100%;
                 img {
@@ -44,8 +41,8 @@
                 height: 100%;
                 top: 0;
                 left: 0;
-               
-background: rgba(0, 0, 0, 0.48);
+
+                background: rgba(0, 0, 0, 0.48);
                 z-index: 999;
                 &::before {
                     content: "";
@@ -76,9 +73,8 @@ background: rgba(0, 0, 0, 0.48);
             .content-wrapper {
                 position: absolute;
                 right: 50%;
-                top: 225px;
-                // transform: translate(50%, 50%) !important;
-                transform: translate(50%, 50%);
+                top: 275px;
+                transform: translate(50%, -50%);
                 // font-weight: 700;
                 // font-size: 60px;
                 z-index: 1111;
@@ -90,23 +86,17 @@ background: rgba(0, 0, 0, 0.48);
             }
         }
     }
-
 }
 
 @media screen and (max-width: 1399px) {
- 
 }
 
 @media screen and (max-width: 1199px) {
-
 }
 
 @media screen and (max-width: 769px) {
-   
 }
 @media screen and (max-width: 580px) {
-  
 }
 @media screen and (max-width: 325px) {
-   
 }
