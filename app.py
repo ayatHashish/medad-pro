@@ -4,9 +4,13 @@ import os
 
 path = os.path.dirname(__file__)
 
+app_root = os.path.dirname(os.path.abspath(__file__))
+
 app = Flask(__name__)
 
 
+
+print(app_root)
 
 
 @app.route("/_home_")
@@ -53,10 +57,10 @@ def main():
 
     
 
-#@app.route("/home2",methods = ['GET','POST'])
-#def home2():
+@app.route("/home2",methods = ['GET','POST'])
+def home2():
    
-#    return render_template("_home_.html",result = "maged")
+    return render_template("_home_.html",result = "maged")
 
 
  
@@ -82,8 +86,10 @@ def logout():
     
 @app.route("/login",methods = ['GET','POST'])
 def login():
+    print("LOGING")
     if request.method == 'POST':
-        #print(request.form)
+        print("post")
+        print(request.form)
         email = request.form['email']
         password = request.form['password']
         user = __login__(email,password)
@@ -92,7 +98,7 @@ def login():
             session['username'] = user[1]
             session['user'] = user
             return redirect(url_for("home"))
-
+        print('email or password not correct')
         return render_template('sign-in.html', result = 'email or password not correct')
     
     return redirect("/_login_")
