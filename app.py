@@ -146,6 +146,6 @@ def student():
 if __name__ == '__main__':
     
     app.secret_key = 'Medad_WS@MishkaKids-2023_'
-    app.run(host='localhost', port = 8000, debug=True)
+    app.run(host='localhost', port = 8080, debug=True)
     
     
