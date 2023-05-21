@@ -86,10 +86,8 @@ def logout():
     
 @app.route("/login",methods = ['GET','POST'])
 def login():
-    print("LOGING")
     if request.method == 'POST':
-        print("post")
-        print(request.form)
+ 
         email = request.form['email']
         password = request.form['password']
         user = __login__(email,password)
@@ -147,7 +145,7 @@ def student():
 
 if __name__ == '__main__':
     
-    app.secret_key = 'Medad_WS@MishkaKids-2023'
-    app.run(host='localhost', port = 8080, debug=True)
+    app.secret_key = 'Medad_WS@MishkaKids-2023_'
+    app.run(host='localhost', port = 8000, debug=True)
     
     

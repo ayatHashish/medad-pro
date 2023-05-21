@@ -19,6 +19,15 @@
             var serverUrl = window.location.protocol + "//" + window.location.host;
             return serverUrl;
         }
+
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            var form = document.getElementById('ContactForm');
+            var url = getServerUrl() + '/contactus';
+            form.action = url;
+            form.method = 'post';
+            form.submit();
+        }
     </script>
 
 
@@ -140,7 +149,7 @@
             <section class="contact-form ">
                 <h2 class="text-center">Send Message</h2>
                 <div class="container">
-                  <form action="#" onclick="location.href = getServerUrl() + '/contactus" method="post">
+                  <form id="ContactForm" action="#" method="post">
                       <div class="row">
                           <div class="col-xl-6 mb-2">
                               <div class="form-group">
@@ -171,6 +180,10 @@
 
                                   <textarea class="form-control" placeholder="Subject" name= 'subject'
                                       id="exampleFormControlTextarea1" rows="3"></textarea>
+                              </div>
+                              <div class="text-center text-lg-start mt-4 pt-2">
+                                  <button type="submit" class="btn btn-primary" onclick="submitForm(event)" >Send Message</button>
+
                               </div>
                           </div>
 

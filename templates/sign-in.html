@@ -17,6 +17,17 @@
             var serverUrl = window.location.protocol + "//" + window.location.host;
             return serverUrl;
         }
+
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            var form = document.getElementById('loginForm');
+            var url = getServerUrl() + '/login';
+            form.action = url;
+            form.method = 'post';
+            form.submit();
+        }
+
+
     </script>
 
 
@@ -202,7 +213,7 @@
                                   </label>
                               </div>
                               <div class="text-center text-lg-start mt-4 pt-2">
-                                  <button type="submit" class="btn btn-primary" onclick="location.href = getServerUrl() + '/login'; return false;" >Sign IN</button>
+                                  <button type="submit" class="btn btn-primary" onclick="submitForm(event)" >Sign IN</button>
                                   <p class="small fw-bold mt-2 pt-1 mb-0"> New User ? <a href="#!"
                                           class="link-danger">Create an Account</a></p>
                               </div>
