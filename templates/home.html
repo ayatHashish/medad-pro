@@ -16,8 +16,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;1,200&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="../static/css/inner.en.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inner.en.css') }}" />
     <title>Home</title>
+
+
+    <script>
+        function getServerUrl() {
+            var serverUrl = window.location.protocol + "//" + window.location.host;
+            return serverUrl;
+        }
+    </script>
+
+
 </head>
 
 <body class="en">
@@ -33,7 +43,7 @@
         <div class="container">
             <section class="header-section">
                 <nav class="navbar navbar-expand-lg justify-content-between ">
-                    <a class="navbar-brand" href="#"> <img src="../static/images/logo 1.png" alt=""></a>
+                    <a class="navbar-brand" href="#"> <img src="{{ url_for('static', filename='images/logo 1.png') }}" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -41,30 +51,30 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                         <ul class="navbar-nav justify-content-center">
-                            <li class="nav-item ">
-                                <a class="nav-link" href="home.html">Home</a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="services.html">Services</a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="profile.html">Profile</a>
-                            </li>
+                          <li class="nav-item ">
+                              <a class="nav-link" href="#" onclick="location.href = getServerUrl() + '/_home_';">Home</a>
+                          </li>
+                          <li class="nav-item ">
+                              <a class="nav-link" href="#" onclick="location.href = getServerUrl() + '/_services_';">Services</a>
+                          </li>
+                          <li class="nav-item ">
+                              <a class="nav-link" href="#" onclick="location.href = getServerUrl() + '/_profile_';">Profile</a>
+                          </li>
 
-                            <li class="nav-item ">
-                                <a class="nav-link" href="teacher.html">Teacher</a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="contact-us.html">Contact Us</a>
-                            </li>
+                          <li class="nav-item ">
+                              <a class="nav-link" href="#" onclick="location.href = getServerUrl() + '/_teacher_';">Teacher</a>
+                          </li>
+                          <li class="nav-item ">
+                              <a class="nav-link" href="#" onclick="location.href = getServerUrl() + '/_contactus_';">Contact Us</a>
+                          </li>
 
 
                         </ul>
                     </div>
 
                     <div class="buton-group">
-                        <a class="btn-edit" href="sign-in.html"> <i class="fa-regular fa-user"></i>Login</a>
-                        <a class="btn-edit" href="sign-up.html"> <i class="fa-regular fa-user"></i> Sign Up</a>
+                      <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_login_';">Login</a>
+                      <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_signup_';"> Sign Up</a>
                     </div>
                 </nav>
             </section>
@@ -75,7 +85,7 @@
             <div class="banner-slide owl-carousel owl-theme">
                 <div class="item-slide">
                     <div class="img-slider">
-                        <img src="../static/images/bunnar/home.png" alt="Slider Image" />
+                      <img src="{{ url_for('static', filename='images/bunnar/home.png') }}" alt="Slider Image" />
                     </div>
                     <div class="content-wrapper text-center">
                         <h3>Welcome to our online course platform</h3>
@@ -87,15 +97,15 @@
                             whenever and wherever you want.
                         </p>
                         <div class="d-flex justify-content-around">
-                            <button class="btn-action-lg-blue" href="sign-in.html">login</button>
-                            <button class="btn-action-lg" href="sign-up.html">sign up </button>
+                          <button class="main-button bg-primary" href="#" onclick="location.href = getServerUrl() + '/_login_';">login</button>
+                          <button class="main-button bg-success" href="#" onclick="location.href = getServerUrl() + '/_signup_';">sign up </button>
                         </div>
                     </div>
                     <div class="overlay"></div>
                 </div>
                 <div class="item-slide">
                     <div class="img-slider">
-                        <img src="../static/images/bunnar/home.png" alt="Slider Image" />
+                      <img src="{{ url_for('static', filename='images/bunnar/home.png') }}" alt="Slider Image" />
                     </div>
                     <div class="content-wrapper text-center">
                         <h3>Welcome to our online course platform</h3>
@@ -107,8 +117,8 @@
                             whenever and wherever you want.
                         </p>
                         <div class="d-flex justify-content-around">
-                            <button class="btn-action-lg-blue" href="sign-in.html">login</button>
-                            <button class="btn-action-lg" href="sign-up.html">sign up </button>
+                          <button class="main-button bg-primary" href="#" onclick="location.href = getServerUrl() + '/_login_';">login</button>
+                          <button class="main-button bg-success" href="#" onclick="location.href = getServerUrl() + '/_signup_';">sign up </button>
                         </div>
 
                     </div>
@@ -116,7 +126,7 @@
                 </div>
                 <div class="item-slide">
                     <div class="img-slider">
-                        <img src="../static/images/bunnar/home.png" alt="Slider Image" />
+                      <img src="{{ url_for('static', filename='images/bunnar/home.png') }}" alt="Slider Image" />
                     </div>
                     <div class="content-wrapper text-center">
                         <h3>Welcome to our online course platform</h3>
@@ -128,9 +138,10 @@
                             whenever and wherever you want.
                         </p>
                         <div class="d-flex justify-content-around">
-                            <button class="btn-action-lg-blue" href="sign-in.html">login</button>
-                            <button class="btn-action-lg" href="sign-up.html">sign up </button>
-                        </div>
+                          <button class="main-button bg-primary" href="#" onclick="location.href = getServerUrl() + '/_login_';"> <i
+                                  class="fa-regular fa-user"></i>login</button>
+                          <button class="main-button bg-success" href="#" onclick="location.href = getServerUrl() + '/_signup_';"><i
+                                  class="fa-regular fa-user"></i> sign up </button>                        </div>
 
                     </div>
                     <div class="overlay"></div>
@@ -146,7 +157,7 @@
                                 <div class="card-content">
 
                                     <div>
-                                        <img src="../static/images/website/online-class.png" alt="" />
+                                      <img src="{{ url_for('static', filename='images/website/online-class.png') }}" alt="" />
                                     </div>
                                     <h3> expert teachers </h3>
                                     <p>Communicate with expert teachers from your home</p>
@@ -158,7 +169,7 @@
                                 <div class="card-content">
 
                                     <div>
-                                        <img src="../static/images/website/work copy.png" alt="" />
+                                      <img src="{{ url_for('static', filename='images/website/work copy.png') }}" alt="" />
                                     </div>
                                     <h3> Learn anytime </h3>
                                     <p>Learn Anytime, Anywhere with
@@ -172,7 +183,7 @@
                                 <div class="card-content">
 
                                     <div>
-                                        <img src="../static/images/website/calendar copy.png" alt="" />
+                                      <img src="{{ url_for('static', filename='images/website/calendar copy.png') }}" alt="" />
                                     </div>
                                     <h3> Fit Schedule </h3>
                                     <p>Interactive Online Learning
@@ -186,7 +197,7 @@
                                 <div class="card-content">
 
                                     <div>
-                                        <img src="../static/images/website/hand copy.png" alt="" />
+                                      <img src="{{ url_for('static', filename='images/website/hand copy.png') }}" alt="" />
                                     </div>
                                     <h3>Easy learning</h3>
                                     <p>Online Learning Made Easy with User-Friendly Platform </p>
@@ -208,11 +219,11 @@
 
                             <div class="col-xl-7 col-md-12  ">
                                 <div class="image">
-                                    <img src="../static/images/about/about-img-1.png" class="arrow" alt="">
-                                    <img src="../static/images/about/girl1.png" alt="">
-                                    <img src="../static/images/about/girl2.png" class="girl2" alt="">
-                                    <img src="../static/images/about/about-img-2.png" class="right" alt="">
-                                    <img src="../static/images/about/about-img-3.png" class="heart" alt="">
+                                  <img src="{{ url_for('static', filename='images/about/about-img-1.png') }}" class="arrow" alt="">
+                                  <img src="{{ url_for('static', filename='images/about/girl1.png') }}" alt="">
+                                  <img src="{{ url_for('static', filename='images/about/girl2.png') }}" class="girl2" alt="">
+                                  <img src="{{ url_for('static', filename='images/about/about-img-2.png') }}" class="right" alt="">
+                                  <img src="{{ url_for('static', filename='images/about/about-img-3.png') }}" class="heart" alt="">
                                 </div>
                             </div>
                             <div class="col-xl-5 col-md-12 ">
@@ -264,7 +275,7 @@
                                 <div class="card-content">
                                     <div class="num"> 1 </div>
                                     <div class="process-content">
-                                        <div><img src="../static/images/progress/login.png" alt="" /></div>
+                                      <div><img src="{{ url_for('static', filename='images/progress/login.png') }}" alt="" /></div>
 
                                         <h3>Login / Sign UP</h3>
                                         <p>You need to login to your account, if you don’t have account you can sign up.
@@ -281,7 +292,7 @@
                                 <div class="card-content">
                                     <div class="num"> 2 </div>
                                     <div class="process-content">
-                                        <div><img src="../static/images/progress/file.png" alt="" /></div>
+                                      <div><img src="{{ url_for('static', filename='images/progress/file.png') }}" alt="" /></div>
 
                                         <h3>Upload Lecture</h3>
                                         <p>You should to Upload your pdf lecture and select your time.</p>
@@ -298,7 +309,7 @@
                                 <div class="card-content">
                                     <div class="num"> 3 </div>
                                     <div class="process-content">
-                                        <div><img src="../static/images/progress/hourglass.png" alt="" /></div>
+                                      <div><img src="{{ url_for('static', filename='images/progress/hourglass.png') }}" alt="" /></div>
 
                                         <h3>Contact with teacher</h3>
                                         <p>You can contact with your teacher.</p>
@@ -315,7 +326,7 @@
                                 <div class="card-content">
                                     <div class="num"> 4 </div>
                                     <div class="process-content">
-                                        <div><img src="../static/images/progress/rocket.png" alt="" /></div>
+                                      <div><img src="{{ url_for('static', filename='images/progress/rocket.png') }}" alt="" /></div>
 
                                         <h3>Start Lecture</h3>
                                         <p>You will receive message with link to start your online lecutre.</p>
@@ -334,23 +345,23 @@
             <section class="hurry-up bg-primary ">
                 <h2 class="text-center ">Hurry Up and Join Us Now</h2>
                 <div class="buton-group text-center py-5">
-                    <a class="btn-hurry" href="sign-in.html">Login</a>
-                    <a class="btn-hurry" href="sign-up.html"> Sign Up</a>
+                  <a class="btn-action" href="#" onclick="location.href = getServerUrl() + '/_login_';">Login</a>
+                  <a class="btn-action" href="#" onclick="location.href = getServerUrl() + '/_signup_';"> Sign Up</a>
                 </div>
             </section>
         </div>
     </main>
     <footer>
         <div class="text-center p-4 ">
-            <a class="navbar-brand" href="#"> <img src="../static/images/logo 1.png" alt=""></a>
+          <a class="navbar-brand" href="#"> <img src="{{ url_for('static', filename='images/logo 1.png') }}" alt=""></a>
             <a class="text-reset fw-bold" href="">All rights reserved for Medad</a>
         </div>
     </footer>
-    <script src="../static/scripts/jquery.min.js"></script>
-    <script src="../static/scripts/aos.js"></script>
+    <script src="{{ url_for('static', filename='scripts/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/aos.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../static/scripts/owl.carousel.min.js"></script>
-    <script src="../static/scripts/script.js"></script>
+    <script src="{{ url_for('static', filename='scripts/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
 </body>
 
 </html>
