@@ -17,7 +17,7 @@ class user:
 
 class DB:
     def __init__(self,name):
-        self.name = name
+        self.name = "./database/"+name
         with sqlite3.connect(self.name) as conn:
             try:
                 conn.execute('''CREATE TABLE accounts
@@ -30,6 +30,7 @@ class DB:
         with sqlite3.connect(self.name) as conn:
             query = "SELECT * FROM accounts WHERE " + by + " = ?"
             result = conn.execute(query, (tofind,)).fetchone()
+            print(result)
         return result #user tuple or none
         
         
