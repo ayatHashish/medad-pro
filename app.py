@@ -184,8 +184,9 @@ def student():
 
 
 if __name__ == '__main__':
+    emailPass = input('Enter password for Medad email ')
     My_DB = DB('users.db')
-    emailer = sender()
+    emailer = sender(emailPass)
     app.secret_key = 'Medad_WS@MishkaKids-2023_'
     port = sys.argv[1]
     app.run(host='localhost', port = port, debug=True)

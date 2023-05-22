@@ -12,12 +12,12 @@ import re
 
     
 class sender:
-    def __init__(self):
+    def __init__(self,emailPass):
         self.Admin = "maged.khaled03@gmail.com"
         self.smtp_server = 'smtp.gmail.com'
         self.smtp_port = 587  # or the appropriate port for your SMTP server
         self.sender_email = 'Medad.WS@gmail.com'
-        self.sender_password = ""
+        self.sender_password = emailPass
         self.receiver_email = ""
         self.subject = ""
         self.message = ""
