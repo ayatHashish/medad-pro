@@ -1,6 +1,9 @@
 from flask import Flask,request,redirect,render_template,session,url_for
-from functions.functions import __signup__ , __login__
-import os 
+from functions.functions import DB
+from functions.mail_sender import sender
+import sys
+import os
+import random
 
 path = os.path.dirname(__file__)
 
@@ -55,14 +58,6 @@ def main():
 
 
 
-    
-
-@app.route("/home2",methods = ['GET','POST'])
-def home2():
-   
-    return render_template("_home_.html",result = "maged")
-
-
  
 
 @app.route("/home",methods = ['GET','POST'])
@@ -73,6 +68,7 @@ def home():
         user = session['user']
     else :
         user = None
+        
     return render_template("home.html", result = user)
 
 
@@ -90,14 +86,19 @@ def login():
  
         email = request.form['email']
         password = request.form['password']
-        user = __login__(email,password)
+        
+        user = My_DB.search(email)
+        if not user :
+            return render_template('sign-in.html', result = 'email not correct')
+        
+        user = My_DB.__login__(user,password)
         if user :
             
             session['username'] = user[1]
             session['user'] = user
             return redirect(url_for("home"))
-        print('email or password not correct')
-        return render_template('sign-in.html', result = 'email or password not correct')
+        
+        return render_template('sign-in.html', result = 'password not correct')
     
     return redirect("/_login_")
 
@@ -107,19 +108,38 @@ def login():
 @app.route("/signup",methods = ['GET','POST'])
 def signup():
     if request.method == 'POST':
-        #print(request.form)
         name = request.form['username']
         password = request.form['password']
         email = request.form['email']
-        statue = __signup__(name, email, password)
-        if statue :
-            #session['username'] = request.form['username']
-            #session['user'] = user
-            return redirect(url_for("login"))
         
-        else :
-            
-            return render_template('sign-up.html', result = 'email is exist')
+        
+        emailExist = My_DB.search(email,by='email')
+        nameExist = My_DB.search(name,by='username')
+        if emailExist :
+            return render_template('sign-up.html', result = "email exist")
+        elif nameExist :
+            return render_template('sign-up.html', result = "name exist")
+        
+        emailValide = emailer.valide_email(email)
+        if not emailValide :
+            return render_template('sign-up.html', result = "email invalide")
+        
+        
+        print(emailValide)
+        My_DB.__signup__(name, email, password)
+        
+
+        code = random.randint(100000, 999999)
+        
+        
+        
+        message_ = {'To':email , 'title':'send config', 'message':'here is your code : '+str(code)}
+        
+        emailer.send(message_)
+
+        return redirect(url_for("login"))
+        
+        
         
     return redirect("/_signup_")
 
@@ -129,8 +149,28 @@ def signup():
 @app.route("/contactus", methods= ['GET','POST'])
 def contactus():
     if request.method == 'POST':
-        print(request.form)
-        return redirect("/home")
+        email = request.form['email']
+        password = request.form['password']
+        phone = request.form['phone']
+        title = request.form['title']
+        subject = request.form['subject']
+        
+        user = My_DB.search(email)
+        if not user :
+            print(1)
+            return render_template('contact-us.html', result = 'email not correct')
+        
+        user = My_DB.__login__(user,password)
+        if user :
+            print(2)
+            TMessage = "Hi Admin" + "\n\n" + subject +"\n\n\n" + "here is my email and phone number \n" + phone +"\n" + email
+            message_ = {'To':emailer.Admin, 'title':title, 'message':TMessage }
+            emailer.send(message_)
+            return redirect(url_for("home"))
+        print(3)
+        return render_template('contact-us.html', result = 'password not correct')
+        
+
     return redirect("/_contactus_")
 
 @app.route("/student",methods = ['GET','POST'])
@@ -144,8 +184,10 @@ def student():
 
 
 if __name__ == '__main__':
-    
+    My_DB = DB('users.db')
+    emailer = sender()
     app.secret_key = 'Medad_WS@MishkaKids-2023_'
-    app.run(host='localhost', port = 8080, debug=True)
+    port = sys.argv[1]
+    app.run(host='localhost', port = port, debug=True)
     
     
