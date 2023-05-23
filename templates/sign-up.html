@@ -48,7 +48,8 @@
             <section class="header-section">
 
                 <nav class="navbar navbar-expand-lg justify-content-between ">
-                    <a class="navbar-brand" href="#"> <img src="{{ url_for('static', filename='images/logo 1.png') }}" alt=""></a>
+                    <a class="navbar-brand" href="#"> <img src="{{ url_for('static', filename='images/logo 1.png') }}"
+                            alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -58,20 +59,25 @@
                     <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                         <ul class="navbar-nav justify-content-center">
                             <li class="nav-item ">
-                                <a class="nav-link" href="#" onclick="location.href = getServerUrl() + '/_home_';">Home</a>
+                                <a class="nav-link" href="#"
+                                    onclick="location.href = getServerUrl() + '/_home_';">Home</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#" onclick="location.href = getServerUrl() + '/_services_';">Services</a>
+                                <a class="nav-link" href="#"
+                                    onclick="location.href = getServerUrl() + '/_services_';">Services</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#" onclick="location.href = getServerUrl() + '/_profile_';">Profile</a>
+                                <a class="nav-link" href="#"
+                                    onclick="location.href = getServerUrl() + '/_profile_';">Profile</a>
                             </li>
 
                             <li class="nav-item ">
-                                <a class="nav-link" href="#" onclick="location.href = getServerUrl() + '/_teacher_';">Teacher</a>
+                                <a class="nav-link" href="#"
+                                    onclick="location.href = getServerUrl() + '/_teacher_';">Teacher</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#" onclick="location.href = getServerUrl() + '/_contactus_';">Contact Us</a>
+                                <a class="nav-link" href="#"
+                                    onclick="location.href = getServerUrl() + '/_contactus_';">Contact Us</a>
                             </li>
 
 
@@ -81,7 +87,8 @@
                     <div class="buton-group">
 
                         <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_login_';">Login</a>
-                        <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_signup_';"> Sign Up</a>
+                        <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_signup_';"> Sign
+                            Up</a>
                     </div>
                 </nav>
             </section>
@@ -109,44 +116,50 @@
                                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                                             class="img-fluid" alt="Sample image">
                                     </div>
-                                    <div class="content-wrapper text-center">
-                                        <h3>Welcome to Medadd Academy</h3>
-                                        <p>where you can turn your passion into a profession.</p>
-                                    </div>
+                                
+                                </div>
+
+                                <div class="content-wrapper text-center">
+                                    <h3>Welcome to Medadd Academy</h3>
+                                    <p>where you can turn your passion into a profession.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-6 ">
-                          <form id ="SigninForm" action="#" method="post">
+                            <form id="SigninForm" action="#" method="post">
 
-                              <!-- Email input -->
-                              <div class="form-outline mb-4">
-                                  <label class="form-label" for="form3Example3">Full Name</label>
-                                  <input type="text" name = 'username' id="form3Example3" class="form-control form-control-lg" />
-                              </div>
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example3">Full Name</label>
+                                    <input type="text" name='username' id="form3Example3"
+                                        class="form-control form-control-lg" />
+                                </div>
 
-                              <!-- Email input -->
-                              <div class="form-outline mb-4">
-                                  <label class="form-label" for="form3Example3">Email address</label>
-                                  <input type="email" name = 'email' id="form3Example3" class="form-control form-control-lg" />
-                              </div>
-                              <!-- Password input -->
-                              <div class="form-outline mb-4">
-                                  <label class="form-label" for="form2Example2">Password</label>
-                                  <input type="password" name = 'password' id="form2Example2" class="form-control" />
-                              </div>
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example3">Email address</label>
+                                    <input type="email" name='email' id="form3Example3"
+                                        class="form-control form-control-lg" />
+                                </div>
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form2Example2">Password</label>
+                                    <input type="password" name='password' id="form2Example2" class="form-control" />
+                                </div>
 
-                              <div class="form-check mb-0 mt-3">
-                                  <input class="form-check-input me-2" type="checkbox" name = 'checkbox' id="form2Example3" />
-                                  <label class="form-check-label" for="form2Example3">
-                                      I agree to the Terms of Service and Privacy Policy.
-                                  </label>
-                              </div>
-                              <div class="text-center text-lg-start mt-4 pt-2">
-                                  <button type="submit" class="btn btn-primary" onclick="submitForm(event)" >Create Account</button>
-                                  <p class="small fw-bold mt-2 pt-1 mb-0"> Already have Account? <a href="#!"
-                                          class="link-danger">Sign In</a></p>
-                              </div>
+                                <div class="form-check mb-0 mt-3">
+                                    <input class="form-check-input me-2" type="checkbox" name='checkbox'
+                                        id="form2Example3" />
+                                    <label class="form-check-label" for="form2Example3">
+                                        I agree to the Terms of Service and Privacy Policy.
+                                    </label>
+                                </div>
+                                <div class="text-center text-lg-start mt-4 pt-2">
+                                    <button type="submit" class="btn btn-primary" onclick="submitForm(event)">Create
+                                        Account</button>
+                                    <p class="small fw-bold mt-2 pt-1 mb-0"> Already have Account? <a href="#!"
+                                            class="link-danger">Sign In</a></p>
+                                </div>
 
 
 
@@ -171,11 +184,11 @@
             </section>
         </div>
     </main>
-    <script src="../scripts/jquery.min.js"></script>
-    <script src="../scripts/aos.js"></script>
+    <script src="{{ url_for('static', filename='scripts/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/aos.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../scripts/owl.carousel.min.js"></script>
-    <script src="../scripts/script.js"></script>
+    <script src="{{ url_for('static', filename='scripts/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
 </body>
 
 </html>

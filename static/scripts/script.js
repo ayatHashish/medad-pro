@@ -116,7 +116,7 @@ $(document).ready(function () {
             slideBy: 1,
         });
        
-        $('.login').owlCarousel({
+        $('.login-carousel').owlCarousel({
             loop:true,
             margin:10,
             nav:true,

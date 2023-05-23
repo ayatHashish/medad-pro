@@ -90,78 +90,12 @@
         </div>
     </header>
     <main>
-        <section class="main-banner">
-            <div class="banner-slide owl-carousel owl-theme">
-                <div class="item-slide">
-                    <div class="img-slider">
-                        <img src="{{ url_for('static', filename='images/bunnar/home.png') }}" alt="Slider Image" />
-                    </div>
-                    <div class="content-wrapper text-center">
-                        <h3>Welcome to our online course platform</h3>
-                        <p>
-                            With our flexible schedules, interactive lessons, and supportive community, <br> you can
-                            learn at
-                            your own
-                            pace,<br>
-                            whenever and wherever you want.
-                        </p>
-                        <div class="">
-                            <button class="main-button bg-primary" href="#" onclick="location.href = getServerUrl() + '/_login_';">login</button>
-                            <button class="main-button bg-success" href="#" onclick="location.href = getServerUrl() + '/_signup_';">sign up </button>
-                        </div>
-                    </div>
-                    <div class="overlay"></div>
-                </div>
-                <div class="item-slide">
-                    <div class="img-slider">
-                        <img src="{{ url_for('static', filename='images/bunnar/home.png') }}" alt="Slider Image" />
-                    </div>
-                    <div class="content-wrapper text-center">
-                        <h3>Welcome to our online course platform</h3>
-                        <p>
-                            With our flexible schedules, interactive lessons, and supportive community, <br> you can
-                            learn at
-                            your own
-                            pace,<br>
-                            whenever and wherever you want.
-                        </p>
-                        <div class="">
-                            <button class="main-button bg-primary" href="#" onclick="location.href = getServerUrl() + '/_login_';">login</button>
-                            <button class="main-button bg-success" href="#" onclick="location.href = getServerUrl() + '/_signup_';">sign up </button>
-                        </div>
-                    </div>
-                    <div class="overlay"></div>
-                </div>
-                <div class="item-slide">
-                    <div class="img-slider">
-                        <img src="{{ url_for('static', filename='images/bunnar/home.png') }}" alt="Slider Image" />
-                    </div>
-                    <div class="content-wrapper text-center">
-                        <h3>Welcome to our online course platform</h3>
-                        <p>
-                            With our flexible schedules, interactive lessons, and supportive community, <br> you can
-                            learn at
-                            your own
-                            pace,<br>
-                            whenever and wherever you want.
-                        </p>
-                        <div class="">
-                            <button class="main-button bg-primary" href="#" onclick="location.href = getServerUrl() + '/_login_';"> <i class="fa-regular fa-user"></i>login</button>
-                            <button class="main-button bg-success" href="#" onclick="location.href = getServerUrl() + '/_signup_';"><i class="fa-regular fa-user"></i> sign up </button>
-                        </div>
-                    </div>
-                    <div class="overlay"></div>
-                </div>
-            </div>
-        </section>
         <div class="signin-page">
             <section class="vh-100">
                 <div class="container h-custom">
-                    <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="col-xl-6 col-lg-6 col-xl-5">
-
-
-                                <div id="login-carousel" class="carousel slide custom-carousel" data-bs-ride="carousel">
+                    <div class="row d-flex  h-100">
+                        <div class="col-xl-6 col-lg-6 col-xl-5 mt-5">
+                                <div id="login-carousel" class="carousel slide custom-carousel " data-bs-ride="carousel">
                                     <div class="carousel-indicators">
                                       <button type="button" data-bs-target="#login-carousel" data-bs-slide-to="0" class="active"
                                         aria-current="true" aria-label="Slide 1"></button>
@@ -179,32 +113,28 @@
                                         <img class="d-block w-100" src="{{ url_for('static', filename='images/bunnar/home.png') }}" alt="Third slide">
                                       </div>
                                     </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#login-carousel" data-bs-slide="prev">
-                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                      <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#login-carousel" data-bs-slide="next">
-                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                      <span class="visually-hidden">Next</span>
-                                    </button>
-                                  </div> -->
-
-
+                                    <div class="content-wrapper text-center mt-5">
+                                        <h3>Welcome to Medadd Academy</h3>
+                                        <p>where you can turn your passion into <br> a profession.</p>
+                                    </div>
+                                  </div>
                         </div>
                         <div class="col-xl-6 ">
+
+                            <h2> sign in </h2>
                           <form id="loginForm" action="#" method="post">
                               <!-- Email input -->
                               <div class="form-outline mb-4">
-                                  <label class="form-label" for="form3Example3">Email address</label>
-                                  <input type="email" name = 'email' id="form3Example3" class="form-control form-control-lg" />
+                                  <label class="form-label" for="email">Email address</label>
+                                  <input type="email" name = 'email' id="email" class="form-control form-control-lg" />
                               </div>
                               <!-- Password input -->
                               <div class="form-outline mb-4">
-                                  <label class="form-label" for="form2Example2">Password</label>
-                                  <input type="password" name = 'password' id="form2Example2" class="form-control" />
+                                  <label class="form-label" for="password">Password</label>
+                                  <input type="password" name = 'password' id="password" class="form-control" />
                               </div>
-                              <div class="d-flex justify-content-between align-items-center">
-                                  <a href="#!" class="text-body d-block">Forgot password?</a>
+                              <div class="">
+                                  <a href="#!" class="text-body d-block link-danger">Forgot password?</a>
                               </div>
                               <div class="form-check mb-0 mt-3">
                                   <input class="form-check-input me-2" type="checkbox" name = 'checkbox' id="form2Example3" />
@@ -213,8 +143,8 @@
                                   </label>
                               </div>
                               <div class="text-center text-lg-start mt-4 pt-2">
-                                  <button type="submit" class="btn btn-primary" onclick="submitForm(event)" >Sign IN</button>
-                                  <p class="small fw-bold mt-2 pt-1 mb-0"> New User ? <a href="#!"
+                                  <button type="submit" class="main-button" onclick="submitForm(event)" >Sign IN</button>
+                                  <p class="small fw-bold mt-2 pt-1 mb-0 text-center"> New User ? <a href="#!"
                                           class="link-danger">Create an Account</a></p>
                               </div>
 

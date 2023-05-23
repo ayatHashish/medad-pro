@@ -54,7 +54,31 @@ a {
 }
 
 section {
-  padding-top: 6rem ;
+  padding-top: 6rem;
+}
+
+#login-carousel {
+  width: 80%;
+  .carousel-indicators {
+    right: 10rem !important;
+    bottom: -6rem !important;
+
+    button {
+      background: #bcdfa7;
+      width: 40px;
+      height: 10px;
+      border-radius: 50%;
+      margin: 0 13px;
+      &.active {
+        background: #a3c891;
+        border-radius: 22px;
+        width: 77px;
+      }
+      &:hover {
+        background: #a3c891 !important;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 769px) {
