@@ -97,6 +97,36 @@
 }
 
 @media screen and (max-width:991px) {
+ 
+  .about-section {
+    text-align: center;
+    .image {
+     
+      .arrow {
+       
+        top: -80px !important;
+      }
+
+      .girl2 {
+        position: absolute;
+        top: 14% !important;
+        left: 65% !important;
+      }
+      .right {
+        right: 55px !important;
+      }
+
+      .heart {
+        right: 0rem !important;
+        top: 23rem  !important;
+      }
+    }
+  }
+ }
+
+
+@media screen and (max-width:767px) {
+
   .about-section {
     text-align: center;
     .image {
@@ -117,10 +147,6 @@
       }
     }
   }
- }
-
-
-@media screen and (max-width:767px) {
 }
 
 @media screen and (max-width:580px) {

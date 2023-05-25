@@ -4,14 +4,12 @@
   box-sizing: border-box;
 }
 body {
-  // font-family: "Roboto Slab";
+  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Slab", serif;
   font-size: $font-size-base;
   position: relative;
   max-width: 100vw;
   overflow-x: hidden;
-  /*     color: $ad-black; */
-  // font-family: $font-base;
-  // font-weight: 300;
 }
 h1 {
   font-size: 3.125rem;
@@ -78,19 +76,15 @@ section {
     }
   }
 
-  .carousel-inner{
-    border-top: 1px solid #84C356;
+  .carousel-inner {
+    border-top: 1px solid #84c356;
     border-bottom: 1px solid blue;
-    border-left: 1px solid #84C356;   
+    border-left: 1px solid #84c356;
     border-right: 1px solid blue;
-    
   }
 }
 
-
-
 @media screen and (max-width: 769px) {
-
   h1 {
     font-size: 3.125rem;
     font-weight: 500;
@@ -116,6 +110,3 @@ section {
     font-weight: 500;
   }
 }
-
-
-

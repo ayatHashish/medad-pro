@@ -3978,11 +3978,12 @@
   box-sizing: border-box; }
 
 body {
+  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Slab", serif;
   font-size: 16px;
   position: relative;
   max-width: 100vw;
-  overflow-x: hidden;
-  /*     color: $ad-black; */ }
+  overflow-x: hidden; }
 
 h1 {
   font-size: 3.125rem;
@@ -4042,9 +4043,9 @@ section {
       #login-carousel .carousel-indicators button:hover {
         background: #a3c891 !important; }
   #login-carousel .carousel-inner {
-    border-top: 1px solid #84C356;
+    border-top: 1px solid #84c356;
     border-bottom: 1px solid blue;
-    border-left: 1px solid #84C356;
+    border-left: 1px solid #84c356;
     border-right: 1px solid blue; }
 
 @media screen and (max-width: 769px) {
@@ -4079,161 +4080,9 @@ header {
   .nav-item a {
     color: black !important; }
 
-footer {
-  background-color: #ffffff;
-  box-shadow: 0px -7px 5px 0px rgba(0, 0, 0, 0.1); }
-  footer .first-sec {
-    border-bottom: 1px solid #b7b7b7;
-    margin-bottom: 40px; }
-    footer .first-sec .row {
-      align-items: baseline; }
-    footer .first-sec .counter {
-      height: 70px;
-      display: flex;
-      align-items: center; }
-      footer .first-sec .counter i {
-        font-size: 16px;
-        color: #747272;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center; }
-        footer .first-sec .counter i:hover {
-          color: #26537B; }
-      footer .first-sec .counter:hover i {
-        transform: scale(1.2);
-        color: #26537B; }
-      footer .first-sec .counter span {
-        color: #747272;
-        margin: 0 5px;
-        font-weight: 700; }
-      footer .first-sec .counter .label {
-        font-size: 20px; }
-      footer .first-sec .counter .count {
-        font-weight: 400;
-        color: #afafaf; }
-      footer .first-sec .counter .countspa {
-        margin: 0 25px; }
-    footer .first-sec .signup {
-      position: relative;
-      overflow: hidden; }
-      footer .first-sec .signup::before {
-        content: "";
-        width: 1px;
-        height: 56px;
-        background-color: #c9c9c9;
-        position: absolute;
-        display: block;
-        top: 30px; }
-      footer .first-sec .signup .signup-box {
-        display: flex;
-        border: none;
-        background-color: transparent;
-        height: 85px;
-        width: 100%;
-        padding: 0 20px;
-        font-weight: 300;
-        color: #2077A5; }
-        footer .first-sec .signup .signup-box::placeholder {
-          color: #c9c9c9; }
-        footer .first-sec .signup .signup-box:focus {
-          outline: #26537B; }
-      footer .first-sec .signup .send-btn {
-        position: absolute;
-        right: 0;
-        top: 15px;
-        border-radius: 10px;
-        border: none;
-        height: 51px;
-        width: 125px;
-        background: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #2077a5; }
-        footer .first-sec .signup .send-btn span {
-          padding: 0 10px; }
-        footer .first-sec .signup .send-btn:hover {
-          color: #ffffff;
-          background: #26537B; }
-      footer .first-sec .signup .error {
-        color: #f1474e;
-        position: absolute;
-        left: 1px;
-        bottom: -5px;
-        transform: translateY(-50%);
-        padding: 20px;
-        padding: 0px 19px;
-        font-size: 0.875rem; }
-      footer .first-sec .signup .success {
-        color: #a3c891;
-        position: absolute;
-        left: 1px;
-        bottom: -5px;
-        transform: translateY(-50%);
-        padding: 20px;
-        padding: 0px 19px;
-        font-size: 0.875rem; }
-  footer .middle-footer .logo-footer {
-    display: flex;
-    align-items: end; }
-    footer .middle-footer .logo-footer .left,
-    footer .middle-footer .logo-footer .right {
-      width: 100px; }
-      footer .middle-footer .logo-footer .left a img,
-      footer .middle-footer .logo-footer .right a img {
-        width: 100%;
-        transition-duration: 300ms; }
-    footer .middle-footer .logo-footer .left {
-      margin: 0 30px 0 0; }
-    footer .middle-footer .logo-footer .right {
-      position: relative; }
-      footer .middle-footer .logo-footer .right::before {
-        content: "";
-        width: 1px;
-        height: 45px;
-        background-color: #73654a;
-        position: absolute;
-        display: block;
-        top: 12px;
-        left: -15px; }
-    footer .middle-footer .logo-footer:hover {
-      transform: scale(1.1); }
-  footer .middle-footer h3 {
-    font-size: 20px;
-    font-weight: 700;
-    color: #747272;
-    line-height: 24px; }
-  footer .middle-footer .quick li,
-  footer .middle-footer .quick-links li {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 40px; }
-    footer .middle-footer .quick li a,
-    footer .middle-footer .quick-links li a {
-      position: relative;
-      color: #afafaf; }
-      footer .middle-footer .quick li a::after,
-      footer .middle-footer .quick-links li a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -2px;
-        width: 0;
-        height: 2px;
-        background: #315679;
-        -webkit-transition-duration: 300ms;
-        transition-duration: 300ms; }
-      footer .middle-footer .quick li a:hover,
-      footer .middle-footer .quick-links li a:hover {
-        color: #26537B; }
-        footer .middle-footer .quick li a:hover::after,
-        footer .middle-footer .quick-links li a:hover::after {
-          width: 100%; }
-  footer .middle-footer .quick-links {
-    display: flex;
-    flex-wrap: wrap; }
-    footer .middle-footer .quick-links li {
-      width: 50%; }
+footer .rights {
+  font-size: 14px;
+  color: #878483 !important; }
 
 @media screen and (max-width: 1199px) {
   .first-sec .counter .label {
@@ -4371,7 +4220,7 @@ footer {
 @media screen and (max-width: 1199px) {
   .main-banner .banner-slide .item-slide .content-wrapper {
     right: 50%;
-    top: 18rem  !important; }
+    top: 16rem  !important; }
     .main-banner .banner-slide .item-slide .content-wrapper p {
       margin: 0 !important; } }
 @media screen and (max-width: 769px) {
@@ -4383,7 +4232,8 @@ footer {
 @media screen and (max-width: 580px) {
   .main-banner .banner-slide .item-slide .content-wrapper {
     right: 45%;
-    top: 8rem !important; }
+    top: 8rem !important;
+    width: 86%; }
     .main-banner .banner-slide .item-slide .content-wrapper p {
       font-size: 10px !important; } }
 /*--- loader ---*/
