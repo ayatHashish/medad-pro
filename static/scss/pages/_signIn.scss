@@ -1,22 +1,20 @@
-
-.sign-page{
+.sign-page {
     .h-custom {
-      .custom-carousel{
-        padding: 5rem 5rem 0;
-
-      }
+        .custom-carousel {
+            padding: 5rem 5rem 0;
+        }
     }
 }
 
 .sign {
     color: black;
-    &:before {
-        content: "";
-        border-left: 1px solid red;
-    }
-    &:first-of-type {
-        border-left: 1px solid transparent !important;
-    }
+    // &:before {
+    //     content: "";
+    //     border-left: 1px solid red;
+    // }
+    // &:first-of-type {
+    //     border-left: 1px solid transparent !important;
+    // }
     img {
         width: 50px;
         height: 50px;
@@ -35,12 +33,13 @@
         padding: 0.9rem 0.75rem;
     }
 }
-
-.sec-sing{
+.sec-sing {
     width: 50%;
     &:first-of-type {
-      background-color: #eaf4ee;
-    } &:last-of-type {
+        background-color: #eaf4ee;
+        height: 88vh;
+    }
+    &:last-of-type {
         padding: 1rem 8rem 1rem 2rem;
     }
 }
@@ -77,9 +76,11 @@
     border-width: 0 5px 0 5px;
     position: absolute;
     width: 80px;
-    z-index: 10;}
+    z-index: 10;
+}
 .strength-meter:before {
-    left: 70px;}
+    left: 70px;
+}
 .strength-meter:after {
     right: 70px;
 }
@@ -106,4 +107,34 @@
 .strength-meter-fill[data-strength="3"] {
     background: green;
     width: 100%;
+}
+
+@media screen and (max-width: 1399px) {
+}
+
+@media screen and (max-width: 1199px) {
+}
+@media screen and (max-width: 991px) {
+    .sign-page {
+        #login-carousel {
+            margin: 0rem 0 116px 0;
+            width: 100%;
+        }
+        .d-flex {
+            flex-direction: column;
+            .sec-sing {
+                width: 100%;
+            }
+        }
+
+        .sec-sing {
+            &:last-of-type {
+                padding: 2rem;
+            }
+        }
+    }
+}
+@media screen and (max-width: 767px) {
+}
+@media screen and (max-width: 580px) {
 }

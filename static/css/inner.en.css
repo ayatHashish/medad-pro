@@ -4463,11 +4463,6 @@ footer .rights {
 
 .sign {
   color: black; }
-  .sign:before {
-    content: "";
-    border-left: 1px solid red; }
-  .sign:first-of-type {
-    border-left: 1px solid transparent !important; }
   .sign img {
     width: 50px;
     height: 50px; }
@@ -4486,7 +4481,8 @@ footer .rights {
 .sec-sing {
   width: 50%; }
   .sec-sing:first-of-type {
-    background-color: #eaf4ee; }
+    background-color: #eaf4ee;
+    height: 88vh; }
   .sec-sing:last-of-type {
     padding: 1rem 8rem 1rem 2rem; }
 
@@ -4555,6 +4551,16 @@ footer .rights {
   background: green;
   width: 100%; }
 
+@media screen and (max-width: 991px) {
+  .sign-page #login-carousel {
+    margin: 0rem 0 116px 0;
+    width: 100%; }
+  .sign-page .d-flex {
+    flex-direction: column; }
+    .sign-page .d-flex .sec-sing {
+      width: 100%; }
+  .sign-page .sec-sing:last-of-type {
+    padding: 2rem; } }
 .profile-card .card {
   background-color: #fff;
   max-width: 360px;

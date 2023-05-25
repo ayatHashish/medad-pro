@@ -14,8 +14,13 @@
         integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;1,200&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/inner.en.css') }}" />
     <title>Home</title>
@@ -88,17 +93,17 @@
                         </ul>
                         <ul class="navbar-nav ml-auto topnav">
                             <li class="nav-item">
-                                <a class="nav-link btn btn-primary text-white" type="button" href="#"
-                                data-toggle="modal" data-target="#myModal">Sign In</a>
-                                <!-- <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/_login_';"> <i
-                                        class="fa-regular fa-user mx-2"></i>Login</a> -->
+                                <!-- <a class="nav-link btn btn-primary text-white" type="button" href="#"
+                                data-toggle="modal" data-target="#myModal">Sign In</a> -->
+                                <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/_login_';"> <i
+                                        class="fa-regular fa-user mx-2"></i>Login</a>
                             </li>
                             <li class="nav-item">
-                                <!-- <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_signup_';"><i
+                                <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_signup_';"><i
                                         class="fa-regular fa-user mx-2"></i> Sign
-                                    Up</a> -->
-                                <a class="nav-link btn btn-danger text-white" type="button" href="#" data-toggle="modal"
-                                data-target="#myModal">Register</a>
+                                    Up</a>
+                                <!-- <a class="nav-link btn btn-danger text-white" type="button" href="#" data-toggle="modal"
+                                data-target="#myModal">Register</a> -->
                             </li>
 
                         </ul>
@@ -198,7 +203,7 @@
                 <div class="sec-sing">
                     <div class="container">
                         <form action="/join-team" method="POST">
-                            <h2> Sign UP </h2>
+                            <h2> Sign IN </h2>
                             <div class="form-group sign-form">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
@@ -207,7 +212,7 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control ok-password" id="password" name="password"
                                     required>
-                                <i class='bx bx-low-vision'></i>
+                                <!-- <i class='bx bx-low-vision'></i> -->
                             </div>
                             <div>
                                 <a href="#!" class="d-block text-primary">Forgot password?</a>
