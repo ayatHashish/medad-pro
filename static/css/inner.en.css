@@ -4458,6 +4458,9 @@ footer .rights {
 .contact-page .color-footer {
   background-color: #84c356 !important; }
 
+@media screen and (max-width: 1199px) {
+  .contact-page p {
+    padding: 2rem 1rem !important; } }
 .sign-page .h-custom .custom-carousel {
   padding: 5rem 5rem 0; }
 

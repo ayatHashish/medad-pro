@@ -1,7 +1,6 @@
 .contact-page {
     .bannar {
-        background-image: "{{ url_for('static', filename='images/contact/contactUs.png') }}";
-
+        background-image: url(../../images/contact/contactUs.png);
         background-size: 100% 100%;
         background-repeat: no-repeat;
         height: 50vh;
@@ -60,3 +59,30 @@
         background-color: #84c356 !important;
     }
 }
+
+
+
+
+@media screen and (max-width:1399px) {
+}
+@media screen and (max-width:1199px) {
+    .contact-page  {
+        p{ padding: 2rem 1rem !important; }
+           
+        }
+        
+}
+
+@media screen and (max-width:991px) {
+   
+    }
+
+@media screen and (max-width:767px) {
+
+ 
+  
+}
+
+@media screen and (max-width:580px) {
+            }
+
