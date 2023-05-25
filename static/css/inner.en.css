@@ -4551,6 +4551,9 @@ footer .rights {
   background: green;
   width: 100%; }
 
+@media screen and (max-width: 1199px) {
+  .sec-sing:first-of-type {
+    height: 185vh !important; } }
 @media screen and (max-width: 991px) {
   .sign-page #login-carousel {
     margin: 0rem 0 116px 0;
@@ -4559,6 +4562,10 @@ footer .rights {
     flex-direction: column; }
     .sign-page .d-flex .sec-sing {
       width: 100%; }
+  .sign-page .sign {
+    font-size: 13px; }
+  .sign-page .sec-sing:first-of-type {
+    height: 150vh !important; }
   .sign-page .sec-sing:last-of-type {
     padding: 2rem; } }
 .profile-card .card {

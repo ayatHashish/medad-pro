@@ -112,7 +112,15 @@
 @media screen and (max-width: 1399px) {
 }
 
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 1199px) { 
+    
+    .sec-sing {
+            &:first-of-type {
+             
+                height: 185vh !important;
+            }
+          
+        }
 }
 @media screen and (max-width: 991px) {
     .sign-page {
@@ -127,11 +135,20 @@
             }
         }
 
+        .sign {
+            font-size: 13px;
+        }
+        
         .sec-sing {
+            &:first-of-type {
+             
+                height: 150vh !important;
+            }
             &:last-of-type {
                 padding: 2rem;
             }
-        }
+        } 
+       
     }
 }
 @media screen and (max-width: 767px) {
