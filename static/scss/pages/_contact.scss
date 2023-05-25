@@ -1,6 +1,6 @@
 .contact-page {
     .bannar {
-        background-image: "{{ url_for('static', filename='images/contact/contactUs.png') }}";
+        background-image: url("{{ url_for('static', filename='images/contact/contactUs.png') }}");
 
         background-size: 100% 100%;
         background-repeat: no-repeat;
