@@ -4,26 +4,7 @@
         background-color: $pure-white;
         width: 100%;
         .owl-dots {
-            position: absolute;
-            top: 73%;
-            left: 5%;
-            button.owl-dot {
-                background: rgba(255, 255, 255, 0.3);
-                width: 18px;
-                height: 18px;
-                border-radius: 50%;
-                margin: 0 13px;
-                &.active {
-                    background: #a3c891;
-                    border-radius: 10px;
-                    width: 36px;
-                }
-            }
-            .owl-dot {
-                &:hover {
-                    background: #a3c891 !important;
-                }
-            }
+            display: none;
         }
         .item-slide {
             .img-slider {
@@ -73,7 +54,7 @@
             .content-wrapper {
                 position: absolute;
                 right: 50%;
-                top: 275px;
+                top: 22rem;
                 transform: translate(50%, -50%);
                 // font-weight: 700;
                 // font-size: 60px;
@@ -92,11 +73,56 @@
 }
 
 @media screen and (max-width: 1199px) {
+    .main-banner {
+        .banner-slide {
+            .item-slide {
+                .content-wrapper {
+                    right: 50%;
+                    top: 18rem  !important;
+                    p{
+                        margin: 0 !important;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 769px) {
+
+    .main-banner {
+        .banner-slide {
+            .item-slide {
+                .content-wrapper {
+                    right: 50%;
+                    top: 10rem  !important;
+                    p{
+                        font-size: 14px !important;
+                    }
+                }
+            }
+        }
+    }   
+    
+    
 }
 @media screen and (max-width: 580px) {
+    .main-banner {
+        .banner-slide {
+            .item-slide {
+                .content-wrapper {
+                    right: 45%;
+                    top: 8rem !important;
+                    p{
+                        font-size: 10px !important;
+                    }
+                }
+            }
+        }
+    }
+
+
+
 }
 @media screen and (max-width: 325px) {
 }

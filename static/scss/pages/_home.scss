@@ -1,5 +1,6 @@
 .home-page {
   .card {
+    height: 18rem;
     padding: 0 35px;
     text-align: center;
     padding: 10px;
@@ -61,6 +62,7 @@
     }
     .card {
       margin: 10px 0;
+      height: 12rem !important;
       .card-content {
         padding: 0px;
         display: flex;
@@ -89,15 +91,34 @@
   }
 }
 
-
 @media screen and (max-width:1399px) {
 }
-
 @media screen and (max-width:1199px) {
 }
 
 @media screen and (max-width:991px) {
-}
+  .about-section {
+    text-align: center;
+    .image {
+    
+       .arrow {
+        display: none;
+      }
+
+       .girl2 {
+        display: none;
+      }
+      .right {
+        display: none;
+      }
+
+      .heart {
+        display: none;
+      }
+    }
+  }
+ }
+
 
 @media screen and (max-width:767px) {
 }

@@ -148,6 +148,46 @@ $(document).ready(function () {
 
      });  
 
+     (function() {
+        function passwordCount(value, peak) {
+            value = typeof value === 'string' ? value : '';
+            peak = isFinite(peak) ? peak : 7;
+    
+            return value && (value.length > peak ? peak + '+' : value.length);
+        }
+    
+        function zxcvbnScore() {
+            var compute = zxcvbn.apply(null, arguments);
+            return compute && compute.score;
+        }
+    
+        function okPasswordDirective(zxcvbn) {
+            return {
+                restrict: 'AC',
+                require: 'ngModel',
+                link: function(scope, element, attrs, ngModelCtrl) {
+                    element.on('blur change keydown', function(evt) {
+                        scope.$evalAsync(function(scope) {
+                            var pwd = scope.password = element.val();
+                            scope.passwordStrength = pwd ? (pwd.length > 7 && zxcvbn.score(pwd) || 0) : null;
+                            ngModelCtrl.$setValidity('okPassword', scope.passwordStrength >= 2);
+                        });
+                    });
+                }
+            };
+        }
 
-  
+        var formController = function() {
+          
+        };
+        var passwordStrengthModule = {
+            passwordCount: passwordCount,
+            zxcvbnScore: zxcvbnScore,
+            okPasswordDirective: okPasswordDirective,
+            formController: formController
+        };
+    
+        // تعيين الدوال ككائن على النطاق العام
+        window.PasswordStrength = passwordStrengthModule;
+    })();
 

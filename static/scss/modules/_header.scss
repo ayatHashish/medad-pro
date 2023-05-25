@@ -1,11 +1,15 @@
 // header section
 header {
   background-color: $pure-white;
-  .header-section {
-       padding: 20px 0;
 
 }
-}
+
+.nav-item{
+  margin: 0 10px;
+  a {
+    color: black !important
+  }
+}    
 
 @media screen and (max-width: 580px) {
   

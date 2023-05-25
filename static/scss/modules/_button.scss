@@ -1,61 +1,9 @@
-// .main-button,
-// .btn-action{
-//     width: 25%;
-//     padding: 0.75rem 2rem;
-//     background-color: white;
-//     color: rgb(5, 5, 5);
-//     border-color: white;
-//     border-radius: 6px;
-//     margin: 12px 14px 0 0;
-//     font-weight: bold;
-//     -webkit-border-radius: 6px;
-//     -moz-border-radius: 6px;
-//     -ms-border-radius: 6px;
-//     -o-border-radius: 6px;
-//     border: none;}
-//     .scou-btn {
-//         display:inline-block;
-//         cursor:pointer;
-//         color:white;
-//         font-family:Arial;
-//         font-size:15px;
-//         font-weight:bold;
-//         padding:14px 24px;
-//         text-decoration:none;
-//         background-color: #84C356;
-//         border: none;
-//         border-radius:10px;
-//     }
-// .btn-action{
-//     color: white;
-//     padding: 0.75rem 4rem;
-//     border: 2px solid white ;
-//     border-radius: 6px;
-//     background-color: transparent;
-
-// //   &:hover {
-// //     background-color: $black;
-// //     color: $pure-white;
-// //   }
-// }
-// .send-btn{
-//     width: 32%;
-//     margin: auto;
-//     padding: 0.5rem;
-//     background: #84C356;
-//     border: none;
-//     margin: 2rem auto 6rem;
-//     border-radius: 5px;
-//     color: white;
-// }
-
 .main-button,
 .btn-action,
 .btn-action-lg,
 .btn-action-lg-blue,
 .btn-hurry,
-.btn-edit
- {
+.btn-edit {
     width: 100%;
     padding: 0.75rem 2rem;
     border-radius: 6px;
@@ -64,32 +12,62 @@
     background-color: #84c356;
     color: white;
 
-    &:hover{
+    &:hover {
         opacity: 0.8;
-        
     }
 }
-.btn-action{
-    width: 30%;
+.btn-action {
+    width: 33%;
 }
-.btn-action-lg{
+.btn-action-lg {
     width: 35%;
-   
 }
-.btn-action-lg-blue{
+.btn-action-lg-blue {
     width: 35%;
-     background-color: 
-    #0F75C0;
-
+    background-color: #0f75c0;
 }
-.btn-hurry{
+.btn-hurry {
     padding: 0.75rem 4rem;
     width: 30%;
     background-color: transparent;
-    border: 2px solid white ;
+    border: 2px solid white;
+}
+.btn-edit {
+    background-color: transparent;
+    border: none;
+}
+
+.scou-btn {
+    // color: black !important;
+    &:hover {
+        color: #84c356;
+    }
+}
+
+
+@media screen and (max-width: 1399px) {
+}
+
+@media screen and (max-width: 1199px) {
    
 }
-.btn-edit{
-    background-color: transparent;
-    border: none ;
+
+@media screen and (max-width: 769px) {
+    .main-button,
+    .btn-action,
+    .btn-action-lg,
+    .btn-action-lg-blue,
+    .btn-hurry,
+    .btn-edit {
+       
+        padding: 0.5rem 1rem;
+        font-size: 12px;
+      
+        
+    }
+   
+}
+@media screen and (max-width: 580px) {
+}
+@media screen and (max-width: 325px) {
 }

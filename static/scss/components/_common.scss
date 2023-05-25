@@ -4,15 +4,14 @@
   box-sizing: border-box;
 }
 body {
-  background-color: $off-white;
-  font-family: "Roboto Slab";
+  // font-family: "Roboto Slab";
   font-size: $font-size-base;
   position: relative;
   max-width: 100vw;
   overflow-x: hidden;
   /*     color: $ad-black; */
-  font-family: $font-base;
-  font-weight: 300;
+  // font-family: $font-base;
+  // font-weight: 300;
 }
 h1 {
   font-size: 3.125rem;
@@ -52,34 +51,71 @@ ul {
 a {
   text-decoration: none;
 }
-
 section {
   padding-top: 6rem;
 }
-
 #login-carousel {
+  margin: 2rem auto;
   width: 80%;
   .carousel-indicators {
-    right: 10rem !important;
+    right: 0 !important;
     bottom: -6rem !important;
 
     button {
       background: #bcdfa7;
-      width: 40px;
+      width: 30px;
       height: 10px;
       border-radius: 50%;
       margin: 0 13px;
       &.active {
         background: #a3c891;
         border-radius: 22px;
-        width: 77px;
+        width: 100px;
       }
       &:hover {
         background: #a3c891 !important;
       }
     }
   }
+
+  .carousel-inner{
+    border-top: 1px solid #84C356;
+    border-bottom: 1px solid blue;
+    border-left: 1px solid #84C356;   
+    border-right: 1px solid blue;
+    
+  }
 }
 
+
+
 @media screen and (max-width: 769px) {
+
+  h1 {
+    font-size: 3.125rem;
+    font-weight: 500;
+  }
+  h2 {
+    font-size: 1.625rem;
+    font-weight: 500;
+  }
+  h3 {
+    font-size: 0.975rem;
+    font-weight: 500;
+  }
+  h4 {
+    font-size: 0.5rem;
+    font-weight: 500;
+  }
+  h5 {
+    font-size: 0.25rem;
+    font-weight: 500;
+  }
+  h6 {
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
 }
+
+
+
