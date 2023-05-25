@@ -44,7 +44,7 @@
     }
 }
 
-.edit-sec{
+.edit-sec {
     background-color: white !important;
 }
 .link-sign {
@@ -116,15 +116,12 @@
 @media screen and (max-width: 1399px) {
 }
 
-@media screen and (max-width: 1199px) { 
-    
+@media screen and (max-width: 1199px) {
     .sec-sing {
-            &:first-of-type {
-             
-                height: 185vh !important;
-            }
-          
+        &:first-of-type {
+            height: 150vh !important;
         }
+    }
 }
 @media screen and (max-width: 991px) {
     .sign-page {
@@ -142,17 +139,16 @@
         .sign {
             font-size: 13px;
         }
-        
+
         .sec-sing {
+            margin-bottom: 5rem;
             &:first-of-type {
-             
-                height: 150vh !important;
+                height: 54vh !important;
             }
             &:last-of-type {
                 padding: 2rem;
             }
-        } 
-       
+        }
     }
 }
 @media screen and (max-width: 767px) {

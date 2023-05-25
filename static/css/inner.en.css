@@ -4556,7 +4556,7 @@ footer .rights {
 
 @media screen and (max-width: 1199px) {
   .sec-sing:first-of-type {
-    height: 185vh !important; } }
+    height: 150vh !important; } }
 @media screen and (max-width: 991px) {
   .sign-page #login-carousel {
     margin: 0rem 0 116px 0;
@@ -4567,10 +4567,12 @@ footer .rights {
       width: 100%; }
   .sign-page .sign {
     font-size: 13px; }
-  .sign-page .sec-sing:first-of-type {
-    height: 150vh !important; }
-  .sign-page .sec-sing:last-of-type {
-    padding: 2rem; } }
+  .sign-page .sec-sing {
+    margin-bottom: 5rem; }
+    .sign-page .sec-sing:first-of-type {
+      height: 54vh !important; }
+    .sign-page .sec-sing:last-of-type {
+      padding: 2rem; } }
 .profile-card .card {
   background-color: #fff;
   max-width: 360px;
