@@ -4,6 +4,7 @@ from functions.mail_sender import sender
 import sys
 import os
 import random
+#from PIL import Image
 
 path = os.path.dirname(__file__)
 
@@ -26,7 +27,10 @@ def _services_():
                            
 @app.route("/_profile_")
 def _profile_():
-    return render_template('profile.html')
+    if 'username' in session :
+        return render_template('profile.html')
+    else :
+        return render_template('sign-in.html',result = None)
                            
 @app.route("/_teacher_")
 def _teacher_():
@@ -94,7 +98,7 @@ def login():
         user = My_DB.__login__(user,password)
         if user :
             
-            session['username'] = user[1]
+            session['username'] = user[2]
             session['user'] = user
             return redirect(url_for("home"))
         
@@ -173,14 +177,67 @@ def contactus():
 
     return redirect("/_contactus_")
 
-@app.route("/student",methods = ['GET','POST'])
+@app.route("/update_profile",methods = ['GET','POST'])
 
-def student():
+def Update_Profile():
+    if request.method == 'POST':
+        if session['user'][1] != request.form['email']:
+            if (emailer.valide_email(request.form['email'])):
+                code = random.randint(100000, 999999)
+                message_ = {'To':request.form['email'] , 'title':'send config', 'message':'here is your code : '+str(code)}
+                emailer.send(message_)
+            else :
+                return render_template('profile.html',result = 'invalide email')
+            
+        name = request.form['first_name']+' '+request.form['last_name']
+        new_data = {'email':request.form['email'],'name':name,'phone':request.form['phone']}
+        My_DB.__edit__(session['user'][1], new_data)
+        return render_template('profile.html',result = 'changes is done')
         
-    return 'student'
+    return redirect(url_for("_profile_"))
+
+
+
+
     
+@app.route("/Upload_PDF",methods = ['GET','POST'])
+def Upload_PDF():
+    if request.method == 'POST':
+        
+        
+        uploaded_file = request.files['pdf_file']
+        print(uploaded_file.filename)
+        path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Lectures/'+uploaded_file.filename
+        uploaded_file.save(path)
+        print("DONE")
+        
+        return redirect(url_for("_profile_"))
+    
+    else :
+        redirect(url_for("_profile_"))
 
 
+@app.route("/Upload_Image",methods = ['GET','POST'])
+def Upload_Image():
+    if request.method == 'POST':
+        
+        
+        uploaded_file = request.files['image']
+        
+        path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png'
+        uploaded_file.save(path)
+        print("DONE")
+        
+        #image = Image.open('static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png')
+
+        #resized_image = image.resize((80, 80))
+        
+        #resized_image.save('static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png')
+        
+        return redirect(url_for("_profile_"))
+    
+    else :
+        redirect(url_for("_profile_"))
 
 
 if __name__ == '__main__':

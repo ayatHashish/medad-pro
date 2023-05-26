@@ -1,3 +1,4 @@
 flask
 bcrypt
 dnspython
+pillow

@@ -32,6 +32,15 @@
             var serverUrl = window.location.protocol + "//" + window.location.host;
             return serverUrl;
         }
+
+        function submitForm(event,loc,form) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            var form = document.getElementById(form);
+            var url = getServerUrl() + loc;
+            form.action = url;
+            form.method = 'post';
+            form.submit();
+        }
     </script>
 
 
@@ -39,7 +48,7 @@
 </head>
 
 <body class="en">
-    <!-- 
+    <!--
     <div class="loader-wrapper">
         <div class="loader">
             <div class="preloader_inner">0</div>
@@ -162,6 +171,7 @@
                         <div class="profile-card mb-3">
                             <div class="card">
                                 <div class="banner">
+                                  <!--<img src="{{ url_for('static', filename='Users_Data/1/Pictures/Personal_Pic.png') }}" alt="Personal Picture" />-->
                                     <svg viewBox="0 0 100 100">
                                         <path d="m38.977 59.074c0 2.75-4.125 2.75-4.125 0s4.125-2.75 4.125 0"></path>
                                         <path d="m60.477 59.074c0 2.75-4.125 2.75-4.125 0s4.125-2.75 4.125 0"></path>
@@ -181,7 +191,10 @@
                                 <div class="pdf">
 
                                     <div class="follow-btn">
-                                        <button>Upload lecture</button>
+                                      <form id="UploadPDF" action="#" method="post" enctype="multipart/form-data">
+                                        <input type="file" name="pdf_file">
+                                        <input type="submit" value="Upload" onclick="submitForm(event,'/Upload_PDF','UploadPDF')">
+                                      </form>
                                     </div>
                                 </div>
 
@@ -202,7 +215,10 @@
                                 <h3>Your avatar</h3>
                                 <p>PNG or JPG no bigger than 800px wide and tall</p>
 
-                                <a href="">Update</a>
+                                <form id="UploadImage" action="#" method="post" enctype="multipart/form-data">
+                                  <input type="file" name="image">
+                                  <input type="submit" value="Upload" onclick="submitForm(event,'/Upload_Image','UploadImage')">
+                                </form>
                                 <a href="">Delete</a>
                             </div>
 
@@ -212,7 +228,7 @@
                                     <p>Edit your personal information and address.</p>
                                 </div>
                                 <div class="container">
-                                    <form id="ContactForm" action="#" method="post">
+                                    <form id="UpdateForm" action="#" method="post">
                                         <div class="row">
                                             <div class="col-xl-6 mb-2">
                                                 <div class="form-group">
@@ -222,27 +238,27 @@
                                             </div>
                                             <div class="col-xl-6 mb-2">
                                                 <div class="form-group">
-                                                    <input type="text" name='last-name' class="form-control"
+                                                    <input type="text" name='last_name' class="form-control"
                                                         id="exampleFormControlInput1" placeholder="Last name">
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 mb-2">
                                                 <div class="form-group">
-                                                    <input type="number" name='Last name' class="form-control"
-                                                        id="exampleFormControlInput1" placeholder="Last name">
+                                                    <input type="phone" name='phone' class="form-control"
+                                                        id="exampleFormControlInput1" placeholder="phone">
                                                 </div>
                                             </div>
-                                         
-                                            
+
+
                                             <div class="col-xl-12 mb-2">
                                                 <div class="form-group">
 
-                                                    <textarea class="form-control" placeholder="Subject" name='subject'
+                                                    <textarea class="form-control" type="email" placeholder="email" name='email'
                                                         id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 </div>
                                                 <div class="text-center text-lg-start mt-4 pt-2">
                                                     <button type="submit" class="btn-action"
-                                                        onclick="submitForm(event)">Update Profile</button>
+                                                        onclick="submitForm(event,'/update_profile',UpdateForm)">Update Profile</button>
 
                                                 </div>
                                             </div>
