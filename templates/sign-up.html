@@ -19,8 +19,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@300;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/inner.en.css') }}" />
     <title>Home</title>
@@ -54,155 +56,103 @@
         <div class="loader-section section-left"></div>
         <div class="loader-section section-right"></div>
     </div> -->
+
     <!-- header -->
-
-   <!-- header -->
-   <header class="header">
-    <div class="container">
-        <div class="header-section">
-            <!-- <nav class="navbar navbar-expand-lg justify-content-between ">
-                <a class="navbar-brand" href="#"> <img src="{{ url_for('static', filename='images/logo 1.png') }}"
-                        alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                    <ul class="navbar-nav justify-content-center">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#"
-                                onclick="location.href = getServerUrl() + '/_home_';">Home</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#"
-                                onclick="location.href = getServerUrl() + '/_services_';">Services</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#"
-                                onclick="location.href = getServerUrl() + '/_profile_';">Profile</a>
-                        </li>
-
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#"
-                                onclick="location.href = getServerUrl() + '/_teacher_';">Teacher</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#"
-                                onclick="location.href = getServerUrl() + '/_contactus_';">Contact Us</a>
-                        </li>
-
-
-                    </ul>
-                </div>
-
-                <div class="buton-group">
-                    <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_login_';">Login</a>
-                    <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_signup_';"> Sign
-                        Up</a>
-                </div>
-            </nav> -->
-            <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                <a class="navbar-brand" href="home.html"> <img src="{{ url_for('static', filename='images/logo 1.png') }}"
-                    alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-around" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto topnav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#"
-                                onclick="location.href = getServerUrl() + '/_home_';">Home</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#"
-                                onclick="location.href = getServerUrl() + '/_services_';">Services</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#"
-                                onclick="location.href = getServerUrl() + '/_profile_';">Profile</a>
-                        </li>
-
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#"
-                                onclick="location.href = getServerUrl() + '/_teacher_';">Teacher</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#"
-                                onclick="location.href = getServerUrl() + '/_contactus_';">Contact Us</a>
-                        </li>
-                      
-                    </ul>
-                    <ul class="navbar-nav ml-auto topnav">
-                          <li class="nav-item">
-                            <!-- <a class="nav-link btn btn-primary text-white" type="button" href="#"
+    <header class="header">
+        <div class="container">
+            <div class="header-section">
+                <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
+                    <a class="navbar-brand" href="home.html"> <img
+                            src="{{ url_for('static', filename='images/logo 1.png') }}" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-around" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto topnav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#"
+                                    onclick="location.href = getServerUrl() + '/_home_';">Home</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#"
+                                    onclick="location.href = getServerUrl() + '/_services_';">Services</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#"
+                                    onclick="location.href = getServerUrl() + '/_profile_';">Profile</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#"
+                                    onclick="location.href = getServerUrl() + '/_teacher_';">Teacher</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#"
+                                    onclick="location.href = getServerUrl() + '/_contactus_';">Contact Us</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto topnav">
+                            <li class="nav-item">
+                                <!-- <a class="nav-link btn btn-primary text-white" type="button" href="#"
                                 data-toggle="modal" data-target="#myModal">Sign In</a> -->
                                 <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/_login_';"> <i
-                                    class="fa-regular fa-user mx-2"></i>Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_signup_';"><i
-                                class="fa-regular fa-user mx-2"></i> Sign
-                                Up</a>
-                            <!-- <a class="nav-link btn btn-danger text-white" type="button" href="#" data-toggle="modal"
+                                        class="fa-regular fa-user mx-2"></i>Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_signup_';"><i
+                                        class="fa-regular fa-user mx-2"></i> Sign
+                                    Up</a>
+                                <!-- <a class="nav-link btn btn-danger text-white" type="button" href="#" data-toggle="modal"
                                 data-target="#myModal">Register</a> -->
-                        </li>
-
-                    </ul>
-                </div>
-                <!-- The Modal -->
-                <div class="modal" id="myModal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Customer Sign In</h4>
-                                <button type="button" class="close" data-dismiss="modal">×</button>
-                            </div>
-
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <form>
-                                    <label class="sr-only" for="usrname">Username</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i
-                                                    class="fa fa-user"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- The Modal -->
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Customer Sign In</h4>
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <form>
+                                        <label class="sr-only" for="usrname">Username</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i
+                                                        class="fa fa-user"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Username"
+                                                aria-label="Username" aria-describedby="basic-addon1">
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Username"
-                                            aria-label="Username" aria-describedby="basic-addon1">
-                                    </div>
-
-
-                                    <label class="sr-only" for="Password">Name</label>
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon2"><i
-                                                    class="fa fa-key"></i></span>
+                                        <label class="sr-only" for="Password">Name</label>
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon2"><i
+                                                        class="fa fa-key"></i></span>
+                                            </div>
+                                            <input id="Password" type="password" class="form-control"
+                                                placeholder="Password" aria-label="Password"
+                                                aria-describedby="basic-addon2">
                                         </div>
-                                        <input id="Password" type="password" class="form-control"
-                                            placeholder="Password" aria-label="Password"
-                                            aria-describedby="basic-addon2">
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Sign In</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
                             </div>
-
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Sign In</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
-
                         </div>
                     </div>
-                </div>
-            </nav>
-    </div>
-    </div>
-</header>
+                </nav>
+            </div>
+        </div>
+    </header>
     <main>
         <div class="sign-page">
             <div class="h-custom d-flex justify-content-between">
@@ -242,23 +192,19 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="sec-sing">
                     <div class="container">
                         <form action="/join-team" method="POST">
                             <h2> Sign UP</h2>
-
                             <div class="form-group sign-form">
                                 <label for="fullname">Full Name</label>
                                 <input type="text" class="form-control" id="fullname" name="fullname" required>
                             </div>
-
                             <div class="form-group sign-form">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
                             </div>
-
                             <div class="form-group sign-form">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control ok-password" id="password" name="password"
@@ -274,15 +220,12 @@
                                 <label class="form-check-label" for="agree">
                                     I agree to the Terms of Service and Privacy Policy.
                                 </label>
-
-
-
                             </div>
                             <div class="text-center text-lg-start mt-4 pt-2">
                                 <button type="submit" class="main-button" onclick="submitForm(event)">Sign
                                     IN</button>
-                                <p class="small fw-bold mt-2 pt-1 mb-0 text-center"> Already have Account? Sign In  <a href="#!"
-                                        class="link-sign">Create an Account</a></p>
+                                <p class="small fw-bold mt-2 pt-1 mb-0 text-center"> Already have Account? Sign In <a
+                                        href="#!" class="link-sign">Create an Account</a></p>
                             </div>
                             <div class="text-center mb-3">
                                 <a class="sign">
@@ -301,6 +244,8 @@
             </div>
         </div>
     </main>
+
+
     <script src="{{ url_for('static', filename='scripts/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/aos.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

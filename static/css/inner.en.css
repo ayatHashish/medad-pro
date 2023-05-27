@@ -4551,6 +4551,9 @@ footer .rights {
   background: green;
   width: 100%; }
 
+.input-error-danger {
+  border-color: #721c24 !important; }
+
 @media screen and (max-width: 1199px) {
   .sec-sing:first-of-type {
     height: 150vh !important; } }
