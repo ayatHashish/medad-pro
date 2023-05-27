@@ -3986,28 +3986,22 @@ body {
   overflow-x: hidden; }
 
 h1 {
-  font-size: 3.125rem;
-  font-weight: 700; }
+  font-size: 3.125rem; }
 
 h2 {
-  font-size: 2.625rem;
-  font-weight: 700; }
+  font-size: 2.625rem; }
 
 h3 {
-  font-size: 1.975rem;
-  font-weight: 700; }
+  font-size: 1.975rem; }
 
 h4 {
-  font-size: 1.5rem;
-  font-weight: 700; }
+  font-size: 1.5rem; }
 
 h5 {
-  font-size: 1.25rem;
-  font-weight: 700; }
+  font-size: 1.25rem; }
 
 h6 {
-  font-size: 1rem;
-  font-weight: 500; }
+  font-size: 1rem; }
 
 input:focus,
 button:focus {
@@ -4305,7 +4299,7 @@ footer .rights {
     opacity: 0.8; }
 
 .btn-action {
-  width: 33%; }
+  width: 15rem; }
 
 .btn-action-lg {
   width: 35%; }
