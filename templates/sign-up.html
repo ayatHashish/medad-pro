@@ -195,25 +195,32 @@
                 </div>
                 <div class="sec-sing">
                     <div class="container">
-                        <form action="/join-team" method="POST">
+                        <form action="/join-team" method="POST" id="signup">
                             <h2> Sign UP</h2>
                             <div class="form-group sign-form">
                                 <label for="fullname">Full Name</label>
-                                <input type="text" class="form-control" id="fullname" name="fullname" required>
+                                <input type="text" class="form-control" id="fullname" name="fullname">
+                                <div class="alert alert-danger fullname-error d-none mt-1" role="alert">
+                                </div>
                             </div>
                             <div class="form-group sign-form">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email">
+                                <div class="alert alert-danger email-error d-none mt-1" role="alert">
+                                </div>
                             </div>
                             <div class="form-group sign-form">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control ok-password" id="password" name="password"
-                                    required>
-                                <!-- <i class='bx bx-low-vision'></i> -->
-                                <div class="label password-count"></div>
-                                <div class="strength-meter">
-                                    <div class="strength-meter-fill"></div>
+                                <div>
+                                    <label for="password">Password</label>
+                                    <input id="password" type="password" value="" name="password" class="form-control"
+                                        onkeyup="isGood(this.value)" />
+                                        <div class="alert alert-danger password-error d-none mt-1" role="alert">
+                                        </div>
+                                    <p class="help-block" id="password-text"> </p>
                                 </div>
+                            </div>
+                            <div>
+                                <a href="#!" class="d-block text-primary">Forgot password?</a>
                             </div>
                             <div class="form-check mb-0 mt-3">
                                 <input class="form-check-input me-2" type="checkbox" name='checkbox' id="Remember" />
@@ -222,26 +229,33 @@
                                 </label>
                             </div>
                             <div class="text-center text-lg-start mt-4 pt-2">
+                                <button type="submit" class="main-button">Sign IN</button>
+                                <!-- 
                                 <button type="submit" class="main-button" onclick="submitForm(event)">Sign
-                                    IN</button>
+                                    IN</button> -->
                                 <p class="small fw-bold mt-2 pt-1 mb-0 text-center"> Already have Account? Sign In <a
                                         href="#!" class="link-sign">Create an Account</a></p>
                             </div>
                             <div class="text-center mb-3">
                                 <a class="sign">
                                     <img src="{{ url_for('static', filename='images/google.png') }}"
-                                        alt="First slide">Sign In using Google</a>
+                                        alt="First slide">Sign In
+                                    using Google</a>
 
                                 <a class="sign">
                                     <img src="{{ url_for('static', filename='images/facebook.png') }}"
-                                        alt="First slide">Sign In using Facebook</a>
+                                        alt="First slide">Sign In
+                                    using Facebook</a>
                             </div>
-                        </form>
                     </div>
 
+                    </form>
 
                 </div>
+
+
             </div>
+        </div>
         </div>
     </main>
 

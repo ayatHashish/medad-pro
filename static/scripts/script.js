@@ -1,30 +1,49 @@
-// function validateLoginForm(event) {
-//     event.preventDefault(); // Prevent form submission
-//     // Retrieve form input values
-//     var emailInput = document.getElementById('email');
-//     var passwordInput = document.getElementById('password');
+function isGood(password) {
+    var password_strength = document.getElementById("password-text");
 
-//     // Perform validation checks
-//     var email = emailInput.value;
-//     var password = passwordInput.value;
+    //TextBox left blank.
+    if (password.length == 0) {
+        password_strength.innerHTML = "";
+        return;
+    }
 
-//     if (email === 'mohamed') {
-//         console.log('Email');
-//         alert('Please enter your username.');
-//         emailInput.focus();
-//         return;
-//     }
+    //Regular Expressions.
+    var regex = new Array();
+    regex.push("[A-Z]"); //Uppercase Alphabet.
+    regex.push("[a-z]"); //Lowercase Alphabet.
+    regex.push("[0-9]"); //Digit.
+    regex.push("[$@$!%*#?&]"); //Special Character.
 
-//     if (password === '') {
-//         alert('Please enter your password.');
-//         passwordInput.focus();
-//         return;
-//     }
+    var passed = 0;
 
-//     alert('Login successful!');
-//     // Reset the form if needed
-//     document.getElementById('loginForm').reset();
-// }
+    //Validate for each Regular Expression.
+    for (var i = 0; i < regex.length; i++) {
+        if (new RegExp(regex[i]).test(password)) {
+            passed++;
+        }
+    }
+
+    //Display status.
+    var strength = "";
+    switch (passed) {
+        case 0:
+        case 1:
+            strength = "<small class='help-block-fill help-red-fill'></small>";
+            break;
+        case 2:
+            strength = "<small class='help-block-fill help-orangered-fill'></small>";
+            break;
+        case 3:
+            strength = "<small class='help-block-fill help-orange-fill'></small>";
+            break;
+        case 4:
+            strength = "<small class='help-block-fill help-green-fill'></small>";
+            break;
+
+    }
+    password_strength.innerHTML = strength;
+
+}
 
 
 $(document).ready(function () {
@@ -68,7 +87,59 @@ $(document).ready(function () {
         }
 
     });
+    $('#signup').submit(function (event) {
+        event.preventDefault(); // Prevent form submission
 
+        // Retrieve form input values
+        var email = $('#email').val();
+        var fullname = $('#fullname').val();
+        var password = $('#password').val();
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+        let error = '';
+
+        // Perform validation checks
+
+        if (fullname === '') {
+            error = 'Please enter your Full Name';
+            $('#signup .fullname-error').removeClass('d-none').html(error);
+            $('#fullname').focus().addClass('input-error-danger');
+        } else {
+            $('#signup .fullname-error').addClass('d-none');
+            $('#fullname').focus().removeClass('input-error-danger');
+
+        }
+
+        if (email === '') {
+            error = 'Please enter your Email address';
+            $('#signup .email-error').removeClass('d-none').html(error);
+            $('#email').focus().addClass('input-error-danger');
+        } else if (emailPattern.test(email)) {
+            $('#signup .email-error').addClass('d-none');
+            $('#email').focus().removeClass('input-error-danger');
+        } else {
+            error = 'Invalid email address';
+            $('#loginForm .email-error').removeClass('d-none').html(error);
+            $('#email').focus().addClass('input-error-danger');
+        }
+
+        if (password === '') {
+            error = 'Please enter your Password.';
+         
+            $('#signup .password-error').removeClass('d-none').html(error);
+            $('#password').focus().addClass('input-error-danger');
+        } else if (passwordPattern.test(password)) {
+            $('#signup .password-error').addClass('d-none');
+            $('#password').focus().removeClass('input-error-danger');
+        } else {
+             error = 'Password must have at least 8 characters and contain Uppercase Alphabet ,Lowercase Alphabet,Special Characteras (@,!,#), and numbers .';
+         
+            $('#signup .password-error').removeClass('d-none').html(error);
+            $('#password').focus().addClass('input-error-danger');
+        }
+
+    });
 
     AOS.init({
         once: true,

@@ -4501,55 +4501,49 @@ footer .rights {
   bottom: 24px;
   right: 10px; }
 
-.strength-meter {
+.help-block {
   position: relative;
-  height: 3px;
+  height: 5px;
   background: #ddd;
   margin: 10px auto 20px;
   border-radius: 3px; }
+  .help-block::before, .help-block::after {
+    content: "";
+    height: inherit;
+    background: transparent;
+    display: block;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 5px 0 5px;
+    position: absolute;
+    width: 25%;
+    z-index: 10; }
+  .help-block:before {
+    left: 0; }
+  .help-block:after {
+    right: 25%; }
+  .help-block .help-block-fill {
+    background: transparent;
+    height: inherit;
+    position: absolute;
+    width: 0;
+    border-radius: inherit;
+    transition: width 0.5s ease-in-out, background 0.25s; }
+  .help-block .help-red-fill {
+    background: darkred;
+    width: 25%; }
+  .help-block .help-orangered-fill {
+    background: orangered;
+    width: 50%; }
+  .help-block .help-orange-fill {
+    background: orange;
+    width: 75%; }
+  .help-block .help-green-fill {
+    background: green;
+    width: 100%; }
 
-.strength-meter:before,
-.strength-meter:after {
-  content: "";
-  height: inherit;
-  background: transparent;
-  display: block;
-  border-color: #fff;
-  border-style: solid;
-  border-width: 0 5px 0 5px;
-  position: absolute;
-  width: 80px;
-  z-index: 10; }
-
-.strength-meter:before {
-  left: 70px; }
-
-.strength-meter:after {
-  right: 70px; }
-
-.strength-meter-fill {
-  background: transparent;
-  height: inherit;
-  position: absolute;
-  width: 0;
-  border-radius: inherit;
-  transition: width 0.5s ease-in-out, background 0.25s; }
-
-.strength-meter-fill[data-strength="0"] {
-  background: darkred;
-  width: 30%; }
-
-.strength-meter-fill[data-strength="1"] {
-  background: orangered;
-  width: 50%; }
-
-.strength-meter-fill[data-strength="2"] {
-  background: orange;
-  width: 70%; }
-
-.strength-meter-fill[data-strength="3"] {
-  background: green;
-  width: 100%; }
+.progress-bar {
+  border-radius: 5px; }
 
 .input-error-danger {
   border-color: #721c24 !important; }
