@@ -19,10 +19,7 @@
       color: #878483;
       font-size: 16px;
       text-align: center;
-
     }
-
-
     .file-upload {
       display: inline-block;
       padding: 8px 12px;
@@ -32,13 +29,11 @@
       font-size: 25px;
       text-align: center;
     }
-  
     .file-upload img {
       width: 75px;
       height: 75px;
       margin-bottom: 5px;
     }
-
     .banner {
       background-image: url("https://images.unsplash.com/photo-1545703549-7bdb1d01b734?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ");
       background-position: center;
@@ -59,25 +54,40 @@
           height: 100px;
           border-radius: 50%;
 
-          img{
+          img {
             width: 100%;
           }
         }
       }
-      svg {
-        background-color: #fff;
-        width: 8rem;
-        height: 8rem;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+      .img-area {
+        height: 175px;
+        width: 175px;
         border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // background-color: rgba(255,255,255,0.13);
+        // backdrop-filter: blur(10px);
+        // border: 2px solid rgba(255,255,255,0.1);
+        // box-shadow: 0 0 10px rgba(201, 201, 206, 0.6);
+        overflow: hidden;
         transform: translateY(50%);
-        transition: transform 200ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
-        &:hover {
-          transform: translateY(50%) scale(1.3);
+
+        .inner-area {
+          height: calc(100% - 25px);
+          width: calc(100% - 25px);
+          border-radius: 50%;
+
+          img {
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+          }
         }
       }
     }
-   
+
     h5 {
       &.name {
         text-align: center;
@@ -158,7 +168,6 @@
     }
   }
 }
-
 .profile-lg-card {
   .card {
     background-color: #fff;
@@ -168,16 +177,38 @@
     overflow: hidden;
     border-radius: 2rem;
     box-shadow: 0px 1rem 1.5rem rgba(0, 0, 0, 0.5);
-
     .avatar-content {
       display: flex;
-
       align-items: center;
       .avatar {
         vertical-align: middle;
         width: 100px;
         height: 100px;
         border-radius: 50%;
+      }
+
+      .img-area {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // box-shadow: 0 0 10px rgba(201, 201, 206, 0.6);
+        overflow: hidden;
+        .inner-area {
+          height: calc(100% - 25px);
+          width: calc(100% - 25px);
+          border-radius: 50%;
+
+          img {
+            margin: 0 -15px;
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
       }
     }
 
@@ -189,14 +220,9 @@
       color: #878483;
       font-size: 16px;
     }
-
-
-    form{
-
-      // padding: 0 2rem;
-      .form-control{
-          padding: 1.1rem 0.75rem;
-      
+    form {
+      .form-control {
+        padding: 1.1rem 0.75rem;
       }
     }
   }

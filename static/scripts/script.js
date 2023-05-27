@@ -108,7 +108,6 @@ $(document).ready(function () {
         } else {
             $('#signup .fullname-error').addClass('d-none');
             $('#fullname').focus().removeClass('input-error-danger');
-
         }
 
         if (email === '') {
@@ -126,15 +125,14 @@ $(document).ready(function () {
 
         if (password === '') {
             error = 'Please enter your Password.';
-         
             $('#signup .password-error').removeClass('d-none').html(error);
             $('#password').focus().addClass('input-error-danger');
         } else if (passwordPattern.test(password)) {
             $('#signup .password-error').addClass('d-none');
             $('#password').focus().removeClass('input-error-danger');
         } else {
-             error = 'Password must have at least 8 characters and contain Uppercase Alphabet ,Lowercase Alphabet,Special Characteras (@,!,#), and numbers .';
-         
+            error = 'Password must have at least 8 characters and contain Uppercase Alphabet ,Lowercase Alphabet,Special Characteras (@,!,#), and numbers .';
+
             $('#signup .password-error').removeClass('d-none').html(error);
             $('#password').focus().addClass('input-error-danger');
         }
