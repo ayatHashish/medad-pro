@@ -324,4 +324,4 @@ $(document).ready(function () {
 //     window.PasswordStrength = passwordStrengthModule;
 // })();
 
-// form-login 
+// form-login

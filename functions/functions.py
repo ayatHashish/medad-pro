@@ -52,8 +52,8 @@ class DB:
             user = self.search( 1, by = "id")
             print('>>',user)
             print(data)
-            os.makedirs('Users_Data'+'/'+str(user[0])+'/Pictures')
-            os.makedirs('Users_Data'+'/'+str(user[0])+'/Lectures')
+            os.makedirs('static/Users_Data'+'/'+str(user[0])+'/Pictures')
+            os.makedirs('static/Users_Data'+'/'+str(user[0])+'/Lectures')
             
             
             

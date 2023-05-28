@@ -34,10 +34,10 @@
             return serverUrl;
         }
 
-        function submitForm(event) {
+        function submitForm(event,loc,form) {
             event.preventDefault(); // Prevent the default form submission behavior
-            var form = document.getElementById('SigninForm');
-            var url = getServerUrl() + '/signup';
+            var form = document.getElementById(form);
+            var url = getServerUrl() + loc;
             form.action = url;
             form.method = 'post';
             form.submit();
@@ -195,11 +195,11 @@
                 </div>
                 <div class="sec-sing">
                     <div class="container">
-                        <form action="/join-team" method="POST" id="signup">
+                        <form action="#" method="POST" id="signup">
                             <h2> Sign UP</h2>
                             <div class="form-group sign-form">
                                 <label for="fullname">Full Name</label>
-                                <input type="text" class="form-control" id="fullname" name="fullname">
+                                <input type="text" class="form-control" id="fullname" name="username">
                                 <div class="alert alert-danger fullname-error d-none mt-1" role="alert">
                                 </div>
                             </div>
@@ -212,8 +212,8 @@
                             <div class="form-group sign-form">
                                 <div>
                                     <label for="password">Password</label>
-                                    <input id="password" type="password" value="" name="password" class="form-control"
-                                        onkeyup="isGood(this.value)" />
+                                    <input id="password" type="password" value="" name="password" class="form-control"/>
+                                        <!--onkeyup="isGood(this.value)" />-->
                                         <div class="alert alert-danger password-error d-none mt-1" role="alert">
                                         </div>
                                     <p class="help-block" id="password-text"> </p>
@@ -229,10 +229,16 @@
                                 </label>
                             </div>
                             <div class="text-center text-lg-start mt-4 pt-2">
-                                <button type="submit" class="main-button">Sign IN</button>
-                                <!-- 
-                                <button type="submit" class="main-button" onclick="submitForm(event)">Sign
-                                    IN</button> -->
+                                <!--<button type="submit" class="main-button">Sign IN</button>-->
+
+                                <button type="submit" class="main-button" onclick="submitForm(event,'/signup','signup')">Sign
+                                    IN</button>
+
+
+
+
+
+
                                 <p class="small fw-bold mt-2 pt-1 mb-0 text-center"> Already have Account? Sign In <a
                                         href="#!" class="link-sign">Create an Account</a></p>
                             </div>

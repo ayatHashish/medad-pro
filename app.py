@@ -19,34 +19,62 @@ print(app_root)
 
 @app.route("/_home_")
 def _home_():
-    return render_template('home.html')
+    if 'user' in session :
+        result = session['user']
+    else :
+        result = None
+    print(result)
+    return render_template('home.html',result = result)
                            
 @app.route("/_services_")
 def _services_():
-    return render_template('services.html')
+    #return render_template('services.html')
+    if 'user' in session :
+        result = session['user']
+    else :
+        result = None
+    return render_template('home.html',result = result)
                            
 @app.route("/_profile_")
 def _profile_():
-    if (('username' in session) or 1) :
-        return render_template('profile.html')
+    if ('username' in session) :
+        return render_template('profile.html',state = None, result = session['user'])
     else :
         return render_template('sign-in.html',result = None)
                            
 @app.route("/_teacher_")
 def _teacher_():
-    return render_template('teacher.html')
+    if 'user' in session :
+        result = session['user']
+    else :
+        result = None
+#    return render_template('teacher.html')
+    return render_template('home.html',result = result)
                            
 @app.route("/_contactus_")
 def _contactus_():
-    return render_template('contact-us.html')
+    if 'user' in session :
+        result = session['user']
+    else :
+        result = None
+        
+    return render_template('contact-us.html',result = result)
                            
 @app.route("/_login_")
 def _login_():
-    return render_template('sign-in.html', result = None)
+    if 'user' in session :
+        return render_template('home.html',result = session['user'])
+    else :
+        return render_template('sign-in.html', result = None)
                            
 @app.route("/_signup_")
 def _signup_():
     return render_template('sign-up.html',result = None)
+    
+    if 'user' in session :
+        return render_template('home.html',result = session['user'])
+    else :
+        return render_template('sign-up.html', result = None)
 
 
 
@@ -57,8 +85,11 @@ def _signup_():
 @app.route("/",methods = ['GET','POST'])
 def main():
         
-    
-    return redirect(url_for("home"))
+    if 'user' in session :
+        result = session['user']
+    else :
+        result = None
+    return render_template('home.html',result = result)
 
 
 
@@ -69,20 +100,25 @@ def home():
     #if request.method == 'POST':
     if 'username' in session :
         
-        user = session['user']
+        result = session['user']
     else :
-        user = None
+        result = None
         
-    return render_template("home.html", result = user)
+    return render_template("home.html", result = result)
 
 
 
 
 @app.route("/logout",methods = ['GET','POST'])
 def logout():
-    session.pop('username',None)
-    session.pop('user',None)
-    return redirect("/home")
+    if 'user' in session :
+        session.pop('username',None)
+        session.pop('user',None)
+        
+
+    return render_template('home.html',result = None)
+
+    
     
 @app.route("/login",methods = ['GET','POST'])
 def login():
@@ -100,7 +136,7 @@ def login():
             
             session['username'] = user[2]
             session['user'] = user
-            return redirect(url_for("home"))
+            return render_template('home.html',result = session['user'])
         
         return render_template('sign-in.html', result = 'password not correct')
     
@@ -161,17 +197,14 @@ def contactus():
         
         user = My_DB.search(email)
         if not user :
-            print(1)
             return render_template('contact-us.html', result = 'email not correct')
         
         user = My_DB.__login__(user,password)
         if user :
-            print(2)
             TMessage = "Hi Admin" + "\n\n" + subject +"\n\n\n" + "here is my email and phone number \n" + phone +"\n" + email
             message_ = {'To':emailer.Admin, 'title':title, 'message':TMessage }
             emailer.send(message_)
             return redirect(url_for("home"))
-        print(3)
         return render_template('contact-us.html', result = 'password not correct')
         
 
@@ -187,12 +220,17 @@ def Update_Profile():
                 message_ = {'To':request.form['email'] , 'title':'send config', 'message':'here is your code : '+str(code)}
                 emailer.send(message_)
             else :
-                return render_template('profile.html',result = 'invalide email')
+                return render_template('profile.html',state = 'invalide email',result = session['user'])
             
         name = request.form['first_name']+' '+request.form['last_name']
         new_data = {'email':request.form['email'],'name':name,'phone':request.form['phone']}
         My_DB.__edit__(session['user'][1], new_data)
-        return render_template('profile.html',result = 'changes is done')
+        
+        user = My_DB.search(request.form['email'])
+        session['username'] = user[2]
+        session['user'] = user
+        
+        return render_template('profile.html',state = 'changes is done', result = session['user'])
         
     return redirect(url_for("_profile_"))
 

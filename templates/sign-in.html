@@ -31,10 +31,10 @@
             return serverUrl;
         }
 
-        function submitForm(event) {
+        function submitForm(event,loc,form) {
             event.preventDefault(); // Prevent the default form submission behavior
-            var form = document.getElementById('loginForm');
-            var url = getServerUrl() + '/login';
+            var form = document.getElementById(form);
+            var url = getServerUrl() + loc;
             form.action = url;
             form.method = 'post';
             form.submit();
@@ -196,7 +196,7 @@
                 </div>
                 <div class="sec-sing">
                     <div class="container">
-                        <form action="/join-team" method="POST" id="loginForm">
+                        <form action="#" method="POST" id="loginForm">
                             <h2> Sign IN </h2>
                             <div class="form-group sign-form">
                                 <label for="email">Email</label>
@@ -219,9 +219,9 @@
                                 <label class="form-check-label " for="Remember"> Remember me </label>
                             </div>
                             <div class="text-center text-lg-start mt-4 pt-2">
-                                <button type="submit" class="main-button">Sign IN</button>
-                                <!-- <button type="submit" class="main-button" onclick="submitForm(event)">Sign
-                                    IN</button> -->
+                                <!--<button type="submit" class="main-button">Sign IN</button>-->
+                                <button type="submit" class="main-button" onclick="submitForm(event,'/login','loginForm')">Sign
+                                    IN</button>
                                 <p class="small fw-bold pt-1 text-center my-4"> New User ? <a href="#!"
                                         class="link-sign">Create an Account</a></p>
                             </div>
