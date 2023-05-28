@@ -49,7 +49,7 @@ class DB:
                 print(table[0])
             conn.commit()
             
-            user = self.search( 1, by = "id")
+            user = self.search( email)
             print('>>',user)
             print(data)
             os.makedirs('static/Users_Data'+'/'+str(user[0])+'/Pictures')
