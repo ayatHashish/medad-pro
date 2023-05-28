@@ -69,7 +69,6 @@ def _login_():
                            
 @app.route("/_signup_")
 def _signup_():
-    return render_template('sign-up.html',result = None)
     
     if 'user' in session :
         return render_template('home.html',result = session['user'])
