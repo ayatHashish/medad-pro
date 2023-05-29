@@ -93,7 +93,15 @@
   animation-duration: 3s;
   -webkit-animation-duration: calc(var(--animate-duration)*3);
   animation-duration: calc(var(--animate-duration)*3); }
-
+  @media (max-width: 768px) {
+    .navbar-nav.ml-auto.topnav {
+      position:static;
+      /* top: 0; */
+      /* bottom: 10 */
+      display: flex;
+      justify-content: space-around;
+    }
+  }
 @media (prefers-reduced-motion: reduce), print {
   .animate__animated {
     -webkit-animation-duration: 1ms !important;
