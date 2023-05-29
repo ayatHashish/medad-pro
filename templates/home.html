@@ -50,7 +50,7 @@
             <div class="header-section">
 
                 <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                    <a class="navbar-brand" href="home.html"> <img
+                    <a class="navbar-brand" > <img
                             src="static/images/logo 1.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -67,10 +67,12 @@
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/_services_';">Services</a>
                             </li>
+                            {% if result %}
                             <li class="nav-item ">
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/_profile_';">Profile</a>
                             </li>
+                            {% endif %}
 
                             <li class="nav-item ">
                                 <a class="nav-link" href="#"
@@ -459,6 +461,7 @@
                 </div>
             </section>
             <!-- hurry-up -->
+            {% if not result %}
             <section class="hurry-up bg-primary ">
                 <h2 class="text-center ">Hurry Up and Join Us Now</h2>
                 <div class="buton-group text-center py-5">
@@ -472,6 +475,7 @@
                   {% endif %}
                 </div>
             </section>
+            {% endif %}
         </div>
     </main>
     <footer>

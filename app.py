@@ -135,7 +135,7 @@ def login():
             
             session['username'] = user[2]
             session['user'] = user
-            return render_template('home.html',result = session['user'])
+            return render_template('profile.html',result = session['user'])
         
         return render_template('sign-in.html', result = 'password not correct')
     
