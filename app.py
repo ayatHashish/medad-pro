@@ -240,18 +240,19 @@ def Update_Profile():
 @app.route("/Upload_PDF",methods = ['GET','POST'])
 def Upload_PDF():
     if request.method == 'POST':
+        try  :
         
+            uploaded_file = request.files['pdf_file']
+            print(uploaded_file.filename)
+            path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Lectures/'+uploaded_file.filename
+            uploaded_file.save(path)
+            print("DONE")
         
-        uploaded_file = request.files['pdf_file']
-        print(uploaded_file.filename)
-        path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Lectures/'+uploaded_file.filename
-        uploaded_file.save(path)
-        print("DONE")
-        
-        return redirect(url_for("_profile_"))
     
-    else :
-        redirect(url_for("_profile_"))
+        except :
+            print('file not exist')
+            
+    return redirect(url_for("_profile_"))
 
 
 @app.route("/Upload_Image",methods = ['GET','POST'])
