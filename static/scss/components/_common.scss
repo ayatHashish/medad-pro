@@ -13,27 +13,21 @@ body {
 }
 h1 {
   font-size: 3.125rem;
- 
 }
 h2 {
   font-size: 2.625rem;
- 
 }
 h3 {
   font-size: 1.975rem;
- 
 }
 h4 {
   font-size: 1.5rem;
-
 }
 h5 {
   font-size: 1.25rem;
- 
 }
 h6 {
   font-size: 1rem;
-
 }
 input,
 button {
@@ -50,7 +44,7 @@ a {
   text-decoration: none;
 }
 section {
-  padding-top:8rem;
+  padding-top: 8rem;
 }
 #login-carousel {
   margin: 2rem auto;
@@ -61,8 +55,8 @@ section {
 
     button {
       background: #bcdfa7;
-      width: 30px;
-      height: 10px;
+      width: 25px;
+      height: 5px;
       border-radius: 50%;
       margin: 0 13px;
       &.active {
@@ -84,8 +78,8 @@ section {
   }
 }
 
-footer{
-  padding: 1.2rem 0 ;
+footer {
+  padding: 1.2rem 0;
   align-items: end;
   color: $brand-gray;
 }
