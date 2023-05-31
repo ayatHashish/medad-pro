@@ -4226,7 +4226,8 @@ header {
 .btn-action-lg,
 .btn-action-lg-blue,
 .btn-hurry,
-.btn-edit {
+.btn-edit,
+.btn-contact {
   width: 100%;
   padding: 0.75rem 2rem;
   border-radius: 6px;
@@ -4239,7 +4240,8 @@ header {
   .btn-action-lg:hover,
   .btn-action-lg-blue:hover,
   .btn-hurry:hover,
-  .btn-edit:hover {
+  .btn-edit:hover,
+  .btn-contact:hover {
     opacity: 0.8; }
 
 .btn-action {
@@ -4250,7 +4252,7 @@ header {
 
 .btn-action-lg-blue {
   width: 35%;
-  background-color: #0f75c0; }
+  background-color: #0F75C0; }
 
 .btn-hurry {
   font-weight: 400 !important;
@@ -4263,6 +4265,11 @@ header {
   background-color: transparent;
   border: none; }
 
+.btn-contact {
+  background-color: #0F75C0;
+  width: 40%;
+  font-weight: 700; }
+
 .scou-btn:hover {
   color: #84c356; }
 
@@ -4274,4 +4281,7 @@ header {
   .btn-hurry,
   .btn-edit {
     padding: 0.5rem 1rem;
-    font-size: 12px; } }
+    font-size: 12px; }
+
+  .btn-contact {
+    width: 70%; } }

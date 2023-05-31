@@ -4226,7 +4226,8 @@ header {
 .btn-action-lg,
 .btn-action-lg-blue,
 .btn-hurry,
-.btn-edit {
+.btn-edit,
+.btn-contact {
   width: 100%;
   padding: 0.75rem 2rem;
   border-radius: 6px;
@@ -4239,7 +4240,8 @@ header {
   .btn-action-lg:hover,
   .btn-action-lg-blue:hover,
   .btn-hurry:hover,
-  .btn-edit:hover {
+  .btn-edit:hover,
+  .btn-contact:hover {
     opacity: 0.8; }
 
 .btn-action {
@@ -4250,7 +4252,7 @@ header {
 
 .btn-action-lg-blue {
   width: 35%;
-  background-color: #0f75c0; }
+  background-color: #0F75C0; }
 
 .btn-hurry {
   font-weight: 400 !important;
@@ -4263,6 +4265,11 @@ header {
   background-color: transparent;
   border: none; }
 
+.btn-contact {
+  background-color: #0F75C0;
+  width: 40%;
+  font-weight: 700; }
+
 .scou-btn:hover {
   color: #84c356; }
 
@@ -4274,7 +4281,10 @@ header {
   .btn-hurry,
   .btn-edit {
     padding: 0.5rem 1rem;
-    font-size: 12px; } }
+    font-size: 12px; }
+
+  .btn-contact {
+    width: 70%; } }
 .home-page .card {
   height: 18rem;
   padding: 0 35px;
@@ -4373,18 +4383,18 @@ header {
   position: relative; }
   .contact-page .bannar h2 {
     position: absolute;
-    top: 1rem;
-    left: 5rem;
+    top: 9rem;
+    left: 13rem;
     color: #0f75c0; }
 .contact-page .paragraph p {
-  padding: 2rem 27rem;
+  padding: 2rem 12rem;
   color: #878483;
   font-size: 20px; }
 .contact-page .stay-connected h2 {
   color: #0f75c0;
   font-size: 40px; }
 .contact-page .stay-connected p {
-  padding: 1rem 27rem;
+  padding: 1rem 0;
   color: #878483;
   font-size: 20px; }
 .contact-page .stay-connected .card {
@@ -4392,21 +4402,57 @@ header {
   padding: 2rem;
   margin: 0 0.5rem;
   border-radius: 19px;
-  text-align: center; }
-.contact-page .contact-form h2 {
-  padding: 1rem 0;
-  color: #0f75c0;
-  font-size: 40px; }
-.contact-page .contact-form input {
-  padding: 0.9rem 0.5rem; }
-.contact-page .contact-form ::placeholder {
-  padding: 0 0.5rem; }
-.contact-page .color-footer {
-  background-color: #84c356 !important; }
+  text-align: center;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(68, 68, 68, 0.2); }
+  .contact-page .stay-connected .card .card-content {
+    font-family: "Roboto"; }
+    .contact-page .stay-connected .card .card-content h3 {
+      font-weight: bold;
+      font-size: 22px; }
+    .contact-page .stay-connected .card .card-content .content-social {
+      font-weight: 400 !important;
+      display: flex;
+      justify-content: space-around; }
+      .contact-page .stay-connected .card .card-content .content-social .content {
+        padding: 2rem 0;
+        display: flex;
+        flex-direction: column; }
+        .contact-page .stay-connected .card .card-content .content-social .content i {
+          margin-bottom: 5px;
+          color: #0F75C0;
+          font-size: 25px; }
+        .contact-page .stay-connected .card .card-content .content-social .content a {
+          color: black; }
+  .contact-page .stay-connected .card:hover {
+    border-bottom: 3px solid #0F75C0; }
+.contact-page .contact-form {
+  margin-bottom: 3rem; }
+  .contact-page .contact-form h2 {
+    padding: 1.2rem 0;
+    color: #0f75c0;
+    font-size: 40px; }
+  .contact-page .contact-form input {
+    padding: 0.9rem 0.5rem; }
+  .contact-page .contact-form ::placeholder {
+    padding: 0 0.5rem; }
 
 @media screen and (max-width: 1199px) {
   .contact-page p {
     padding: 2rem 1rem !important; } }
+@media screen and (max-width: 991px) {
+  .bannar h2 {
+    left: 6rem !important; }
+
+  .content-stay-connected .card {
+    width: 100% !important;
+    margin-bottom: 15px !important; } }
+@media screen and (max-width: 767px) {
+  .content-stay-connected {
+    flex-direction: column; }
+    .content-stay-connected .card {
+      width: 100% !important;
+      margin-bottom: 15px !important; } }
 .sign-page .h-custom .custom-carousel {
   padding: 5rem 5rem 0; }
 

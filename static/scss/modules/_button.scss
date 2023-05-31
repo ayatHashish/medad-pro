@@ -3,7 +3,8 @@
 .btn-action-lg,
 .btn-action-lg-blue,
 .btn-hurry,
-.btn-edit {
+.btn-edit, 
+.btn-contact {
     width: 100%;
     padding: 0.75rem 2rem;
     border-radius: 6px;
@@ -24,7 +25,7 @@
 }
 .btn-action-lg-blue {
     width: 35%;
-    background-color: #0f75c0;
+    background-color: $brand-primary;
 }
 .btn-hurry {
     font-weight: 400 !important;
@@ -42,6 +43,12 @@
     border: none;
 }
 
+.btn-contact{
+    background-color: $brand-primary;
+    width: 40%;
+ 
+    font-weight: 700;
+}
 .scou-btn {
     // color: black !important;
     &:hover {
@@ -69,6 +76,10 @@
         font-size: 12px;
       
         
+    }
+
+    .btn-contact{
+        width: 70%;
     }
    
 }
