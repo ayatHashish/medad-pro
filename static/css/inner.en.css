@@ -4075,69 +4075,80 @@ header {
     color: black !important; }
 
 .main-banner {
-  padding-top: 0; }
+  padding-top: 0;
+  height: 100vh;
+  position: relative; }
+  .main-banner .item-slide .img-slider {
+    width: 100%; }
+    .main-banner .item-slide .img-slider img {
+      width: 100%;
+      height: 100%; }
+  .main-banner .item-slide .overlay {
+    background-position: left top, center bottom;
+    background-repeat: no-repeat, no-repeat;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.48);
+    z-index: 999; }
+    .main-banner .item-slide .overlay::before {
+      content: "";
+      position: absolute;
+      background-repeat: no-repeat;
+      background-position: left center;
+      width: 100%;
+      height: 100%;
+      left: 20%;
+      background-image: url(../../images/Vector-2.png);
+      top: 23%; }
+    .main-banner .item-slide .overlay::after {
+      content: "";
+      position: absolute;
+      background-image: url("../../images/left-vector.png");
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: cover;
+      height: 100%;
+      width: 254px;
+      left: 0;
+      top: 33px;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px; }
+  .main-banner .item-slide .content-wrapper {
+    position: absolute;
+    right: 50%;
+    top: 22rem;
+    transform: translate(50%, -50%);
+    z-index: 1111;
+    text-transform: uppercase;
+    color: white; }
+    .main-banner .item-slide .content-wrapper h3 {
+      font-weight: 700;
+      font-family: "Roboto Slab";
+      font-style: normal; }
+    .main-banner .item-slide .content-wrapper p {
+      font-family: "Roboto";
+      font-style: normal; }
+    .main-banner .item-slide .content-wrapper button {
+      font-size: larger; }
   .main-banner .banner-slide {
     background-color: white;
     width: 100%; }
     .main-banner .banner-slide .owl-dots {
       display: none; }
-    .main-banner .banner-slide .item-slide .img-slider {
-      width: 100%; }
-      .main-banner .banner-slide .item-slide .img-slider img {
-        width: 100%;
-        height: 100%; }
-    .main-banner .banner-slide .item-slide .overlay {
-      background-position: left top, center bottom;
-      background-repeat: no-repeat, no-repeat;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background: rgba(0, 0, 0, 0.48);
-      z-index: 999; }
-      .main-banner .banner-slide .item-slide .overlay::before {
-        content: "";
-        position: absolute;
-        background-repeat: no-repeat;
-        background-position: left center;
-        width: 100%;
-        height: 100%;
-        left: 20%;
-        background-image: url(../../images/Vector-2.png);
-        top: 23%; }
-      .main-banner .banner-slide .item-slide .overlay::after {
-        content: "";
-        position: absolute;
-        background-image: url("../../images/left-vector.png");
-        background-repeat: no-repeat;
-        background-position: left center;
-        background-size: cover;
-        height: 100%;
-        width: 254px;
-        left: 0;
-        top: 33px;
-        border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px; }
-    .main-banner .banner-slide .item-slide .content-wrapper {
-      position: absolute;
-      right: 50%;
-      top: 22rem;
-      transform: translate(50%, -50%);
-      z-index: 1111;
-      text-transform: uppercase;
-      color: white; }
 
 @media screen and (max-width: 1199px) {
   .main-banner .banner-slide .item-slide .content-wrapper {
     right: 50%;
-    top: 16rem  !important; }
+    top: 16rem !important; }
     .main-banner .banner-slide .item-slide .content-wrapper p {
       margin: 0 !important; } }
 @media screen and (max-width: 769px) {
   .main-banner .banner-slide .item-slide .content-wrapper {
     right: 50%;
-    top: 10rem  !important; }
+    top: 10rem !important; }
     .main-banner .banner-slide .item-slide .content-wrapper p {
       font-size: 14px !important; } }
 @media screen and (max-width: 580px) {
@@ -4301,7 +4312,8 @@ header {
       padding: 25px 15px; }
 .home-page .hurry-up {
   padding: 7rem 0;
-  color: white; }
+  color: white;
+  background-color: #0F75C0; }
   .home-page .hurry-up .buton-group a {
     margin: 0 2rem; }
 
@@ -4395,13 +4407,10 @@ header {
 .sec-sing {
   width: 50%; }
   .sec-sing:first-of-type {
-    background-color: #eaf4ee;
+    background-color: linear-gradient(209.75deg, rgba(188, 223, 167, 0.2) 0%, rgba(24, 117, 187, 0.2) 100%);
     height: 88vh; }
   .sec-sing:last-of-type {
     padding: 1rem 8rem 1rem 2rem; }
-
-.edit-sec {
-  background-color: white !important; }
 
 .link-sign {
   color: #84c356; }

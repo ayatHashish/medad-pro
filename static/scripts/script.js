@@ -47,6 +47,11 @@ function isGood(password) {
 
 
 $(document).ready(function () {
+   AOS.init({
+        once: true,
+        disable: "mobile"
+    });
+
 
     $('#loginForm').submit(function (event) {
         event.preventDefault(); // Prevent form submission
@@ -139,17 +144,12 @@ $(document).ready(function () {
 
     });
 
-    AOS.init({
-        once: true,
-        disable: "mobile"
-    });
-
     setTimeout(function () {
         $('body').addClass('loaded');
         AOS.init({
             once: true,
             disable: function () {
-                var maxWidth = 800;
+                var maxWidth = 50;
                 return window.innerWidth < maxWidth;
             }
         });

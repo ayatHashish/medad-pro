@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--start font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@300;1000&display=swap"
+        rel="stylesheet">
+    <!--end font -->
+
+    <!--start fonticon -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!--end fonticon  -->
+
+    <!--start animate -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!--end animate -->
+    <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
-        integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@300;500&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="static/css/inner.en.css" />
     <title>Home</title>
-
 
     <script>
         function getServerUrl() {
@@ -33,18 +32,16 @@
             return serverUrl;
         }
     </script>
-
-
 </head>
 
 <body class="en">
-    <div class="loader-wrapper">
+    <!-- <div class="loader-wrapper">
         <div class="loader">
             <div class="preloader_inner">0</div>
         </div>
         <div class="loader-section section-left"></div>
         <div class="loader-section section-right"></div>
-    </div>
+    </div> -->
     <!-- header -->
     <header class="header">
         <div class="container">
@@ -74,10 +71,10 @@
                             </li>
                             {% endif %}
 
-                            <li class="nav-item ">
+                            <!-- <li class="nav-item ">
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/_teacher_';">Teacher</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item ">
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/_contactus_';">Contact Us</a>
@@ -157,104 +154,86 @@
             </div>
         </div>
     </header>
+
     <main>
         <section class="main-banner">
+            <div class="item-slide">
+                <div class="img-slider" data-aos="zoom-out-up" data-aos-delay="500" data-aos-duration="1000"
+                    data-aos-easing="ease-in-out">
+                    <img src="static/images/bunnar/home.png" alt="Slider Image" />
+                </div>
+                <div class="content-wrapper text-center">
+                    <h3 data-aos="zoom-in" data-aos-delay="1000" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                        Welcome to Medadd Academy</h3>
+                    <p class="my-5" data-aos="zoom-out" data-aos-delay="1000" data-aos-duration="2500"
+                        data-aos-easing="ease-in-out">
+                        where you can turn your passion into a profession. Medadd
+                        provides comprehensive medical courses for those who seek quality education and professional
+                        expertise.
+                    </p>
+                    <div class="d-flex justify-content-around my-3" data-aos-delay="1500" data-aos-duration="3000"
+                        data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+
+                        {% if result %}
+
+                        <button class="main-button btn-action-lg-blue" href="#"
+                            onclick="location.href = getServerUrl() + '/_profile_';">profile</button>
+                        <button class="main-button btn-action-lg " href="#"
+                            onclick="location.href = getServerUrl() + '/logout';">logout </button>
+
+                        {% else %}
+                        <button class="main-button btn-action-lg-blue " href="#"
+                            onclick="location.href = getServerUrl() + '/_login_';">Login</button>
+                        <button class="main-button btn-action-lg " href="#"
+                            onclick="location.href = getServerUrl() + '/_signup_';">sign up </button>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+                <div class="overlay"></div>
+            </div>
             <div class="banner-slide owl-carousel owl-theme">
                 <div class="item-slide">
-                    <div class="img-slider">
-                        <!-- <img src="static/images/bunnar/home.png" alt="Slider Image" /> -->
-                        <img src='static/images/bunnar/home.png' alt="Slider Image" />
-                    </div>
-                    <div class="content-wrapper text-center">
-                      
-                        <h3 class="hero__logo aos-init aos-animate" data-aos="zoom-in">Welcome to Medadd Academy</h3>
-                        <!-- <p class="my-5">
-                            Welcome to Medadd Academy, where you can turn your passion into a profession. Medadd
-                            provides comprehensive medical courses for those who seek quality education and professional
-                            expertise.
-                        </p> -->
-                        <div class="d-flex justify-content-around my-3">
-                            {% if result %}
-                            <button class="main-button btn-action-lg-blue" href="#"
-                                onclick="location.href = getServerUrl() + '/_profile_';">profile</button>
-                            <button class="main-button btn-action-lg" href="#"
-                                onclick="location.href = getServerUrl() + '/logout';">logout </button>
-
-                            {% else %}
-                            <button class="main-button btn-action-lg-blue" href="#"
-                                onclick="location.href = getServerUrl() + '/_login_';">Login</button>
-                            <button class="main-button btn-action-lg" href="#"
-                                onclick="location.href = getServerUrl() + '/_signup_';">sign up </button>
-                            {% endif %}
-
-                        </div>
-                    </div>
-                    <div class="overlay"></div>
-                </div>
-                <div class="item-slide">
-                    <div class="img-slider">
+                    <div class="img-slider" data-aos="zoom-out-up" data-aos-delay="500" data-aos-duration="1000"
+                        data-aos-easing="ease-in-out">
                         <img src="static/images/bunnar/home.png" alt="Slider Image" />
                     </div>
                     <div class="content-wrapper text-center">
-                        <h3>Welcome to our online course platform</h3>
-                        <p class="my-5">
-                            Welcome to Medadd Academy, where you can turn your passion into a profession. Medadd
+                        <h3 data-aos="zoom-in" data-aos-delay="1000" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                            Welcome to Medadd Academy</h3>
+                        <p class="my-5" data-aos="zoom-out" data-aos-delay="1000" data-aos-duration="2500"
+                            data-aos-easing="ease-in-out">
+                            Where you can turn your passion into a profession. Medadd
                             provides comprehensive medical courses for those who seek quality education and professional
                             expertise.
                         </p>
-                        <div class="d-flex justify-content-around my-3">
+                        <div class="d-flex justify-content-around my-3" data-aos-delay="1500" data-aos-duration="3000"
+                            data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+    
                             {% if result %}
+    
                             <button class="main-button btn-action-lg-blue" href="#"
                                 onclick="location.href = getServerUrl() + '/_profile_';">profile</button>
-                            <button class="main-button btn-action-lg" href="#"
+                            <button class="main-button btn-action-lg " href="#"
                                 onclick="location.href = getServerUrl() + '/logout';">logout </button>
-
+    
                             {% else %}
-                            <button class="main-button btn-action-lg-blue" href="#"
+                            <button class="main-button btn-action-lg-blue " href="#"
                                 onclick="location.href = getServerUrl() + '/_login_';">Login</button>
-                            <button class="main-button btn-action-lg" href="#"
+                            <button class="main-button btn-action-lg " href="#"
                                 onclick="location.href = getServerUrl() + '/_signup_';">sign up </button>
                             {% endif %}
-
+    
                         </div>
-
-                    </div>
-                    <div class="overlay"></div>
-                </div>
-                <div class="item-slide">
-                    <div class="img-slider">
-                        <img src="static/images/bunnar/home.png" alt="Slider Image" />
-                    </div>
-                    <div class="content-wrapper text-center">
-                        <h3>Welcome to our online course platform</h3>
-                        <p class="my-5">
-                            Welcome to Medadd Academy, where you can turn your passion into a profession. Medadd
-                            provides comprehensive medical courses for those who seek quality education and professional
-                            expertise.
-                        </p>
-                        <div class="d-flex justify-content-around my-3">
-                            {% if result %}
-                            <button class="main-button btn-action-lg-blue" href="#"
-                                onclick="location.href = getServerUrl() + '/_profile_';">profile</button>
-                            <button class="main-button btn-action-lg" href="#"
-                                onclick="location.href = getServerUrl() + '/logout';">logout </button>
-
-                            {% else %}
-                            <button class="main-button btn-action-lg-blue" href="#"
-                                onclick="location.href = getServerUrl() + '/_login_';">Login</button>
-                            <button class="main-button btn-action-lg" href="#"
-                                onclick="location.href = getServerUrl() + '/_signup_';">sign up </button>
-                            {% endif %}
-
-                        </div>
-
+    
                     </div>
                     <div class="overlay"></div>
                 </div>
             </div>
         </section>
         <div class="home-page">
-            <section class="secOne">
+            <section class="secOne" data-aos="zoom-out-up" data-aos-delay="500" data-aos-duration="1000">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
@@ -315,7 +294,7 @@
                 </div>
             </section>
             <!-- about -->
-            <section class="about-section">
+            <section class="about-section" data-aos="zoom-out-up" data-aos-delay="500" data-aos-duration="1000">
                 <div class="container">
                     <div class="about-content">
                         <div class="row">
@@ -366,7 +345,7 @@
                 </div>
             </section>
             <!-- Our Process -->
-            <section class="our-process">
+            <section class="our-process" data-aos="zoom-out-up" data-aos-delay="500" data-aos-duration="1000">
 
                 <div class="container">
                     <div class="content-wrapper text-center">
@@ -446,7 +425,7 @@
             </section>
             <!-- hurry-up -->
             {% if not result %}
-            <section class="hurry-up bg-primary ">
+            <section class="hurry-up">
                 <h2 class="text-center ">Hurry Up and Join Us Now</h2>
                 <div class="buton-group text-center py-5">
                     {% if result %}

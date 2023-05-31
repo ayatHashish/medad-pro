@@ -36,7 +36,7 @@
 .sec-sing {
     width: 50%;
     &:first-of-type {
-        background-color: #eaf4ee;
+        background-color: linear-gradient(209.75deg, rgba(188, 223, 167, 0.2) 0%, rgba(24, 117, 187, 0.2) 100%);
         height: 88vh;
     }
     &:last-of-type {
@@ -44,9 +44,6 @@
     }
 }
 
-.edit-sec {
-    background-color: white !important;
-}
 .link-sign {
     color: #84c356;
 }

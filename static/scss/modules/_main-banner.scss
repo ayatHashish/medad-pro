@@ -1,70 +1,88 @@
 .main-banner {
     padding-top: 0;
+    height: 100vh;
+    position: relative;
+    .item-slide {
+        .img-slider {
+            width: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .overlay {
+            background-position: left top, center bottom;
+            background-repeat: no-repeat, no-repeat;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+
+            background: rgba(0, 0, 0, 0.48);
+            z-index: 999;
+            &::before {
+                content: "";
+                position: absolute;
+                background-repeat: no-repeat;
+                background-position: left center;
+                width: 100%;
+                height: 100%;
+                left: 20%;
+                background-image: url(../../images/Vector-2.png);
+                top: 23%;
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                background-image: url("../../images/left-vector.png");
+                background-repeat: no-repeat;
+                background-position: left center;
+                background-size: cover;
+                height: 100%;
+                width: 254px;
+                left: 0;
+                top: 33px;
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+        }
+        .content-wrapper {
+            position: absolute;
+            right: 50%;
+            top: 22rem;
+            transform: translate(50%, -50%);
+            // font-weight: 700;
+            // font-size: 60px;
+            z-index: 1111;
+            text-transform: uppercase;
+            color: $white;
+            h3 {
+                font-weight: 700;
+                font-family: "Roboto Slab";
+                font-style: normal;
+            }
+
+            p {
+                font-family: "Roboto";
+                font-style: normal;
+                // text-transform: capitalize;
+            }
+
+            button {
+                font-size: larger;
+            }
+            span {
+                // color: $brand-gray2;
+            }
+        }
+    }
     .banner-slide {
         background-color: $white;
         width: 100%;
         .owl-dots {
             display: none;
-        }
-        .item-slide {
-            .img-slider {
-                width: 100%;
-                img {
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-            .overlay {
-                background-position: left top, center bottom;
-                background-repeat: no-repeat, no-repeat;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-
-                background: rgba(0, 0, 0, 0.48);
-                z-index: 999;
-                &::before {
-                    content: "";
-                    position: absolute;
-                    background-repeat: no-repeat;
-                    background-position: left center;
-                    width: 100%;
-                    height: 100%;
-                    left: 20%;
-                    background-image: url(../../images/Vector-2.png);
-                    top: 23%;
-                }
-                &::after {
-                    content: "";
-                    position: absolute;
-                    background-image: url("../../images/left-vector.png");
-                    background-repeat: no-repeat;
-                    background-position: left center;
-                    background-size: cover;
-                    height: 100%;
-                    width: 254px;
-                    left: 0;
-                    top: 33px;
-                    border-top-right-radius: 15px;
-                    border-bottom-right-radius: 15px;
-                }
-            }
-            .content-wrapper {
-                position: absolute;
-                right: 50%;
-                top: 22rem;
-                transform: translate(50%, -50%);
-                // font-weight: 700;
-                // font-size: 60px;
-                z-index: 1111;
-                text-transform: uppercase;
-                color: $white;
-                span {
-                    // color: $brand-gray2;
-                }
-            }
         }
     }
 }
@@ -78,8 +96,8 @@
             .item-slide {
                 .content-wrapper {
                     right: 50%;
-                    top: 16rem  !important;
-                    p{
+                    top: 16rem !important;
+                    p {
                         margin: 0 !important;
                     }
                 }
@@ -89,22 +107,19 @@
 }
 
 @media screen and (max-width: 769px) {
-
     .main-banner {
         .banner-slide {
             .item-slide {
                 .content-wrapper {
                     right: 50%;
-                    top: 10rem  !important;
-                    p{
+                    top: 10rem !important;
+                    p {
                         font-size: 14px !important;
                     }
                 }
             }
         }
-    }   
-    
-    
+    }
 }
 @media screen and (max-width: 580px) {
     .main-banner {
@@ -114,16 +129,13 @@
                     right: 45%;
                     top: 8rem !important;
                     width: 86%;
-                    p{
+                    p {
                         font-size: 10px !important;
                     }
                 }
             }
         }
     }
-
-
-
 }
 @media screen and (max-width: 325px) {
 }
