@@ -32,7 +32,7 @@
             return serverUrl;
         }
 
-        function submitForm(event,loc,form) {
+        function submitForm(event, loc, form) {
             event.preventDefault(); // Prevent the default form submission behavior
             var form = document.getElementById(form);
             var url = getServerUrl() + loc;
@@ -59,52 +59,63 @@
     <header class="header">
         <div class="container">
             <div class="header-section">
-                <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                    <a class="navbar-brand" > <img
-                            src="static/images/logo 1.png" alt=""></a>
+                <nav class="nav navbar navbar-expand-lg navbar-light justify-content-between">
+                    <a class="navbar-brand"> <img src="static/images/logo 1.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-around" id="navbarSupportedContent">
+                    <div class=" navbar-collapse justify-content-around" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto topnav">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#"
+                            <li class="nav-item nav-link">
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="home.html"
+                                    role="tab" aria-controls="nav-home" aria-selected="true"
                                     onclick="location.href = getServerUrl() + '/_home_';">Home</a>
                             </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="#"
+                            <li class="nav-item nav-link">
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="services.html"
+                                    role="tab" aria-controls="nav-home" aria-selected="true"
                                     onclick="location.href = getServerUrl() + '/_services_';">Services</a>
-                                    {% if result %}
-                                    <li class="nav-item ">
-                                        <a class="nav-link" href="#"
-                                            onclick="location.href = getServerUrl() + '/_profile_';">Profile</a>
-                                    </li>
-                                    {% endif %}
-                            <li class="nav-item ">
+                            </li>
+                            {% if result %}
+                            <li class="nav-item nav-link">
+                                <a class="nav-link" href="#"
+                                    onclick="location.href = getServerUrl() + '/_profile_';">Profile</a>
+                            </li>
+                            {% endif %}
+                            <!-- <li class="nav-item nav-link  ">
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/_teacher_';">Teacher</a>
-                            </li>
-                            <li class="nav-item ">
+                            </li> -->
+                            <li class="nav-item nav-link">
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/_contactus_';">Contact Us</a>
                             </li>
+
                         </ul>
                         <ul class="navbar-nav ml-auto topnav">
-                            <li class="nav-item">
-                                <!-- <a class="nav-link btn btn-primary text-white" type="button" href="#"
-                                data-toggle="modal" data-target="#myModal">Sign In</a> -->
+                            {% if result %}
+                            <p>{{result[2]}}</p>
+                            <li class="nav-item nav-link ">
+                                <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/logout';"> <i
+                                        class="fa-regular fa-user mx-2"></i>logout</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item nav-link ">
                                 <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/_login_';"> <i
                                         class="fa-regular fa-user mx-2"></i>Login</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item nav-link ">
                                 <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_signup_';"><i
-                                        class="fa-regular fa-user mx-2"></i> Sign
-                                    Up</a>
+                                        class="fa-regular fa-user "></i>
+                                    <!-- <i class="fa-regular fa-user-plus mx-2"></i>  -->
+                                    Sign Up
+                                </a>
                                 <!-- <a class="nav-link btn btn-danger text-white" type="button" href="#" data-toggle="modal"
-                                data-target="#myModal">Register</a> -->
+                                    data-target="#myModal">Register</a> -->
                             </li>
+                            {% endif %}
                         </ul>
                     </div>
                     <!-- The Modal -->
@@ -116,6 +127,7 @@
                                     <h4 class="modal-title">Customer Sign In</h4>
                                     <button type="button" class="close" data-dismiss="modal">×</button>
                                 </div>
+
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <form>
@@ -128,6 +140,7 @@
                                             <input type="text" class="form-control" placeholder="Username"
                                                 aria-label="Username" aria-describedby="basic-addon1">
                                         </div>
+
                                         <label class="sr-only" for="Password">Name</label>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
@@ -140,14 +153,17 @@
                                         </div>
                                     </form>
                                 </div>
+
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary">Sign In</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+
                 </nav>
             </div>
         </div>
@@ -170,19 +186,13 @@
                             </div>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100"
-                                        src="static/images/bunnar/home.png"
-                                        alt="First slide">
+                                    <img class="d-block w-100" src="static/images/bunnar/home.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100"
-                                        src="static/images/bunnar/home.png"
-                                        alt="Second slide">
+                                    <img class="d-block w-100" src="static/images/bunnar/home.png" alt="Second slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100"
-                                        src="static/images/bunnar/home.png"
-                                        alt="Third slide">
+                                    <img class="d-block w-100" src="static/images/bunnar/home.png" alt="Third slide">
                                 </div>
                             </div>
                             <div class="content-wrapper text-center mt-5">
@@ -211,14 +221,15 @@
                             <div class="form-group sign-form">
                                 <div>
                                     <label for="password">Password</label>
-                                    <input id="password" type="password" value="" name="password" class="form-control"/>
-                                        <!--onkeyup="isGood(this.value)" />-->
-                                        <div class="alert alert-danger password-error d-none mt-1" role="alert">
-                                        </div>
+                                    <input id="password" type="password" value="" name="password"
+                                        class="form-control" />
+                                    <!--onkeyup="isGood(this.value)" />-->
+                                    <div class="alert alert-danger password-error d-none mt-1" role="alert">
+                                    </div>
                                     <p class="help-block" id="password-text"> </p>
                                 </div>
                             </div>
-                            
+
                             <div class="form-check mb-0 mt-3">
                                 <input class="form-check-input me-2" type="checkbox" name='checkbox' id="Remember" />
                                 <label class="form-check-label" for="agree">
@@ -226,8 +237,9 @@
                                 </label>
                             </div>
                             <div class="text-center text-lg-start mt-4 pt-2">
-                               
-                                <button type="submit" class="main-button" onclick="submitForm(event,'/signup','signup')">Create Account</button>
+
+                                <button type="submit" class="main-button"
+                                    onclick="submitForm(event,'/signup','signup')">Create Account</button>
 
 
                                 <p class="small fw-bold mt-2 pt-1 mb-0 text-center"> Already have Account? Sign In <a
@@ -235,13 +247,11 @@
                             </div>
                             <div class="text-center mt-4">
                                 <a class="sign">
-                                    <img src="static/images/google.png"
-                                        alt="First slide">Sign In
+                                    <img src="static/images/google.png" alt="First slide">Sign In
                                     using Google</a>
 
                                 <a class="sign">
-                                    <img src="static/images/facebook.png"
-                                        alt="First slide">Sign In
+                                    <img src="static/images/facebook.png" alt="First slide">Sign In
                                     using Facebook</a>
                             </div>
                     </div>
@@ -253,11 +263,8 @@
 
             </div>
         </div>
-        </div>
     </main>
-
-
-    <script src="static/scripts/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="static/scripts/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="static/scripts/owl.carousel.min.js"></script>

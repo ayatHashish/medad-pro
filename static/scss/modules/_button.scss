@@ -3,7 +3,7 @@
 .btn-action-lg,
 .btn-action-lg-blue,
 .btn-hurry,
-.btn-edit, 
+.btn-edit,
 .btn-contact {
     width: 100%;
     padding: 0.75rem 2rem;
@@ -12,7 +12,6 @@
     border: none;
     background-color: #84c356;
     color: white;
-
     &:hover {
         opacity: 0.8;
     }
@@ -23,7 +22,6 @@
 
 .btn-action-edit {
     width: 7rem !important;
-   
 }
 .btn-action-lg {
     width: 35%;
@@ -38,20 +36,15 @@
     width: 30%;
     background-color: transparent;
     border: 2px solid white;
-
-    &:hover{
-        
-    }
 }
 .btn-edit {
     background-color: transparent;
     border: none;
 }
 
-.btn-contact{
+.btn-contact {
     background-color: $brand-primary;
     width: 40%;
- 
     font-weight: 700;
 }
 .scou-btn {
@@ -61,12 +54,10 @@
     }
 }
 
-
 @media screen and (max-width: 1399px) {
 }
 
 @media screen and (max-width: 1199px) {
-   
 }
 
 @media screen and (max-width: 769px) {
@@ -76,17 +67,13 @@
     .btn-action-lg-blue,
     .btn-hurry,
     .btn-edit {
-    
         padding: 0.5rem 1rem;
         font-size: 12px;
-      
-        
     }
 
-    .btn-contact{
+    .btn-contact {
         width: 70%;
     }
-   
 }
 @media screen and (max-width: 580px) {
 }

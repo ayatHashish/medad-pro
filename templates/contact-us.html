@@ -2,13 +2,12 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--start font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@300;1000&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" />
     <!--end font -->
 
     <!--start fonticon -->
@@ -22,11 +21,9 @@
     <!--end animate -->
     <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <link rel="stylesheet" href="static/css/inner.en.css" />
-    <title>Home</title>
-
-
+    <title>Contact US</title>
     <script>
         function getServerUrl() {
             var serverUrl = window.location.protocol + "//" + window.location.host;
@@ -35,16 +32,13 @@
 
         function submitForm(event) {
             event.preventDefault(); // Prevent the default form submission behavior
-            var form = document.getElementById('ContactForm');
-            var url = getServerUrl() + '/contactus';
+            var form = document.getElementById("ContactForm");
+            var url = getServerUrl() + "/contactus";
             form.action = url;
-            form.method = 'post';
+            form.method = "post";
             form.submit();
         }
     </script>
-
-
-
 </head>
 
 <body class="en">
@@ -69,29 +63,27 @@
                     </button>
                     <div class=" navbar-collapse justify-content-around" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto topnav">
-
                             <li class="nav-item nav-link">
-
-                               <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="home.html" role="tab" aria-controls="nav-home" aria-selected="true" onclick="location.href = getServerUrl() + '/_home_';">Home</a>
-                              
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="home.html"
+                                    role="tab" aria-controls="nav-home" aria-selected="true"
+                                    onclick="location.href = getServerUrl() + '/_home_';">Home</a>
                             </li>
-                            <li class="nav-item nav-link  ">
-                                
-                               <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="services.html" role="tab" aria-controls="nav-home" aria-selected="true" onclick="location.href = getServerUrl() + '/_services_';">Services</a>
-                              
+                            <li class="nav-item nav-link">
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="services.html"
+                                    role="tab" aria-controls="nav-home" aria-selected="true"
+                                    onclick="location.href = getServerUrl() + '/_services_';">Services</a>
                             </li>
                             {% if result %}
-                            <li class="nav-item nav-link  ">
+                            <li class="nav-item nav-link">
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/_profile_';">Profile</a>
                             </li>
                             {% endif %}
-
                             <!-- <li class="nav-item nav-link  ">
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/_teacher_';">Teacher</a>
                             </li> -->
-                            <li class="nav-item nav-link  ">
+                            <li class="nav-item nav-link">
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/_contactus_';">Contact Us</a>
                             </li>
@@ -101,9 +93,8 @@
                             {% if result %}
                             <p>{{result[2]}}</p>
                             <li class="nav-item nav-link ">
-                                <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/logout';">
-                                     <i class="fa-regular fa-user mx-2"></i>logout</a>
-                                        
+                                <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/logout';"> <i
+                                        class="fa-regular fa-user mx-2"></i>logout</a>
                             </li>
                             {% else %}
                             <li class="nav-item nav-link ">
@@ -113,9 +104,9 @@
                             <li class="nav-item nav-link ">
                                 <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_signup_';"><i
                                         class="fa-regular fa-user "></i>
-                                        <!-- <i class="fa-regular fa-user-plus mx-2"></i>  -->
-                                        Sign Up
-                                    </a>
+                                    <!-- <i class="fa-regular fa-user-plus mx-2"></i>  -->
+                                    Sign Up
+                                </a>
                                 <!-- <a class="nav-link btn btn-danger text-white" type="button" href="#" data-toggle="modal"
                                     data-target="#myModal">Register</a> -->
                             </li>
@@ -126,7 +117,6 @@
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
-
                                 <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h4 class="modal-title">Customer Sign In</h4>
@@ -145,7 +135,6 @@
                                             <input type="text" class="form-control" placeholder="Username"
                                                 aria-label="Username" aria-describedby="basic-addon1">
                                         </div>
-
 
                                         <label class="sr-only" for="Password">Name</label>
                                         <div class="input-group mb-2">
@@ -170,9 +159,6 @@
                         </div>
                     </div>
 
-
-                
-
                 </nav>
             </div>
         </div>
@@ -180,30 +166,32 @@
     <main>
         <div class="contact-page">
             <div class="bannar">
-                <h2> contact us </h2>
+                <h2>contact us</h2>
             </div>
             <div class="paragraph">
                 <p class="text-center">
-                    welcome to Medadd! We're thrilled that you're interested in learning more about our medical courses.
-                    You
-                    can contact us at (Medadd) via email, phone or contact form available on our website. We will be
-                    happy
-                    to answer all your questions and receive your feedback and suggestions.</p>
+                    welcome to Medadd! We're thrilled that you're interested in learning
+                    more about our medical courses. You can contact us at (Medadd) via
+                    email, phone or contact form available on our website. We will be
+                    happy to answer all your questions and receive your feedback and
+                    suggestions.
+                </p>
             </div>
             <section class="stay-connected">
                 <h2 class="text-center">Stay Connected</h2>
-                <p class="text-center">You can also follow us on social media for our latest news and educational
-                    offers.
+                <p class="text-center">
+                    You can also follow us on social media for our latest news and
+                    educational offers.
                 </p>
                 <div class="container">
                     <div class="content-stay-connected d-flex justify-content-center">
                         <div class="card">
                             <div class="card-content">
-                                <h3> Contact info </h3>
-                                <div class="content-social ">
+                                <h3>Contact info</h3>
+                                <div class="content-social">
                                     <div class="content">
                                         <i class="fa-brands fa-square-whatsapp"></i>
-                                       <a href="tel:+02 0100258963"> +02 0100258963</a>
+                                        <a href="tel:+02 0100258963"> +02 0100258963</a>
                                     </div>
                                     <div class="content">
                                         <i class="fa-brands fa-square-whatsapp"></i>
@@ -213,8 +201,8 @@
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-content ">
-                                <h3> Social Media </h3>
+                            <div class="card-content">
+                                <h3>Social Media</h3>
                                 <div class="content-social d-flex">
                                     <div class="content">
                                         <i class="fa-brands fa-square-facebook"></i>
@@ -234,68 +222,64 @@
                     </div>
                 </div>
             </section>
-            <section class="contact-form ">
+            <section class="contact-form">
                 <h2 class="text-center">Send Message</h2>
                 <div class="container">
                     <form id="ContactForm" action="#" method="post">
                         <div class="row">
                             <div class="col-xl-6 mb-2">
                                 <div class="form-group">
-                                    <input type="email" name='email' class="form-control" id="exampleFormControlInput1"
-                                        placeholder="Email">
+                                    <input type="email" name="email" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="Email" />
                                 </div>
                             </div>
                             <div class="col-xl-6 mb-2">
                                 <div class="form-group">
-                                    <input type="password" name='password' class="form-control"
-                                        id="exampleFormControlInput1" placeholder="Password">
+                                    <input type="password" name="password" class="form-control"
+                                        id="exampleFormControlInput1" placeholder="Password" />
                                 </div>
                             </div>
                             <div class="col-xl-6 mb-2">
                                 <div class="form-group">
-                                    <input type="phone" name='phone' class="form-control" id="exampleFormControlInput1"
-                                        placeholder="Phone ">
+                                    <input type="phone" name="phone" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="Phone " />
                                 </div>
                             </div>
                             <div class="col-xl-6 mb-2">
                                 <div class="form-group">
-                                    <input type="text" name='title' class="form-control" id="exampleFormControlInput1"
-                                        placeholder="Subject">
+                                    <input type="text" name="title" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="Subject" />
                                 </div>
                             </div>
                             <div class="col-xl-12 mb-2">
                                 <div class="form-group">
-
-                                    <textarea class="form-control" placeholder="Subject" name='subject'
+                                    <textarea class="form-control" placeholder="Subject" name="subject"
                                         id="exampleFormControlTextarea1" rows="10"></textarea>
                                 </div>
                                 <div class="text-center text-lg-start mt-4 pt-2">
-                                    <button type="submit" class="btn-contact" onclick="submitForm(event)">Send
-                                        Message</button>
-
+                                    <button type="submit" class="btn-contact" onclick="submitForm(event)">
+                                        Send Message
+                                    </button>
                                 </div>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </section>
         </div>
     </main>
     <footer class="d-flex justify-content-center align-content-end">
-        <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png" alt=""></a>
-           <a class="text-reset rights">All rights reserved for Medad</a>
-   
-   </footer>
+        <a class="navbar-brand" href="#">
+            <img src="static/images/logo 1.png" alt="" /></a>
+        <a class="text-reset rights">All rights reserved for Medad</a>
+    </footer>
 
-
-
-   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-   <script src="static/scripts/aos.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-   <script src="static/scripts/owl.carousel.min.js"></script>
-   <script src="static/scripts/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="static/scripts/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="static/scripts/owl.carousel.min.js"></script>
+    <script src="static/scripts/script.js"></script>
 </body>
 
 </html>

@@ -51,6 +51,15 @@ $(document).ready(function () {
         disable: "mobile"
     });
 
+    const navLinks = $('nav ul li a');
+    const currentURL = window.location.pathname;
+    const currentPath = currentURL.split(/[/_]/).filter(part => part !== '')[0];
+
+    navLinks.each(function () {
+        if ($(this).attr('onclick').indexOf(currentPath) !== -1) {
+            $(this).addClass('active');
+        }
+    });
 
     $('#loginForm').submit(function (event) {
         event.preventDefault(); // Prevent form submission
@@ -286,21 +295,23 @@ var loadFile = function (event) {
 
 
 // Get the current page URL
-const currentURL = window.location.href;
-const navLinks = document.querySelectorAll('nav ul li a');
+// const currentURL = window.location.href;
+// const navLinks = document.querySelectorAll('nav ul li a');
 
 // // Loop through the <a> elements
-navLinks.forEach(link => {
-    console.log(currentURL);
-    console.log(link.href);
-    // Check if the href of the link matches the current page URL
-    if (link.href === currentURL) {
-        // Add the 'active' class to the link
-        // link.classList.add('active');
-        link.addClass("active");
-        console.log(link);
-    }
-});
+// navLinks.forEach(link => {
+// console.log(currentURL);
+// console.log(link.href);
+// Check if the href of the link matches the current page URL
+// if (link.href === currentURL) {
+//     // Add the 'active' class to the link
+//     // link.classList.add('active');
+//     link.addClass("active");
+//     console.log(link);
+// }
+// });
+
+
 
 
 

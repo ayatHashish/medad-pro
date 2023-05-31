@@ -1,20 +1,15 @@
 // header section
 header {
   background-color: $white;
-
 }
 .nav-item{
   margin: 0 10px;
-  a {
-    color: black !important
+  a{
+    color: $brand-gray;
   }
 }    
-
 .active {
-  background-color: red;
-  // color: $brand-primary !important;
-  color: red !important;
-  font-size: 10px;
+  color: $brand-primary !important;
 }
 
 @media screen and (max-width: 580px) {

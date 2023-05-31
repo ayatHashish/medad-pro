@@ -4077,12 +4077,10 @@ header {
 .nav-item {
   margin: 0 10px; }
   .nav-item a {
-    color: black !important; }
+    color: #878483; }
 
 .active {
-  background-color: red;
-  color: red !important;
-  font-size: 10px; }
+  color: #0F75C0 !important; }
 
 @media screen and (max-width: 580px) {
   nav {
