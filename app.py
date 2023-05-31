@@ -172,7 +172,7 @@ def signup():
         
         
         
-        message_ = {'To':email , 'title':'send config', 'message':'here is your code : '+str(code)}
+        message_ = {'To':email , 'title':'send config', 'message':'here is your code : '+str(code), 'attachment':None}
         
         emailer.send(message_)
 
@@ -201,7 +201,7 @@ def contactus():
         user = My_DB.__login__(user,password)
         if user :
             TMessage = "Hi Admin" + "\n\n" + subject +"\n\n\n" + "here is my email and phone number \n" + phone +"\n" + email
-            message_ = {'To':emailer.Admin, 'title':title, 'message':TMessage }
+            message_ = {'To':emailer.Admin, 'title':title, 'message':TMessage, 'attachment':None }
             emailer.send(message_)
             return redirect(url_for("home"))
         return render_template('contact-us.html', result = 'password not correct')
@@ -216,7 +216,7 @@ def Update_Profile():
         if session['user'][1] != request.form['email']:
             if (emailer.valide_email(request.form['email'])):
                 code = random.randint(100000, 999999)
-                message_ = {'To':request.form['email'] , 'title':'send config', 'message':'here is your code : '+str(code)}
+                message_ = {'To':request.form['email'] , 'title':'send config', 'message':'here is your code : '+str(code), 'attachment':None}
                 emailer.send(message_)
             else :
                 return render_template('profile.html',state = 'invalide email',result = session['user'])
@@ -240,17 +240,20 @@ def Update_Profile():
 @app.route("/Upload_PDF",methods = ['GET','POST'])
 def Upload_PDF():
     if request.method == 'POST':
-        try  :
+        #try  :
         
-            uploaded_file = request.files['pdf_file']
-            print(uploaded_file.filename)
-            path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Lectures/'+uploaded_file.filename
-            uploaded_file.save(path)
-            print("DONE")
+        uploaded_file = request.files['pdf_file']
+        print(uploaded_file.filename)
+        path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Lectures/'+uploaded_file.filename
+        uploaded_file.save(path)
+        print("DONE")
+        text = f" here is a request from {session['username']} \n\n here is the student's contact information \n\n {session['user'][1]} \n {session['user'][4]}"                 
+        message_ = {'To':emailer.Admin , 'title':'request lesson', 'message':text, 'attachment':path}
+        emailer.send(message_)
         
     
-        except :
-            print('file not exist')
+        #except :
+           # print('file not exist')
             
     return redirect(url_for("_profile_"))
 
