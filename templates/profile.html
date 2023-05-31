@@ -61,8 +61,7 @@
         <div class="container">
             <div class="header-section">
                 <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                    <a class="navbar-brand"> <img
-                            src="static/images/logo 1.png" alt=""></a>
+                    <a class="navbar-brand"> <img src="static/images/logo 1.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -95,7 +94,7 @@
                         </ul>
                         <ul class="navbar-nav ml-auto topnav">
 
-                          {% if result %}
+                            {% if result %}
                             <p>{{result[2]}}</p>
                             <li class="nav-item">
                                 <!-- <a class="nav-link btn btn-primary text-white" type="button" href="#"
@@ -103,7 +102,7 @@
                                 <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/logout';"> <i
                                         class="fa-regular fa-user mx-2"></i>logout</a>
                             </li>
-                          {% else %}
+                            {% else %}
                             <li class="nav-item">
                                 <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/_login_';"> <i
                                         class="fa-regular fa-user mx-2"></i>Ayat Hashish</a>
@@ -175,63 +174,67 @@
                         <div class="profile-card mb-3">
                             <div class="card">
                                 <div class="banner">
-                                    <!--<img src="static/Users_Data/1/Pictures/Personal_Pic.png" alt="Personal Picture" />-->
-
                                     <div class="img-area">
                                         <div class="inner-area">
                                             <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1896qyri64lzsklz4trr.jpg"
                                                 alt="Personal Picture">
-
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="border-bottom mt-5 pt-4">
-                                    <h5 class="name">Profile Details</h5>
-                                    <p>You have full control to manage your own account setting.</p>
+                                    <h5 class="name fw-bold">Ayat Hashish</h5>
+                                    <p class="px-2">welcome to Medadd Academy! We're thrilled that you're interested in learning more about our medical courses.</p>
                                 </div>
                                 <div class="border-bottom pt-3">
-                                    <h5 class="name">Profile Details</h5>
-                                    <p>You have full control to manage your own account setting.</p>
+                                    <h5 class="name fw-bold">Last Lecture</h5>
+                                    <p>Text form designer imagination can be replaced with other text</p>
                                     <div class="pdf">
                                         <div class="follow-btn">
                                             <form id="UploadPDF" action="#" method="post" enctype="multipart/form-data"
-                                                class="pt-1
-                                            text-center">
-                                                <!--<input type="file" name="pdf_file" >-->
+                                                class="pt-1 text-center">
+                                                <div  class="d-flex justify-content-center">
+                                                    <div class="pdf-sec">
 
+                                                        <input type="file" name="pdf_file" id="file-input" accept=".pdf"
+                                                            style="display: none;" />
 
-                                                <input type="file" name="pdf_file" id="file-input" accept=".pdf"
-                                                    style="display: none;"/>
+                                                        <label for="file-input" class="file-upload">
+                                                            <img src="../static/images/pdf.png" alt="Upload" />
 
-                                                <label for="file-input" class="file-upload">
-                                                    <img src="../static/images/pdf.png" alt="Upload" />
-                                                </label>
-                                                <!--
-                                                <input type="file" name="pdf_file" id="file-input" accept=".pdf"
-                                                    style="display: none;"/>
+                                                        </label>
+                                                        <p>name</p>
+                                                          <div class="alert alert-danger password-error d-none mt-1" role="alert">
+                                        </div>
+                                                    </div>
+                                                    <!-- <div class="pdf-sec">
 
-                                                <label for="file-input" class="file-upload">
-                                                    <img src="../static/images/pdf.png" alt="Upload" />
-                                                </label>
+                                                        <input type="file" name="pdf_file" id="file-input" accept=".pdf"
+                                                            style="display: none;" />
 
-                                                <input type="file" name="pdf_file" id="file-input" accept=".pdf"
-                                                    style="display: none;"/>
+                                                        <label for="file-input" class="file-upload">
+                                                            <img src="../static/images/pdf.png" alt="Upload" />
 
-                                                <label for="file-input" class="file-upload">
-                                                    <img src="../static/images/pdf.png" alt="Upload" />
-                                                </label>
-                                              -->
+                                                        </label>
+                                                        <p>name</p>
+                                                    </div>
+                                                    <div class="pdf-sec">
 
+                                                        <input type="file" name="pdf_file" id="file-input" accept=".pdf"
+                                                            style="display: none;" />
 
-                                                <div class="text-center my-4">
-                                                    <button type="submit" class="btn-action" onclick="submitForm(event,'/Upload_PDF','UploadPDF')">Upload lecture</button>
+                                                        <label for="file-input" class="file-upload">
+                                                            <img src="../static/images/pdf.png" alt="Upload" />
 
-
+                                                        </label>
+                                                        <p>name</p>
+                                                    </div> -->
+                                                </div>
+                                                <div class="text-center my-3">
+                                                    <button type="submit" class="btn-action"
+                                                        onclick="submitForm(event,'/Upload_PDF','UploadPDF')">Upload
+                                                        lecture</button>
                                                 </div>
                                             </form>
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -249,33 +252,50 @@
                                     <div class="avatar-content justify-content-between">
                                         <div class="d-flex align-items-center">
                                             <div class="img-area">
-                                                <div class="inner-area">
-                                                    <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1896qyri64lzsklz4trr.jpg"
-                                                        alt="">
+                                                <div class="profile-pic my-2">
+                                                    <label class="-label" for="file">
+                                                        <!-- <span class="glyphicon glyphicon-camera"></span> -->
+                                                        <span>Change Image</span>
+                                                    </label>
+                                                    <input id="file" type="file" onchange="loadFile(event)" />
+                                                    <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
+                                                        id="output" width="200" />
                                                 </div>
-
                                             </div>
-                                            <h3>Your avatar</h3>
+
+                                            <div class="px-3">
+                                                  <h3>Your avatar</h3>
+                                             <p class="p-hint">PNG or JPG no bigger than 800px wide and tall</p>
+                                            </div>
+                                          
+
                                         </div>
+
+
+                                        <!-- //////////////////////////////////////////////////////////////////////// -->
+                                        <!-- <div class="alert alert-danger password-error d-none mt-1" role="alert">
+                                        </div> -->
+
+                                        <!-- //////////////////////////////////////////////////////////////////////// -->
 
 
                                         <form id="UploadImage" action="#" method="post" enctype="multipart/form-data">
                                             <input type="file" name="image" id="upload_Image" accept=".jpg, .jpeg, .png"
                                                 style="display: none;"
                                                 onclick="submitForm(event,'/Upload_Image','UploadImage')" />
-                                            <label for="upload_Image" class="file-upload">
-                                                <p class="text-success px-5">Update</p>
+                                            <label class="-label" for="file">
+                                                <a class="text-success px-4">Update</a>
+                                                <!-- <span>Change Image</span> -->
                                             </label>
 
-                                            <!-- <input type="file" name="image">
-                                            <input type="submit" value="Upload" > -->
 
 
-                                            <a class="text-danger"> Delete</a>
+
+                                            <a class="text-danger pr-2"> Delete</a>
                                         </form>
 
                                     </div>
-                                    <p>PNG or JPG no bigger than 800px wide and tall</p>
+
                                 </div>
                                 <div class="contact-form pt-2 ">
                                     <div>
@@ -316,7 +336,8 @@
 
                                             <div class="text-center text-lg-start mt-4 pt-2">
                                                 <button type="submit" class="btn-action"
-                                                    onclick="submitForm(event,'/update_profile','UpdateForm')">Update Profile</button>
+                                                    onclick="submitForm(event,'/update_profile','UpdateForm')">Update
+                                                    Profile</button>
                                             </div>
                                         </div>
 
@@ -336,8 +357,7 @@
     </main>
     <footer>
         <div class="text-center p-4 ">
-            <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png"
-                    alt=""></a>
+            <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png" alt=""></a>
             <a class="text-reset rights">All rights reserved for Medad</a>
         </div>
     </footer>

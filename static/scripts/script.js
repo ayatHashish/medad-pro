@@ -303,3 +303,11 @@ navLinks.forEach(link => {
     link.classList.add('active');
   }
 });
+
+// image
+
+var loadFile = function (event) {
+    var image = document.getElementById("output");
+    image.src = URL.createObjectURL(event.target.files[0]);
+  };
+  
