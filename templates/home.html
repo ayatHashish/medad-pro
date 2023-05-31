@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -55,29 +54,27 @@
                     </button>
                     <div class=" navbar-collapse justify-content-around" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto topnav">
-
-                            <li class="nav-item nav-link">
-
-                               <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="home.html" role="tab" aria-controls="nav-home" aria-selected="true" onclick="location.href = getServerUrl() + '/_home_';">Home</a>
-                              
+                            <li class="nav-item">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="home.html"
+                                    role="tab" aria-controls="nav-home" aria-selected="true"
+                                    onclick="location.href = getServerUrl() + '/_home_';">Home</a>
                             </li>
-                            <li class="nav-item nav-link  ">
-                                
-                               <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="services.html" role="tab" aria-controls="nav-home" aria-selected="true" onclick="location.href = getServerUrl() + '/_services_';">Services</a>
-                              
+                            <li class="nav-item nav-link">
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="services.html"
+                                    role="tab" aria-controls="nav-home" aria-selected="true"
+                                    onclick="location.href = getServerUrl() + '/_services_';">Services</a>
                             </li>
                             {% if result %}
-                            <li class="nav-item nav-link  ">
+                            <li class="nav-item nav-link">
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/_profile_';">Profile</a>
                             </li>
                             {% endif %}
-
                             <!-- <li class="nav-item nav-link  ">
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/_teacher_';">Teacher</a>
                             </li> -->
-                            <li class="nav-item nav-link  ">
+                            <li class="nav-item nav-link">
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/_contactus_';">Contact Us</a>
                             </li>
@@ -98,9 +95,9 @@
                             <li class="nav-item nav-link ">
                                 <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_signup_';"><i
                                         class="fa-regular fa-user "></i>
-                                        <!-- <i class="fa-regular fa-user-plus mx-2"></i>  -->
-                                        Sign Up
-                                    </a>
+                                    <!-- <i class="fa-regular fa-user-plus mx-2"></i>  -->
+                                    Sign Up
+                                </a>
                                 <!-- <a class="nav-link btn btn-danger text-white" type="button" href="#" data-toggle="modal"
                                     data-target="#myModal">Register</a> -->
                             </li>
@@ -111,7 +108,6 @@
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
-
                                 <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h4 class="modal-title">Customer Sign In</h4>
@@ -130,7 +126,6 @@
                                             <input type="text" class="form-control" placeholder="Username"
                                                 aria-label="Username" aria-describedby="basic-addon1">
                                         </div>
-
 
                                         <label class="sr-only" for="Password">Name</label>
                                         <div class="input-group mb-2">
@@ -154,9 +149,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                
 
                 </nav>
             </div>
@@ -208,7 +200,8 @@
                         <img src="static/images/bunnar/home.png" alt="Slider Image" />
                     </div>
                     <div class="content-wrapper text-center">
-                        <h3 data-aos="zoom-in" data-aos-delay="1000" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                        <h3 data-aos="zoom-in" data-aos-delay="1000" data-aos-duration="1000"
+                            data-aos-easing="ease-in-out">
                             Welcome to Medadd Academy</h3>
                         <p class="my-5" data-aos="zoom-out" data-aos-delay="1000" data-aos-duration="2500"
                             data-aos-easing="ease-in-out">
@@ -218,23 +211,23 @@
                         </p>
                         <div class="d-flex justify-content-around my-3" data-aos-delay="1500" data-aos-duration="3000"
                             data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
-    
+
                             {% if result %}
-    
+
                             <button class="main-button btn-action-lg-blue" href="#"
                                 onclick="location.href = getServerUrl() + '/_profile_';">profile</button>
                             <button class="main-button btn-action-lg " href="#"
                                 onclick="location.href = getServerUrl() + '/logout';">logout </button>
-    
+
                             {% else %}
                             <button class="main-button btn-action-lg-blue " href="#"
                                 onclick="location.href = getServerUrl() + '/_login_';">Login</button>
                             <button class="main-button btn-action-lg " href="#"
                                 onclick="location.href = getServerUrl() + '/_signup_';">sign up </button>
                             {% endif %}
-    
+
                         </div>
-    
+
                     </div>
                     <div class="overlay"></div>
                 </div>
@@ -365,7 +358,7 @@
                                 <div class="card-content">
                                     <div class="num"> 1 </div>
                                     <div class="process-content">
-                                        <div class="mb-2" ><img src="static/images/progress/login.png" alt="" /></div>
+                                        <div class="mb-2"><img src="static/images/progress/login.png" alt="" /></div>
 
                                         <h3>Login / Sign UP</h3>
                                         <p>You need to login to your account, if you don’t have account you can sign up.
@@ -399,7 +392,8 @@
                                 <div class="card-content">
                                     <div class="num"> 3 </div>
                                     <div class="process-content">
-                                        <div class="mb-2"><img src="static/images/progress/hourglass.png" alt="" /></div>
+                                        <div class="mb-2"><img src="static/images/progress/hourglass.png" alt="" />
+                                        </div>
 
                                         <h3>Contact with teacher</h3>
                                         <p>You can contact with your teacher.</p>
@@ -449,12 +443,10 @@
         </div>
     </main>
     <footer class="d-flex justify-content-center align-content-end">
-         <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png" alt=""></a>
-            <a class="text-reset rights">All rights reserved for Medad</a>
-    
+        <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png" alt=""></a>
+        <a class="text-reset rights">All rights reserved for Medad</a>
+
     </footer>
-
-
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>

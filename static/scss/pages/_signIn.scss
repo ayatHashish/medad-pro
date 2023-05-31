@@ -124,7 +124,7 @@
 @media screen and (max-width: 1199px) {
     .sec-sing {
         &:first-of-type {
-            height: 150vh !important;
+            height: 170vh !important;
         }
     }
 }
@@ -143,12 +143,12 @@
 
         .sign {
             font-size: 13px;
+            display: block;
         }
-
         .sec-sing {
             margin-bottom: 5rem;
             &:first-of-type {
-                height: 54vh !important;
+                height: 100vh !important;
             }
             &:last-of-type {
                 padding: 2rem;

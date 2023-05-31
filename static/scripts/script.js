@@ -46,7 +46,7 @@ function isGood(password) {
 }
 
 $(document).ready(function () {
-   AOS.init({
+    AOS.init({
         once: true,
         disable: "mobile"
     });
@@ -278,36 +278,29 @@ $(document).ready(function () {
 
 });
 
-// Get the current page URL
-// const link = window.location.href;
-// const navLinks = document.querySelectorAll('.nav-item  a');
-
-// navLinks.forEach(link => {
-//   link.addEventListener('click', function(event) {
-//     event.preventDefault();
-//     this.classList.add('active');
-    
-//   });
-// });
-
-// Get the current page URL
-const currentURL = window.location.href;
-const navLinks = document.querySelectorAll('nav a');
-
-// Loop through the <a> elements
-navLinks.forEach(link => {
-    console.log(currentURL);
-  // Check if the href of the link matches the current page URL
-  if (link.href === currentURL) {
-    // Add the 'active' class to the link
-    link.classList.add('active');
-  }
-});
-
 // image
-
 var loadFile = function (event) {
     var image = document.getElementById("output");
     image.src = URL.createObjectURL(event.target.files[0]);
-  };
-  
+};
+
+
+// Get the current page URL
+const currentURL = window.location.href;
+const navLinks = document.querySelectorAll('nav ul li a');
+
+// // Loop through the <a> elements
+navLinks.forEach(link => {
+    console.log(currentURL);
+    console.log(link.href);
+    // Check if the href of the link matches the current page URL
+    if (link.href === currentURL) {
+        // Add the 'active' class to the link
+        // link.classList.add('active');
+        link.addClass("active");
+        console.log(link);
+    }
+});
+
+
+
