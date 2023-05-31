@@ -4247,6 +4247,9 @@ header {
 .btn-action {
   width: 15rem; }
 
+.btn-action-edit {
+  width: 7rem !important; }
+
 .btn-action-lg {
   width: 35%; }
 
