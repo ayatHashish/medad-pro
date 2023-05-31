@@ -4016,7 +4016,7 @@ a {
   text-decoration: none; }
 
 section {
-  padding-top: 6rem; }
+  padding-top: 8rem; }
 
 #login-carousel {
   margin: 2rem auto;
@@ -4041,6 +4041,11 @@ section {
     border-bottom: 1px solid blue;
     border-left: 1px solid #84c356;
     border-right: 1px solid blue; }
+
+footer {
+  padding: 1.2rem 0;
+  align-items: end;
+  color: #878483; }
 
 @media screen and (max-width: 769px) {
   h1 {
@@ -4074,10 +4079,18 @@ header {
   .nav-item a {
     color: black !important; }
 
+.active {
+  background-color: red;
+  color: red !important;
+  font-size: 10px; }
+
+@media screen and (max-width: 580px) {
+  nav {
+    text-align: center; } }
 .main-banner {
   padding-top: 0;
-  height: 100vh;
-  position: relative; }
+  position: relative;
+  overflow: hidden; }
   .main-banner .item-slide .img-slider {
     width: 100%; }
     .main-banner .item-slide .img-slider img {
@@ -4122,15 +4135,16 @@ header {
     top: 22rem;
     transform: translate(50%, -50%);
     z-index: 1111;
-    text-transform: uppercase;
     color: white; }
     .main-banner .item-slide .content-wrapper h3 {
       font-weight: 700;
       font-family: "Roboto Slab";
-      font-style: normal; }
+      font-style: normal;
+      font-size: 35px; }
     .main-banner .item-slide .content-wrapper p {
       font-family: "Roboto";
-      font-style: normal; }
+      font-style: normal;
+      font-size: 22px; }
     .main-banner .item-slide .content-wrapper button {
       font-size: larger; }
   .main-banner .banner-slide {
@@ -4140,17 +4154,19 @@ header {
       display: none; }
 
 @media screen and (max-width: 1199px) {
-  .main-banner .banner-slide .item-slide .content-wrapper {
+  .main-banner .item-slide .content-wrapper {
     right: 50%;
-    top: 16rem !important; }
-    .main-banner .banner-slide .item-slide .content-wrapper p {
-      margin: 0 !important; } }
+    top: 16rem !important; } }
 @media screen and (max-width: 769px) {
-  .main-banner .banner-slide .item-slide .content-wrapper {
+  .main-banner .item-slide .content-wrapper {
+    width: 100% !important;
     right: 50%;
     top: 10rem !important; }
-    .main-banner .banner-slide .item-slide .content-wrapper p {
-      font-size: 14px !important; } }
+    .main-banner .item-slide .content-wrapper h3 {
+      font-size: 20px !important; }
+    .main-banner .item-slide .content-wrapper p {
+      font-size: 15px !important;
+      margin: 0 !important; } }
 @media screen and (max-width: 580px) {
   .main-banner .banner-slide .item-slide .content-wrapper {
     right: 45%;
@@ -4237,6 +4253,7 @@ header {
   background-color: #0f75c0; }
 
 .btn-hurry {
+  font-weight: 400 !important;
   padding: 0.75rem 4rem;
   width: 30%;
   background-color: transparent;
@@ -4263,19 +4280,20 @@ header {
   padding: 0 35px;
   text-align: center;
   padding: 10px;
-  background-color: #8b8b8b1a; }
+  border-radius: 20px;
+  background-color: #8b8b8b1a;
+  box-shadow: 0px 4px 4px rgba(68, 68, 68, 0.2); }
   .home-page .card .card-content {
     padding: 20px;
-    border-radius: 10px;
     border-color: #8b8b8b1a; }
   .home-page .card h3 {
+    font-weight: bold;
     font-size: 1.5rem;
     color: #0F75C0; }
   .home-page .card p {
     font-size: 1rem; }
-  .home-page .card:hover {
-    transform: scale(0.9); }
 .home-page .about-section .about h3 {
+  font-weight: bold;
   color: #0F75C0; }
 .home-page .about-section .image {
   position: relative; }
@@ -4288,16 +4306,18 @@ header {
     left: 48%; }
   .home-page .about-section .image .right {
     position: absolute;
-    right: 235px;
+    right: 155px;
     top: -12px; }
   .home-page .about-section .image .heart {
     position: absolute;
-    right: 12rem;
+    right: 6rem;
     top: 22rem; }
 .home-page .our-process {
   padding-bottom: 6rem; }
   .home-page .our-process .content-wrapper {
     color: #0F75C0; }
+    .home-page .our-process .content-wrapper h2 {
+      font-weight: bold !important; }
   .home-page .our-process .card {
     margin: 10px 0;
     height: 12rem !important; }
@@ -4331,6 +4351,9 @@ header {
     .about-section .image .heart {
       right: 0rem !important;
       top: 23rem  !important; } }
+@media screen and (max-width: 991px) {
+  .home-page .about {
+    margin-top: 15px; } }
 @media screen and (max-width: 767px) {
   .about-section {
     text-align: center; }
@@ -4407,7 +4430,7 @@ header {
 .sec-sing {
   width: 50%; }
   .sec-sing:first-of-type {
-    background-color: linear-gradient(209.75deg, rgba(188, 223, 167, 0.2) 0%, rgba(24, 117, 187, 0.2) 100%);
+    background-color: rgba(188, 223, 167, 0.2);
     height: 88vh; }
   .sec-sing:last-of-type {
     padding: 1rem 8rem 1rem 2rem; }

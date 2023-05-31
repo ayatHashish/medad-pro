@@ -27,10 +27,15 @@
     background-color: #0f75c0;
 }
 .btn-hurry {
+    font-weight: 400 !important;
     padding: 0.75rem 4rem;
     width: 30%;
     background-color: transparent;
     border: 2px solid white;
+
+    &:hover{
+        
+    }
 }
 .btn-edit {
     background-color: transparent;
@@ -59,7 +64,7 @@
     .btn-action-lg-blue,
     .btn-hurry,
     .btn-edit {
-       
+    
         padding: 0.5rem 1rem;
         font-size: 12px;
       

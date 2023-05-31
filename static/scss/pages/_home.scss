@@ -3,14 +3,17 @@
     height: 18rem;
     padding: 0 35px;
     text-align: center;
-    padding: 10px;
+    padding: 10px; 
+     border-radius: 20px;
     background-color: #8b8b8b1a;
+    box-shadow: 0px 4px 4px rgba(68, 68, 68, 0.2);
     .card-content {
       padding: 20px;
-      border-radius: 10px;
+    
       border-color: #8b8b8b1a;
     }
     h3 {
+      font-weight:bold;
       font-size: 1.5rem;
       color: $brand-primary;
     }
@@ -18,14 +21,15 @@
       font-size: 1rem;
     }
 
-    &:hover{
-      transform:scale(0.9)
-    }
+    // &:hover{
+    //   transform:scale(0.9)
+    // }
   }
   // about
   .about-section {
     .about {
       h3 {
+        font-weight:bold;
         color: $brand-primary;
       }
     }
@@ -43,13 +47,13 @@
       }
       .right {
         position: absolute;
-        right: 235px;
+        right: 155px;
         top: -12px;
       }
 
       .heart {
         position: absolute;
-    right: 12rem;
+    right:6rem;
     top: 22rem;
       }
     }
@@ -59,10 +63,15 @@
     padding-bottom: 6rem;
     .content-wrapper {
       color: $brand-primary;
+      
+      h2{
+        font-weight: bold !important;
+      }
     }
     .card {
       margin: 10px 0;
       height: 12rem !important;
+      
       .card-content {
         padding: 0px;
         display: flex;
@@ -123,7 +132,12 @@
 }
 
 @media screen and (max-width:991px) {
- 
+ .home-page{
+
+  .about{
+    margin-top:15px
+  }
+ }
   
  }
 

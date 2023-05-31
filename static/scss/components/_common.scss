@@ -50,7 +50,7 @@ a {
   text-decoration: none;
 }
 section {
-  padding-top: 6rem;
+  padding-top:8rem;
 }
 #login-carousel {
   margin: 2rem auto;
@@ -84,6 +84,11 @@ section {
   }
 }
 
+footer{
+  padding: 1.2rem 0 ;
+  align-items: end;
+  color: $brand-gray;
+}
 @media screen and (max-width: 769px) {
   h1 {
     font-size: 3.125rem;

@@ -10,8 +10,19 @@ header {
   }
 }    
 
+.active {
+  background-color: red;
+  // color: $brand-primary !important;
+  color: red !important;
+  font-size: 10px;
+}
+
 @media screen and (max-width: 580px) {
   
+
+  nav{
+    text-align: center;
+  }
 }
 
 

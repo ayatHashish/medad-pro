@@ -45,7 +45,6 @@ function isGood(password) {
 
 }
 
-
 $(document).ready(function () {
    AOS.init({
         once: true,
@@ -279,49 +278,28 @@ $(document).ready(function () {
 
 });
 
+// Get the current page URL
+// const link = window.location.href;
+// const navLinks = document.querySelectorAll('.nav-item  a');
 
+// navLinks.forEach(link => {
+//   link.addEventListener('click', function(event) {
+//     event.preventDefault();
+//     this.classList.add('active');
+    
+//   });
+// });
 
-// (function () {
-//     function passwordCount(value, peak) {
-//         value = typeof value === 'string' ? value : '';
-//         peak = isFinite(peak) ? peak : 7;
+// Get the current page URL
+const currentURL = window.location.href;
+const navLinks = document.querySelectorAll('nav a');
 
-//         return value && (value.length > peak ? peak + '+' : value.length);
-//     }
-
-//     function zxcvbnScore() {
-//         var compute = zxcvbn.apply(null, arguments);
-//         return compute && compute.score;
-//     }
-
-//     function okPasswordDirective(zxcvbn) {
-//         return {
-//             restrict: 'AC',
-//             require: 'ngModel',
-//             link: function (scope, element, attrs, ngModelCtrl) {
-//                 element.on('blur change keydown', function (evt) {
-//                     scope.$evalAsync(function (scope) {
-//                         var pwd = scope.password = element.val();
-//                         scope.passwordStrength = pwd ? (pwd.length > 7 && zxcvbn.score(pwd) || 0) : null;
-//                         ngModelCtrl.$setValidity('okPassword', scope.passwordStrength >= 2);
-//                     });
-//                 });
-//             }
-//         };
-//     }
-
-//     var formController = function () {
-
-//     };
-//     var passwordStrengthModule = {
-//         passwordCount: passwordCount,
-//         zxcvbnScore: zxcvbnScore,
-//         okPasswordDirective: okPasswordDirective,
-//         formController: formController
-//     };
-
-//     // تعيين الدوال ككائن على النطاق العام
-//     window.PasswordStrength = passwordStrengthModule;
-// })();
-
-// form-login
+// Loop through the <a> elements
+navLinks.forEach(link => {
+    console.log(currentURL);
+  // Check if the href of the link matches the current page URL
+  if (link.href === currentURL) {
+    // Add the 'active' class to the link
+    link.classList.add('active');
+  }
+});
