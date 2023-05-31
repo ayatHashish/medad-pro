@@ -1,7 +1,7 @@
 .main-banner {
     padding-top: 0;
     .banner-slide {
-        background-color: $pure-white;
+        background-color: $white;
         width: 100%;
         .owl-dots {
             display: none;
@@ -60,9 +60,9 @@
                 // font-size: 60px;
                 z-index: 1111;
                 text-transform: uppercase;
-                color: $pure-white;
+                color: $white;
                 span {
-                    color: $brand-gray2;
+                    // color: $brand-gray2;
                 }
             }
         }

@@ -88,15 +88,11 @@
                             {% if result %}
                             <p>{{result[2]}}</p>
                             <li class="nav-item">
-                                <!-- <a class="nav-link btn btn-primary text-white" type="button" href="#"
-                                    data-toggle="modal" data-target="#myModal">Sign In</a> -->
                                 <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/logout';"> <i
                                         class="fa-regular fa-user mx-2"></i>logout</a>
                             </li>
                             {% else %}
                             <li class="nav-item">
-                                <!-- <a class="nav-link btn btn-primary text-white" type="button" href="#"
-                                    data-toggle="modal" data-target="#myModal">Sign In</a> -->
                                 <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/_login_';"> <i
                                         class="fa-regular fa-user mx-2"></i>Login</a>
                             </li>
@@ -170,12 +166,13 @@
                         <img src='static/images/bunnar/home.png' alt="Slider Image" />
                     </div>
                     <div class="content-wrapper text-center">
-                        <h3>Welcome to our online course platform</h3>
-                        <p class="my-5">
+                      
+                        <h3 class="hero__logo aos-init aos-animate" data-aos="zoom-in">Welcome to Medadd Academy</h3>
+                        <!-- <p class="my-5">
                             Welcome to Medadd Academy, where you can turn your passion into a profession. Medadd
                             provides comprehensive medical courses for those who seek quality education and professional
                             expertise.
-                        </p>
+                        </p> -->
                         <div class="d-flex justify-content-around my-3">
                             {% if result %}
                             <button class="main-button btn-action-lg-blue" href="#"
