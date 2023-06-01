@@ -319,3 +319,25 @@ function uploadFile() {
       console.log('Please select a file.');
     }
   }
+
+
+
+//   pdf
+
+// function uploading() {
+//     console.log('test')
+//     document.getElementById('name').style.display = 'block';
+//     var fileInput = document.getElementById('file').files[0];
+//     document.getElementById('name').textContent = fileInput.name;
+
+//     if (fileInput.length > 0) {
+//         document.getElementById('button').style = "block";
+//         document.getElementsByClassName('inputfile').style = "none";
+     
+//     }
+//     else {
+//         document.getElementById('button').style = "none";
+//         document.getElementsByClassName('inputfile').style = "block";
+     
+//     }
+// }

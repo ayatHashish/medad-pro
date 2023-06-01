@@ -83,7 +83,12 @@
                         </ul>
                         <ul class="navbar-nav ml-auto topnav">
                             {% if result %}
-                            <p>{{result[2]}}</p>
+
+                            <li class="nav-item nav-link ">
+                                <a class="scou-btn " href="profile.html"> <i
+                                        class="fa-regular fa-user mx-2"></i>{{result[2]}}</a>
+                            </li>
+                            
                             <li class="nav-item nav-link ">
                                 <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/logout';"> <i
                                         class="fa-regular fa-user mx-2"></i>logout</a>
@@ -158,11 +163,10 @@
     <main>
 
     </main>
-    <footer>
-        <div class="text-center p-4 ">
-            <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png" alt=""></a>
-            <a class="text-reset fw-bold" href="">All rights reserved for Medadd </a>
-        </div>
+    <footer class="d-flex justify-content-center align-content-end">
+        <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png" alt=""></a>
+        <a class="text-reset rights">All rights reserved for Medadd </a>
+
     </footer>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="../scripts/aos.js"></script>

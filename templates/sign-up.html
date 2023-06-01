@@ -69,12 +69,12 @@
                     <div class=" navbar-collapse justify-content-around" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto topnav">
                             <li class="nav-item nav-link">
-                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#"
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="home.html"
                                     role="tab" aria-controls="nav-home" aria-selected="true"
                                     onclick="location.href = getServerUrl() + '/_home_';">Home</a>
                             </li>
                             <li class="nav-item nav-link">
-                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#"
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="services.html"
                                     role="tab" aria-controls="nav-home" aria-selected="true"
                                     onclick="location.href = getServerUrl() + '/_services_';">Services</a>
                             </li>
@@ -96,7 +96,12 @@
                         </ul>
                         <ul class="navbar-nav ml-auto topnav">
                             {% if result %}
-                            <p>{{result[2]}}</p>
+
+                            <li class="nav-item nav-link ">
+                                <a class="scou-btn " href="profile.html"> <i
+                                        class="fa-regular fa-user mx-2"></i>{{result[2]}}</a>
+                            </li>
+                            
                             <li class="nav-item nav-link ">
                                 <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/logout';"> <i
                                         class="fa-regular fa-user mx-2"></i>logout</a>

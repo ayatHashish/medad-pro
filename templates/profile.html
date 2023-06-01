@@ -49,9 +49,6 @@
             fileInput.addEventListener('change', function (event) {
                 var file = event.target.files[0];
                 console.log('Selected file:', file);
-
-                // Perform further operations with the selected file
-                // For example, you can upload the file to the server or process it client-side.
             });
 
             fileInput.click();
@@ -85,20 +82,26 @@
         //   }
         // }
         function uploading() {
-          console.log('test')
-          document.getElementById('name').style.display = 'block';
-          var fileInput =  document.getElementById('file').files[0];
-          document.getElementById('name').textContent = fileInput.name;
+            // console.log('test')
+            let file = document.getElementById('file')
+            let name = document.getElementById('name')
+            let fileInput = file.files;
 
-          if (fileInput.length>0){
-          document.getElementById('button').style = "block";
-          document.getElementById('button').style = "none";
-        }
-          else{
-            document.getElementById('button').style = "none";
-          }
+            let send = document.getElementById('button')
+            let btnUpload = document.getElementById('inputfile')
+            name.textContent = fileInput[0].name;
+            name.style.display = 'block';
 
+            if (fileInput.length > 0) {
+                send.style.display = "block";
+                btnUpload.style.display = "none";
+            }
+            else {
+                send.style.display = "none";
+                btnUpload.style.display = "block";
+            }
         }
+
 
     </script>
 
@@ -156,7 +159,12 @@
                         </ul>
                         <ul class="navbar-nav ml-auto topnav">
                             {% if result %}
-                            <p>{{result[2]}}</p>
+
+                            <li class="nav-item nav-link ">
+                                <a class="scou-btn " href="profile.html"> <i
+                                        class="fa-regular fa-user mx-2"></i>{{result[2]}}</a>
+                            </li>
+
                             <li class="nav-item nav-link ">
                                 <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/logout';"> <i
                                         class="fa-regular fa-user mx-2"></i>logout</a>
@@ -261,8 +269,7 @@
                                     <div class="pdf">
                                         <div class="follow-btn">
                                             <form id="UploadPDF" action="#" method="post" enctype="multipart/form-data"
-                                            name="form1" id="form1"
-                                                class="pt-1 text-center">
+                                                name="form1" id="form1" class="pt-1 text-center">
                                                 <div class="d-flex justify-content-center">
                                                     <div class="pdf-sec">
                                                         <label for="file-input" class="file-upload">
@@ -273,40 +280,19 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-center my-3">
-                                                    <!-- <input type="file" class="btn-action" name="pdf_file"
-                                                        id="file-input" accept=".pdf"
-                                                        onchange="updateFileLabel(this)" /> -->
 
-                                                                <label class="btn-action" for="file" onchange="uploading()">Upload File
-                                                                  <input  type="file" name="file" id="file" accept=".pdf" style="display:none" /></label>
 
-                                                                <label><input type="button" name="button" id="button" value="Send" onclick="submitForm(event,'/Upload_PDF','UploadPDF')" style="display:none" /></label>
+                                                    <label class="btn-action " id="inputfile" for="file"
+                                                        onchange="uploading()">Upload
+                                                        File
+                                                        <input type="file" name="file" id="file" accept=".pdf"
+                                                            style="display:none" multiple /></label>
 
-                                                    <!-- </form> -->
-                                                    <!-- <label for="file-input" id="file-label">Choose a file</label>
-                                                    <label id='file_input' for="file-input" class="file-upload"
-                                                        class="btn-action">
-                                                        <p class="btn-action text-light">Upload lecture</p>
-                                                    </label>
-                                                    <button class="btn-action btn-action-edit"
-                                                        onclick="submitForm(event,'/Upload_PDF','UploadPDF')">Send</button> -->
-                                                    <!-- <button class="btn-action btn-action-edit"
-                                                        onclick="submitForm(event,'/Upload_PDF','UploadPDF')">Edit</button> -->
+                                                    <label><input type="button" class="btn-action" name="button"
+                                                            id="button" value="Send"
+                                                            onclick="submitForm(event,'/Upload_PDF','UploadPDF')"
+                                                            style="display:none" /></label>
                                                 </div>
-                                                <!-- <script>
-                                                  const fileInput = document.getElementById('file_input');
-                                                  const fileNameLabel = document.getElementById('name');
-                                                  console.log('maged___')
-                                                  fileInput.addEventListener('change', function() {
-                                                    const selectedFile = fileInput.files[0];
-
-                                                    if (selectedFile) {
-                                                      fileNameLabel.textContent = selectedFile.name;
-                                                    } else {
-                                                      fileNameLabel.textContent = '';
-                                                    }
-                                                  });
-                                                </script> -->
                                             </form>
                                         </div>
                                     </div>
@@ -416,11 +402,10 @@
 
 
     </main>
-    <footer>
-        <div class="text-center p-4 ">
-            <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png" alt=""></a>
-            <a class="text-reset rights">All rights reserved for Medadd </a>
-        </div>
+    <footer class="d-flex justify-content-center align-content-end">
+        <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png" alt=""></a>
+        <a class="text-reset rights">All rights reserved for Medadd </a>
+
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
