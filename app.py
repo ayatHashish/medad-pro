@@ -226,29 +226,53 @@ def Update_Profile():
     if request.method == 'POST':
         st = False
         code = None
-        if session['user'][1] != request.form['email']:
-            if (emailer.valide_email(request.form['email'])):
+        
+        
+        email = request.form['email']
+        name = request.form['first_name']+' '+request.form['last_name']
+        phone = request.form['phone']
+        image = request.files['image']
+        
+        if email == '':
+            email = session['user'][1]
+        
+        if name == ' ':
+            name = session['user'][2]
+            
+        if phone == '':
+            phone = session['user'][4]
+            
+        if not (image.filename == ''):
+            path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png'
+            image.save(path)
+            
+        if session['user'][1] != email:
+            if (emailer.valide_email(email)):
                 code = random.randint(100000, 999999)
                 
-                message_ = {'To':request.form['email'] , 'title':'send config', 'message':'here is your code : '+str(code), 'attachment':None}
+                message_ = {'To':email , 'title':'send config', 'message':'here is your code : '+str(code), 'attachment':None}
                 emailer.send(message_)
                 
                 st = True
             else :
-                return render_template('profile.html',state = ["","","The email is invalide"], result = session['user'])
-            
-        name = request.form['first_name']+' '+request.form['last_name']
-        new_data = {'email':request.form['email'],'name':name,'phone':request.form['phone'],'code':code}
+                return render_template('profile.html',state = ["The email is invalide","",""], result = session['user'])
+        
+        
+
+        new_data = {'email':email,'name':name,'phone':phone,'code':code}
         My_DB.__edit__(session['user'][1], new_data)
         
-        user = My_DB.search(request.form['email'])
+        
+        
+        
+        user = My_DB.search(email)
         session['username'] = user[2]
         session['user'] = user
         
         if st :
-            return render_template('profile.html',state = ["","","Your profile updated successfully and we send validation code to you email"], result = session['user'])
+            return render_template('profile.html',state = ["Your profile updated successfully and we send validation code to you email","",""], result = session['user'])
         else:
-            return render_template('profile.html',state = ["","","Your profile updated successfully"], result = session['user'])
+            return render_template('profile.html',state = ["Your profile updated successfully","",""], result = session['user'])
         
     return redirect(url_for("_profile_"))
 
@@ -279,26 +303,18 @@ def Upload_PDF():
     return redirect(url_for("_profile_"))
 
 
-@app.route("/Upload_Image",methods = ['GET','POST'])
-def Upload_Image():
-    if request.method == 'POST':
+#@app.route("/Upload_Image",methods = ['GET','POST'])
+#def Upload_Image():
+#    if request.method == 'POST':
         
-        print(request.files)
-        uploaded_file = request.files['image']
+#        uploaded_file = request.files['image']
+#        path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png'
+#        uploaded_file.save(path)
         
-        path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png'
-        uploaded_file.save(path)
-        print("DONE")
         
-        #image = Image.open('static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png')
-
-        #resized_image = image.resize((80, 80))
-        
-        #resized_image.save('static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png')
-        
-        return render_template('profile.html',state = ["Image Uploaded Successfully","",""], result = session['user'])
+#        return render_template('profile.html',state = ["Image Uploaded Successfully","",""], result = session['user'])
     
-    return render_template('profile.html',state = ["","",""], result = session['user'])
+#    return render_template('profile.html',state = ["","",""], result = session['user'])
 
 
 if __name__ == '__main__':

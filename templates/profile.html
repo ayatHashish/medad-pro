@@ -319,7 +319,10 @@
                                 <div class="border-bottom pt-2">
                                     <div class="avatar-content justify-content-between">
                                         <div class="d-flex align-items-center">
-                                          <form id="UploadImage" action="#" method="post" enctype="multipart/form-data">
+
+
+                                          <!-- <form id="UploadImage" action="#" method="post" enctype="multipart/form-data"> -->
+                                          <form id="UpdateForm" action="#" method="post" enctype="multipart/form-data">
                                             <div class="img-area">
                                                 <div class="profile-pic my-2">
                                                     <label class="-label" for="file">
@@ -336,7 +339,7 @@
                                             <div class="px-3">
                                                 <h3>Your avatar</h3>
                                                 <p class="p-hint">PNG or JPG no bigger than 800px wide and tall</p>
-                                                <p id="password-text"> {{state[0]}} </p>
+                                                <!-- <p id="password-text"> {{state[0]}} </p> -->
                                             </div>
 
 
@@ -354,16 +357,16 @@
                                             <!-- <input type="file" name="image" id="upload_Image" accept=".jpg, .jpeg, .png"
                                                 style="display: none;"
                                                 onclick="submitForm(event,'/Upload_Image','UploadImage')" /> -->
-                                            <label class="-label" for="file">
-                                                <a class="text-success px-4" onclick="submitForm(event,'/Upload_Image','UploadImage')" >Update</a>
+                                            <!-- <label class="-label" for="file">
+                                                <a class="text-success px-4" onclick="submitForm(event,'/Upload_Image','UploadImage')" >Update</a> -->
                                                 <!-- <span>Change Image</span> -->
-                                            </label>
+                                            <!-- </label> -->
 
 
 
 
-                                            <a class="text-danger pr-2" onclick= dlt()> Delete</a>
-                                        </form>
+                                            <!-- <a class="text-danger pr-2" onclick= dlt()> Delete</a> -->
+                                        <!-- </form> -->
 
                                     </div>
 
@@ -374,7 +377,7 @@
                                         <p>Edit your personal information and address.</p>
                                     </div>
 
-                                    <form id="UpdateForm" action="#" method="post">
+                                    <!-- <form id="UpdateForm" action="#" method="post"> -->
                                         <div class="row">
                                             <div class="col-xl-6 mb-2">
                                                 <div class="form-group">
@@ -405,7 +408,7 @@
                                             </div>
 
                                             <div class="text-center text-lg-start mt-4 pt-2">
-                                              <p id="password-text"> {{state[2]}} </p>
+                                              <p id="password-text"> {{state[0]}} </p>
                                                 <button type="submit" class="btn-action"
                                                     onclick="submitForm(event,'/update_profile','UpdateForm')">Update
                                                     Profile</button>
