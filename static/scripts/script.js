@@ -293,6 +293,17 @@ var loadFile = function (event) {
     image.src = URL.createObjectURL(event.target.files[0]);
 };
 
+
+
+function updateFileLabel(input) {
+    var fileLabel = document.getElementById('file-label');
+    if (input.files.length > 0) {
+      fileLabel.textContent = 'Uploaded: ' + input.files[0].name;
+    } else {
+      fileLabel.textContent = 'Choose a file';
+    }
+  }
+
 // var loadPdf = function (event) {
 //     var image = document.getElementById("name");
 //     image.src = URL.createObjectURL(event.target.files[0]);
