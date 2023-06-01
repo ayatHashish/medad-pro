@@ -36,8 +36,8 @@ class sender:
 
         # Add the message to the body of the email
         msg.attach(MIMEText(data['message'], 'plain'))
-        
-        if data['attachment'] : 
+        text = msg.as_string()
+        if data['attachment'] :
             with open(data['attachment'], "rb") as attachment:
                 # Create a base object and set the appropriate MIME type
                 part = MIMEBase("application", "octet-stream")
@@ -50,7 +50,6 @@ class sender:
             
             filename = data['attachment'].split('/')
             name = filename[-1]
-            print(name)
             
             part.add_header(
                 "Content-Disposition",
@@ -63,7 +62,6 @@ class sender:
             # Convert the message to a string
             text = msg.as_string()
 
-
         # Create a secure connection to the SMTP server
         with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
             server.starttls()
@@ -71,6 +69,7 @@ class sender:
             server.login(self.sender_email, self.sender_password)
             # Send the email
             server.sendmail(self.sender_email, data['To'], text)
+            
             print('Email sent successfully!')
         
         
@@ -95,21 +94,7 @@ class sender:
         
 
 
-def test():        
-    mailSV = sender()
-    
-    
-    to = 'maged.khaled03@gmwqailwail.com'
-    message_ = {'To':to,'subject':'send config', 'message':'here is your code : 44523'}
-    
-    
-    if mailSV.valide_email(to):
-        print('valide mail')
-        
-    else :
-        print('invalide mail')
-        
-        
+
         
         
         

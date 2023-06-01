@@ -8,7 +8,7 @@ class DB:
         with sqlite3.connect(self.name) as conn:
             try:
                 conn.execute('''CREATE TABLE accounts
-                            (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, phone TEXT)''')
+                            (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, phone TEXT, validation TEXT)''')
                             
                 
                 
@@ -27,13 +27,13 @@ class DB:
     
     
             
-    def __signup__(self,username,email,password):
+    def __signup__(self,username,email,password,code):
         with sqlite3.connect(self.name) as conn:
             
             cursor = conn.cursor()
             hpw = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
             
-            data = {'email': email, 'username':username, 'password': hpw, 'phone': None}
+            data = {'email': email, 'username':username, 'password': hpw, 'phone': None, 'validation': code}
             columns = ', '.join(data.keys())
             placeholders = ':' + ', :'.join(data.keys())
             table_name = 'accounts'
@@ -73,18 +73,36 @@ class DB:
     def __edit__(self,user_email,new_data):
         with sqlite3.connect(self.name) as conn:
             cursor = conn.cursor()
-            update_query = '''
-                UPDATE accounts
-                SET email = ?,
-                    username = ?,
-                    phone= ?
-                WHERE email= ?
-            '''
-            email = new_data['email']
-            name = new_data['name']
-            phone = new_data['phone']
-            
-            cursor.execute(update_query, (email, name, phone, user_email))
-            conn.commit()
+            if new_data['code'] :
+                update_query = '''
+                    UPDATE accounts
+                    SET email = ?,
+                        username = ?,
+                        phone= ?,
+                        validation= ?
+                    WHERE email= ?
+                '''
+                email = new_data['email']
+                name = new_data['name']
+                phone = new_data['phone']
+                code = new_data['code']
+                
+                cursor.execute(update_query, (email, name, phone, code, user_email))
+                conn.commit()
+                
+            else :
+                update_query = '''
+                    UPDATE accounts
+                    SET email = ?,
+                        username = ?,
+                        phone= ?
+                    WHERE email= ?
+                '''
+                email = new_data['email']
+                name = new_data['name']
+                phone = new_data['phone']
+                
+                cursor.execute(update_query, (email, name, phone, user_email))
+                conn.commit()
             
 

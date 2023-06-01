@@ -41,6 +41,43 @@
             form.method = 'post';
             form.submit();
         }
+        function checkFileUpload(file,pic,name) {
+
+          var fileInput = document.createElement('input');
+          fileInput.type = 'file';
+
+          fileInput.addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            console.log('Selected file:', file);
+
+            // Perform further operations with the selected file
+            // For example, you can upload the file to the server or process it client-side.
+          });
+
+          fileInput.click();
+          var fileInput = document.getElementById('input');
+          var uploadedFile = fileInput.files[0]; // Get the first file from the file input
+          document.getElementById(file).textContent = "send";
+          document.getElementById(pic).style.display = 'block';
+          document.getElementById(name).textContent = uploadedFile.name;
+          document.getElementById(name).style.display = 'block';
+          if (uploadedFile) {
+            // File has been uploaded, show the other button or perform your desired action
+            console.log("onchange");
+
+            document.getElementById(file).textContent = "send";
+            document.getElementById(pic).style.display = 'block';
+            document.getElementById(name).textContent = uploadedFile.name;
+            document.getElementById(name).style.display = 'block';
+
+          }
+
+    }
+    function dlt(){
+      var image = document.getElementById("output");
+      image.src = "https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg";
+    }
+
     </script>
 
 
@@ -180,13 +217,19 @@
                                 <div class="banner">
                                     <div class="img-area">
                                         <div class="inner-area">
-                                            <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1896qyri64lzsklz4trr.jpg"
+                                            <img name = image id= 'per_image' src={{'./static/Users_Data/'+(result[0]) | string+'/Pictures/Personal_Pic.png' }}
                                                 alt="Personal Picture">
+
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="border-bottom mt-5 pt-4">
-                                    <h5 class="name fw-bold">Ayat Hashish</h5>
+                                    <h5 class="name fw-bold">{{result[2]}}</h5>
+                                    <h5 class="name fw-bold">{{result[1]}}</h5>
+                                    {% if result[4] %}
+                                    <h5 class="name fw-bold">{{result[4]}}</h5>
+                                    {% endif %}
                                     <p class="px-2">welcome to Medadd Academy! We're thrilled that you're interested in
                                         learning more about our medical courses.</p>
                                 </div>
@@ -204,10 +247,11 @@
                                                         <label for="file-input" class="file-upload">
                                                             <img src="../static/images/pdf.png" alt="Upload" />
                                                         </label>
-                                                        <p>name</p>
+                                                        <label id = 'name' ></label>
                                                         <div class="alert alert-danger password-error d-none mt-1"
                                                             role="alert">
                                                         </div>
+                                                        <p id="password-text"> {{state[1]}} </p>
                                                     </div>
                                                     <!-- <div class="pdf-sec">
                                                         <input type="file" name="pdf_file" id="file-input" accept=".pdf"
@@ -230,17 +274,34 @@
                                                     </div> -->
                                                 </div>
                                                 <div class="text-center my-3">
+
                                                     <input type="file" class="btn-action" name="pdf_file"
                                                         style="display:none;" id="file-input" accept=".pdf" value="Upload
                                                     lecture" />
-                                                    <label for="file-input" class="file-upload" class="btn-action">
-                                                        <p class="btn-action text-light">Upload lecture</p>
+                                                    <label id= 'file_input' for="file-input" class="file-upload" class="btn-action">
+                                                        <p class="btn-action text-light" >Upload lecture</p>
                                                     </label>
+
+
                                                     <button class="btn-action btn-action-edit"
                                                         onclick="submitForm(event,'/Upload_PDF','UploadPDF')">Send</button>
-                                                    <button class="btn-action btn-action-edit"
-                                                        onclick="submitForm(event,'/Upload_PDF','UploadPDF')">Edit</button>
+                                                    <!-- <button class="btn-action btn-action-edit"
+                                                        onclick="submitForm(event,'/Upload_PDF','UploadPDF')">Edit</button> -->
                                                 </div>
+                                                <!-- <script>
+                                                  const fileInput = document.getElementById('file_input');
+                                                  const fileNameLabel = document.getElementById('name');
+                                                  console.log('maged___')
+                                                  fileInput.addEventListener('change', function() {
+                                                    const selectedFile = fileInput.files[0];
+
+                                                    if (selectedFile) {
+                                                      fileNameLabel.textContent = selectedFile.name;
+                                                    } else {
+                                                      fileNameLabel.textContent = '';
+                                                    }
+                                                  });
+                                                </script> -->
                                             </form>
                                         </div>
                                     </div>
@@ -258,14 +319,16 @@
                                 <div class="border-bottom pt-2">
                                     <div class="avatar-content justify-content-between">
                                         <div class="d-flex align-items-center">
+                                          <form id="UploadImage" action="#" method="post" enctype="multipart/form-data">
                                             <div class="img-area">
                                                 <div class="profile-pic my-2">
                                                     <label class="-label" for="file">
                                                         <!-- <span class="glyphicon glyphicon-camera"></span> -->
                                                         <span>Change Image</span>
                                                     </label>
-                                                    <input id="file" type="file" onchange="loadFile(event)" />
+                                                    <input id="file" name='image' type="file" onchange="loadFile(event)" />
                                                     <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
+
                                                         id="output" width="200" />
                                                 </div>
                                             </div>
@@ -273,6 +336,7 @@
                                             <div class="px-3">
                                                 <h3>Your avatar</h3>
                                                 <p class="p-hint">PNG or JPG no bigger than 800px wide and tall</p>
+                                                <p id="password-text"> {{state[0]}} </p>
                                             </div>
 
 
@@ -286,19 +350,19 @@
                                         <!-- //////////////////////////////////////////////////////////////////////// -->
 
 
-                                        <form id="UploadImage" action="#" method="post" enctype="multipart/form-data">
-                                            <input type="file" name="image" id="upload_Image" accept=".jpg, .jpeg, .png"
+
+                                            <!-- <input type="file" name="image" id="upload_Image" accept=".jpg, .jpeg, .png"
                                                 style="display: none;"
-                                                onclick="submitForm(event,'/Upload_Image','UploadImage')" />
+                                                onclick="submitForm(event,'/Upload_Image','UploadImage')" /> -->
                                             <label class="-label" for="file">
-                                                <a class="text-success px-4">Update</a>
+                                                <a class="text-success px-4" onclick="submitForm(event,'/Upload_Image','UploadImage')" >Update</a>
                                                 <!-- <span>Change Image</span> -->
                                             </label>
 
 
 
 
-                                            <a class="text-danger pr-2"> Delete</a>
+                                            <a class="text-danger pr-2" onclick= dlt()> Delete</a>
                                         </form>
 
                                     </div>
@@ -341,6 +405,7 @@
                                             </div>
 
                                             <div class="text-center text-lg-start mt-4 pt-2">
+                                              <p id="password-text"> {{state[2]}} </p>
                                                 <button type="submit" class="btn-action"
                                                     onclick="submitForm(event,'/update_profile','UpdateForm')">Update
                                                     Profile</button>
