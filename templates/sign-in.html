@@ -205,18 +205,15 @@
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" />
                                 <div class="alert alert-danger email-error d-none mt-1" role="alert"></div>
-                               
                             </div>
                             <div class="form-group sign-form">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control ok-password" id="password" name="password" />
                                 <!-- <i class='bx bx-low-vision'></i> -->
-                               
-                             
+                                <div class="alert alert-danger password-error d-none mt-1" role="alert"></div>
                             </div>
-                             
 
-                            <div>  <p class="text-danger"> {{state}} </p></div>
+                            <label id="password-text"> {{state}} </label>
                             <div>
                                 <a href="#!" class="d-block text-primary">Forgot password?</a>
                             </div>

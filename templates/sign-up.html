@@ -69,12 +69,12 @@
                     <div class=" navbar-collapse justify-content-around" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto topnav">
                             <li class="nav-item nav-link">
-                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="home.html"
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#"
                                     role="tab" aria-controls="nav-home" aria-selected="true"
                                     onclick="location.href = getServerUrl() + '/_home_';">Home</a>
                             </li>
                             <li class="nav-item nav-link">
-                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="services.html"
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#"
                                     role="tab" aria-controls="nav-home" aria-selected="true"
                                     onclick="location.href = getServerUrl() + '/_services_';">Services</a>
                             </li>
@@ -209,7 +209,7 @@
                             <div class="form-group sign-form">
                                 <label for="fullname">Full Name</label>
                                 <input type="text" class="form-control" id="fullname" name="username">
-                                <div class="alert alert-danger fullname-error d-none mt-1" role="alert">
+                                <div class="alert alert-danger fullname-error d-none mt-1" value = '1234' role="alert" >
                                 </div>
                             </div>
                             <div class="form-group sign-form">
@@ -222,21 +222,20 @@
                                 <div>
                                     <label for="password">Password</label>
                                     <input id="password" type="password" value="" name="password"
-                                        class="form-control" onkeyup="isGood(this.value)" />
-                                    <!-- />-->
-                                    <p class="help-block" id="password-text"> </p>
+                                        class="form-control" />
+                                    <!--onkeyup="isGood(this.value)" />-->
+                                    <div class="alert alert-danger password-error d-none mt-1" role="alert">
+                                    </div>
+                                    <p id="password-text"> {{state}} </p>
                                 </div>
                             </div>
-                            
-
 
                             <div class="form-check mb-0 mt-3">
-                                <input class="form-check-input me-2" type="checkbox" name='checkbox' id="Remember" />
+                                <input class="form-check-input me-2" type="checkbox" name='checkbox' id="agreeTS" />
                                 <label class="form-check-label" for="agree">
                                     I agree to the Terms of Service and Privacy Policy.
                                 </label>
                             </div>
-                            <div class="mt-4">  <p class="text-danger"> {{state}} </p></div>
                             <div class="text-center text-lg-start mt-4 pt-2">
 
                                 <button type="submit" class="main-button"
@@ -244,7 +243,7 @@
 
 
                                 <p class="small fw-bold mt-2 pt-1 mb-0 text-center"> Already have Account? Sign In <a
-                                        href="#!" class="link-sign">Sign In</a></p>
+                                        href="#" onclick="location.href = getServerUrl() + '/_login_';" class="link-sign">Sign In</a></p>
                             </div>
                             <div class="text-center mt-4">
                                 <a class="sign">
