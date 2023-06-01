@@ -38,9 +38,10 @@ def _services_():
 @app.route("/_profile_")
 def _profile_():
     if ('username' in session) :
-        return render_template('profile.html',state = None, result = session['user'])
+        print(session['user'])
+        return render_template('profile.html',state = ["","",""], result = session['user'])
     else :
-        return render_template('sign-in.html',result = None)
+        return render_template('sign-in.html',state = "")
                            
 @app.route("/_teacher_")
 def _teacher_():
@@ -65,7 +66,7 @@ def _login_():
     if 'user' in session :
         return render_template('home.html',result = session['user'])
     else :
-        return render_template('sign-in.html', result = None)
+        return render_template('sign-in.html', state = "")
                            
 @app.route("/_signup_")
 def _signup_():
@@ -73,7 +74,7 @@ def _signup_():
     if 'user' in session :
         return render_template('home.html',result = session['user'])
     else :
-        return render_template('sign-up.html', result = None)
+        return render_template('sign-up.html', state = "")
 
 
 
@@ -128,18 +129,19 @@ def login():
         
         user = My_DB.search(email)
         if not user :
-            return render_template('sign-in.html', result = 'email not correct')
+            
+            return render_template('sign-in.html', state = 'This email is not exist')
         
         user = My_DB.__login__(user,password)
         if user :
             
             session['username'] = user[2]
             session['user'] = user
-            return render_template('profile.html',result = session['user'])
+            return render_template('profile.html',state = ["","",""], result = session['user'])
         
-        return render_template('sign-in.html', result = 'password not correct')
+        return render_template('sign-in.html', state = 'The password is not correct')
     
-    return redirect("/_login_")
+    return render_template('sign-in.html', state = "")
 
 
     
@@ -150,22 +152,30 @@ def signup():
         name = request.form['username']
         password = request.form['password']
         email = request.form['email']
-        
+        print(request.form)
+        if 'checkbox' not in request.form :
+            return render_template('sign-up.html', state = "Please read and agree on Terms of Service and Privacy Policy")
+        if name == None:
+            return render_template('sign-up.html', state = "Please enter valide name")
+        if email == None:
+            return render_template('sign-up.html', state = "Please enter valide email")
+        if password == None:
+            return render_template('sign-up.html', state = "Please enter valide password")
         
         emailExist = My_DB.search(email,by='email')
         nameExist = My_DB.search(name,by='username')
         if emailExist :
-            return render_template('sign-up.html', result = "email exist")
+            return render_template('sign-up.html', state = "The email is exist please sign in if you have an account")
         elif nameExist :
-            return render_template('sign-up.html', result = "name exist")
+            return render_template('sign-up.html', state = "The name is exist please sign in if you have an account")
         
         emailValide = emailer.valide_email(email)
         if not emailValide :
-            return render_template('sign-up.html', result = "email invalide")
+            return render_template('sign-up.html', state = "Please Enter Valide Email")
         
         
         print(emailValide)
-        My_DB.__signup__(name, email, password)
+        
         
 
         code = random.randint(100000, 999999)
@@ -173,14 +183,15 @@ def signup():
         
         
         message_ = {'To':email , 'title':'send config', 'message':'here is your code : '+str(code), 'attachment':None}
-        
+        print(code)
         emailer.send(message_)
-
-        return redirect(url_for("login"))
+        print('donee')
+        My_DB.__signup__(name, email, password,code)
+        return render_template('sign-in.html', state = "")
         
         
         
-    return redirect("/_signup_")
+    return render_template('sign-up.html', state = "")
 
 
 
@@ -196,15 +207,15 @@ def contactus():
         
         user = My_DB.search(email)
         if not user :
-            return render_template('contact-us.html', result = 'email not correct')
+            return render_template('contact-us.html', state = 'Email is not correct',result=session['user'])
         
         user = My_DB.__login__(user,password)
         if user :
             TMessage = "Hi Admin" + "\n\n" + subject +"\n\n\n" + "here is my email and phone number \n" + phone +"\n" + email
             message_ = {'To':emailer.Admin, 'title':title, 'message':TMessage, 'attachment':None }
             emailer.send(message_)
-            return redirect(url_for("home"))
-        return render_template('contact-us.html', result = 'password not correct')
+            return render_template('contact-us.html',state = 'Your Message sent successfully to Admin', result = session['user'])
+        return render_template('contact-us.html', state = 'password is not correct', result = session['user'])
         
 
     return redirect("/_contactus_")
@@ -213,23 +224,55 @@ def contactus():
 
 def Update_Profile():
     if request.method == 'POST':
-        if session['user'][1] != request.form['email']:
-            if (emailer.valide_email(request.form['email'])):
-                code = random.randint(100000, 999999)
-                message_ = {'To':request.form['email'] , 'title':'send config', 'message':'here is your code : '+str(code), 'attachment':None}
-                emailer.send(message_)
-            else :
-                return render_template('profile.html',state = 'invalide email',result = session['user'])
-            
+        st = False
+        code = None
+        
+        
+        email = request.form['email']
         name = request.form['first_name']+' '+request.form['last_name']
-        new_data = {'email':request.form['email'],'name':name,'phone':request.form['phone']}
+        phone = request.form['phone']
+        image = request.files['image']
+        
+        if email == '':
+            email = session['user'][1]
+        
+        if name == ' ':
+            name = session['user'][2]
+            
+        if phone == '':
+            phone = session['user'][4]
+            
+        if not (image.filename == ''):
+            path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png'
+            image.save(path)
+            
+        if session['user'][1] != email:
+            if (emailer.valide_email(email)):
+                code = random.randint(100000, 999999)
+                
+                message_ = {'To':email , 'title':'send config', 'message':'here is your code : '+str(code), 'attachment':None}
+                emailer.send(message_)
+                
+                st = True
+            else :
+                return render_template('profile.html',state = ["The email is invalide","",""], result = session['user'])
+        
+        
+
+        new_data = {'email':email,'name':name,'phone':phone,'code':code}
         My_DB.__edit__(session['user'][1], new_data)
         
-        user = My_DB.search(request.form['email'])
+        
+        
+        
+        user = My_DB.search(email)
         session['username'] = user[2]
         session['user'] = user
         
-        return render_template('profile.html',state = 'changes is done', result = session['user'])
+        if st :
+            return render_template('profile.html',state = ["Your profile updated successfully and we send validation code to you email","",""], result = session['user'])
+        else:
+            return render_template('profile.html',state = ["Your profile updated successfully","",""], result = session['user'])
         
     return redirect(url_for("_profile_"))
 
@@ -251,6 +294,8 @@ def Upload_PDF():
         message_ = {'To':emailer.Admin , 'title':'request lesson', 'message':text, 'attachment':path}
         emailer.send(message_)
         
+        return render_template('profile.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
+        
     
         #except :
            # print('file not exist')
@@ -258,27 +303,18 @@ def Upload_PDF():
     return redirect(url_for("_profile_"))
 
 
-@app.route("/Upload_Image",methods = ['GET','POST'])
-def Upload_Image():
-    if request.method == 'POST':
+#@app.route("/Upload_Image",methods = ['GET','POST'])
+#def Upload_Image():
+#    if request.method == 'POST':
+        
+#        uploaded_file = request.files['image']
+#        path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png'
+#        uploaded_file.save(path)
         
         
-        uploaded_file = request.files['image']
-        
-        path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png'
-        uploaded_file.save(path)
-        print("DONE")
-        
-        #image = Image.open('static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png')
-
-        #resized_image = image.resize((80, 80))
-        
-        #resized_image.save('static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png')
-        
-        return redirect(url_for("_profile_"))
+#        return render_template('profile.html',state = ["Image Uploaded Successfully","",""], result = session['user'])
     
-    else :
-        redirect(url_for("_profile_"))
+#    return render_template('profile.html',state = ["","",""], result = session['user'])
 
 
 if __name__ == '__main__':

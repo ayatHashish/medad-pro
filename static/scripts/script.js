@@ -293,6 +293,11 @@ var loadFile = function (event) {
     image.src = URL.createObjectURL(event.target.files[0]);
 };
 
+// var loadPdf = function (event) {
+//     var image = document.getElementById("name");
+//     image.src = URL.createObjectURL(event.target.files[0]);
+// };
+
 
 // Get the current page URL
 // const currentURL = window.location.href;
@@ -310,8 +315,3 @@ var loadFile = function (event) {
 //     console.log(link);
 // }
 // });
-
-
-
-
-

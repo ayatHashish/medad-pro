@@ -212,6 +212,8 @@
                                 <!-- <i class='bx bx-low-vision'></i> -->
                                 <div class="alert alert-danger password-error d-none mt-1" role="alert"></div>
                             </div>
+
+                            <label id="password-text"> {{state}} </label>
                             <div>
                                 <a href="#!" class="d-block text-primary">Forgot password?</a>
                             </div>
@@ -229,7 +231,7 @@
                                 </button>
                                 <p class="small fw-bold pt-1 text-center my-2">
                                     New User ?
-                                    <a href="#!" class="link-sign">Create an Account</a>
+                                    <a href="#" onclick="location.href = getServerUrl() + '/_signup_';" class="link-sign">Create an Account</a>
                                 </p>
                             </div>
                             <div class="text-center mt-4">
