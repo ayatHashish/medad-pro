@@ -73,9 +73,31 @@
             }
 
         }
-        function dlt() {
-            var image = document.getElementById("output");
-            image.src = "https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg";
+        // function getFileName() {
+        //   var fileInput = document.getElementById('file-input');
+        //   var file = fileInput.files[0];
+        //
+        //   if (file) {
+        //     var fileName = file.name;
+        //     console.log('File Name:', fileName);
+        //   } else {
+        //     console.log('No file selected.');
+        //   }
+        // }
+        function uploading() {
+          console.log('test')
+          document.getElementById('name').style.display = 'block';
+          var fileInput =  document.getElementById('file').files[0];
+          document.getElementById('name').textContent = fileInput.name;
+
+          if (fileInput.length>0){
+          document.getElementById('button').style = "block";
+          document.getElementById('button').style = "none";
+        }
+          else{
+            document.getElementById('button').style = "none";
+          }
+
         }
 
     </script>
@@ -238,7 +260,7 @@
                                     <p>Text form designer imagination can be replaced with other text</p>
                                     <div class="pdf">
                                         <div class="follow-btn">
-                                            <form id="UploadPDF" action="#" method="post" enctype="multipart/form-data"  
+                                            <form id="UploadPDF" action="#" method="post" enctype="multipart/form-data"
                                             name="form1" id="form1"
                                                 class="pt-1 text-center">
                                                 <div class="d-flex justify-content-center">
@@ -254,11 +276,12 @@
                                                     <!-- <input type="file" class="btn-action" name="pdf_file"
                                                         id="file-input" accept=".pdf"
                                                         onchange="updateFileLabel(this)" /> -->
-                                               
-                                                                <label class="btn-action" for="file">Upload File</label>
-                                                                <input  type="file" name="file" id="file" accept=".pdf" />
-                                                                <label><input type="button" name="button" id="button" value="Send" onclick="uploadFile()" /></label>
-                                                                
+
+                                                                <label class="btn-action" for="file" onchange="uploading()">Upload File
+                                                                  <input  type="file" name="file" id="file" accept=".pdf" style="display:none" /></label>
+
+                                                                <label><input type="button" name="button" id="button" value="Send" onclick="submitForm(event,'/Upload_PDF','UploadPDF')" style="display:none" /></label>
+
                                                     <!-- </form> -->
                                                     <!-- <label for="file-input" id="file-label">Choose a file</label>
                                                     <label id='file_input' for="file-input" class="file-upload"
@@ -324,7 +347,7 @@
                                                 style="display: none;"
                                                 onclick="submitForm(event,'/Upload_Image','UploadImage')" /> -->
                                     <!-- <label class="-label" for="file">
-                                                <a class="text-success px-4" onclick="submitForm(event,'/Upload_Image','UploadImage')" 
+                                                <a class="text-success px-4" onclick="submitForm(event,'/Upload_Image','UploadImage')"
                                                   >Update</a> -->
                                     <!-- <span>Change Image</span> -->
                                     <!-- </label> -->

@@ -285,7 +285,7 @@ def Upload_PDF():
     if request.method == 'POST':
         #try  :
         
-        uploaded_file = request.files['pdf_file']
+        uploaded_file = request.files['file']
         print(uploaded_file.filename)
         path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Lectures/'+uploaded_file.filename
         uploaded_file.save(path)
