@@ -292,37 +292,30 @@ var loadFile = function (event) {
     var image = document.getElementById("output");
     image.src = URL.createObjectURL(event.target.files[0]);
 };
+// loadPdf
 
-
-
-function updateFileLabel(input) {
-    var fileLabel = document.getElementById('file-label');
-    if (input.files.length > 0) {
-      fileLabel.textContent = 'Uploaded: ' + input.files[0].name;
+function uploadFile() {
+    var fileInput = document.getElementById('file');
+    var file = fileInput.files[0];
+  
+    if (file) {
+      var formData = new FormData();
+      formData.append('file', file);
+  
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'upload.php', true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          // File upload successful
+          console.log('File uploaded!');
+        } else {
+          // File upload failed
+          console.log('File upload failed.');
+        }
+      };
+      xhr.send(formData);
     } else {
-      fileLabel.textContent = 'Choose a file';
+      // No file selected
+      console.log('Please select a file.');
     }
   }
-
-// var loadPdf = function (event) {
-//     var image = document.getElementById("name");
-//     image.src = URL.createObjectURL(event.target.files[0]);
-// };
-
-
-// Get the current page URL
-// const currentURL = window.location.href;
-// const navLinks = document.querySelectorAll('nav ul li a');
-
-// // Loop through the <a> elements
-// navLinks.forEach(link => {
-// console.log(currentURL);
-// console.log(link.href);
-// Check if the href of the link matches the current page URL
-// if (link.href === currentURL) {
-//     // Add the 'active' class to the link
-//     // link.classList.add('active');
-//     link.addClass("active");
-//     console.log(link);
-// }
-// });

@@ -238,55 +238,33 @@
                                     <p>Text form designer imagination can be replaced with other text</p>
                                     <div class="pdf">
                                         <div class="follow-btn">
-                                            <form id="UploadPDF" action="#" method="post" enctype="multipart/form-data"
+                                            <form id="UploadPDF" action="#" method="post" enctype="multipart/form-data"  
+                                            name="form1" id="form1"
                                                 class="pt-1 text-center">
                                                 <div class="d-flex justify-content-center">
                                                     <div class="pdf-sec">
-                                                        <!-- <input type="file" name="pdf_file" id="file-input" accept=".pdf"
-                                                            style="display: none;" /> -->
                                                         <label for="file-input" class="file-upload">
                                                             <img src="../static/images/pdf.png" alt="Upload" />
                                                         </label>
                                                         <label id='name'></label>
-                                                        <div class="alert alert-danger password-error d-none mt-1"
-                                                            role="alert">
-                                                        </div>
                                                         <p id="password-text"> {{state[1]}} </p>
                                                     </div>
-                                                    <!-- <div class="pdf-sec">
-                                                        <input type="file" name="pdf_file" id="file-input" accept=".pdf"
-                                                            style="display: none;" />
-                                                        <label for="file-input" class="file-upload">
-                                                            <img src="../static/images/pdf.png" alt="Upload" />
-                                                        </label>
-                                                        <p>name</p>
-                                                    </div>
-                                                    <div class="pdf-sec">
-
-                                                        <input type="file" name="pdf_file" id="file-input" accept=".pdf"
-                                                            style="display: none;" />
-
-                                                        <label for="file-input" class="file-upload">
-                                                            <img src="../static/images/pdf.png" alt="Upload" />
-
-                                                        </label>
-                                                        <p>name</p>
-                                                    </div> -->
                                                 </div>
                                                 <div class="text-center my-3">
-<!-- 
-                                                    <input type="file" class="btn-action" name="pdf_file"
-                                                        id="file-input" accept=".pdf" value="Upload
-                                                    lecture" /> -->
-                                                    <input type="file" class="btn-action" name="pdf_file" id="file-input" accept=".pdf" 
-                                                     onchange="updateFileLabel(this)" />
+                                                    <!-- <input type="file" class="btn-action" name="pdf_file"
+                                                        id="file-input" accept=".pdf"
+                                                        onchange="updateFileLabel(this)" /> -->
+                                               
+                                                                <label class="btn-action" for="file">Upload File</label>
+                                                                <input  type="file" name="file" id="file" accept=".pdf" />
+                                                                <label><input type="button" name="button" id="button" value="Send" onclick="uploadFile()" /></label>
+                                                                
+                                                    <!-- </form> -->
                                                     <!-- <label for="file-input" id="file-label">Choose a file</label>
                                                     <label id='file_input' for="file-input" class="file-upload"
                                                         class="btn-action">
                                                         <p class="btn-action text-light">Upload lecture</p>
-                                                    </label> -->
-
-<!-- 
+                                                    </label>
                                                     <button class="btn-action btn-action-edit"
                                                         onclick="submitForm(event,'/Upload_PDF','UploadPDF')">Send</button> -->
                                                     <!-- <button class="btn-action btn-action-edit"
@@ -359,7 +337,7 @@
                                             <p>Edit your personal information and address.</p>
                                         </div>
 
-                                        <!-- <form id="UpdateForm" action="#" method="post"> -->
+
                                         <div class="row">
                                             <div class="col-xl-6 mb-2">
                                                 <div class="form-group">
@@ -411,10 +389,9 @@
             </div>
 
         </div>
-        </div>
 
-        </div>
-        </div>
+
+
     </main>
     <footer>
         <div class="text-center p-4 ">
