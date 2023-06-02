@@ -87,6 +87,8 @@
             let name = document.getElementById('name')
             let fileInput = file.files;
 
+            console.log('fff   ', file);
+
             let send = document.getElementById('button')
             let btnUpload = document.getElementById('inputfile')
             name.textContent = fileInput[0].name;
@@ -103,8 +105,8 @@
         }
 
         var loadFile = function (event) {
-            var image = document.getElementById("output");
-            image.src = URL.createObjectURL(event.target.img[0]);
+            var image = document.getElementById("photo");
+            image.src = URL.createObjectURL(event.target.file[0]);
         };
     </script>
 
@@ -274,7 +276,7 @@
                                                 name="form1" id="form1" class="pt-1 text-center">
                                                 <div class="d-flex justify-content-center">
                                                     <div class="pdf-sec">
-                                                        <label for="file-input" class="file-upload">
+                                                        <label for="file-input" class="file-upload" id="img-upload">
                                                             <img src="../static/images/pdf.png" alt="Upload" />
                                                         </label>
                                                         <label id='name'></label>
@@ -284,10 +286,10 @@
                                                 <div class="text-center my-3">
 
 
-                                                    <label class="btn-action " id="inputfile" for="img"
+                                                    <label class="btn-action " id="inputfile" for="file"
                                                         onchange="uploading()">Upload
                                                         File
-                                                        <input type="file" name="file" id="img" accept=".pdf"
+                                                        <input type="file" name="file" id="file" accept=".pdf"
                                                             style="display:none" multiple /></label>
 
                                                     <label><input type="button" class="btn-action" name="button"
@@ -314,11 +316,11 @@
                                         <div class="avatar-content ">
                                             <div class="img-area">
                                                 <div class="profile-pic my-2">
-                                                    <label class="-label" for="file">
+                                                    <label class="-label" for="photo">
                                                         <!-- <span class="glyphicon glyphicon-camera"></span> -->
                                                         <span>Change Image</span>
                                                     </label>
-                                                    <input id="file" name='image' type="file"
+                                                    <input id="photo" name='image' type="file"
                                                         accept="image/png,image/gif,image/jpeg"
                                                         onchange="loadFile(event)" />
                                                     <img src="../static/images/avatar.png"
