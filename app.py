@@ -204,18 +204,35 @@ def contactus():
         phone = request.form['phone']
         title = request.form['title']
         subject = request.form['subject']
+        if 'user' in session :
+            userData = session['user']
+        else :
+            userData = None
+        
+        if email == '':
+            return render_template('contact-us.html', state = 'Please enter your email',result=userData)
+        if password == '':
+            return render_template('contact-us.html', state = 'Please enter your password',result=userData)
+        if phone == '':
+            return render_template('contact-us.html', state = 'Please enter your phone',result=userData)
+        if title == '':
+            return render_template('contact-us.html', state = 'Please enter a title for your message',result=userData)
+        if subject == '':
+            return render_template('contact-us.html', state = 'Please enter the details of yout message',result=userData)
         
         user = My_DB.search(email)
         if not user :
-            return render_template('contact-us.html', state = 'Email is not correct',result=session['user'])
+            return render_template('contact-us.html', state = 'Email is not correct',result=userData)
+
         
         user = My_DB.__login__(user,password)
         if user :
             TMessage = "Hi Admin" + "\n\n" + subject +"\n\n\n" + "here is my email and phone number \n" + phone +"\n" + email
             message_ = {'To':emailer.Admin, 'title':title, 'message':TMessage, 'attachment':None }
             emailer.send(message_)
-            return render_template('contact-us.html',state = 'Your Message sent successfully to Admin', result = session['user'])
-        return render_template('contact-us.html', state = 'password is not correct', result = session['user'])
+            return render_template('contact-us.html', state = 'Your Message sent successfully to Admin',result=userData)
+
+        return render_template('contact-us.html', state = 'password is not correct',result=userData)
         
 
     return redirect("/_contactus_")
@@ -230,7 +247,7 @@ def Update_Profile():
         
         email = request.form['email']
         name = request.form['first_name']+' '+request.form['last_name']
-        phone = request.form['phone']
+        phone = request.form['whatsapp']
         image = request.files['image']
         
         if email == '':

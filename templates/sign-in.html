@@ -54,7 +54,7 @@
         <div class="container">
             <div class="header-section">
                 <nav class="nav navbar navbar-expand-lg navbar-light justify-content-between">
-                    <a class="navbar-brand"> <img src="static/images/logo 1.png" alt=""></a>
+                    <a class="navbar-brand"> <img src="static/images/logo 1.png" onclick="location.href = getServerUrl() + '/_home_';" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -95,7 +95,7 @@
                                 <a class="scou-btn " href="profile.html"> <i
                                         class="fa-regular fa-user mx-2"></i>{{result[2]}}</a>
                             </li>
-                            
+
                             <li class="nav-item nav-link ">
                                 <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/logout';"> <i
                                         class="fa-regular fa-user mx-2"></i>logout</a>
