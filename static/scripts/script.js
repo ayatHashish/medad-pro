@@ -199,53 +199,32 @@ $(document).ready(function () {
             autoplay: true,
             slideBy: 1,
         })
-        $('.confernces-sec').owlCarousel({
-            loop: true,
-            nav: true,
-            margin: 50,
-            items: 3,
+        
+        $('.service-carousel').owlCarousel({
+            loop:true,
+            margin:20,
+            nav:false,
             dots: true,
-            slideSpeed: 10000,
-            autoplaySpeed: 800,
-            autoplayTimeout: 10000,
-            // autoplay: true,
-            navText: [
-                '<i class="fi-circle-arrow-left1"></i>',
-                '<i class="fi-circle-arrow-right1"></i>'
-            ],
-            responsiveClass: true,
-            responsive: {
-                1200: { items: 3 },
-                900: { items: 2 },
-                700: { items: 2 },
-                0: { items: 1 }
-            }
-        })
-        $('.media-highlights').owlCarousel({
-            loop: true,
-            nav: true,
-            margin: 50,
-            items: 3,
-            dots: true,
-            slideSpeed: 10000,
+            center: true,
+            slideSpeed: 5000,
             autoplaySpeed: 800,
             autoplayTimeout: 10000,
             autoplay: true,
-            navText: [
-                '<i class="fi-circle-arrow-left1"></i>',
-                '<i class="fi-circle-arrow-right1"></i>'
-            ],
-            responsiveClass: true,
-            responsive: {
-                1200: { items: 3 },
-                900: { items: 2 },
-                700: { items: 2 },
-                0: { items: 1 }
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:3
+                }
             }
-        })
+        });
+
 
     } else {
-
         $('.banner-slide').owlCarousel({
             rtl: true,
             loop: true,
@@ -257,7 +236,6 @@ $(document).ready(function () {
             autoplay: true,
             slideBy: 1,
         });
-
         $('.login-carousel').owlCarousel({
             loop: true,
             margin: 10,
@@ -274,6 +252,7 @@ $(document).ready(function () {
                 }
             }
         })
+      
     }
 
     let btn = document.querySelector(".burger-mune")
@@ -294,3 +273,17 @@ var loadFile = function (event) {
 };
 // loadPdf
 
+// scrollToSection
+
+function scrollToSection(targetId) {
+    var section = document.getElementById(targetId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  
+  
+  
+  
+  
+  
