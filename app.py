@@ -34,7 +34,7 @@ def _services_():
     else :
         result = None
     print(result)
-    return render_template('home.html',result = result)
+    return render_template('services.html',result = result)
 
 @app.route("/_profile_")
 def _profile_():
@@ -54,6 +54,7 @@ def _teacher_():
 #    return render_template('teacher.html')
     print(result)
     return render_template('home.html',result = result)
+
 
 @app.route("/_contactus_")
 def _contactus_():
