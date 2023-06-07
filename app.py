@@ -33,7 +33,7 @@ def _services_():
         result = session['user']
     else :
         result = None
-    return render_template('home.html',result = result)
+    return render_template('services.html',result = result)
                            
 @app.route("/_profile_")
 def _profile_():
