@@ -58,12 +58,22 @@
       }
     }
   }
+.service-section{
+.content-wrapper {
+    color: $brand-primary;
+    h2{
+      font-weight: bold !important;
+    }
+  }
+
+}
+
+  
   ///////// Our Process /////////////////
   .our-process {
     padding-bottom: 6rem;
     .content-wrapper {
       color: $brand-primary;
-      
       h2{
         font-weight: bold !important;
       }
@@ -100,20 +110,15 @@
     }
   }
 }
-
 @media screen and (max-width:1399px) {
 }
 @media screen and (max-width:1199px) {
-
   .about-section {
     text-align: center;
     .image {
-     
       .arrow {
-       
         top: -80px !important;
       }
-
       .girl2 {
         position: absolute;
         top: 14% !important;
@@ -122,7 +127,6 @@
       .right {
         right: 55px !important;
       }
-
       .heart {
         right: 0rem !important;
         top: 23rem  !important;
@@ -130,35 +134,26 @@
     }
   }
 }
-
 @media screen and (max-width:991px) {
  .home-page{
-
   .about{
     margin-top:15px
   }
  }
-  
  }
-
-
 @media screen and (max-width:767px) {
-
   .about-section {
     text-align: center;
     .image {
-    
        .arrow {
         display: none;
       }
-
        .girl2 {
         display: none;
       }
       .right {
         display: none;
       }
-
       .heart {
         display: none;
       }
