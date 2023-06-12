@@ -186,6 +186,7 @@ $(document).ready(function () {
                 }
             }, 30);
     }
+    console.log(document.documentElement.lang);
 
     if (document.documentElement.lang == 'en') {
 
@@ -198,27 +199,27 @@ $(document).ready(function () {
             autoplayTimeout: 10000,
             autoplay: true,
             slideBy: 1,
-        })
-        
+        });
+
         $('.service-carousel').owlCarousel({
-            loop:true,
-            margin:20,
-            nav:false,
+            loop: true,
+            margin: 15,
+            nav: false,
             dots: true,
             center: true,
             slideSpeed: 5000,
             autoplaySpeed: 800,
             autoplayTimeout: 10000,
             autoplay: true,
-            responsive:{
-                0:{
-                    items:1
+            responsive: {
+                0: {
+                    items: 1
                 },
-                600:{
-                    items:2
+                600: {
+                    items: 2
                 },
-                1000:{
-                    items:3
+                1000: {
+                    items: 4
                 }
             }
         });
@@ -252,7 +253,30 @@ $(document).ready(function () {
                 }
             }
         })
-      
+
+        // $('.owl-carousel').owlCarousel({
+        //     loop: true,
+        //     margin: 15,
+        //     nav: false,
+        //     dots: true,
+        //     center: true,
+        //     slideSpeed: 5000,
+        //     autoplaySpeed: 800,
+        //     autoplayTimeout: 10000,
+        //     autoplay: true,
+        //     responsive: {
+        //         0: {
+        //             items: 1
+        //         },
+        //         600: {
+        //             items: 2
+        //         },
+        //         1000: {
+        //             items: 4
+        //         }
+        //     }
+        // });
+
     }
 
     let btn = document.querySelector(".burger-mune")
@@ -271,19 +295,13 @@ var loadFile = function (event) {
     var image = document.getElementById("output");
     image.src = URL.createObjectURL(event.target.files[0]);
 };
+
 // loadPdf
 
 // scrollToSection
-
 function scrollToSection(targetId) {
     var section = document.getElementById(targetId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+        section.scrollIntoView({ behavior: 'smooth' });
     }
-  }
-  
-  
-  
-  
-  
-  
+}

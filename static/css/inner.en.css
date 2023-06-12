@@ -4042,6 +4042,25 @@ section {
     border-left: 1px solid #84c356;
     border-right: 1px solid blue; }
 
+.owl-carousel .owl-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 55px; }
+  .owl-carousel .owl-dots button {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    margin: 0 5px;
+    cursor: pointer; }
+    .owl-carousel .owl-dots button.active {
+      background-color: #0F75C0; }
+
+.owl-carousel .item img {
+  width: 100%;
+  height: auto; }
+
 footer {
   padding: 1.2rem 0;
   align-items: end;
@@ -4323,6 +4342,35 @@ header {
     position: absolute;
     right: 6rem;
     top: 22rem; }
+.home-page .service-section {
+  padding-top: 3rem; }
+  .home-page .service-section .title-services {
+    color: #0F75C0;
+    font-weight: 700;
+    font-size: 40px; }
+  .home-page .service-section .service-carousel {
+    padding-top: 3rem; }
+  .home-page .service-section .item {
+    box-shadow: 0px 4px 4px rgba(68, 68, 68, 0.2);
+    border-radius: 20px; }
+    .home-page .service-section .item .service-item .image {
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px; }
+      .home-page .service-section .item .service-item .image img {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        height: 100%;
+        border: 20px; }
+    .home-page .service-section .item .service-item .service-content {
+      text-align: center;
+      padding: 1.5rem 0;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      cursor: pointer; }
+      .home-page .service-section .item .service-item .service-content h3 {
+        font-weight: 700;
+        font-size: 20px;
+        color: #0F75C0; }
 .home-page .our-process {
   padding-bottom: 6rem; }
   .home-page .our-process .content-wrapper {
@@ -4781,41 +4829,46 @@ header {
 
 .service-page {
   padding-top: 3rem; }
-  .service-page .service-carousel .item {
+  .service-page .title-services {
+    color: #0F75C0;
+    font-weight: 700;
+    font-size: 40px; }
+  .service-page .service-carousel {
+    padding-top: 3rem; }
+  .service-page .item {
     box-shadow: 0px 4px 4px rgba(68, 68, 68, 0.2);
     border-radius: 20px; }
-    .service-page .service-carousel .item .service-item .image {
+    .service-page .item .service-item .image {
       border-top-left-radius: 20px;
       border-top-right-radius: 20px; }
-      .service-page .service-carousel .item .service-item .image img {
+      .service-page .item .service-item .image img {
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
         height: 100%;
         border: 20px; }
-    .service-page .service-carousel .item .service-item .service-content {
+    .service-page .item .service-item .service-content {
       text-align: center;
-      padding: 1.5rem;
+      padding: 1.5rem 0;
       border-bottom-left-radius: 20px;
       border-bottom-right-radius: 20px;
       cursor: pointer; }
-      .service-page .service-carousel .item .service-item .service-content h3 {
-        font-weight: 700;
-        font-size: 18px;
-        color: #0F75C0; }
-      .service-page .service-carousel .item .service-item .service-content p {
-        font-weight: 400;
-        font-size: 16px;
-        color: black; }
-  .service-page .services-sec2 {
-    padding-top: 3rem; }
-    .service-page .services-sec2 .title-services {
-      color: #0F75C0;
-      font-weight: 700;
-      font-size: 40px; }
-    .service-page .services-sec2 .pragraph-unit {
-      margin-top: 3.5rem; }
-      .service-page .services-sec2 .pragraph-unit h5 {
-        color: #0F75C0;
+      .service-page .item .service-item .service-content h3 {
         font-weight: 700;
         font-size: 20px;
-        margin-bottom: 1.5rem; }
+        color: #0F75C0; }
+
+.services-sec2 {
+  padding-top: 3rem; }
+  .services-sec2 .title-services {
+    color: #0F75C0;
+    font-weight: 700;
+    font-size: 40px; }
+  .services-sec2 .pragraph-unit {
+    margin-top: 3.5rem; }
+    .services-sec2 .pragraph-unit h5 {
+      color: #0F75C0;
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 1.5rem; }
+
+/* CSS */
