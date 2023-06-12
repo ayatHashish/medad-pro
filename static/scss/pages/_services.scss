@@ -12,7 +12,10 @@
     box-shadow: 0px 4px 4px rgba(68, 68, 68, 0.2);
     border-radius: 20px;
     .service-item {
+     
       .image {
+         height: 275px !important;
+      max-height: 275px !important;
         // height: 314px!important;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
@@ -55,7 +58,6 @@
     font-weight: 700;
     font-size: 40px;
   }
-
   .row {
     border-bottom: 1px solid #d0cdcc;
     margin: 10px 0;
