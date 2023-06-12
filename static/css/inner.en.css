@@ -4863,12 +4863,21 @@ header {
     color: #0F75C0;
     font-weight: 700;
     font-size: 40px; }
-  .services-sec2 .pragraph-unit {
-    margin-top: 3.5rem; }
-    .services-sec2 .pragraph-unit h5 {
-      color: #0F75C0;
-      font-weight: 700;
-      font-size: 20px;
-      margin-bottom: 1.5rem; }
+  .services-sec2 .row {
+    border-bottom: 1px solid #d0cdcc;
+    margin: 10px 0; }
+    .services-sec2 .row .pragraph-unit {
+      margin: 0 3.5rem; }
+      .services-sec2 .row .pragraph-unit h5 {
+        color: #0F75C0;
+        font-weight: 700;
+        font-size: 20px;
+        margin-bottom: 1.5rem; }
 
+@media screen and (max-width: 991px) {
+  .services-sec2 .imag {
+    text-align: center;
+    margin: 27px; }
+    .services-sec2 .imag img {
+      width: 100%; } }
 /* CSS */
