@@ -4066,6 +4066,9 @@ footer {
   align-items: end;
   color: #878483; }
 
+.service-item .image {
+  height: 170px !important; }
+
 @media screen and (max-width: 769px) {
   h1 {
     font-size: 3.125rem;
@@ -4839,8 +4842,7 @@ header {
     box-shadow: 0px 4px 4px rgba(68, 68, 68, 0.2);
     border-radius: 20px; }
     .service-page .item .service-item .image {
-      height: 275px !important;
-      max-height: 275px !important;
+      height: 170px !important;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px; }
       .service-page .item .service-item .image img {

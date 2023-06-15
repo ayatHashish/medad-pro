@@ -107,6 +107,13 @@ footer {
   color: $brand-gray;
 }
 
+
+.service-item {
+  .image {
+    height: 170px !important;
+  }
+}
+
 @media screen and (max-width: 769px) {
   h1 {
     font-size: 3.125rem;
