@@ -1,4 +1,4 @@
-import bcrypt
+import hashlib
 import sqlite3
 import os
 
@@ -31,7 +31,8 @@ class DB:
         with sqlite3.connect(self.name) as conn:
             
             cursor = conn.cursor()
-            hpw = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+            hpw = hashlib.sha256(password.encode()).hexdigest()
+            #hpw = password
             
             data = {'email': email, 'username':username, 'password': hpw, 'phone': None, 'validation': code}
             columns = ', '.join(data.keys())
@@ -57,17 +58,17 @@ class DB:
             
             
             
-    #def _print_():
-    #    with sqlite3.connect(self.name) as conn:
+
     
 
         
     def __login__(self,user,password):
     
-        password = password.encode('utf-8')
-        if bcrypt.checkpw(password, user[3]):
+        password = hashlib.sha256(password.encode()).hexdigest()
+        # if bcrypt_sha256.verify(password, user[3]):
+        #     return user
+        if password == user[3]:
             return user
-        
         return None
     
     def __edit__(self,user_email,new_data):

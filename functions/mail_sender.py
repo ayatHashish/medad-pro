@@ -12,10 +12,10 @@ import re
 
 
 
-    
+
 class sender:
     def __init__(self,emailPass):
-        self.Admin = "maged.khaled03@gmail.com"
+        self.Admin = "Medad.WS@gmail.com"
         self.smtp_server = 'smtp.gmail.com'
         self.smtp_port = 587  # or the appropriate port for your SMTP server
         self.sender_email = 'Medad.WS@gmail.com'
@@ -23,16 +23,16 @@ class sender:
         self.receiver_email = ""
         self.subject = ""
         self.message = ""
-    
+
     def send(self,data):
-        
+
         msg = MIMEMultipart()
         msg['From'] = self.sender_email
         msg['To'] = data['To']
         msg['Subject'] = data['title']
-        
-            
-            
+
+
+
 
         # Add the message to the body of the email
         msg.attach(MIMEText(data['message'], 'plain'))
@@ -42,23 +42,23 @@ class sender:
                 # Create a base object and set the appropriate MIME type
                 part = MIMEBase("application", "octet-stream")
                 part.set_payload(attachment.read())
-            
+
             # Encode the attachment in Base64
             encoders.encode_base64(part)
-            
+
             # Add headers to the attachment
-            
+
             filename = data['attachment'].split('/')
             name = filename[-1]
-            
+
             part.add_header(
                 "Content-Disposition",
                 "attachment; filename= " + name)
-            
-            
+
+
             # Attach the attachment to the email message
             msg.attach(part)
-            
+
             # Convert the message to a string
             text = msg.as_string()
 
@@ -69,17 +69,17 @@ class sender:
             server.login(self.sender_email, self.sender_password)
             # Send the email
             server.sendmail(self.sender_email, data['To'], text)
-            
+
             print('Email sent successfully!')
-        
-        
-        
+
+
+
 
     def valide_email(self,email):
         # Syntax check
         if not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
             return False
-    
+
         local_part, domain = email.split('@')
 
         # Perform MX record lookup
@@ -90,17 +90,3 @@ class sender:
             return False
 
         return False
-
-        
-
-
-
-        
-        
-        
-
-
-        
-        
-        
-        

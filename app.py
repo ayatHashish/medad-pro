@@ -141,7 +141,10 @@ def login():
         
         return render_template('sign-in.html', state = 'The password is not correct')
     
-    return render_template('sign-in.html', state = "")
+    if 'user' in session :
+        return render_template('profile.html',state = "", result = session['user'])
+    else :
+        return render_template('sign-in.html', state = "")
 
 
     
@@ -191,7 +194,11 @@ def signup():
         
         
         
-    return render_template('sign-up.html', state = "")
+    if 'user' in session :
+        return render_template('profile.html', state = "", result = session['user'])
+    else :
+        return render_template('sign-up.html', state = "")
+    
 
 
 
