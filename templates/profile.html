@@ -74,18 +74,18 @@
         };
 
 
-        function updateSchedule(){
-          let schedule = document.getElementById('datePicker');
-          let date = document.getElementById('dateL');
-          date.textContent = 'Start Time: '+ schedule.value;
-          date.style.display = 'block';
-          let datePicker = document.getElementById('datePicker')
-          let datePickerL = document.getElementById('datePickerL')
-          let send = document.getElementById('button')
+        function updateSchedule() {
+            let schedule = document.getElementById('datePicker');
+            let date = document.getElementById('dateL');
+            date.textContent = 'Start Time: ' + schedule.value;
+            date.style.display = 'block';
+            let datePicker = document.getElementById('datePicker')
+            let datePickerL = document.getElementById('datePickerL')
+            let send = document.getElementById('button')
 
-          datePicker.style.display = "none";
-          datePickerL.style.display = "none";
-          send.style.display = "block";
+            datePicker.style.display = "none";
+            datePickerL.style.display = "none";
+            send.style.display = "block";
 
 
         };
@@ -119,13 +119,13 @@
                     <div class=" navbar-collapse justify-content-around" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto topnav">
                             <li class="nav-item nav-link">
-                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#"
-                                    role="tab" aria-controls="nav-home" aria-selected="true"
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#" role="tab"
+                                    aria-controls="nav-home" aria-selected="true"
                                     onclick="location.href = getServerUrl() + '/_home_';">Home</a>
                             </li>
                             <li class="nav-item nav-link">
-                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#"
-                                    role="tab" aria-controls="nav-home" aria-selected="true"
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#" role="tab"
+                                    aria-controls="nav-home" aria-selected="true"
                                     onclick="location.href = getServerUrl() + '/_services_';">Services</a>
                             </li>
                             {% if result %}
@@ -148,8 +148,8 @@
                             {% if result %}
 
                             <li class="nav-item nav-link ">
-                                <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/_profile_';" > <i
-                                        class="fa-regular fa-user mx-2"></i>{{result[2]}}</a>
+                                <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/_profile_';">
+                                    <i class="fa-regular fa-user mx-2"></i>{{result[2]}}</a>
                             </li>
 
                             <li class="nav-item nav-link ">
@@ -383,9 +383,6 @@
             </div>
 
         </div>
-
-
-
     </main>
     <footer class="d-flex justify-content-center align-content-end">
         <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png"

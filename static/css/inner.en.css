@@ -4794,12 +4794,12 @@ header {
 
 .profile-pic {
   color: transparent;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  transition: all .3s ease; }
+  transition: all 0.3s ease; }
   .profile-pic input {
     display: none; }
   .profile-pic img {
@@ -4821,7 +4821,7 @@ header {
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 10000;
     color: #fafafa;
-    transition: background-color .2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
     border-radius: 100px;
     margin-bottom: 0; }
   .profile-pic span {
@@ -4885,3 +4885,48 @@ header {
     .services-sec2 .imag img {
       width: 100%; } }
 /* CSS */
+.live-page .live-card .card .details h5,
+.live-page .live-card .card .details p,
+.live-page .live-card .card .details .pdf {
+  text-align: start !important; }
+.live-page .live-card .card .details p,
+.live-page .live-card .card .details .pdf {
+  padding: 0 2rem;
+  color: black !important; }
+  .live-page .live-card .card .details p span,
+  .live-page .live-card .card .details p a,
+  .live-page .live-card .card .details .pdf span,
+  .live-page .live-card .card .details .pdf a {
+    color: #878483;
+    margin: 0 10px; }
+.live-page .live-card .card .details .file-upload {
+  padding: 0; }
+.live-page .profile-lg-card {
+  height: 100vh; }
+  .live-page .profile-lg-card .card {
+    padding: 0;
+    border: none; }
+    .live-page .profile-lg-card .card .live-area {
+      width: 50%;
+      height: 75vh; }
+      .live-page .profile-lg-card .card .live-area:first-of-type {
+        background-color: #0F75C0; }
+      .live-page .profile-lg-card .card .live-area:last-of-type {
+        background-color: #202020; }
+      .live-page .profile-lg-card .card .live-area .inner-area {
+        text-align: center;
+        margin: auto;
+        transform: translate(0%, 100%); }
+        .live-page .profile-lg-card .card .live-area .inner-area img {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%; }
+        .live-page .profile-lg-card .card .live-area .inner-area h5 {
+          font-size: 20px;
+          font-family: Roboto Slab;
+          font-weight: 700;
+          margin: 10px 0; }
+          .live-page .profile-lg-card .card .live-area .inner-area h5:first-of-type {
+            color: black; }
+        .live-page .profile-lg-card .card .live-area .inner-area .h-black {
+          color: white !important; }

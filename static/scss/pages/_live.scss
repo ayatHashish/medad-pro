@@ -1,0 +1,69 @@
+.live-page {
+    .live-card {
+        .card {
+            .details {
+                h5,
+                p,
+                .pdf {
+                    text-align: start !important;
+                }
+                p,
+                .pdf {
+                    padding: 0 2rem;
+                    color: black !important;
+
+                    span,
+                    a {
+                        color: #878483;
+                        margin: 0 10px;
+                    }
+                }
+                .file-upload {
+                    padding: 0;
+                }
+            }
+        }
+    }
+    .profile-lg-card {
+        height: 100vh;
+        .card {
+            padding: 0;
+            border :none ;
+            .live-area { 
+                width: 50%;
+                height: 75vh;
+                &:first-of-type { 
+                    background-color: #0F75C0 ; 
+                   
+                }
+                &:last-of-type {
+                    background-color:#202020;
+                   
+                }
+                  
+                .inner-area {
+                    text-align: center;
+                    margin: auto;
+                    transform: translate(0%, 100%);
+                    img {
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 50%;
+                    }
+                    h5{
+                        &:first-of-type { 
+                           color: black
+                        }
+                        font-size: 20px;
+                        font-family: Roboto Slab;
+                        font-weight:700;
+                        margin: 10px 0 ;
+                    }
+
+                    .h-black{
+                        color: white !important}
+                }
+            }
+        }
+    }
+}
