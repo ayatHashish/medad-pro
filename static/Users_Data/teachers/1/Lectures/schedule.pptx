@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Schedule</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Schedule</h1>
+  <label for="datePicker">Choose a day:</label>
+  <input type="date" id="datePicker" onchange="updateSchedule()">
+  <table id="scheduleTable">
+    <tr>
+      <th>Time</th>
+      <th>Event</th>
+    </tr>
+    <tr>
+      <td>09:00 AM</td>
+      <td>Meeting</td>
+    </tr>
+    <tr>
+      <td>10:00 AM</td>
+      <td>Workshop</td>
+    </tr>
+    <tr>
+      <td>12:00 PM</td>
+      <td>Lunch</td>
+    </tr>
+    <tr>
+      <td>02:00 PM</td>
+      <td>Presentation</td>
+    </tr>
+  </table>
+
+  <script>
+    function updateSchedule() {
+      var selectedDate = document.getElementById("datePicker").value;
+      // You can use the selectedDate to fetch the schedule for that specific day from a database or other data source
+      // For simplicity, let's assume the schedule is hardcoded based on the selected date
+      var scheduleTable = document.getElementById("scheduleTable");
+      scheduleTable.innerHTML = `
+        <tr>
+          <th>Time</th>
+          <th>Event</th>
+        </tr>
+        <tr>
+          <td>09:00 AM</td>
+          <td>Meeting for ${selectedDate}</td>
+        </tr>
+        <tr>
+          <td>10:00 AM</td>
+          <td>Workshop for ${selectedDate}</td>
+        </tr>
+        <tr>
+          <td>12:00 PM</td>
+          <td>Lunch</td>
+        </tr>
+        <tr>
+          <td>02:00 PM</td>
+          <td>Presentation</td>
+        </tr>
+      `;
+    }
+  </script>
+</body>
+</html>
