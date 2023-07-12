@@ -4296,6 +4296,9 @@ header {
 .scou-btn:hover {
   color: #84c356; }
 
+.enroll {
+  width: 35% !important; }
+
 @media screen and (max-width: 769px) {
   .main-button,
   .btn-action,
@@ -4595,6 +4598,10 @@ header {
 .input-error-danger {
   border-color: #721c24 !important; }
 
+.form-check-input[type="radio"]:checked {
+  background-color: #84C356;
+  /* Change this to the desired color */ }
+
 @media screen and (max-width: 1199px) {
   .sec-sing:first-of-type {
     height: 170vh !important; } }
@@ -4863,6 +4870,8 @@ header {
 
 .services-sec2 {
   padding-top: 3rem; }
+  .services-sec2 .imag img {
+    width: 100%; }
   .services-sec2 .title-services {
     color: #0F75C0;
     font-weight: 700;

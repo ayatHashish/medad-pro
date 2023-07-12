@@ -118,6 +118,11 @@
 .input-error-danger {
     border-color: #721c24 !important;
 }
+
+
+.form-check-input[type="radio"]:checked {
+    background-color: #84C356; /* Change this to the desired color */
+  }
 @media screen and (max-width: 1399px) {
 }
 

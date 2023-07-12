@@ -1,0 +1,159 @@
+    <div class="profile-page p-t-12">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <!-- profile-card -->
+                        <div class="profile-card mb-3">
+                            <div class="card">
+                                <div class="banner">
+                                    <div class="img-area">
+                                        <div class="inner-area">
+                                            <img name=image id='per_image' src={{'./static/Users_Data/'+(result[0]) |
+                                                string+'/Pictures/Personal_Pic.png' }} alt="Personal Picture">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-bottom mt-5 pt-5">
+                                    <h5 class="name fw-bold">{{result[2]}}</h5>
+                                    <h5 class="name fw-bold">{{result[1]}}</h5>
+                                    {% if result[4] %}
+                                    <h5 class="name fw-bold">{{result[4]}}</h5>
+                                    {% endif %}
+                                    <p class="px-2">welcome to Medadd Academy! We're thrilled that you're interested in
+                                        learning more about our medical courses.</p>
+                                </div>
+                                <div class="border-bottom pt-3">
+                                    <h5 class="name fw-bold">Last Lecture</h5>
+                                    <p>Text form designer imagination can be replaced with other text</p>
+                                    <div class="pdf">
+                                        <div class="follow-btn">
+                                            <form id="UploadPDF" action="#" method="post" enctype="multipart/form-data"
+                                                name="form1" id="form1" class="pt-1 text-center">
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="pdf-sec">
+                                                        <label for="file-input" class="file-upload" id="img-upload">
+                                                            <img src="../static/images/pdf.png" alt="Upload" />
+                                                        </label>
+                                                        <label id='name' style="display:block">     </label>
+                                                        <label id='dateL' style="display:block">     </label>
+                                                        <p id="password-text"> {{state[1]}} </p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center my-3">
+
+
+                                                    <label class="btn-action " id="inputfile" for="file"
+                                                        onchange="uploading()">Upload
+                                                        File
+                                                        <input type="file" name="file" id="file" accept=".pdf,.pptx"
+                                                            style="display:none" multiple />
+                                                    </label>
+
+                                                    <!-- <label for="datePicker" id="datePickerL" style="display:none" >Choose a day:</label>
+                                                    <input type="date" id="datePicker" onchange="updateSchedule()" style="display:none" > -->
+                                                    <label for="datePicker" id="datePickerL" style="display:none" >Choose a day:</label>
+                                                    <label>
+                                                            <input type="date" class="btn-action" name="date"
+                                                            id="datePicker" value="Choose a day" onchange="updateSchedule()" style="display:none" />
+                                                            <!-- onclick="submitForm(event,'/Upload_PDF','UploadPDF')" -->
+                                                    </label>
+
+                                                    <label><input type="button" class="btn-action" name="button"
+                                                            id="button" value="Send"
+                                                            onclick="submitForm(event,'/Upload_PDF','UploadPDF')"
+                                                            style="display:none" />
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8">
+                        <div class="profile-lg-card">
+                            <div class="card">
+                                <div class="border-bottom">
+                                    <h3>Profile Details</h3>
+                                    <p>You have full control to manage your own account setting.</p>
+                                </div>
+                                <form id="UpdateForm" action="#" method="post" enctype="multipart/form-data">
+                                    <div class="border-bottom d-flex justify-content-start align-content-start py-2 ">
+                                        <div class="avatar-content ">
+                                            <div class="img-area">
+                                                <div class="profile-pic my-2">
+                                                    <label class="-label" for="photo">
+                                                        <!-- <span class="glyphicon glyphicon-camera"></span> -->
+                                                        <span>Change Image</span>
+                                                    </label>
+                                                    <input id="photo" name='image' type="file"
+                                                        accept="image/png,image/gif,image/jpeg"
+                                                        onchange="loadFile(event)" />
+                                                    <img src="../static/images/avatar.png"
+                                                        id="output" />
+                                                </div>
+                                            </div>
+                                            <div class="px-3">
+                                                <h3>Your avatar</h3>
+                                                <p class="p-hint">PNG or JPG no bigger than 800px wide and tall</p>
+                                                <!-- <p id="password-text"> {{state[0]}} </p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="contact-form pt-2 ">
+                                        <div>
+                                            <h3>Personal Details</h3>
+                                            <p>Edit your personal information and address.</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-6 mb-2">
+                                                <div class="form-group">
+                                                    <input type="text" name='first_name' class="form-control"
+                                                        id="exampleFormControlInput1" placeholder="First name">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 mb-2">
+                                                <div class="form-group">
+                                                    <input type="text" name='last_name' class="form-control"
+                                                        id="exampleFormControlInput1" placeholder="Last name">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 mb-2">
+                                                <div class="form-group">
+                                                    <input type="phone" name='whatsapp' class="form-control"
+                                                        id="exampleFormControlInput1" placeholder="whatsapp">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-xl-6 mb-2">
+                                                <div class="form-group">
+                                                    <input type="email" name='email' class="form-control" id="mail"
+                                                        placeholder="Mail">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="text-center text-lg-start mt-4 pt-2">
+                                                <p id="password-text"> {{state[0]}} </p>
+                                                <button type="submit" class="btn-action"
+                                                    onclick="submitForm(event,'/update_profile','UpdateForm')">Update
+                                                    Profile</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>

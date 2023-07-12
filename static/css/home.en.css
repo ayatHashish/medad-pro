@@ -4296,6 +4296,9 @@ header {
 .scou-btn:hover {
   color: #84c356; }
 
+.enroll {
+  width: 35% !important; }
+
 @media screen and (max-width: 769px) {
   .main-button,
   .btn-action,
