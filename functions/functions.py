@@ -15,7 +15,7 @@ class dataBase:
                             (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, phone TEXT, validation TEXT, Type_ TEXT DEFAULT students)''')
             if ('teachers',) not in tables :
                 conn.execute('''CREATE TABLE lessons
-                            (id INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, teacherID INTEGER, lessonLOC TEXT, state TEXT, date TEXT)''')
+                            (id INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, teacherID INTEGER, lessonLOC TEXT, state TEXT, date TEXT, URL TEXT)''')
                 
             if ('lessons',) not in tables :
                 conn.execute('''CREATE TABLE teachers

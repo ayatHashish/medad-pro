@@ -345,6 +345,12 @@ def Upload_PDF():
 @app.route("/live")
 def live():
     if 'user' in session:
+        if session['user'][6] == 'students':
+            print('students')
+        elif session['user'][6] == 'teachers': 
+            print('teacher')
+        else :
+            print('admin')
         return render_template('index.html', result = session['user'])
     else :
         return redirect(url_for("_home_"))
