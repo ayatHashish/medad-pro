@@ -109,7 +109,7 @@
         <div class="container">
             <div class="header-section">
                 <nav class="nav navbar navbar-expand-lg navbar-light justify-content-between">
-                    <a class="navbar-brand"> <img src="static/images/logo 1.png"
+                    <a class="navbar-brand"> <img src="static/images/logo1.png"
                             onclick="location.href = getServerUrl() + '/_home_';" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -234,7 +234,8 @@
                                 <div class="banner">
                                     <div class="img-area">
                                         <div class="inner-area">
-                                            <img name=image id='per_image' src={{'./static/Users_Data/'+(result[0]) |
+                                            <img name=image id='per_image' src={{'./static/Users_Data/'+(result[6]) |
+                                                string+'/'+(result[0]) |
                                                 string+'/Pictures/Personal_Pic.png' }} alt="Personal Picture">
                                         </div>
                                     </div>
@@ -364,13 +365,17 @@
                                             <div class="text-center text-lg-start mt-4 pt-2">
                                                 <p id="password-text"> {{state[0]}} </p>
                                                 <button type="submit" class="btn-action"
-                                                    onclick="submitForm(event,'/update_profile','UpdateForm')">Update
-                                                    Profile</button>
+                                                    onclick="submitForm(event,'/update_profile','UpdateForm')">Update Profile</button>
+
                                             </div>
                                         </div>
 
                                     </div>
                                 </form>
+                                <div>
+                                <button type="submit" class="btn-action"
+                                    onclick="location.href = getServerUrl() + '/live';">Enter Meeting</button>
+                                </div>
                             </div>
 
                         </div>
@@ -385,7 +390,7 @@
         </div>
     </main>
     <footer class="d-flex justify-content-center align-content-end">
-        <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png"
+        <a class="navbar-brand" href="#"> <img src="static/images/logo1.png"
                 onclick="location.href = getServerUrl() + '/_home_';" alt=""></a>
         <a class="text-reset rights">All rights reserved for Medadd </a>
 

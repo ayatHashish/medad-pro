@@ -1,5 +1,5 @@
 from flask import Flask,request,redirect,render_template,session,url_for
-from functions.functions import DB
+from functions.functions import dataBase
 from functions.mail_sender import sender
 import sys
 import os
@@ -123,16 +123,21 @@ def logout():
 @app.route("/login",methods = ['GET','POST'])
 def login():
     if request.method == 'POST':
- 
         email = request.form['email']
         password = request.form['password']
         
-        user = My_DB.search(email)
+        type_ = 'students'
+        user = DB.search(type_,email)
+        
+        if not user :
+            type_ = 'teachers'
+            user = DB.search(type_,email)
+            
         if not user :
             
             return render_template('sign-in.html', state = 'This email is not exist')
         
-        user = My_DB.__login__(user,password)
+        user = DB.__login__(type_,user,password)
         if user :
             
             session['username'] = user[2]
@@ -155,6 +160,8 @@ def signup():
         name = request.form['username']
         password = request.form['password']
         email = request.form['email']
+        type_ = 'students'
+        #type_ = 'teachers'
         print(request.form)
         if 'checkbox' not in request.form :
             return render_template('sign-up.html', state = "Please read and agree on Terms of Service and Privacy Policy")
@@ -165,8 +172,8 @@ def signup():
         if password == None:
             return render_template('sign-up.html', state = "Please enter valide password")
         
-        emailExist = My_DB.search(email,by='email')
-        nameExist = My_DB.search(name,by='username')
+        emailExist = DB.search(type_,email,by='email')
+        nameExist = DB.search(type_,name,by='username')
         if emailExist :
             return render_template('sign-up.html', state = "The email is exist please sign in if you have an account")
         elif nameExist :
@@ -189,7 +196,7 @@ def signup():
         print(code)
         emailer.send(message_)
         print('donee')
-        My_DB.__signup__(name, email, password,code)
+        DB.__signup__(type_,name, email, password,code)
         return render_template('sign-in.html', state = "")
         
         
@@ -211,6 +218,7 @@ def contactus():
         phone = request.form['phone']
         title = request.form['title']
         subject = request.form['subject']
+        type_ = 'students'
         if 'user' in session :
             userData = session['user']
         else :
@@ -227,12 +235,18 @@ def contactus():
         if subject == '':
             return render_template('contact-us.html', state = 'Please enter the details of yout message',result=userData)
         
-        user = My_DB.search(email)
+        type_ = 'students'
+        user = DB.search(type_,email)
+        
+        if not user :
+            type_ = 'teachers'
+            user = DB.search(type_,email)
+            
         if not user :
             return render_template('contact-us.html', state = 'Email is not correct',result=userData)
 
         
-        user = My_DB.__login__(user,password)
+        user = DB.__login__(type_,user,password)
         if user :
             TMessage = "Hi Admin" + "\n\n" + subject +"\n\n\n" + "here is my email and phone number \n" + phone +"\n" + email
             message_ = {'To':emailer.Admin, 'title':title, 'message':TMessage, 'attachment':None }
@@ -256,7 +270,8 @@ def Update_Profile():
         name = request.form['first_name']+' '+request.form['last_name']
         phone = request.form['whatsapp']
         image = request.files['image']
-        
+        type_ = session['user'][6]
+        print(type_)
         if email == '':
             email = session['user'][1]
         
@@ -267,7 +282,7 @@ def Update_Profile():
             phone = session['user'][4]
             
         if not (image.filename == ''):
-            path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png'
+            path = 'static/Users_Data'+'/'+type_+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png'
             image.save(path)
             
         if session['user'][1] != email:
@@ -284,12 +299,12 @@ def Update_Profile():
         
 
         new_data = {'email':email,'name':name,'phone':phone,'code':code}
-        My_DB.__edit__(session['user'][1], new_data)
+        DB.__edit__(type_,session['user'][1], new_data)
         
         
         
         
-        user = My_DB.search(email)
+        user = DB.search(type_,email)
         session['username'] = user[2]
         session['user'] = user
         
@@ -308,16 +323,17 @@ def Update_Profile():
 def Upload_PDF():
     if request.method == 'POST':
         #try  :
-        
+        type_ = session['user'][-1]
         uploaded_file = request.files['file']
         print(uploaded_file.filename)
-        path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Lectures/'+uploaded_file.filename
+        path = 'static/Users_Data'+'/'+type_+'/'+str(session['user'][0])+'/Lectures/'+uploaded_file.filename
         uploaded_file.save(path)
         print("DONE")
+        print(request.form)
         text = f" here is a request from {session['username']} \n\n here is the student's contact information \n\n {session['user'][1]} \n {session['user'][4]}"                 
         message_ = {'To':emailer.Admin , 'title':'request lesson', 'message':text, 'attachment':path}
         emailer.send(message_)
-        
+        DB.addLesson({'lessonLOC':path,'studentID':session['user'][0],'teacherID':0,'date':request.form['date'],'state':'pinding'})
         return render_template('profile.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
         
     
@@ -326,24 +342,29 @@ def Upload_PDF():
             
     return redirect(url_for("_profile_"))
 
-
-#@app.route("/Upload_Image",methods = ['GET','POST'])
-#def Upload_Image():
-#    if request.method == 'POST':
-        
-#        uploaded_file = request.files['image']
-#        path = 'static/Users_Data'+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png'
-#        uploaded_file.save(path)
-        
-        
-#        return render_template('profile.html',state = ["Image Uploaded Successfully","",""], result = session['user'])
+@app.route("/live")
+def live():
+    if 'user' in session:
+        if session['user'][6] == 'students':
+            print('students')
+        elif session['user'][6] == 'teachers': 
+            print('teacher')
+        else :
+            print('admin')
+        return render_template('index.html', result = session['user'])
+    else :
+        return redirect(url_for("_home_"))
     
-#    return render_template('profile.html',state = ["","",""], result = session['user'])
-
+@app.route("/teacher")
+def teacher():
+    if 'user' in session:
+        return render_template('teacher.html', result = session['user'])
+    else :
+        return redirect(url_for("_home_"))
 
 if __name__ == '__main__':
     emailPass = input('Enter password for Medad email ')
-    My_DB = DB('users.db')
+    DB = dataBase('users.db')
     emailer = sender(emailPass)
     app.secret_key = 'Medad_WS@MishkaKids-2023_'
     port = sys.argv[1]
