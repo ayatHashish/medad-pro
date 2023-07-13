@@ -4939,3 +4939,21 @@ header {
             color: black; }
         .live-page .profile-lg-card .card .live-area .inner-area .h-black {
           color: white !important; }
+
+.profile-card .card {
+  height: 675px; }
+  .profile-card .card .live-card .details h5 {
+    text-align: center !important; }
+  .profile-card .card .live-card .details p,
+  .profile-card .card .live-card .details .pdf {
+    text-align: start !important;
+    padding: 0 2rem;
+    color: black !important; }
+    .profile-card .card .live-card .details p span,
+    .profile-card .card .live-card .details p a,
+    .profile-card .card .live-card .details .pdf span,
+    .profile-card .card .live-card .details .pdf a {
+      color: #878483;
+      margin: 0 10px; }
+  .profile-card .card .live-card .details .file-upload {
+    padding: 0; }
