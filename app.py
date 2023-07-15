@@ -4,7 +4,6 @@ from functions.mail_sender import sender
 import sys
 import os
 import random
-#from PIL import Image
 
 path = os.path.dirname(__file__)
 
@@ -28,7 +27,6 @@ def _home_():
                            
 @app.route("/_services_")
 def _services_():
-    #return render_template('services.html')
     if 'user' in session :
         result = session['user']
     else :
@@ -39,7 +37,11 @@ def _services_():
 def _profile_():
     if ('username' in session) :
         print(session['user'])
-        return render_template('profile.html',state = ["","",""], result = session['user'])
+        if session['user'][6] == 'students':
+            return render_template('profile.html',state = ["","",""], result = session['user'])
+        elif session['user'][6] =='teachers':
+            return render_template('teacher.html',state = ["","",""], result = session['user'])
+
     else :
         return render_template('sign-in.html',state = "")
                            
@@ -160,7 +162,7 @@ def signup():
         name = request.form['username']
         password = request.form['password']
         email = request.form['email']
-        type_ = 'students'
+        type_ = request.form['type']
         #type_ = 'teachers'
         print(request.form)
         if 'checkbox' not in request.form :
