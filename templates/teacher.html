@@ -233,8 +233,9 @@
                                 <div class="banner">
                                     <div class="img-area">
                                         <div class="inner-area">
-                                            <img name=image id='per_image' src={{'./static/Users_Data/'+(result[0]) |
-                                                string+'/Pictures/Personal_Pic.png' }} alt="Personal Picture">
+                                            <img name=image id='per_image' src={{'./static/Users_Data/'+(result[6]) |
+                                            string+'/'+(result[0]) |
+                                            string+'/Pictures/Personal_Pic.png' }} alt="Personal Picture">
                                         </div>
                                     </div>
                                 </div>
@@ -242,11 +243,11 @@
                                    
                                         <div class="pt-3">
                                             <div class="details text-start">
-                                                <h5 class="name fw-bold text-center">Shrouq Khaled</h5>
-                                                <p>Name: <span>Sara Mohammed</span></p>
-                                                <p>Mail:<a>sara@gmail.com</a></p>
-                                                <p>Phone: <a href="tel:0123456789">0123456789</a></p>
-                                                <p>Subject: <span>English</span></p>
+                                                <h5 class="name fw-bold text-center">{{result[2]}}</h5>
+                                                <p>Name: <span>{{result[2]}}</span></p>
+                                                <p>Mail:<a>{{result[1]}}</a></p>
+                                                <p>Phone: <a>{{result[4]}}</a></p>
+                                                <p>Subject: <span>{{result[7]}}</span></p>
                                             </div>
                                         </div>
                                    
@@ -281,7 +282,7 @@
                                             <div class="px-3">
                                                 <h3>Your avatar</h3>
                                                 <p class="p-hint">PNG or JPG no bigger than 800px wide and tall</p>
-                                                <!-- <p id="password-text">  </p> -->
+                                                <!-- <p id="password-text"> {{state[0]}} </p> -->
                                             </div>
                                         </div>
                                     </div>
@@ -328,7 +329,7 @@
 
                                             </div>
                                             <div class="text-center text-lg-start mt-4 pt-2">
-                                                <p id="password-text"> m__ </p>
+                                                <p id="password-text"> {{state[0]}} </p>
                                                 <button type="submit" class="btn-action"
                                                     onclick="submitForm(event,'/update_profile','UpdateForm')">Update
                                                     Profile</button>

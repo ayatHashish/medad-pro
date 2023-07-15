@@ -144,12 +144,20 @@ def login():
             
             session['username'] = user[2]
             session['user'] = user
-            return render_template('profile.html',state = ["","",""], result = session['user'])
+            # return render_template('profile.html',state = ["","",""], result = session['user'])
+            if session['user'][6] == 'students':
+                return render_template('profile.html',state = ["","",""], result = session['user'])
+            elif session['user'][6] =='teachers':
+                return render_template('teacher.html',state = ["","",""], result = session['user'])
         
         return render_template('sign-in.html', state = 'The password is not correct')
     
     if 'user' in session :
-        return render_template('profile.html',state = "", result = session['user'])
+        # return render_template('profile.html',state = "", result = session['user'])
+        if session['user'][6] == 'students':
+            return render_template('profile.html',state = "", result = session['user'])
+        elif session['user'][6] =='teachers':
+            return render_template('teacher.html',state = "", result = session['user'])
     else :
         return render_template('sign-in.html', state = "")
 
@@ -204,7 +212,11 @@ def signup():
         
         
     if 'user' in session :
-        return render_template('profile.html', state = "", result = session['user'])
+        # return render_template('profile.html', state = "", result = session['user'])
+        if session['user'][6] == 'students':
+            return render_template('profile.html',state = "", result = session['user'])
+        elif session['user'][6] =='teachers':
+            return render_template('teacher.html',state = "", result = session['user'])
     else :
         return render_template('sign-up.html', state = "")
     
@@ -296,7 +308,11 @@ def Update_Profile():
                 
                 st = True
             else :
-                return render_template('profile.html',state = ["The email is invalide","",""], result = session['user'])
+                # return render_template('profile.html',state = ["The email is invalide","",""], result = session['user'])
+                if session['user'][6] == 'students':
+                    return render_template('profile.html',state = ["The email is invalide","",""], result = session['user'])
+                elif session['user'][6] =='teachers':
+                    return render_template('teacher.html',state = ["The email is invalide","",""], result = session['user'])
         
         
 
@@ -311,9 +327,18 @@ def Update_Profile():
         session['user'] = user
         
         if st :
-            return render_template('profile.html',state = ["Your profile updated successfully and we send validation code to you email","",""], result = session['user'])
+            # return render_template('profile.html',state = ["Your profile updated successfully and we send validation code to you email","",""], result = session['user'])
+            if session['user'][6] == 'students':
+                return render_template('profile.html',state = ["Your profile updated successfully and we send validation code to you email","",""], result = session['user'])
+            elif session['user'][6] =='teachers':
+                return render_template('teacher.html',state = ["Your profile updated successfully and we send validation code to you email","",""], result = session['user'])
         else:
-            return render_template('profile.html',state = ["Your profile updated successfully","",""], result = session['user'])
+            # return render_template('profile.html',state = ["Your profile updated successfully","",""], result = session['user'])
+            if session['user'][6] == 'students':
+                return render_template('profile.html',state = ["Your profile updated successfully","",""], result = session['user'])
+            elif session['user'][6] =='teachers':
+                return render_template('teacher.html',state = ["Your profile updated successfully","",""], result = session['user'])
+        
         
     return redirect(url_for("_profile_"))
 
@@ -336,7 +361,13 @@ def Upload_PDF():
         message_ = {'To':emailer.Admin , 'title':'request lesson', 'message':text, 'attachment':path}
         emailer.send(message_)
         DB.addLesson({'lessonLOC':path,'studentID':session['user'][0],'teacherID':0,'date':request.form['date'],'state':'pinding'})
-        return render_template('profile.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
+        # return render_template('profile.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
+        if session['user'][-1] == 'students':
+            print(session['user'])
+            return render_template('profile.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
+        elif session['user'][-1] =='teachers':
+            print(session['user'])
+            return render_template('teacher.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
         
     
         #except :
