@@ -250,6 +250,19 @@
                                                 <p>Subject: <span>{{result[7]}}</span></p>
                                             </div>
                                         </div>
+                                        
+                                        <div>
+                                            <h3 style="text-align: center; padding-top: 40px;">Courses Requistes</h3>
+                                            <ul style="padding-left: 10px;">
+                                                {% for item in courses %}
+                                                    
+                                                    <br>
+                                                    <input type="checkbox" name="courseSelected" id="courseSelected">
+                                                    <label>{{item}}</label>
+                                                    <br>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
                                    
                                 </div>
                                

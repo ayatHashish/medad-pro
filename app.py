@@ -38,9 +38,9 @@ def _profile_():
     if ('username' in session) :
         print(session['user'])
         if session['user'][6] == 'students':
-            return render_template('profile.html',state = ["","",""], result = session['user'])
+            return render_template('profile.html',state = ["","",""], result = session['user'], courses=['arabic','english'])
         elif session['user'][6] =='teachers':
-            return render_template('teacher.html',state = ["","",""], result = session['user'])
+            return render_template('teacher.html',state = ["","",""], result = session['user'], courses=['arabic','english'])
 
     else :
         return render_template('sign-in.html',state = "")
@@ -277,7 +277,7 @@ def contactus():
 def Update_Profile():
     if request.method == 'POST':
         st = False
-        code = None
+        code = session['user'][5]
         
         
         email = request.form['email']
@@ -285,6 +285,12 @@ def Update_Profile():
         phone = request.form['whatsapp']
         image = request.files['image']
         type_ = session['user'][6]
+        if session['user'][6] == 'teachers':
+            courseType = request.form['course']
+            if courseType == '':
+               courseType = session['user'][7]
+
+
         print(type_)
         if email == '':
             email = session['user'][1]
@@ -294,6 +300,7 @@ def Update_Profile():
             
         if phone == '':
             phone = session['user'][4]
+        
             
         if not (image.filename == ''):
             path = 'static/Users_Data'+'/'+type_+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png'
@@ -315,9 +322,11 @@ def Update_Profile():
                     return render_template('teacher.html',state = ["The email is invalide","",""], result = session['user'])
         
         
-
-        new_data = {'email':email,'name':name,'phone':phone,'code':code}
-        DB.__edit__(type_,session['user'][1], new_data)
+        if session['user'][6]=='students':
+            new_data = {'email':email,'name':name,'phone':phone,'code':code}
+        elif session['user'][6]=='teachers':
+            new_data = {'email':email,'name':name,'phone':phone,'code':code, 'courseType':courseType}
+        DB.__edit__(type_,session['user'], new_data)
         
         
         
@@ -350,7 +359,7 @@ def Update_Profile():
 def Upload_PDF():
     if request.method == 'POST':
         #try  :
-        type_ = session['user'][-1]
+        type_ = session['user'][6]
         uploaded_file = request.files['file']
         print(uploaded_file.filename)
         path = 'static/Users_Data'+'/'+type_+'/'+str(session['user'][0])+'/Lectures/'+uploaded_file.filename
@@ -362,10 +371,10 @@ def Upload_PDF():
         emailer.send(message_)
         DB.addLesson({'lessonLOC':path,'studentID':session['user'][0],'teacherID':0,'date':request.form['date'],'state':'pinding'})
         # return render_template('profile.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
-        if session['user'][-1] == 'students':
+        if session['user'][6] == 'students':
             print(session['user'])
             return render_template('profile.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
-        elif session['user'][-1] =='teachers':
+        elif session['user'][6] =='teachers':
             print(session['user'])
             return render_template('teacher.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
         

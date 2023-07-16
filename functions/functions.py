@@ -15,11 +15,11 @@ class dataBase:
                             (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, phone TEXT, validation TEXT, Type_ TEXT DEFAULT students)''')
             if ('teachers',) not in tables :
                 conn.execute('''CREATE TABLE lessons
-                            (id INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, teacherID INTEGER, lessonLOC TEXT, state TEXT, date TEXT, URL TEXT)''')
+                            (id INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, teacherID INTEGER, lessonLOC TEXT, state TEXT, date TEXT, URL TEXT coursType TEXT)''')
                 
             if ('lessons',) not in tables :
                 conn.execute('''CREATE TABLE teachers
-                            (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, phone TEXT, validation TEXT, Type_ TEXT DEFAULT teachers)''')
+                            (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, phone TEXT, validation TEXT, Type_ TEXT DEFAULT teachers coursType TEXT)''')
 
            
                 
@@ -78,10 +78,12 @@ class dataBase:
             return user
         return None
     
-    def __edit__(self,table,user_email,new_data):
+    def __edit__(self,table,user,new_data):
         with sqlite3.connect(self.name) as conn:
             cursor = conn.cursor()
-            if new_data['code'] :
+            print(user)
+            print(new_data)
+            if user[6] == 'students' :
                 update_query = f'''
                     UPDATE {table}
                     SET email = ?,
@@ -95,22 +97,29 @@ class dataBase:
                 phone = new_data['phone']
                 code = new_data['code'] 
                 
-                cursor.execute(update_query, (email, name, phone, code, user_email))
+                cursor.execute(update_query, (email, name, phone, code, user[1]))
                 conn.commit()
+            
                 
-            else :
+            elif user[6] == 'teachers' :
                 update_query = f'''
                     UPDATE {table}
                     SET email = ?,
                         username = ?,
-                        phone= ?
+                        phone= ?,
+                        validation=?,
+                        coursType=?
                     WHERE email= ?
                 '''
                 email = new_data['email']
                 name = new_data['name']
                 phone = new_data['phone']
+                code = new_data['code']
+                courseType = new_data['courseType']
+
+
                 
-                cursor.execute(update_query, (email, name, phone, user_email))
+                cursor.execute(update_query, (email, name, phone,code,courseType , user[1]))
                 conn.commit()
             
     def addLesson(self,data):
