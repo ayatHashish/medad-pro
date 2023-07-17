@@ -24,21 +24,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <link rel="stylesheet" href="static/css/inner.en.css" />
     <title>Contact US</title>
-    <script>
-        function getServerUrl() {
-            var serverUrl = window.location.protocol + "//" + window.location.host;
-            return serverUrl;
-        }
-
-        function submitForm(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
-            var form = document.getElementById("ContactForm");
-            var url = getServerUrl() + "/contactusRequist";
-            form.action = url;
-            form.method = "post";
-            form.submit();
-        }
-    </script>
+    
 </head>
 
 <body class="en">
@@ -258,7 +244,7 @@
                                 </div>
                                 <div class="text-center text-lg-start mt-4 pt-2">
                                     <p id="password-text"> {{state}} </p>
-                                    <button type="submit" class="btn-contact" onclick="submitForm(event)">
+                                    <button type="submit" class="btn-contact" onclick="submitForm(event,'/contactusRequist','ContactForm')">
                                         Send Message
                                     </button>
                                 </div>

@@ -146,7 +146,7 @@ def signup():
         
         
         
-    if session['user']==None :
+    if session['user']!=None :
         if session['user'][6] == 'students':
             return render_template('profile.html',state = "", result = session['user'])
         elif session['user'][6] =='teachers':

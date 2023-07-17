@@ -291,10 +291,7 @@ $(document).ready(function () {
 });
 
 // image
-var loadFile = function (event) {
-    var image = document.getElementById("output");
-    image.src = URL.createObjectURL(event.target.files[0]);
-};
+
 
 // loadPdf
 
@@ -305,3 +302,133 @@ function scrollToSection(targetId) {
         section.scrollIntoView({ behavior: 'smooth' });
     }
 }
+
+
+
+function getServerUrl() {
+    var serverUrl = window.location.protocol + "//" + window.location.host;
+    return serverUrl;
+}
+
+function submitForm(event, loc, form) {
+    event.preventDefault(); // Prevent the default form submission behavior
+    var form = document.getElementById(form);
+    var url = getServerUrl() + loc;
+    form.action = url;
+    form.method = 'post';
+    form.submit();
+}
+
+function checkTS(check,butt){
+    var checkbox = document.getElementById(check);
+    var button = document.getElementById(butt);
+
+    checkbox.addEventListener('change', function() {
+    button.disabled = !checkbox.checked;
+    });
+}
+
+
+function uploading() {
+    // console.log('test')
+    let file = document.getElementById('file')
+    let name = document.getElementById('name')
+    let fileInput = file.files;
+
+
+    let datePicker = document.getElementById('datePicker')
+    let datePickerL = document.getElementById('datePickerL')
+    let btnUpload = document.getElementById('inputfile')
+    name.textContent = 'File Name: ' + fileInput[0].name;
+    name.style.display = 'block';
+    // console.log('pdf' in fileInput[0].name);
+    if (fileInput.length > 0) {
+        datePicker.style.display = "block";
+        datePickerL.style.display = "block";
+        btnUpload.style.display = "none";
+    }
+    else {
+        datePicker.style.display = "none";
+        datePickerL.style.display = "none";
+        btnUpload.style.display = "block";
+    }
+}
+
+
+
+function updateSchedule() {
+    let schedule = document.getElementById('datePicker');
+    let date = document.getElementById('dateL');
+    date.textContent = 'Start Time: ' + schedule.value;
+    date.style.display = 'block';
+    let datePicker = document.getElementById('datePicker')
+    let datePickerL = document.getElementById('datePickerL')
+    let send = document.getElementById('button')
+
+    datePicker.style.display = "none";
+    datePickerL.style.display = "none";
+    send.style.display = "block";
+
+
+};
+
+
+function checkFileUpload(file, pic, name) {
+
+    var fileInput = document.createElement('input');
+    fileInput.type = 'file';
+
+    fileInput.addEventListener('change', function (event) {
+        var file = event.target.files[0];
+        console.log('Selected file:', file);
+    });
+
+    fileInput.click();
+    var fileInput = document.getElementById('input');
+    var uploadedFile = fileInput.files[0]; // Get the first file from the file input
+    document.getElementById(file).textContent = "send";
+    document.getElementById(pic).style.display = 'block';
+    document.getElementById(name).textContent = uploadedFile.name;
+    document.getElementById(name).style.display = 'block';
+    if (uploadedFile) {
+        // File has been uploaded, show the other button or perform your desired action
+        console.log("onchange");
+
+        document.getElementById(file).textContent = "send";
+        document.getElementById(pic).style.display = 'block';
+        document.getElementById(name).textContent = uploadedFile.name;
+        document.getElementById(name).style.display = 'block';
+
+    }
+
+}
+
+
+function uploading() {
+    // console.log('test')
+    let file = document.getElementById('file')
+    let name = document.getElementById('name')
+    let fileInput = file.files;
+
+    console.log('fff   ', file);
+
+    let send = document.getElementById('button')
+    let btnUpload = document.getElementById('inputfile')
+    name.textContent = fileInput[0].name;
+    name.style.display = 'block';
+
+    if (fileInput.length > 0) {
+        send.style.display = "block";
+        btnUpload.style.display = "none";
+    }
+    else {
+        send.style.display = "none";
+        btnUpload.style.display = "block";
+    }
+}
+
+var loadFile = function (event,elementId) {
+    var image = document.getElementById(elementId);
+    image.src = URL.createObjectURL(event.target.files[0]);
+};
+

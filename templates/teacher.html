@@ -27,69 +27,6 @@
     <title>Home</title>
 
 
-    <script>
-        function getServerUrl() {
-            var serverUrl = window.location.protocol + "//" + window.location.host;
-            return serverUrl;
-        }
-
-        function submitForm(event, loc, form) {
-            event.preventDefault(); // Prevent the default form submission behavior
-            var form = document.getElementById(form);
-            var url = getServerUrl() + loc;
-            form.action = url;
-            form.method = 'post';
-            form.submit();
-        }
-
-
-        function uploading() {
-            // console.log('test')
-            let file = document.getElementById('file')
-            let name = document.getElementById('name')
-            let fileInput = file.files;
-
-
-            let datePicker = document.getElementById('datePicker')
-            let datePickerL = document.getElementById('datePickerL')
-            let btnUpload = document.getElementById('inputfile')
-            name.textContent = 'File Name: ' + fileInput[0].name;
-            name.style.display = 'block';
-            // console.log('pdf' in fileInput[0].name);
-            if (fileInput.length > 0) {
-                datePicker.style.display = "block";
-                datePickerL.style.display = "block";
-                btnUpload.style.display = "none";
-            }
-            else {
-                datePicker.style.display = "none";
-                datePickerL.style.display = "none";
-                btnUpload.style.display = "block";
-            }
-        }
-
-        var loadFile = function (event) {
-            var image = document.getElementById("photo");
-            image.src = URL.createObjectURL(event.target.file[0]);
-        };
-
-
-        function updateSchedule() {
-            let schedule = document.getElementById('datePicker');
-            let date = document.getElementById('dateL');
-            date.textContent = 'Start Time: ' + schedule.value;
-            date.style.display = 'block';
-            let datePicker = document.getElementById('datePicker')
-            let datePickerL = document.getElementById('datePickerL')
-            let send = document.getElementById('button')
-
-            datePicker.style.display = "none";
-            datePickerL.style.display = "none";
-            send.style.display = "block";
-
-
-        };
-    </script>
 
 
 
@@ -284,9 +221,8 @@
                                                     </label>
                                                     <input id="photo" name='image' type="file"
                                                         accept="image/png,image/gif,image/jpeg"
-                                                        onchange="loadFile(event)" />
-                                                    <img src="../static/images/avatar.png"
-                                                        id="output" />
+                                                        onchange="loadFile(event,'outputTeacher')" />
+                                                    <img src="../static/images/avatar.png" id="outputTeacher" />
                                                 </div>
                                             </div>
                                             <div class="px-3">

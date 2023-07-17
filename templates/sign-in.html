@@ -24,21 +24,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <link rel="stylesheet" href="static/css/inner.en.css" />
     <title>Sign-in</title>
-    <script>
-        function getServerUrl() {
-            var serverUrl = window.location.protocol + "//" + window.location.host;
-            return serverUrl;
-        }
-
-        function submitForm(event, loc, form) {
-            event.preventDefault(); // Prevent the default form submission behavior
-            var form = document.getElementById(form);
-            var url = getServerUrl() + loc;
-            form.action = url;
-            form.method = "post";
-            form.submit();
-        }
-    </script>
+    
 </head>
 
 <body class="en">
