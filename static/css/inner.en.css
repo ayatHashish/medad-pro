@@ -4297,7 +4297,7 @@ header {
   color: #84c356; }
 
 .enroll {
-  width: 35% !important; }
+  width: 22% !important; }
 
 @media screen and (max-width: 769px) {
   .main-button,
@@ -4886,6 +4886,8 @@ header {
         font-weight: 700;
         font-size: 20px;
         margin-bottom: 1.5rem; }
+      .services-sec2 .row .pragraph-unit button {
+        margin: 20px 0; }
 
 @media screen and (max-width: 991px) {
   .services-sec2 .imag {
