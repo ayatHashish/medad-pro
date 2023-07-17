@@ -54,7 +54,7 @@
         <div class="container">
             <div class="header-section">
                 <nav class="nav navbar navbar-expand-lg navbar-light justify-content-between">
-                    <a class="navbar-brand"> <img src="static/images/logo1.png" onclick="location.href = getServerUrl() + '/_home_';" alt=""></a>
+                    <a class="navbar-brand"> <img src="static/images/logo1.png" onclick="location.href = getServerUrl() + '/home';" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -65,26 +65,23 @@
                             <li class="nav-item nav-link">
                                 <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#"
                                     role="tab" aria-controls="nav-home" aria-selected="true"
-                                    onclick="location.href = getServerUrl() + '/_home_';">Home</a>
+                                    onclick="location.href = getServerUrl() + '/home';">Home</a>
                             </li>
                             <li class="nav-item nav-link">
                                 <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#"
                                     role="tab" aria-controls="nav-home" aria-selected="true"
-                                    onclick="location.href = getServerUrl() + '/_services_';">Services</a>
+                                    onclick="location.href = getServerUrl() + '/services';">Services</a>
                             </li>
                             {% if result %}
                             <li class="nav-item nav-link">
                                 <a class="nav-link" href="#"
-                                    onclick="location.href = getServerUrl() + '/_profile_';">Profile</a>
+                                    onclick="location.href = getServerUrl() + '/profile';">Profile</a>
                             </li>
                             {% endif %}
-                            <!-- <li class="nav-item nav-link  ">
-                                <a class="nav-link" href="#"
-                                    onclick="location.href = getServerUrl() + '/_teacher_';">Teacher</a>
-                            </li> -->
+                            
                             <li class="nav-item nav-link">
                                 <a class="nav-link" href="#"
-                                    onclick="location.href = getServerUrl() + '/_contactus_';">Contact Us</a>
+                                    onclick="location.href = getServerUrl() + '/contactus';">Contact Us</a>
                             </li>
 
                         </ul>
@@ -92,7 +89,7 @@
                             {% if result %}
 
                             <li class="nav-item nav-link ">
-                                <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/_profile_';" > <i
+                                <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/profile';" > <i
                                         class="fa-regular fa-user mx-2"></i>{{result[2]}}</a>
                             </li>
 
@@ -102,11 +99,11 @@
                             </li>
                             {% else %}
                             <li class="nav-item nav-link ">
-                                <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/_login_';"> <i
+                                <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/login';"> <i
                                         class="fa-regular fa-user mx-2"></i>Login</a>
                             </li>
                             <li class="nav-item nav-link ">
-                                <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/_signup_';"><i
+                                <a class="scou-btn" href="#" onclick="location.href = getServerUrl() + '/signup';"><i
                                         class="fa-regular fa-user "></i>
                                     <!-- <i class="fa-regular fa-user-plus mx-2"></i>  -->
                                     Sign Up
@@ -231,12 +228,12 @@
                             <div class="text-center text-lg-start mt-4 pt-2">
                                 <!--<button type="submit" class="main-button">Sign IN</button>-->
                                 <button type="submit" class="main-button"
-                                    onclick="submitForm(event,'/login','loginForm')">
+                                    onclick="submitForm(event,'/loginRequist','loginForm')">
                                     Sign IN
                                 </button>
                                 <p class="small fw-bold pt-1 text-center my-2">
                                     New User ?
-                                    <a href="#" onclick="location.href = getServerUrl() + '/_signup_';" class="link-sign">Create an Account</a>
+                                    <a href="#" onclick="location.href = getServerUrl() + '/signup';" class="link-sign">Create an Account</a>
                                 </p>
                             </div>
                             <div class="text-center mt-4">

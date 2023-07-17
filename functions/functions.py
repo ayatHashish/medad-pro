@@ -1,6 +1,7 @@
 import hashlib
 import sqlite3
 import os 
+import shutil
 
 class dataBase:
     def __init__(self,name):
@@ -62,6 +63,8 @@ class dataBase:
             
             os.makedirs('static/Users_Data'+'/'+table+'/'+str(user[0])+'/Pictures')
             os.makedirs('static/Users_Data'+'/'+table+'/'+str(user[0])+'/Lectures')
+            shutil.copyfile('static/images/avatar.png','static/Users_Data'+'/'+table+'/'+str(user[0])+'/Pictures/Personal_Pic.png')
+
             
             
             
