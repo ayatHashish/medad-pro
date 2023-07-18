@@ -74,6 +74,7 @@ section {
     border-bottom: 1px solid blue;
     border-left: 1px solid #84c356;
     border-right: 1px solid blue;
+  
   }
 }
 .owl-carousel {
@@ -81,32 +82,30 @@ section {
     display: flex;
     justify-content: center;
     margin-top: 55px;
-    button{
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color:#D9D9D9;
-    ;
-    margin: 0 5px;
-    cursor: pointer;
-    &.active {
-    background-color: #0F75C0;
+    button {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #d9d9d9;
+      margin: 0 5px;
+      cursor: pointer;
+      &.active {
+        background-color: #0f75c0;
+      }
+    }
   }
-  }
-  }
-  }
-  
-  .owl-carousel .item img {
-    width: 100%;
-    height: auto;
-  }
+}
+
+.owl-carousel .item img {
+  width: 100%;
+  height: auto;
+}
 footer {
   padding: 1.2rem 0;
   align-items: end;
   color: $brand-gray;
 }
-
 
 .service-item {
   .image {

@@ -4051,11 +4051,11 @@ section {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #D9D9D9;
+    background-color: #d9d9d9;
     margin: 0 5px;
     cursor: pointer; }
     .owl-carousel .owl-dots button.active {
-      background-color: #0F75C0; }
+      background-color: #0f75c0; }
 
 .owl-carousel .item img {
   width: 100%;
@@ -4094,7 +4094,9 @@ footer {
     font-size: 0.7rem;
     font-weight: 500; } }
 header {
-  background-color: white; }
+  background-color: white;
+  border-bottom: 1px solid #f4f4f4;
+  box-shadow: 0px 4px 4px rgba(68, 68, 68, 0.2); }
 
 .nav-item {
   margin: 0 10px; }
@@ -4298,6 +4300,10 @@ header {
 
 .enroll {
   width: 22% !important; }
+
+.main-btn {
+  background-color: #84c356;
+  opacity: 0.6 !important; }
 
 @media screen and (max-width: 769px) {
   .main-button,

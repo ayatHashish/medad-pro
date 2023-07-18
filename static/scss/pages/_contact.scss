@@ -1,12 +1,12 @@
 .contact-page {
+    padding: 5px 0;
     .bannar {
-        // background-image: url("{{ url('static', filename='images/contact/contactUs.png') }}");
         background-image: url("../images/contact/contactUs.png");
-
         background-size: 100% 100%;
         background-repeat: no-repeat;
         height: 50vh;
         position: relative;
+        box-shadow: 0px 1px 0px rgba(68, 68, 68, 0.2);
         h2 {
             position: absolute;
             top: 9rem;
@@ -56,10 +56,16 @@
                         padding: 2rem 0;
                         display: flex;
                         flex-direction: column;
-                        i {
-                            margin-bottom: 5px;
-                            color: $brand-primary;
-                            font-size: 25px;
+
+                        a {
+
+                            display: flex;
+                            flex-direction: column;
+                            i {
+                                margin-bottom: 5px;
+                                color: $brand-primary;
+                                font-size: 25px;
+                            }
                         }
 
                         a {
@@ -108,27 +114,23 @@
             left: 6rem !important;
         }
     }
-    .content-stay-connected{
-
-        .card{
+    .content-stay-connected {
+        .card {
             width: 100% !important;
-            margin-bottom:15px !important;
+            margin-bottom: 15px !important;
         }
     }
-  
 }
 
 @media screen and (max-width: 767px) {
-    .content-stay-connected{
+    .content-stay-connected {
         flex-direction: column;
 
-        .card{
+        .card {
             width: 100% !important;
-            margin-bottom:15px !important;
+            margin-bottom: 15px !important;
         }
     }
-
-  
 }
 
 @media screen and (max-width: 580px) {

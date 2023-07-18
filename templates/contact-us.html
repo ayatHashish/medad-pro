@@ -24,7 +24,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <link rel="stylesheet" href="static/css/inner.en.css" />
     <title>Contact US</title>
-    
+
 </head>
 
 <body class="en">
@@ -41,7 +41,8 @@
         <div class="container">
             <div class="header-section">
                 <nav class="nav navbar navbar-expand-lg navbar-light justify-content-between">
-                    <a class="navbar-brand"> <img src="static/images/logo1.png" onclick="location.href = getServerUrl() + '/home';" alt=""></a>
+                    <a class="navbar-brand"> <img src="static/images/logo1.png"
+                            onclick="location.href = getServerUrl() + '/home';" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -50,13 +51,13 @@
                     <div class=" navbar-collapse justify-content-around" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto topnav">
                             <li class="nav-item nav-link">
-                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#"
-                                    role="tab" aria-controls="nav-home" aria-selected="true"
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#" role="tab"
+                                    aria-controls="nav-home" aria-selected="true"
                                     onclick="location.href = getServerUrl() + '/home';">Home</a>
                             </li>
                             <li class="nav-item nav-link">
-                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#"
-                                    role="tab" aria-controls="nav-home" aria-selected="true"
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#" role="tab"
+                                    aria-controls="nav-home" aria-selected="true"
                                     onclick="location.href = getServerUrl() + '/service';">Services</a>
                             </li>
                             {% if result %}
@@ -75,7 +76,7 @@
                         <ul class="navbar-nav ml-auto topnav">
                             {% if result %}
                             <li class="nav-item nav-link ">
-                                <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/profile';" > <i
+                                <a class="scou-btn " href="#" onclick="location.href = getServerUrl() + '/profile';"> <i
                                         class="fa-regular fa-user mx-2"></i>{{result[2]}}</a>
                             </li>
                             <li class="nav-item nav-link ">
@@ -156,7 +157,7 @@
             </div>
             <div class="paragraph">
                 <p class="text-center">
-                    welcome to Medadd d! We're thrilled that you're interested in learning
+                    welcome to Medadd! We're thrilled that you're interested in learning
                     more about our medical courses. You can contact us at (Medadd) via
                     email, phone or contact form available on our website. We will be
                     happy to answer all your questions and receive your feedback and
@@ -175,13 +176,16 @@
                             <div class="card-content">
                                 <h3>Contact info</h3>
                                 <div class="content-social">
-                                    <div class="content">
+                                    <!-- <div class="content">
                                         <i class="fa-brands fa-square-whatsapp"></i>
                                         <a href="tel:+02 0100258963"> +02 0100258963</a>
-                                    </div>
+                                    </div> -->
                                     <div class="content">
-                                        <i class="fa-brands fa-square-whatsapp"></i>
-                                        <a href="tel:+699 09999999 "> +699 09999999 </a>
+                                        <a>
+                                            <i class="fa-brands fa-square-whatsapp"></i>
+                                            <a href="tel:+966507869767 "> +966507869767 </a>
+                                        </a>
+
                                     </div>
                                 </div>
                             </div>
@@ -191,16 +195,24 @@
                                 <h3>Social Media</h3>
                                 <div class="content-social d-flex">
                                     <div class="content">
-                                        <i class="fa-brands fa-square-facebook"></i>
-                                        <span>facebook</span>
+                                        <a
+                                            href="https://www.facebook.com/profile.php?id=100093479674520&mibextid=ZbWKwL">
+                                            <i class="fa-brands fa-square-facebook"></i>
+                                            <span>facebook</span>
+                                        </a>
                                     </div>
                                     <div class="content">
-                                        <i class="fa-brands fa-square-instagram"></i>
-                                        <span>Instagram</span>
+                                        <a
+                                            href="https://www.instagram.com/invites/contact/?i=3q96d3hlxn9o&utm_content=rohafzj">
+                                            <i class="fa-brands fa-square-instagram"></i>
+                                            <span>Instagram</span>
+                                        </a>
                                     </div>
                                     <div class="content">
-                                        <i class="fa-brands fa-square-twitter"></i>
-                                        <span>twitter</span>
+                                        <a href="https://twitter.com/TRANSMED17?t=7CzylvATbHRaXB02G0G6Bg&s=08">
+                                            <i class="fa-brands fa-square-twitter"></i>
+                                            <span>twitter</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -244,7 +256,8 @@
                                 </div>
                                 <div class="text-center text-lg-start mt-4 pt-2">
                                     <p id="password-text"> {{state}} </p>
-                                    <button type="submit" class="btn-contact" onclick="submitForm(event,'/contactusRequist','ContactForm')">
+                                    <button type="submit" class="btn-contact"
+                                        onclick="submitForm(event,'/contactusRequist','ContactForm')">
                                         Send Message
                                     </button>
                                 </div>
@@ -256,7 +269,8 @@
         </div>
     </main>
     <footer class="d-flex justify-content-center align-content-end">
-        <a class="navbar-brand" href="#"> <img src="static/images/logo1.png" onclick="location.href = getServerUrl() + '/home';" alt=""></a>
+        <a class="navbar-brand" href="#"> <img src="static/images/logo1.png"
+                onclick="location.href = getServerUrl() + '/home';" alt=""></a>
         <a class="text-reset rights">All rights reserved for Medadd </a>
 
     </footer>
