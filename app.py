@@ -9,14 +9,16 @@ app = Flask(__name__)
 
 @app.before_request
 def setDefaultValue():
-    print(session)
+    
     if 'user' not in session:
         session['user'] = None
+    
 
 
 #*****************redirct url*****************
 @app.route("/",methods = ['GET','POST'])
 def main():
+    print(session['user'])
     return render_template('home.html',result = session['user'])
 
 @app.route("/home",methods = ['GET','POST'])
@@ -272,7 +274,7 @@ def Update_Profile():
                 return render_template('teacher.html',state = ["Your profile updated successfully","",""], result = session['user'])
         
         
-    return redirect(url_for("_profile_"))
+    return redirect("profile")
 
 
 
@@ -285,7 +287,7 @@ def Upload_PDF():
         uploaded_file = request.files['file']
         path = 'static/Users_Data'+'/'+type_+'/'+str(session['user'][0])+'/Lectures/'+uploaded_file.filename
         uploaded_file.save(path)
-        text = f" here is a request from {session['username']} \n\n here is the student's contact information \n\n {session['user'][1]} \n {session['user'][4]}"                 
+        text = f" here is a request from {session['user'][2]} \n\n here is the student's contact information \n\n {session['user'][1]} \n {session['user'][4]}"                 
         message_ = {'To':emailer.Admin , 'title':'request lesson', 'message':text, 'attachment':path}
         emailer.send(message_)
         DB.addLesson({'lessonLOC':path,'studentID':session['user'][0],'teacherID':0,'date':request.form['date'],'state':'pinding'})
@@ -297,7 +299,20 @@ def Upload_PDF():
     
 
             
-    return redirect(url_for("_profile_"))
+    return redirect("/profile")
+
+
+@app.route("/Admin")
+def admin():
+    if session['user']:
+        if session['user'][1] == emailer.Admin:
+
+            studentTable= DB.get_all_table_data('students')
+            teacherTable= DB.get_all_table_data('teachers')
+            lessonTable= DB.get_all_table_data('lessons')
+
+            return render_template("admin.html",data = [studentTable, teacherTable, lessonTable])
+    return redirect('/home')
 
 # @app.route("/live")
 # def live():
