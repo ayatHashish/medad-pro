@@ -9,14 +9,16 @@ app = Flask(__name__)
 
 @app.before_request
 def setDefaultValue():
-    print(session)
+    
     if 'user' not in session:
         session['user'] = None
+    
 
 
 #*****************redirct url*****************
 @app.route("/",methods = ['GET','POST'])
 def main():
+    print(session['user'])
     return render_template('home.html',result = session['user'])
 
 @app.route("/home",methods = ['GET','POST'])
