@@ -329,6 +329,7 @@ function checkTS(check,butt){
 }
 
 
+
 function uploading() {
     // console.log('test')
     let file = document.getElementById('file')
@@ -404,28 +405,6 @@ function checkFileUpload(file, pic, name) {
 }
 
 
-function uploading() {
-    // console.log('test')
-    let file = document.getElementById('file')
-    let name = document.getElementById('name')
-    let fileInput = file.files;
-
-    console.log('fff   ', file);
-
-    let send = document.getElementById('button')
-    let btnUpload = document.getElementById('inputfile')
-    name.textContent = fileInput[0].name;
-    name.style.display = 'block';
-
-    if (fileInput.length > 0) {
-        send.style.display = "block";
-        btnUpload.style.display = "none";
-    }
-    else {
-        send.style.display = "none";
-        btnUpload.style.display = "block";
-    }
-}
 
 var loadFile = function (event,elementId) {
     var image = document.getElementById(elementId);

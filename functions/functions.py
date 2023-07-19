@@ -19,8 +19,6 @@ class dataBase:
                             (id INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, teacherID INTEGER, lessonLOC TEXT, state TEXT, date TEXT, URL TEXT coursType TEXT)''')
                 
             if ('lessons',) not in tables :
-                # conn.execute('''CREATE TABLE teachers
-                #             (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, phone TEXT, validation TEXT, Type_ TEXT DEFAULT teachers coursType TEXT)''')
                 conn.execute('''CREATE TABLE teachers
                 (id INTEGER PRIMARY KEY AUTOINCREMENT, 
                 email TEXT, 
@@ -149,5 +147,30 @@ class dataBase:
             print(insert_query)
             cursor.execute(insert_query, data) 
             conn.commit()
+
+
+    import sqlite3
+
+    def get_all_table_data(self, table_name):
+        # Step 1: Connect to the SQLite database
+        with sqlite3.connect(self.name) as conn:
+
+            # Step 2: Create a cursor object to execute SQL queries
+            cursor = conn.cursor()
+
+            # Step 3: Execute a SELECT query to fetch all data from the table
+            cursor.execute(f"SELECT * FROM {table_name}")
+
+            # Step 4: Retrieve the data using the cursor
+            all_data = cursor.fetchall()
+
+            # Step 5: Close the cursor and the database connection
+            cursor.close()
+
+
+            return all_data
+
+
+
         
 
