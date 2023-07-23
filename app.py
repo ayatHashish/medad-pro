@@ -3,9 +3,18 @@ from functions.functions import dataBase
 from functions.mail_sender import sender
 import sys
 import random
+import requests
 
 #*****************set server*****************
 app = Flask(__name__)
+
+GOOGLE_CLIENT_ID = "361389956894-fikf8t93743htich35qalbib61kotq1q.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET = "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"
+GOOGLE_REDIRECT_URI = "http://www.medadd.eu.com/logwithgoogleserver"
+GOOGLE_AUTHORIZATION_URI = "https://accounts.google.com/o/oauth2/auth"
+GOOGLE_TOKEN_URI = "https://oauth2.googleapis.com/token"
+GOOGLE_USER_INFO_URI = 'https://www.googleapis.com/oauth2/v3/userinfo'
+
 
 @app.before_request
 def setDefaultValue():
@@ -128,8 +137,14 @@ def signup():
         if password == None:
             return render_template('sign-up.html', state = "Please enter valide password")
         
-        emailExist = DB.search(type_,email,by='email')
-        nameExist = DB.search(type_,name,by='username')
+        emailExist = DB.search('students',email,by='email')
+        if not emailExist :
+            emailExist = DB.search('teachers',email,by='email')
+
+        nameExist = DB.search('students',name,by='username')
+        if not nameExist :
+            nameExist = DB.search('teachers',name,by='username')
+
         if emailExist :
             return render_template('sign-up.html', state = "The email is exist please sign in if you have an account")
         elif nameExist :
@@ -313,6 +328,56 @@ def admin():
 
             return render_template("admin.html",data = [studentTable, teacherTable, lessonTable])
     return redirect('/home')
+
+
+# *******************signIN using google*******************
+@app.route('/auth/google')
+def google_auth():
+    params = {
+        'client_id': GOOGLE_CLIENT_ID,
+        'redirect_uri': GOOGLE_REDIRECT_URI,
+        'response_type': 'code',
+        'scope': 'email profile',
+    }
+    auth_url = f"{GOOGLE_AUTHORIZATION_URI}?{'&'.join(f'{k}={v}' for k, v in params.items())}"
+    return redirect(auth_url)
+
+@app.route('/logwithgoogleserver')
+def google_callback():
+    print('start callback func')
+    code = request.args.get('code')
+    data = {
+        'code': code,
+        'client_id': GOOGLE_CLIENT_ID,
+        'client_secret': GOOGLE_CLIENT_SECRET,
+        'redirect_uri': GOOGLE_REDIRECT_URI,
+        'grant_type': 'authorization_code',
+    }
+    response = requests.post(GOOGLE_TOKEN_URI, data=data)
+    access_token = response.json().get('access_token')
+
+    # Use the access_token to fetch user information
+    user_info_response = requests.get(f"{GOOGLE_USER_INFO_URI}?access_token={access_token}")
+    user_info = user_info_response.json()
+    print("User INFO")
+    print(user_info)
+
+    # Here, you can store user_info['email'] or other relevant information in your database
+    # and then proceed to authenticate the user in your system.
+
+    return "You are logged in with Google!"
+
+
+
+
+# @app.route("/logwithgoogleserver")
+# def googleLog():
+#     return render_template("logWithGoogle.html")
+
+
+
+
+
 
 # @app.route("/live")
 # def live():
