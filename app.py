@@ -141,14 +141,14 @@ def signup():
         if not emailExist :
             emailExist = DB.search('teachers',email,by='email')
 
-        nameExist = DB.search('students',name,by='username')
-        if not nameExist :
-            nameExist = DB.search('teachers',name,by='username')
+        # nameExist = DB.search('students',name,by='username')
+        # if not nameExist :
+        #     nameExist = DB.search('teachers',name,by='username')
 
         if emailExist :
             return render_template('sign-up.html', state = "The email is exist please sign in if you have an account")
-        elif nameExist :
-            return render_template('sign-up.html', state = "The name is exist please sign in if you have an account")
+        # elif nameExist :
+        #     return render_template('sign-up.html', state = "The name is exist please sign in if you have an account")
         
         emailValide = emailer.valide_email(email)
         if not emailValide :
@@ -344,7 +344,6 @@ def google_auth():
 
 @app.route('/logwithgoogleserver')
 def google_callback():
-    print('start callback func')
     code = request.args.get('code')
     data = {
         'code': code,
@@ -365,7 +364,48 @@ def google_callback():
     # Here, you can store user_info['email'] or other relevant information in your database
     # and then proceed to authenticate the user in your system.
 
-    return "You are logged in with Google!"
+    # signUpUsingGoogle(user_info)
+    return render_template('logWithGoogle.html',userInfo = user_info)
+
+@app.route('/logwithgoogleserverCofirming')
+def signUpUsingGoogle(data):
+    name = data['name']
+    # password = request.form['password']
+    email = data['email']
+    type_ = request.form['type']
+    # check availability of the input data
+    if 'agreeTS' not in request.form :
+        return render_template('sign-up.html', state = "Please read and agree on Terms of Service and Privacy Policy")
+    if name == None:
+        return render_template('sign-up.html', state = "Please enter valide name")
+    if email == None:
+        return render_template('sign-up.html', state = "Please enter valide email")
+    if password == None:
+        return render_template('sign-up.html', state = "Please enter valide password")
+    
+    emailExist = DB.search('students',email,by='email')
+    if not emailExist :
+        emailExist = DB.search('teachers',email,by='email')
+
+    # nameExist = DB.search('students',name,by='username')
+    # if not nameExist :
+    #     nameExist = DB.search('teachers',name,by='username')
+
+    if emailExist :
+        return render_template('sign-up.html', state = "The email is exist please sign in if you have an account")
+    # elif nameExist :
+    #     return render_template('sign-up.html', state = "The name is exist please sign in if you have an account")
+    
+    emailValide = emailer.valide_email(email)
+    if not emailValide :
+        return render_template('sign-up.html', state = "Please Enter Valide Email")
+    
+    #Every thing is good ... create account
+    code = random.randint(100000, 999999)
+    message_ = {'To':email , 'title':'send config', 'message':'here is your code : '+str(code), 'attachment':None}
+    emailer.send(message_)
+    DB.__signup__(type_,name, email, password,code)
+    return render_template('sign-in.html', state = "")
 
 
 

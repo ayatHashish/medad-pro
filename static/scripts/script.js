@@ -411,3 +411,9 @@ var loadFile = function (event,elementId) {
     image.src = URL.createObjectURL(event.target.files[0]);
 };
 
+const signUpGoogle = () =>{
+    let googleImage = document.getElementById('signupGoogle');
+    googleImage.onclick = ()=>{location.href = '/auth/google';}
+}
+signUpGoogle();
+

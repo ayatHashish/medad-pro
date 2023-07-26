@@ -1,4 +1,4 @@
 flask
-bcrypt
 dnspython
-pillow
+requests
+urllib3==1.26.7

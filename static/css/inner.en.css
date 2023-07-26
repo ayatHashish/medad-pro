@@ -5,6 +5,9 @@
 *
 * Copyright (c) 2020 Animate.css
 */
+html{
+  scroll-behavior: smooth;
+}
 :root {
   --animate-duration:1s;
   --animate-delay:1s;
