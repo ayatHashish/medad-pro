@@ -18,11 +18,26 @@ header {
   color: $brand-primary !important;
 }
 
+@media screen and (max-width: 769px) {
+  
+  nav{
+    .topnav{
+ li{
+        margin: auto !important;
+       }
+
+
+    }
+      
+    
+  }
+}
+
 @media screen and (max-width: 580px) {
   
-
   nav{
-    text-align: center;
+    text-align: center !important;
+   
   }
 }
 

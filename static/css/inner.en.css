@@ -5,9 +5,6 @@
 *
 * Copyright (c) 2020 Animate.css
 */
-html{
-  scroll-behavior: smooth;
-}
 :root {
   --animate-duration:1s;
   --animate-delay:1s;
@@ -4072,6 +4069,10 @@ footer {
 .service-item .image {
   height: 170px !important; }
 
+.form-check-input:checked {
+  background-color: #84c356 !important;
+  border-color: #84c356 !important; }
+
 @media screen and (max-width: 769px) {
   h1 {
     font-size: 3.125rem;
@@ -4112,9 +4113,21 @@ header {
 .active {
   color: #0F75C0 !important; }
 
+@media screen and (max-width: 769px) {
+  nav .topnav li {
+    margin: auto !important; } }
 @media screen and (max-width: 580px) {
   nav {
-    text-align: center; } }
+    text-align: center !important; } }
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: end; }
+
+@media screen and (max-width: 580px) {
+  footer {
+    flex-direction: column;
+    align-items: center; } }
 .main-banner {
   padding-top: 0;
   position: relative;
@@ -4202,6 +4215,9 @@ header {
     width: 86%; }
     .main-banner .banner-slide .item-slide .content-wrapper p {
       font-size: 10px !important; } }
+@media screen and (max-width: 415px) {
+  .main-banner .item-slide .content-wrapper {
+    top: 6rem !important; } }
 /*--- loader ---*/
 .no-js .loader-wrapper {
   display: none; }
@@ -4308,8 +4324,7 @@ header {
   width: 22% !important; }
 
 .main-btn {
-  background-color: #84c356;
-  opacity: 0.6 !important; }
+  background-color: #84c356; }
 
 .update-btn {
   margin: auto !important; }
@@ -4325,7 +4340,13 @@ header {
     font-size: 12px; }
 
   .btn-contact {
-    width: 70%; } }
+    width: 70%; }
+
+  .enroll {
+    padding: 0.5rem 1.6rem; } }
+@media screen and (max-width: 580px) {
+  .enroll {
+    width: 43% !important; } }
 .home-page .card {
   height: 18rem;
   padding: 0 35px;
@@ -4435,7 +4456,10 @@ header {
       top: 23rem  !important; } }
 @media screen and (max-width: 991px) {
   .home-page .about {
-    margin-top: 15px; } }
+    margin-top: 15px; }
+
+  .our-process .card .process-content {
+    padding: 5px 15px !important; } }
 @media screen and (max-width: 767px) {
   .about-section {
     text-align: center; }
@@ -4624,8 +4648,7 @@ header {
   border-color: #721c24 !important; }
 
 .form-check-input[type="radio"]:checked {
-  background-color: #84C356;
-  /* Change this to the desired color */ }
+  background-color: #84C356; }
 
 @media screen and (max-width: 1199px) {
   .sec-sing:first-of-type {
@@ -4644,9 +4667,12 @@ header {
   .sign-page .sec-sing {
     margin-bottom: 5rem; }
     .sign-page .sec-sing:first-of-type {
-      height: 100vh !important; }
+      height: 70vh !important; }
     .sign-page .sec-sing:last-of-type {
       padding: 2rem; } }
+@media screen and (max-width: 580px) {
+  .sign-page .sec-sing:first-of-type {
+    height: 80vh !important; } }
 .profile-card .card {
   background-color: white;
   max-width: 360px;
@@ -4915,13 +4941,13 @@ header {
         margin: 20px 0;
         text-decoration: none; }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1025px) {
   .services-sec2 .imag {
-    text-align: center;
-    margin: 27px; }
+    align-items: center;
+    margin: 25px 60px; }
     .services-sec2 .imag img {
-      width: 100%; } }
-/* CSS */
+      margin: 10px 0;
+      width: 65%; } }
 .live-page .live-card .card .details h5,
 .live-page .live-card .card .details p,
 .live-page .live-card .card .details .pdf {
@@ -4987,3 +5013,7 @@ header {
         margin: 0 10px; }
     .profile-card .card .live-card .details .file-upload {
       padding: 0; }
+.profile-card #courses-requistes {
+  height: 150px;
+  overflow: scroll;
+  /* Always show scrollbars */ }

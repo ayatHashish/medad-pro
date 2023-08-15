@@ -4069,6 +4069,10 @@ footer {
 .service-item .image {
   height: 170px !important; }
 
+.form-check-input:checked {
+  background-color: #84c356 !important;
+  border-color: #84c356 !important; }
+
 @media screen and (max-width: 769px) {
   h1 {
     font-size: 3.125rem;
@@ -4109,9 +4113,21 @@ header {
 .active {
   color: #0F75C0 !important; }
 
+@media screen and (max-width: 769px) {
+  nav .topnav li {
+    margin: auto !important; } }
 @media screen and (max-width: 580px) {
   nav {
-    text-align: center; } }
+    text-align: center !important; } }
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: end; }
+
+@media screen and (max-width: 580px) {
+  footer {
+    flex-direction: column;
+    align-items: center; } }
 .main-banner {
   padding-top: 0;
   position: relative;
@@ -4199,6 +4215,9 @@ header {
     width: 86%; }
     .main-banner .banner-slide .item-slide .content-wrapper p {
       font-size: 10px !important; } }
+@media screen and (max-width: 415px) {
+  .main-banner .item-slide .content-wrapper {
+    top: 6rem !important; } }
 /*--- loader ---*/
 .no-js .loader-wrapper {
   display: none; }
@@ -4305,8 +4324,7 @@ header {
   width: 22% !important; }
 
 .main-btn {
-  background-color: #84c356;
-  opacity: 0.6 !important; }
+  background-color: #84c356; }
 
 .update-btn {
   margin: auto !important; }
@@ -4322,4 +4340,10 @@ header {
     font-size: 12px; }
 
   .btn-contact {
-    width: 70%; } }
+    width: 70%; }
+
+  .enroll {
+    padding: 0.5rem 1.6rem; } }
+@media screen and (max-width: 580px) {
+  .enroll {
+    width: 43% !important; } }

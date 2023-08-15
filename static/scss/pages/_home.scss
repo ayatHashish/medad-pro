@@ -186,6 +186,13 @@
     margin-top:15px
   }
  }
+ .our-process {
+  .card {
+    .process-content {
+      padding: 5px 15px !important;
+    }
+  }
+}
  }
 @media screen and (max-width:767px) {
   .about-section {

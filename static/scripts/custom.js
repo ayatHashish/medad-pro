@@ -24,4 +24,13 @@ $(document).ready(function () {
         }
     });
 
+
+   $("#courses-requistes").niceScroll({
+         
+            cursoropacitymin:"1",
+            cursorwidth :"15px" ,
+            bouncescroll: true
+
+            
+        });
 });

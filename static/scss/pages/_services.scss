@@ -83,26 +83,32 @@
   }
 }
 
-@media screen and (max-width:991px) {
+
+@media screen and (max-width:1025px) {
 
   .services-sec2 {
  .imag{
-    text-align: center;
-    margin: 27px;
-
+  align-items: center;
+  margin: 25px 60px;
     img{
-      width: 100%;
+      margin: 10px 0;
+      width: 65%;
     }
  }
     
   }
 }
 
+
+@media screen and (max-width:991px) {
+
+  
+}
+
 @media screen and (max-width:767px) {
+
 }
 
 @media screen and (max-width:580px) {
+
             }
-
-
-/* CSS */
