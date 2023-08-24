@@ -168,8 +168,8 @@
                                     <div class="img-area">
                                         <div class="inner-area">
                                             <img name=image id='per_image' src={{'./static/Users_Data/'+(result[6]) |
-                                                string+'/'+(result[0]) |
-                                                string+'/Pictures/Personal_Pic.png' }} alt="Personal Picture">
+                                                string+'/'+(result[0]) | string+'/Pictures/Personal_Pic.png' }}
+                                                alt="Personal Picture">
                                         </div>
                                     </div>
                                 </div>
@@ -194,8 +194,8 @@
                                                         <label for="file-input" class="file-upload" id="img-upload">
                                                             <img src="../static/images/pdf.png" alt="Upload" />
                                                         </label>
-                                                        <label id='name' style="display:block">     </label>
-                                                        <label id='dateL' style="display:block">     </label>
+                                                        <label id='name' style="display:block"> </label>
+                                                        <label id='dateL' style="display:block"> </label>
                                                         <p id="password-text"> {{state[1]}} </p>
                                                     </div>
                                                 </div>
@@ -211,11 +211,13 @@
 
                                                     <!-- <label for="datePicker" id="datePickerL" style="display:none" >Choose a day:</label>
                                                     <input type="date" id="datePicker" onchange="updateSchedule()" style="display:none" > -->
-                                                    <label for="datePicker" id="datePickerL" style="display:none" >Choose a day:</label>
+                                                    <label for="datePicker" id="datePickerL" style="display:none">Choose
+                                                        a day:</label>
                                                     <label>
-                                                            <input type="date" class="btn-action" name="date"
-                                                            id="datePicker" value="Choose a day" onchange="updateSchedule()" style="display:none" />
-                                                            <!-- onclick="submitForm(event,'/Upload_PDF','UploadPDF')" -->
+                                                        <input type="date" class="btn-action" name="date"
+                                                            id="datePicker" value="Choose a day"
+                                                            onchange="updateSchedule()" style="display:none" />
+                                                        <!-- onclick="submitForm(event,'/Upload_PDF','UploadPDF')" -->
                                                     </label>
 
                                                     <label><input type="button" class="btn-action" name="button"
@@ -297,7 +299,8 @@
                                             <div class="text-center text-lg-start mt-4 pt-2 update-btn">
                                                 <p id="password-text"> {{state[0]}} </p>
                                                 <button type="submit" class="btn-action"
-                                                    onclick="submitForm(event,'/update_profile','UpdateForm')">Update Profile</button>
+                                                    onclick="submitForm(event,'/update_profile','UpdateForm')">Update
+                                                    Profile</button>
 
                                             </div>
                                         </div>
@@ -305,7 +308,7 @@
                                     </div>
                                 </form>
                                 <div>
-                                <!-- <button type="submit" class="btn-action"
+                                    <!-- <button type="submit" class="btn-action"
                                     onclick="location.href = getServerUrl() + '/live';">Enter Meeting</button> -->
                                 </div>
                             </div>
@@ -320,6 +323,7 @@
             </div>
 
         </div>
+
     </main>
 
 
@@ -331,12 +335,14 @@
 
     </footer>
 
+
     <script src="static/scripts/jquery-3.7.0.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="static/scripts/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="static/scripts/owl.carousel.min.js"></script>
     <script src="static/scripts/script.js"></script>
+    <script src="static/script/custom.js"></script>
 </body>
 
 </html>
