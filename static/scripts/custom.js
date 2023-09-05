@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
     $('.home-services').owlCarousel({
         loop: true,
         margin: 15,
@@ -23,19 +22,15 @@ $(document).ready(function () {
             }
         }
     });
-
-
    $("#courses-requistes").niceScroll({
-         
             cursoropacitymin:"1",
             cursorwidth :"15px" ,
             bouncescroll: true
-
-            
         });
+
+          $('[data-toggle="tooltip"]').tooltip();
+     
 });
-
-
 
 /* Scripts for css grid dashboard */
 

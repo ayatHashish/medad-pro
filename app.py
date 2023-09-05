@@ -38,6 +38,13 @@ def home():
 def _services_():
     return render_template('services.html',result = session['user'])
 
+
+
+
+@app.route("/admin")
+def _admin_():
+    return render_template('admin.html',result = session['user'])
+
 @app.route("/teacher")
 def _teacher_():
     return render_template('home.html',result = session['user'])
