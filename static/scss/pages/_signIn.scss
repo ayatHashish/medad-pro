@@ -113,7 +113,7 @@
     border-color: #721c24 !important;
 }
 .form-check-input[type="radio"]:checked {
-    background-color: #84C356;
+    background-color: #84C356; /* Change this to the desired color */
   }
 @media screen and (max-width: 1399px) {
 }
@@ -145,7 +145,7 @@
         .sec-sing {
             margin-bottom: 5rem;
             &:first-of-type {
-                height: 70vh !important;
+                height: 100vh !important;
             }
             &:last-of-type {
                 padding: 2rem;
@@ -156,11 +156,4 @@
 @media screen and (max-width: 767px) {
 }
 @media screen and (max-width: 580px) {
-    .sign-page {
-        .sec-sing {
-            &:first-of-type {
-                height:80vh !important;
-            }
-        }
-    }
 }

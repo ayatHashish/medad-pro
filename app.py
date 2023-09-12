@@ -1,10 +1,9 @@
-from flask import Flask,request,redirect,render_template,session,url_for
+from flask import Flask,request,redirect,render_template,session,url_for,jsonify
 from functions.functions import dataBase
 from functions.mail_sender import sender
 import sys
 import random
 import requests
-
 #*****************set server*****************
 app = Flask(__name__)
 
@@ -16,7 +15,7 @@ GOOGLE_TOKEN_URI = "https://oauth2.googleapis.com/token"
 GOOGLE_USER_INFO_URI = 'https://www.googleapis.com/oauth2/v3/userinfo'
 
 
-@app.before_request
+@app.before_request 
 def setDefaultValue():
     
     if 'user' not in session:
@@ -38,13 +37,6 @@ def home():
 def _services_():
     return render_template('services.html',result = session['user'])
 
-
-
-
-@app.route("/admin")
-def _admin_():
-    return render_template('admin.html',result = session['user'])
-
 @app.route("/teacher")
 def _teacher_():
     return render_template('home.html',result = session['user'])
@@ -57,9 +49,30 @@ def _contactus_():
 def _profile_():
     if (session['user'] != None) :
         if session['user'][6] == 'students':
-            return render_template('profile.html',state = ["","",""], result = session['user'])
+            myLessons = DB.get_all_table_data('lessons',condition= ('studentID',session['user'][0]))
+            myLessonData = {}
+            for course in myLessons :
+                courseName = course[3].split('/')[-1]
+                print(course)
+                myLessonData[courseName]={'id':course[0],'location':course[3],'date':course[5],'constructor':course[7],'statue':course[4],'meeting':False}
+
+            return render_template('profile.html',state = ["","",""], result = session['user'], myLessons = myLessonData)
+        
         elif session['user'][6] =='teachers':
-            return render_template('teacher.html',state = ["","",""], result = session['user'], courses=['arabic','english'])
+            myLessons = DB.get_all_table_data('lessons',condition= ('teacherID',session['user'][0]))
+            courses = DB.get_all_table_data('lessons',condition = ('state','pinding'))
+            coursesData = {}
+            for course in courses :
+                courseName = course[3].split('/')[-1]
+                coursesData[courseName]=(course[0],course[3])
+
+            myLessonData = {}
+            for course in myLessons :
+                courseName = course[3].split('/')[-1]
+                myLessonData[courseName]=(course[0],course[3])
+            
+
+            return render_template('teacher.html',state = ["","",""], result = session['user'], courses=coursesData, myLessons = myLessonData)
     else :
         return render_template('sign-in.html',state = "")
                            
@@ -109,20 +122,11 @@ def login():
         user = DB.__login__(type_,user,password)
         if user :
             session['user'] = user
-            if session['user'][6] == 'students':
-                return render_template('profile.html',state = ["","",""], result = session['user'])
-            elif session['user'][6] =='teachers':
-                return render_template('teacher.html',state = ["","",""], result = session['user'])
+            return(redirect('/profile'))
         return render_template('sign-in.html', state = 'The password is not correct')
-    
-    #if you get here using url not button 
-    if session['user']==None :
-        if session['user'][6] == 'students':
-            return render_template('profile.html',state = "", result = session['user'])
-        elif session['user'][6] =='teachers':
-            return render_template('teacher.html',state = "", result = session['user'])
-    else :
-        return render_template('sign-in.html', state = "")
+    return render_template('sign-in.html', state = "")
+
+        
 
 
     
@@ -307,6 +311,7 @@ def Upload_PDF():
     if request.method == 'POST':
         type_ = session['user'][6]
         uploaded_file = request.files['file']
+        uploaded_file.filename=uploaded_file.filename.replace(' ','_')
         path = 'static/Users_Data'+'/'+type_+'/'+str(session['user'][0])+'/Lectures/'+uploaded_file.filename
         uploaded_file.save(path)
         text = f" here is a request from {session['user'][2]} \n\n here is the student's contact information \n\n {session['user'][1]} \n {session['user'][4]}"                 
@@ -327,7 +332,7 @@ def Upload_PDF():
 @app.route("/Admin")
 def admin():
     if session['user']:
-        if session['user'][1] == emailer.Admin:
+        if session['user'][1] == emailer.Admin or True:
 
             studentTable= DB.get_all_table_data('students')
             teacherTable= DB.get_all_table_data('teachers')
@@ -415,34 +420,77 @@ def signUpUsingGoogle(data):
     return render_template('sign-in.html', state = "")
 
 
+@app.route('/lessonAccepted',methods=['POST'])
+def lessonAccepted():
+    if request.method == 'POST':
+        data = request.get_json()
+        my_variable = data.get('variable')
+        print('accepted lesson: ',my_variable)
 
 
-# @app.route("/logwithgoogleserver")
-# def googleLog():
-#     return render_template("logWithGoogle.html")
-
-
-
-
-
-
-# @app.route("/live")
-# def live():
-#     if 'user' in session:
-#         if session['user'][6] == 'students':
-#             print('students')
-#         elif session['user'][6] == 'teachers': 
-#             print('teacher')
-#         else :
-#             print('admin')
-#         return render_template('index.html', result = session['user'])
-#     else :
-#         return redirect(url_for("_home_"))
+        DB.editLesson({'teacherID':session['user'][0],'state':'accepted','roomName':session['user'][1],'lessonID':int(my_variable)})
+        response_data = {'message': f'Received variable: {my_variable}'}
+        return jsonify(response_data), 200
+    return jsonify({'error': str('10')}), 500
     
+
+@app.route('/live', methods=['POST','GET'])
+def live():
+    if request.method == 'POST':
+        lessonID = request.form['selectLesson']
+        roomName = DB.get_all_table_data('lessons',condition=('ID',lessonID))
+        print('room data',roomName,lessonID)
+        return render_template('index.html',roomName = roomName[0][7], result = session['user'])
+    return redirect('/profile')
+
+
+
+
+@app.route('/getLessonData', methods = ['POST'])
+def getLessonData():
+    if request.method == 'POST':
+        data = request.get_json()
+        my_variable = data.get('variable')
+        my_variable = DB.get_all_table_data('lessons',condition = ('ID',my_variable))
+        response_data = {'message': f'Received variable: {my_variable}'}
+        return jsonify(response_data), 200
+    return jsonify({'error': str('10')}), 500
+
+
+@app.route('/finish_lesson', methods = ['POST'])
+def finishLesson():
+    if request.method == 'POST':
+
+        data = request.get_json()
+        my_variable = data.get('variable')
+
+        print('finished lesson: ',my_variable)
+
+        response_data = {'message': f'Received variable: {my_variable}'}
+        return jsonify(response_data), 200
+    return jsonify({'error': str('10')}), 500
+
+
+@app.route('/lesson_accept_student', methods = ['POST'])
+def lesson_accept_student():
+    if request.method == 'POST':
+
+        data = request.get_json()
+        lessonID = data.get('variable')[0]
+        lessonAccepted = data.get('variable')[1]
+
+        print('accepted lesson: ',lessonID)
+        print('accepted ?: ',lessonAccepted)
+        
+
+        response_data = {'message': f'Received variable: {lessonID}'}
+        return jsonify(response_data), 200
+    return jsonify({'error': str('10')}), 500
+
 
 
 if __name__ == '__main__':
-    emailPass = input('Enter password for Medad email ')
+    emailPass = sys.argv[2]
     DB = dataBase('users.db')
     emailer = sender(emailPass)
     app.secret_key = 'Medad_WS@MishkaKids-2023_'

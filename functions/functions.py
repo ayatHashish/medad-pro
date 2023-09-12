@@ -6,6 +6,7 @@ import shutil
 class dataBase:
     def __init__(self,name):
         self.name = "./database/"+name
+        self.name = '/home/maged_khaled/workSpace/medadA/medad-pro/database/users.db'
         with sqlite3.connect(self.name) as conn:
             cur = conn.cursor()
             cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
@@ -14,11 +15,11 @@ class dataBase:
             if ('students',) not in tables :
                 conn.execute('''CREATE TABLE students
                             (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, phone TEXT, validation TEXT, Type_ TEXT DEFAULT students)''')
-            if ('teachers',) not in tables :
-                conn.execute('''CREATE TABLE lessons
-                            (id INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, teacherID INTEGER, lessonLOC TEXT, state TEXT, date TEXT, URL TEXT coursType TEXT)''')
-                
             if ('lessons',) not in tables :
+                conn.execute('''CREATE TABLE lessons
+                            (id INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, teacherID INTEGER, lessonLOC TEXT, state TEXT, date TEXT, URL TEXT, coursType TEXT, roomName TEXT)''')
+                
+            if ('teachers',) not in tables :
                 conn.execute('''CREATE TABLE teachers
                 (id INTEGER PRIMARY KEY AUTOINCREMENT, 
                 email TEXT, 
@@ -29,9 +30,6 @@ class dataBase:
                 Type_ TEXT DEFAULT 'teachers', 
                 coursType TEXT)''')
 
-           
-                
-   
         
     def search(self,table, tofind, by = "email"):
         with sqlite3.connect(self.name) as conn:
@@ -91,8 +89,6 @@ class dataBase:
     def __edit__(self,table,user,new_data):
         with sqlite3.connect(self.name) as conn:
             cursor = conn.cursor()
-            print(user)
-            print(new_data)
             if user[6] == 'students' :
                 update_query = f'''
                     UPDATE {table}
@@ -149,27 +145,33 @@ class dataBase:
             conn.commit()
 
 
-    import sqlite3
-
-    def get_all_table_data(self, table_name):
-        # Step 1: Connect to the SQLite database
+    def get_all_table_data(self, table_name, condition =''):
         with sqlite3.connect(self.name) as conn:
-
-            # Step 2: Create a cursor object to execute SQL queries
             cursor = conn.cursor()
-
-            # Step 3: Execute a SELECT query to fetch all data from the table
-            cursor.execute(f"SELECT * FROM {table_name}")
-
-            # Step 4: Retrieve the data using the cursor
+            if condition == '':
+                cursor.execute(f"SELECT * FROM {table_name}")
+            else:
+                cursor.execute(f"SELECT * FROM {table_name} where {condition[0]} = '{condition[1]}'")
             all_data = cursor.fetchall()
-
-            # Step 5: Close the cursor and the database connection
             cursor.close()
+        return all_data
 
 
-            return all_data
-
+    def editLesson(self, new_data):
+        with sqlite3.connect(self.name) as conn:
+            
+            cursor = conn.cursor()
+            
+            update_query = f'''
+                UPDATE lessons
+                SET teacherID = ?,
+                    state = ?,
+                    roomName = ?
+                WHERE id = ?
+            '''
+            
+            cursor.execute(update_query, (new_data['teacherID'], new_data['state'],new_data['roomName'], new_data['lessonID']))
+            conn.commit()
 
 
         

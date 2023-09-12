@@ -415,5 +415,54 @@ const signUpGoogle = () =>{
     let googleImage = document.getElementById('signupGoogle');
     googleImage.onclick = ()=>{location.href = '/auth/google';}
 }
-signUpGoogle();
+// signUpGoogle();
+
+
+
+const acceptRequest = function(event,myVariable,target){
+        // console.log('data = ',myVariable)
+        let data = {
+            variable: myVariable
+        };
+        fetch(target, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+
+
+};
+
+
+const showLessonData=function(event,target){
+    let selected = event.target.selectedIndex
+    selected = event.target.options[selected].value
+
+    selected = {
+        variable: selected
+    }
+
+    fetch(target,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(selected)
+    })
+    .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            let dataDiv = document.getElementById('lessonData')
+            dataDiv.innerText = JSON.stringify(data)
+            
+        })
+        .catch(error => {
+            console.log('error:',error)
+        })
+    
+
+}
+
 

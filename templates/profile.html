@@ -302,21 +302,29 @@
                                                     onclick="submitForm(event,'/update_profile','UpdateForm')">Update
                                                     Profile</button>
 
+
                                             </div>
+
+
                                         </div>
 
                                     </div>
                                 </form>
-                                <div>
-                                    <!-- <button type="submit" class="btn-action"
-                                    onclick="location.href = getServerUrl() + '/live';">Enter Meeting</button> -->
-                                </div>
+                                <!-- <form id="selectLessonForm">
+                                    <select name="selectLesson" onchange="showLessonData(event,'/getLessonData')">
+                                        {% for item in myLessons %}
+                                        <option id = 'lessonSelected' value={{myLessons[item][0]}}>{{item}}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                    <button type="submit" onclick="submitForm(event,'/live','selectLessonForm')"
+                                        target="_blank">Start Meeting</button>
+                                </form>
+                                <div id="lessonData"></div> -->
                             </div>
-
                         </div>
-
-
                     </div>
+
 
 
                     <div class="col-xl-12">
@@ -328,34 +336,71 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Lecture</th>
-                                                <th>About lecture</th>
-                                                <!-- <th>Status</th> -->
+                                                <th>Start Date</th>
+                                                <th>Constructor</th>
                                                 <th>Action</th>
-                                                <th>Start Metting</th>
-                                                <th>Finish Metting</th>
+                                                <th>Start Meeting</th>
+                                                <th>Finish Meeting</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td><a><img src="../static/images/pdf.png">
-                                                    <p class="text-center">llllll</p> </a>
+                                            <!-- { increment = 0 } -->
+                                            {% for item in myLessons %}
+                                            <!-- { increment = increment + 1 } -->
+                                            <!-- <option id = 'lessonSelected' value={{myLessons[item][0]}}>{{item}}</option> -->
+                                            <form id='{{myLessons[item]["id"]}}'>
+                                                <tr>
+                                                    <input type="text" name="selectLesson"
+                                                        value='{{myLessons[item]["id"]}}' style="display: none;"
+                                                        placeholder='{{myLessons[item]["id"]}}'>
+                                                    <td>1</td>
+                                                    <td><a><img src="../static/images/pdf.png">
+                                                            <p class="text-center">{{item}}</p>
+                                                        </a>
                                                     </td>
-                                                <td>04/10/2013</td>
-                                                <td>
-                                                    <a href="#" class="settings" title="accept" data-toggle="tooltip"><i
-                                                            class="fa fa-check-circle"></i></a>
-                                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
-                                                </td>
-                                                <td>
-                                                    <a href="#" title="Start Metting" data-toggle="tooltip">Start
-                                                        </a>
-                                                </td>
-                                                <td>
-                                                    <a href="#" title="Finsh Metting" data-toggle="tooltip">Finish
-                                                        </a>
-                                                </td>
-                                            </tr>
+                                                    <td>{{myLessons[item]['date']}}</td>
+                                                    <td>{{myLessons[item]['constructor']}}</td>
+
+                                                    <td>
+                                                        {% if myLessons[item]['statue']=='accepted_by_teacher' %}
+                                                        <a href="#" class="settings" title="accept"
+                                                            data-toggle="tooltip"><i class="fa fa-check-circle" 
+                                                            onclick="acceptRequest(event,['{{myLessons[item]["id"]}}',true],'/lesson_accept_student')"></i></a>
+                                                        <a href="#" class="delete" title="Delete"
+                                                            data-toggle="tooltip"><i class="fa fa-times-circle"
+                                                            onclick="acceptRequest(event,['{{myLessons[item]["id"]}}',false],'/lesson_accept_student')"
+                                                                aria-hidden="true"></i></a>
+                                                        {% else %}
+                                                            No Action Required 
+                                                        {% endif %}
+
+                                                    </td>
+                                                    <td>
+                                                        {% if myLessons[item]['meeting'] %}
+
+                                                        <button title="Start Meeting" data-toggle="tooltip"
+                                                            type="submit"
+                                                            onclick="submitForm(event,'/live','{{myLessons[item]["id"]}}' )" target="_blank">Start Meeting</button>
+                                                        <!-- <a href="#" title="Start Meeting" data-toggle="tooltip">Start -->
+                                                        <!-- </a> -->
+                                                        {% else %}
+                                                            No Meeting
+                                                        {% endif %}
+
+                                                    </td>
+                                                    <td>
+                                                        {% if myLessons[item]['statue']=='finished' %}
+                                                        <button title="Finish Meeting" data-toggle="tooltip"
+                                                            onclick="acceptRequest(event,'{{myLessons[item]["id"]}}','/finish_lesson')">Finish</button>
+                                                        {% else %}
+                                                            On Progress
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                            </form>
+                                            {% endfor %}
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -364,12 +409,11 @@
                         </div>
                     </div>
 
+
+
                 </div>
-
             </div>
-
         </div>
-
     </main>
 
 
@@ -381,14 +425,12 @@
 
     </footer>
 
-
     <script src="static/scripts/jquery-3.7.0.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="static/scripts/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="static/scripts/owl.carousel.min.js"></script>
     <script src="static/scripts/script.js"></script>
-    <script src="static/script/custom.js"></script>
 </body>
 
 </html>
