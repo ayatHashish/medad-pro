@@ -11,7 +11,7 @@ import shutil
 class dataBase:
     def __init__(self,name):
         self.home = './'
-        self.home = '/home/maged_khaled/workSpace/medadA/website/'
+        #self.home = '/home/maged_khaled/workSpace/medadA/website/'
         self.name = f"{self.home}database/{name}"
         # with sqlite3.connect(self.name) as conn:
         #     cur = conn.cursor()
