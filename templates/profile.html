@@ -361,20 +361,21 @@
                                                     <td>{{item['date']}}</td>
                                                     <td>{{item['constructor']}}</td>
                                                     <td>
-                                                        <a href="#" class="settings" title="accept"
+                                                        <a href="" class="settings" title="accept"
                                                             data-toggle="tooltip">
                                                             <i class="fa fa-check-circle" 
                                                             onclick="acceptRequest(event,
-                                                            [{{item['id']}}',
-                                                            true],'/lesson_accept_student)">
+                                                            ['{{item["id"]}}','{{item["teacherID"]}}',
+                                                            true],'/lesson_accept_student')"
+                                                                >
                                                             </i>
                                                         </a>
                                                         
-                                                        <a href="#" class="delete" title="Delete"
+                                                        <a href="" class="delete" title="Delete"
                                                             data-toggle="tooltip">
                                                             <i class="fa fa-times-circle"
                                                             onclick="acceptRequest(event,
-                                                            [{{item['id']}},
+                                                            ['{{item["id"]}}','{{item["teacherID"]}}',
                                                             false],'/lesson_accept_student')"
                                                                 >
                                                             </i>

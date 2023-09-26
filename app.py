@@ -58,12 +58,12 @@ def _profile_(state = ["","",""]):
             acceptedLessonsData = []
             for course in acceptedLessons :
                 courseName = course['lessonLOC'].split('/')[-1]
-                acceptedLessonsData.append({'courseName':courseName,'id':course['lessonID'],'location':course['lessonLOC'],'date':course['date'],'constructor':course['teacherEmail'],'statue':course['state'],'meeting':False})
+                acceptedLessonsData.append({'courseName':courseName,'id':course['lessonID'],'location':course['lessonLOC'],'date':course['date'],'teacherID':course['teacherID'],'constructor':course['teacherEmail'],'statue':course['state'],'meeting':False})
             acceptedLessonsData = sorted(acceptedLessonsData, key=lambda d: d['courseName'], reverse=True)
             notAcceptedLessonsData = []
             for course in notAcceptedLessons :
                 courseName = course['lessonLOC'].split('/')[-1]
-                notAcceptedLessonsData.append({'courseName':courseName,'id':course['lessonID'],'location':course['lessonLOC'],'date':course['date'],'constructor':'','statue':course['state'],'meeting':False})
+                notAcceptedLessonsData.append({'courseName':courseName,'id':course['lessonID'],'location':course['lessonLOC'],'date':course['date'],'teacherID':course['teacherID'],'constructor':'','statue':course['state'],'meeting':False})
             notAcceptedLessonsData = sorted(notAcceptedLessonsData, key=lambda d: d['courseName'], reverse=True)
             return render_template('profile.html',state = state, result = session['user'], myAcceptedLessons = acceptedLessonsData, myNotAcceptedLessons = notAcceptedLessonsData  )
         
@@ -490,8 +490,13 @@ def lesson_accept_student():
     if request.method == 'POST':
 
         data = request.get_json()
+        print('accepted lesson:    ',data)
         lessonID = data.get('variable')[0]
-        lessonAccepted = data.get('variable')[1]
+        teacherID = data.get('variable')[1]
+
+        lessonAccepted = data.get('variable')[2]
+        #TODO: if  lessonAccepted >>> remove from st-tch-cr and change its state in lessons to 2
+        #else >>> remove record [stID,tchID,lesID] from st-tch-cr
 
 
         
@@ -499,6 +504,7 @@ def lesson_accept_student():
         response_data = {'message': f'Received variable: {lessonID}'}
         return jsonify(response_data), 200
     return jsonify({'error': str('10')}), 500
+
 
 
 
