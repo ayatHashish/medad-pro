@@ -345,72 +345,94 @@
                                         </thead>
                                         <tbody>
                                             <!-- { increment = 0 } -->
-                                            {% for item in myLessons %}
+                                            {% for item in myAcceptedLessons %}
                                             <!-- { increment = increment + 1 } -->
-                                            <!-- <option id = 'lessonSelected' value={{myLessons[item][0]}}>{{item}}</option> -->
-                                            <form id='{{myLessons[item]["id"]}}'>
+                                            <!-- <option id = 'myAcceptedLessons' value={{item[0]}}>{{item}}</option> -->
+                                            <form id='{{item["id"]}}'>
                                                 <tr>
                                                     <input type="text" name="selectLesson"
-                                                        value='{{myLessons[item]["id"]}}' style="display: none;"
-                                                        placeholder='{{myLessons[item]["id"]}}'>
+                                                        value='{{item["id"]}}' style="display: none;"
+                                                        placeholder='{{item["id"]}}'>
                                                     <td>1</td>
                                                     <td><a><img src="../static/images/pdf.png">
-                                                            <p class="text-center">{{item}}</p>
+                                                            <p class="text-center">{{item['courseName']}}</p>
                                                         </a>
                                                     </td>
-                                                    <td>{{myLessons[item]['date']}}</td>
-                                                    <td>{{myLessons[item]['constructor']}}</td>
-
+                                                    <td>{{item['date']}}</td>
+                                                    <td>{{item['constructor']}}</td>
                                                     <td>
-                                                        {% if myLessons[item]['statue']=='accepted_by_teacher' %}
                                                         <a href="#" class="settings" title="accept"
-                                                            data-toggle="tooltip"><i class="fa fa-check-circle" 
-                                                            onclick="acceptRequest(event,['{{myLessons[item]["id"]}}',true],'/lesson_accept_student')"></i></a>
+                                                            data-toggle="tooltip">
+                                                            <i class="fa fa-check-circle" 
+                                                            onclick="acceptRequest(event,
+                                                            [{{item['id']}}',
+                                                            true],'/lesson_accept_student)">
+                                                            </i>
+                                                        </a>
+                                                        
                                                         <a href="#" class="delete" title="Delete"
-                                                            data-toggle="tooltip"><i class="fa fa-times-circle"
-                                                            onclick="acceptRequest(event,['{{myLessons[item]["id"]}}',false],'/lesson_accept_student')"
-                                                                aria-hidden="true"></i></a>
-                                                        {% else %}
-                                                            No Action Required 
-                                                        {% endif %}
-
+                                                            data-toggle="tooltip">
+                                                            <i class="fa fa-times-circle"
+                                                            onclick="acceptRequest(event,
+                                                            [{{item['id']}},
+                                                            false],'/lesson_accept_student')"
+                                                                >
+                                                            </i>
+                                                        </a>
                                                     </td>
                                                     <td>
-                                                        {% if myLessons[item]['meeting'] %}
-
+                                                        <!-- {% if item['meeting'] %}
                                                         <button title="Start Meeting" data-toggle="tooltip"
                                                             type="submit"
-                                                            onclick="submitForm(event,'/live','{{myLessons[item]["id"]}}' )" target="_blank">Start Meeting</button>
+                                                            onclick="submitForm(event,'/live','{{item["id"]}}' )" target="_blank">Start Meeting</button> -->
                                                         <!-- <a href="#" title="Start Meeting" data-toggle="tooltip">Start -->
                                                         <!-- </a> -->
-                                                        {% else %}
-                                                            No Meeting
-                                                        {% endif %}
-
+                                                        <!-- {% else %} -->
+                                                            <!-- No Meeting -->
+                                                        <!-- {% endif %} -->
                                                     </td>
                                                     <td>
-                                                        {% if myLessons[item]['statue']=='finished' %}
+                                                        <!-- {% if item['statue']=='finished' %}
                                                         <button title="Finish Meeting" data-toggle="tooltip"
-                                                            onclick="acceptRequest(event,'{{myLessons[item]["id"]}}','/finish_lesson')">Finish</button>
-                                                        {% else %}
-                                                            On Progress
-                                                        {% endif %}
+                                                            onclick="acceptRequest(event,'{{item["id"]}}','/finish_lesson')">Finish</button>
+                                                        {% else %} -->
+                                                            <!-- On Progress -->
+                                                        <!-- {% endif %} -->
                                                     </td>
                                                 </tr>
                                             </form>
                                             {% endfor %}
-
-
+                                            {% for item in myNotAcceptedLessons %}
+                                            <form id='{{item["id"]}}'>
+                                                <tr>
+                                                    <input type="text" name="selectLesson"
+                                                        value='{{item["id"]}}' style="display: none;"
+                                                        placeholder='{{item["id"]}}'>
+                                                    <td>1</td>
+                                                    <td><a><img src="../static/images/pdf.png">
+                                                            <p class="text-center">{{item['courseName']}}</p>
+                                                        </a>
+                                                    </td>
+                                                    <td>{{item['date']}}</td>
+                                                    <td>{{item['constructor']}}</td>
+                                                    <td>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                            
+                                                    </td>
+                                                    <td>
+                                                            
+                                                    </td>
+                                                </tr>
+                                            </form>
+                                            {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         </div>

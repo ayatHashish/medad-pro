@@ -449,7 +449,7 @@ const showLessonData=function(event,target){
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(selected)
+        body: JSON.stringify(selected) 
     })
     .then(response => response.json())
         .then(data => {

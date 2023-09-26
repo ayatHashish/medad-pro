@@ -5,6 +5,8 @@ import sys
 import random
 import requests
 #*****************set server*****************
+homeDir = './'
+homeDir = '/home/maged_khaled/workSpace/medadA/website/'
 app = Flask(__name__)
 
 GOOGLE_CLIENT_ID = "361389956894-fikf8t93743htich35qalbib61kotq1q.apps.googleusercontent.com"
@@ -23,7 +25,7 @@ def setDefaultValue():
     
 
 
-#*****************redirct url*****************
+#*****************redirect url*****************
 @app.route("/",methods = ['GET','POST'])
 def main():
     print(session['user'])
@@ -32,7 +34,7 @@ def main():
 @app.route("/home",methods = ['GET','POST'])
 def home():
     return render_template("home.html", result = session['user'])
-                           
+
 @app.route("/service")
 def _services_():
     return render_template('services.html',result = session['user'])
@@ -40,50 +42,60 @@ def _services_():
 @app.route("/teacher")
 def _teacher_():
     return render_template('home.html',result = session['user'])
-                           
+
 @app.route("/contactus")
 def _contactus_():       
     return render_template('contact-us.html',result = session['user'])
-                           
+
 @app.route("/profile")
-def _profile_():
+def _profile_(state = ["","",""]):
     if (session['user'] != None) :
         if session['user'][6] == 'students':
-            myLessons = DB.get_all_table_data('lessons',condition= ('studentID',session['user'][0]))
-            myLessonData = {}
-            for course in myLessons :
-                courseName = course[3].split('/')[-1]
-                print(course)
-                myLessonData[courseName]={'id':course[0],'location':course[3],'date':course[5],'constructor':course[7],'statue':course[4],'meeting':False}
+            acceptedLessons,notAcceptedLessons = DB.getStudentLessons(session['user'][0])
+            print(acceptedLessons)
+            print(notAcceptedLessons)#TODO send acceptedLessons and notAcceptedLessons to front
 
-            return render_template('profile.html',state = ["","",""], result = session['user'], myLessons = myLessonData)
+            acceptedLessonsData = []
+            for course in acceptedLessons :
+                courseName = course['lessonLOC'].split('/')[-1]
+                acceptedLessonsData.append({'courseName':courseName,'id':course['lessonID'],'location':course['lessonLOC'],'date':course['date'],'constructor':course['teacherEmail'],'statue':course['state'],'meeting':False})
+            acceptedLessonsData = sorted(acceptedLessonsData, key=lambda d: d['courseName'], reverse=True)
+            notAcceptedLessonsData = []
+            for course in notAcceptedLessons :
+                courseName = course['lessonLOC'].split('/')[-1]
+                notAcceptedLessonsData.append({'courseName':courseName,'id':course['lessonID'],'location':course['lessonLOC'],'date':course['date'],'constructor':'','statue':course['state'],'meeting':False})
+            notAcceptedLessonsData = sorted(notAcceptedLessonsData, key=lambda d: d['courseName'], reverse=True)
+            return render_template('profile.html',state = state, result = session['user'], myAcceptedLessons = acceptedLessonsData, myNotAcceptedLessons = notAcceptedLessonsData  )
         
         elif session['user'][6] =='teachers':
-            myLessons = DB.get_all_table_data('lessons',condition= ('teacherID',session['user'][0]))
-            courses = DB.get_all_table_data('lessons',condition = ('state','pinding'))
+            myLessons = DB.teacherLessons(session['user'][0])
+            courses = DB.teacherNotLessons(session['user'][0])
+            
+
+
             coursesData = {}
             for course in courses :
-                courseName = course[3].split('/')[-1]
-                coursesData[courseName]=(course[0],course[3])
+                courseName = course['lessonLOC'].split('/')[-1]
+                coursesData[courseName]=(course['lessonID'],course['lessonLOC'])
 
             myLessonData = {}
             for course in myLessons :
-                courseName = course[3].split('/')[-1]
-                myLessonData[courseName]=(course[0],course[3])
+                courseName = course['lessonLOC'].split('/')[-1]
+                myLessonData[courseName]=(course['lessonID'],course['lessonLOC'])
             
 
-            return render_template('teacher.html',state = ["","",""], result = session['user'], courses=coursesData, myLessons = myLessonData)
+            return render_template('teacher.html',state = state, result = session['user'], courses=coursesData, myLessons = myLessonData)
     else :
         return render_template('sign-in.html',state = "")
-                           
-                           
+
+
 @app.route("/login")
 def _login_():
     if session['user'] != None :
         return render_template('home.html',result = session['user'])
     else :
         return render_template('sign-in.html', state = "")
-                           
+
 @app.route("/signup")
 def _signup_():
     if session['user'] != None :
@@ -96,7 +108,7 @@ def _signup_():
 
 
 
-#*****************Functions*****************
+#**************************************Functions**************************************
 
 @app.route("/logout",methods = ['GET','POST']) #******************************logout***************************
 def logout():
@@ -163,7 +175,7 @@ def signup():
         
         emailValide = emailer.valide_email(email)
         if not emailValide :
-            return render_template('sign-up.html', state = "Please Enter Valide Email")
+            return render_template('sign-up.html', state = "Please Enter Valid Email")
         
         #Every thing is good ... create account
         code = random.randint(100000, 999999)
@@ -197,7 +209,7 @@ def contactus():
         type_ = 'students'
         userData = session['user']
 
-        # check availabilty of data
+        # check availability of data
         if email == '':
             return render_template('contact-us.html', state = 'Please enter your email',result=userData)
         if password == '':
@@ -255,7 +267,7 @@ def Update_Profile():
             phone = session['user'][4]
         
         if not (image.filename == ''):
-            path = 'static/Users_Data'+'/'+type_+'/'+str(session['user'][0])+'/Pictures/'+'Personal_Pic.png'
+            path = f'{homeDir}static/Users_Data/{type_}/{str(session["user"][0])}/Pictures/Personal_Pic.png'
             image.save(path)
 
         # email changing 
@@ -312,16 +324,17 @@ def Upload_PDF():
         type_ = session['user'][6]
         uploaded_file = request.files['file']
         uploaded_file.filename=uploaded_file.filename.replace(' ','_')
-        path = 'static/Users_Data'+'/'+type_+'/'+str(session['user'][0])+'/Lectures/'+uploaded_file.filename
+        path = f'{homeDir}static/Users_Data/{type_}/{str(session["user"][0])}/Lectures/{uploaded_file.filename}'
         uploaded_file.save(path)
         text = f" here is a request from {session['user'][2]} \n\n here is the student's contact information \n\n {session['user'][1]} \n {session['user'][4]}"                 
         message_ = {'To':emailer.Admin , 'title':'request lesson', 'message':text, 'attachment':path}
         emailer.send(message_)
-        DB.addLesson({'lessonLOC':path,'studentID':session['user'][0],'teacherID':0,'date':request.form['date'],'state':'pinding'})
-        if session['user'][6] == 'students':
-            return render_template('profile.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
-        elif session['user'][6] =='teachers':
-            return render_template('teacher.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
+        DB.addLesson('lessons',{'lessonLOC':path,'studentID':session['user'][0],'teacherID':None,'date':request.form['date'],'state':'0'})
+        # if session['user'][6] == 'students':
+        # return render_template('profile.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
+        _profile_(state = ["","Your file uploaded and sent to Admin",""])
+        # elif session['user'][6] =='teachers':
+            # return render_template('teacher.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
         
     
 
@@ -343,81 +356,81 @@ def admin():
 
 
 # *******************signIN using google*******************
-@app.route('/auth/google')
-def google_auth():
-    params = {
-        'client_id': GOOGLE_CLIENT_ID,
-        'redirect_uri': GOOGLE_REDIRECT_URI,
-        'response_type': 'code',
-        'scope': 'email profile',
-    }
-    auth_url = f"{GOOGLE_AUTHORIZATION_URI}?{'&'.join(f'{k}={v}' for k, v in params.items())}"
-    return redirect(auth_url)
+# @app.route('/auth/google')
+# def google_auth():
+#     params = {
+#         'client_id': GOOGLE_CLIENT_ID,
+#         'redirect_uri': GOOGLE_REDIRECT_URI,
+#         'response_type': 'code',
+#         'scope': 'email profile',
+#     }
+#     auth_url = f"{GOOGLE_AUTHORIZATION_URI}?{'&'.join(f'{k}={v}' for k, v in params.items())}"
+#     return redirect(auth_url)
 
-@app.route('/logwithgoogleserver')
-def google_callback():
-    code = request.args.get('code')
-    data = {
-        'code': code,
-        'client_id': GOOGLE_CLIENT_ID,
-        'client_secret': GOOGLE_CLIENT_SECRET,
-        'redirect_uri': GOOGLE_REDIRECT_URI,
-        'grant_type': 'authorization_code',
-    }
-    response = requests.post(GOOGLE_TOKEN_URI, data=data)
-    access_token = response.json().get('access_token')
+# @app.route('/logwithgoogleserver')
+# def google_callback():
+#     code = request.args.get('code')
+#     data = {
+#         'code': code,
+#         'client_id': GOOGLE_CLIENT_ID,
+#         'client_secret': GOOGLE_CLIENT_SECRET,
+#         'redirect_uri': GOOGLE_REDIRECT_URI,
+#         'grant_type': 'authorization_code',
+#     }
+#     response = requests.post(GOOGLE_TOKEN_URI, data=data)
+#     access_token = response.json().get('access_token')
 
-    # Use the access_token to fetch user information
-    user_info_response = requests.get(f"{GOOGLE_USER_INFO_URI}?access_token={access_token}")
-    user_info = user_info_response.json()
-    print("User INFO")
-    print(user_info)
+#     # Use the access_token to fetch user information
+#     user_info_response = requests.get(f"{GOOGLE_USER_INFO_URI}?access_token={access_token}")
+#     user_info = user_info_response.json()
+#     print("User INFO")
+#     print(user_info)
 
-    # Here, you can store user_info['email'] or other relevant information in your database
-    # and then proceed to authenticate the user in your system.
+#     # Here, you can store user_info['email'] or other relevant information in your database
+#     # and then proceed to authenticate the user in your system.
 
-    # signUpUsingGoogle(user_info)
-    return render_template('logWithGoogle.html',userInfo = user_info)
+#     # signUpUsingGoogle(user_info)
+#     return render_template('logWithGoogle.html',userInfo = user_info)
 
-@app.route('/logwithgoogleserverCofirming')
-def signUpUsingGoogle(data):
-    name = data['name']
-    # password = request.form['password']
-    email = data['email']
-    type_ = request.form['type']
-    # check availability of the input data
-    if 'agreeTS' not in request.form :
-        return render_template('sign-up.html', state = "Please read and agree on Terms of Service and Privacy Policy")
-    if name == None:
-        return render_template('sign-up.html', state = "Please enter valide name")
-    if email == None:
-        return render_template('sign-up.html', state = "Please enter valide email")
-    if password == None:
-        return render_template('sign-up.html', state = "Please enter valide password")
+# @app.route('/logwithgoogleserverCofirming')
+# def signUpUsingGoogle(data):
+#     name = data['name']
+#     # password = request.form['password']
+#     email = data['email']
+#     type_ = request.form['type']
+#     # check availability of the input data
+#     if 'agreeTS' not in request.form :
+#         return render_template('sign-up.html', state = "Please read and agree on Terms of Service and Privacy Policy")
+#     if name == None:
+#         return render_template('sign-up.html', state = "Please enter valide name")
+#     if email == None:
+#         return render_template('sign-up.html', state = "Please enter valide email")
+#     if password == None:
+#         return render_template('sign-up.html', state = "Please enter valide password")
     
-    emailExist = DB.search('students',email,by='email')
-    if not emailExist :
-        emailExist = DB.search('teachers',email,by='email')
+#     emailExist = DB.search('students',email,by='email')
+#     if not emailExist :
+#         emailExist = DB.search('teachers',email,by='email')
 
-    # nameExist = DB.search('students',name,by='username')
-    # if not nameExist :
-    #     nameExist = DB.search('teachers',name,by='username')
+#     # nameExist = DB.search('students',name,by='username')
+#     # if not nameExist :
+#     #     nameExist = DB.search('teachers',name,by='username')
 
-    if emailExist :
-        return render_template('sign-up.html', state = "The email is exist please sign in if you have an account")
-    # elif nameExist :
-    #     return render_template('sign-up.html', state = "The name is exist please sign in if you have an account")
+#     if emailExist :
+#         return render_template('sign-up.html', state = "The email is exist please sign in if you have an account")
+#     # elif nameExist :
+#     #     return render_template('sign-up.html', state = "The name is exist please sign in if you have an account")
     
-    emailValide = emailer.valide_email(email)
-    if not emailValide :
-        return render_template('sign-up.html', state = "Please Enter Valide Email")
+#     emailValide = emailer.valide_email(email)
+#     if not emailValide :
+#         return render_template('sign-up.html', state = "Please Enter Valide Email")
     
-    #Every thing is good ... create account
-    code = random.randint(100000, 999999)
-    message_ = {'To':email , 'title':'send config', 'message':'here is your code : '+str(code), 'attachment':None}
-    emailer.send(message_)
-    DB.__signup__(type_,name, email, password,code)
-    return render_template('sign-in.html', state = "")
+#     #Every thing is good ... create account
+#     code = random.randint(100000, 999999)
+#     message_ = {'To':email , 'title':'send config', 'message':'here is your code : '+str(code), 'attachment':None}
+#     emailer.send(message_)
+#     DB.__signup__(type_,name, email, password,code)
+#     return render_template('sign-in.html', state = "")
 
 
 @app.route('/lessonAccepted',methods=['POST'])
@@ -425,10 +438,13 @@ def lessonAccepted():
     if request.method == 'POST':
         data = request.get_json()
         my_variable = data.get('variable')
-        print('accepted lesson: ',my_variable)
 
 
-        DB.editLesson({'teacherID':session['user'][0],'state':'accepted','roomName':session['user'][1],'lessonID':int(my_variable)})
+        # DB.editLesson({'teacherID':session['user'][0],'state':'accepted','roomName':session['user'][1],'lessonID':int(my_variable)})
+        studentID = DB.search('lessons',int(my_variable),by='id')
+        DB.addLesson('st-tch-ls',{'studentID':studentID[1],'teacherID':session['user'][0],'lessonID':int(my_variable)})
+        DB.editLesson({'state':1,'lessonID':int(my_variable)})
+        
         response_data = {'message': f'Received variable: {my_variable}'}
         return jsonify(response_data), 200
     return jsonify({'error': str('10')}), 500
@@ -439,7 +455,6 @@ def live():
     if request.method == 'POST':
         lessonID = request.form['selectLesson']
         roomName = DB.get_all_table_data('lessons',condition=('ID',lessonID))
-        print('room data',roomName,lessonID)
         return render_template('index.html',roomName = roomName[0][7], result = session['user'])
     return redirect('/profile')
 
@@ -464,7 +479,6 @@ def finishLesson():
         data = request.get_json()
         my_variable = data.get('variable')
 
-        print('finished lesson: ',my_variable)
 
         response_data = {'message': f'Received variable: {my_variable}'}
         return jsonify(response_data), 200
@@ -479,8 +493,7 @@ def lesson_accept_student():
         lessonID = data.get('variable')[0]
         lessonAccepted = data.get('variable')[1]
 
-        print('accepted lesson: ',lessonID)
-        print('accepted ?: ',lessonAccepted)
+
         
 
         response_data = {'message': f'Received variable: {lessonID}'}
