@@ -4252,6 +4252,7 @@ header {
 .btn-action-lg-blue,
 .btn-hurry,
 .btn-edit,
+.btn-requistes,
 .btn-contact {
   width: 100%;
   padding: 0.75rem 2rem;
@@ -4266,6 +4267,7 @@ header {
   .btn-action-lg-blue:hover,
   .btn-hurry:hover,
   .btn-edit:hover,
+  .btn-requistes:hover,
   .btn-contact:hover {
     opacity: 0.8; }
 
@@ -4308,6 +4310,13 @@ header {
   background-color: #84c356;
   opacity: 0.6 !important; }
 
+.btn-requistes {
+  width: 7rem; }
+
+.form-group input {
+  border-radius: 0.5rem !important;
+  padding: 1rem 0.75rem !important; }
+
 .update-btn {
   margin: auto !important; }
 
@@ -4323,3 +4332,47 @@ header {
 
   .btn-contact {
     width: 70%; } }
+.table-wrapper {
+  border-radius: 2rem;
+  margin-top: 3rem;
+  width: 100%;
+  overflow: auto; }
+
+.table {
+  border-radius: 2rem;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+
+/* Style for the table header */
+.table thead th {
+  background-color: #84c356;
+  color: #fff;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px; }
+
+/* Style for table rows */
+.table tbody tr:nth-child(odd) {
+  background-color: #f2f2f2; }
+
+/* Style for table rows on hover */
+.table tbody tr:hover {
+  background-color: #e0e0e0; }
+
+.table td, .table th {
+  padding: 10px;
+  border-bottom: 1px solid #ccc; }
+
+.table a {
+  text-decoration: none;
+  color: #0F75C0;
+  transition: color 0.2s; }
+  .table a:hover {
+    color: #84c356; }
+
+.fa {
+  color: #84c356; }
+  .fa:hover {
+    color: #0F75C0; }

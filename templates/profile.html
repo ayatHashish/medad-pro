@@ -162,7 +162,7 @@
                 <div class="row">
                     <div class="col-xl-4">
                         <!-- profile-card -->
-                        <div class="profile-card mb-3">
+                        <div class="profile-card mb-3 box">
                             <div class="card">
                                 <div class="banner">
                                     <div class="img-area">
@@ -201,7 +201,6 @@
                                                 </div>
                                                 <div class="text-center my-3">
 
-
                                                     <label class="btn-action " id="inputfile" for="file"
                                                         onchange="uploading()">Upload
                                                         File
@@ -214,7 +213,7 @@
                                                     <label for="datePicker" id="datePickerL" style="display:none">Choose
                                                         a day:</label>
                                                     <label>
-                                                        <input type="date" class="btn-action" name="date"
+                                                        <input type="date" class="btn-action my-4" name="date"
                                                             id="datePicker" value="Choose a day"
                                                             onchange="updateSchedule()" style="display:none" />
                                                         <!-- onclick="submitForm(event,'/Upload_PDF','UploadPDF')" -->
@@ -234,7 +233,7 @@
                         </div>
                     </div>
                     <div class="col-xl-8">
-                        <div class="profile-lg-card">
+                        <div class="profile-lg-card box">
                             <div class="card">
                                 <div class="border-bottom">
                                     <h3>Profile Details</h3>
@@ -325,8 +324,6 @@
                         </div>
                     </div>
 
-
-
                     <div class="col-xl-12">
                         <div class="container-xl">
                             <div class="table-responsive">
@@ -350,9 +347,8 @@
                                             <!-- <option id = 'myAcceptedLessons' value={{item[0]}}>{{item}}</option> -->
                                             <form id='{{item["id"]}}'>
                                                 <tr>
-                                                    <input type="text" name="selectLesson"
-                                                        value='{{item["id"]}}' style="display: none;"
-                                                        placeholder='{{item["id"]}}'>
+                                                    <input type="text" name="selectLesson" value='{{item["id"]}}'
+                                                        style="display: none;" placeholder='{{item["id"]}}'>
                                                     <td>1</td>
                                                     <td><a><img src="../static/images/pdf.png">
                                                             <p class="text-center">{{item['courseName']}}</p>
@@ -363,21 +359,16 @@
                                                     <td>
                                                         <a href="" class="settings" title="accept"
                                                             data-toggle="tooltip">
-                                                            <i class="fa fa-check-circle" 
-                                                            onclick="acceptRequest(event,
-                                                            ['{{item["id"]}}','{{item["teacherID"]}}',
-                                                            true],'/lesson_accept_student')"
-                                                                >
+                                                            <i class="fa fa-check-circle" onclick="acceptRequest(event,
+                                                            ['{{item[" id"]}}','{{item["teacherID"]}}',
+                                                                true],'/lesson_accept_student')">
                                                             </i>
                                                         </a>
-                                                        
-                                                        <a href="" class="delete" title="Delete"
-                                                            data-toggle="tooltip">
-                                                            <i class="fa fa-times-circle"
-                                                            onclick="acceptRequest(event,
-                                                            ['{{item["id"]}}','{{item["teacherID"]}}',
-                                                            false],'/lesson_accept_student')"
-                                                                >
+
+                                                        <a href="" class="delete" title="Delete" data-toggle="tooltip">
+                                                            <i class="fa fa-times-circle" onclick="acceptRequest(event,
+                                                            ['{{item[" id"]}}','{{item["teacherID"]}}',
+                                                                false],'/lesson_accept_student')">
                                                             </i>
                                                         </a>
                                                     </td>
@@ -389,7 +380,7 @@
                                                         <!-- <a href="#" title="Start Meeting" data-toggle="tooltip">Start -->
                                                         <!-- </a> -->
                                                         <!-- {% else %} -->
-                                                            <!-- No Meeting -->
+                                                        <!-- No Meeting -->
                                                         <!-- {% endif %} -->
                                                     </td>
                                                     <td>
@@ -397,7 +388,7 @@
                                                         <button title="Finish Meeting" data-toggle="tooltip"
                                                             onclick="acceptRequest(event,'{{item["id"]}}','/finish_lesson')">Finish</button>
                                                         {% else %} -->
-                                                            <!-- On Progress -->
+                                                        <!-- On Progress -->
                                                         <!-- {% endif %} -->
                                                     </td>
                                                 </tr>
@@ -406,9 +397,8 @@
                                             {% for item in myNotAcceptedLessons %}
                                             <form id='{{item["id"]}}'>
                                                 <tr>
-                                                    <input type="text" name="selectLesson"
-                                                        value='{{item["id"]}}' style="display: none;"
-                                                        placeholder='{{item["id"]}}'>
+                                                    <input type="text" name="selectLesson" value='{{item["id"]}}'
+                                                        style="display: none;" placeholder='{{item["id"]}}'>
                                                     <td>1</td>
                                                     <td><a><img src="../static/images/pdf.png">
                                                             <p class="text-center">{{item['courseName']}}</p>
@@ -417,13 +407,13 @@
                                                     <td>{{item['date']}}</td>
                                                     <td>{{item['constructor']}}</td>
                                                     <td>
-                                                        
+
                                                     </td>
                                                     <td>
-                                                            
+
                                                     </td>
                                                     <td>
-                                                            
+
                                                     </td>
                                                 </tr>
                                             </form>
