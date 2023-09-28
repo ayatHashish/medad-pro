@@ -46,7 +46,8 @@
         <div class="container">
             <div class="header-section">
                 <nav class="nav navbar navbar-expand-lg navbar-light justify-content-between">
-                    <a class="navbar-brand"> <img src="static/images/logo1.png" onclick="location.href = getServerUrl() + '/home';" alt=""></a>
+                    <a class="navbar-brand"> <img src="static/images/logo1.png"
+                            onclick="location.href = getServerUrl() + '/home';" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +71,7 @@
                                     onclick="location.href = getServerUrl() + '/profile';">Profile</a>
                             </li>
                             {% endif %}
-                            
+
                             <li class="nav-item nav-link">
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/contactus';">Contact Us</a>
@@ -141,13 +142,11 @@
                                         </div>
                                     </form>
                                 </div>
-
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary">Sign In</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -168,44 +167,51 @@
                                     <div class="img-area">
                                         <div class="inner-area">
                                             <img name=image id='per_image' src={{'./static/Users_Data/'+(result[6]) |
-                                            string+'/'+(result[0]) |
-                                            string+'/Pictures/Personal_Pic.png' }} alt="Personal Picture">
+                                                string+'/'+(result[0]) | string+'/Pictures/Personal_Pic.png' }}
+                                                alt="Personal Picture">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="profile-card live-card mb-3">
-                                   
-                                        <div class="pt-3">
-                                            <div class="details text-start">
-                                                <h5 class="name fw-bold text-center">{{result[2]}}</h5>
-                                                <p>Name: <span>{{result[2]}}</span></p>
-                                                <p>Mail:<a>{{result[1]}}</a></p>
-                                                <p>Phone: <a>{{result[4]}}</a></p>
-                                                <p>Subject: <span>{{result[7]}}</span></p>
-                                            </div>
-                                        </div>
-                                        
-                                        <div>
-                                            <h3 style="text-align: center; padding-top: 40px;">Courses Requistes</h3>
-                                            <ul id="coursesRequests" style="padding-left: 10px; overflow: auto; width: 300px; height: 200px;">
 
-                                                <table>
-                                                {% for item in courses %}
-                                                
-                                                    <tr>
-                                                    
-                                                        <!-- <input type="checkbox" name="courseSelected" id="courseSelected"> -->
-                                                        <!-- <td><label>{{courses[item][0]}}</label></td> -->
-                                                        <td><label><a href={{courses[item][1]}} target="_blank">{{item}}</a></label></td>
-                                                        <td><button><a href="" onclick="acceptRequest(event,'{{courses[item][0]}}','/lessonAccepted')" >accept</a></button></td>
-                                                    </tr>
-                                                {% endfor %}
-                                                </table>
-                                            </ul>
+                                    <div class="pt-3">
+                                        <div class="details text-start">
+                                            <h5 class="name fw-bold text-center">{{result[2]}}</h5>
+                                            <p>Name: <span>{{result[2]}}</span></p>
+                                            <p>Mail:<a>{{result[1]}}</a></p>
+                                            <p>Phone: <a>{{result[4]}}</a></p>
+                                            <p>Subject: <span>{{result[7]}}</span></p>
                                         </div>
-                                   
+                                    </div>
+
+                                    <div>
+                                        <h3 style="text-align: center; padding-top: 40px;">Courses Requistes</h3>
+                                        <ul id="coursesRequests"
+                                            style="padding-left: 10px; overflow: auto; width: 300px; height: 200px;">
+                                            {% for item in courses %}
+                                            <div class=" my-2 requistes">
+                                            <div class="row">
+
+                                                <div class="col-9"> <a href={{courses[item][1]}} target="_blank" >{{item}}</a></div>
+                                                <div class="col-3"> <button href="" class="btn-requistes {
+                                                    "
+                                                    onclick="acceptRequest(event,'{{courses[item] [0]}}','/lessonAccepted')">accept</button></div>
+                                            </div>
+                                            </div>
+                                            <!-- <div class="d-flex justify-content-between my-2 requistes">
+                                          
+                                             
+                                            </div> -->
+
+
+
+
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -291,14 +297,16 @@
                                     </div>
                                 </form>
                                 <form id="selectLessonForm">
-                                    <select name="selectLesson" onchange="showLessonData(event,'/getLessonData')">
+                                    <select name="selectLesson" 
+                                     onchange="showLessonData(event,'/getLessonData')">
                                         {% for item in myLessons %}
-                                            <option value = {{myLessons[item][0]}}>{{item}}</option>
+                                        <option value={{myLessons[item][0]}}>{{item}}</option>
                                         {% endfor %}
-                                        
+
                                     </select>
                                     <!-- TODO Show course information -->
-                                    <button type="submit" onclick="submitForm(event,'/live','selectLessonForm')" target="_blank">Start Meeting</button>
+                                    <button type="submit"  class="btn-action form-control" onclick="submitForm(event,'/live','selectLessonForm')"
+                                        target="_blank">Start Meeting</button>
 
                                 </form>
                                 <div id="lessonData"></div>
@@ -316,7 +324,8 @@
         </div>
     </main>
     <footer class="d-flex justify-content-center align-content-end">
-        <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png" onclick="location.href = getServerUrl() + '/home';" alt=""></a>
+        <a class="navbar-brand" href="#"> <img src="static/images/logo 1.png"
+                onclick="location.href = getServerUrl() + '/home';" alt=""></a>
         <a class="text-reset rights">All rights reserved for Medadd </a>
 
     </footer>

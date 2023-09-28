@@ -465,4 +465,14 @@ const showLessonData=function(event,target){
 
 }
 
-
+function updateDateInput() {
+    var today = new Date().toISOString().split('T')[0]; 
+    var datePicker = document.getElementById('datePicker');
+    datePicker.setAttribute('min', today);
+    if (datePicker.value <= today) {
+        datePicker.value == today; 
+    }
+    datePicker.style.display = 'none';
+}
+window.onload = updateDateInput;
+document.getElementById('datePicker').addEventListener('change', updateDateInput);
