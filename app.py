@@ -6,7 +6,7 @@ import random
 import requests
 #*****************set server*****************
 homeDir = './'
-#homeDir = '/home/maged_khaled/workSpace/medadA/website/'
+homeDir = '/home/maged_khaled/workSpace/medadA/website/'
 app = Flask(__name__)
 
 GOOGLE_CLIENT_ID = "361389956894-fikf8t93743htich35qalbib61kotq1q.apps.googleusercontent.com"
@@ -312,7 +312,7 @@ def Update_Profile():
                 return render_template('teacher.html',state = ["Your profile updated successfully","",""], result = session['user'])
         
         
-    return redirect("profile")
+    return redirect('/profile')
 
 
 
