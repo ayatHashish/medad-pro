@@ -4311,7 +4311,8 @@ header {
   opacity: 0.6 !important; }
 
 .btn-requistes {
-  width: 7rem; }
+  width: 5rem;
+  padding: 0.5rem 0rem; }
 
 .form-group input {
   border-radius: 0.5rem !important;

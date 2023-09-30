@@ -22,11 +22,7 @@
                 padding: 0;
             }
         }
-    
-
   }
-
-
   .requistes{
     padding: 0 0 0 2rem  ;
     a{
@@ -36,9 +32,31 @@
            color:$sec-primary
       }
     }
-
   }
-
 
   
   }
+  #lessonData {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 0 auto; /* Center the div horizontally */
+}
+
+/* Style for the data container */
+.data-container {
+    margin-bottom: 10px;
+}
+
+/* Style for labels */
+.label {
+    font-weight: bold;
+    color: $sec-primary;
+}
+
+/* Style for data values */
+.value {
+    margin-left: 10px;
+}
