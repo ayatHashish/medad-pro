@@ -260,7 +260,6 @@
                                                     <input type="text" name='course' class="form-control" id="course"
                                                         placeholder="English course, Nursing,">
                                                 </div>
-
                                             </div>
                                             <div class="text-center text-lg-start mt-4 pt-2">
                                                 <p id="password-text"> {{state[0]}} </p>
@@ -269,19 +268,26 @@
                                                     Profile</button>
                                             </div>
                                         </div>
-
                                     </div>
-
-
-
                                 </form>
 
                             </div>
-
                         </div>
-
-
                     </div>
+                    <div class="col-xl-12">
+                        <div class="edit my-4 ">
+                                <div>
+                                    <h3 class="title-services">Courses Requistes</h3>
+                                    <ul id="coursesRequests" style="padding-left: 10px; overflow: auto; height: 200px;">
+                                        {% for item in courses %}
+                                        <div class="my-2 requistes">
+                                            <div class="row">
+                                                <div class="col-9"> <a href={{courses[item][1]}}
+                                                        target="_blank">{{item}}</a></div>
+                                                <div class="col-3"> <button href="" class="btn-requistes {
+                        " onclick="acceptRequest(event,'{{courses[item] [0]}}','/lessonAccepted')">accept</button>
+                                                </div>
+                                            </div>
 
 
                     <div class="col-xl-12">
@@ -362,12 +368,9 @@
             </div>
 
         </div>
-
         </div>
 
-
-
-
+        </div>
 
 
 

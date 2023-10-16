@@ -5066,3 +5066,30 @@ header {
     color: #878483; }
     .profile-card .requistes a:hover {
       color: #84c356; }
+
+.edit {
+  border-radius: 2rem;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Style for labels */
+  /* Style for data values */ }
+  .edit h3 {
+    color: #0F75C0;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 40px; }
+  .edit #lessonData {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 0 auto; }
+  .edit .label {
+    font-weight: bold;
+    color: #84c356; }
+  .edit .value {
+    margin-left: 10px; }
