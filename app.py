@@ -1,9 +1,9 @@
 from flask import Flask,request,redirect,render_template,session,url_for,jsonify
-from functions.functions import dataBase
+from functions.functions import DataBase
 from functions.mail_sender import sender
 import sys
 import random
-import requests
+from functions.api import Video
 #*****************set server*****************
 homeDir = './'
 homeDir = '/home/maged_khaled/workSpace/medadA/website/'
@@ -51,21 +51,13 @@ def _contactus_():
 def _profile_(state = ["","",""]):
     if (session['user'] != None) :
         if session['user'][6] == 'students':
-            acceptedLessons,notAcceptedLessons = DB.getStudentLessons(session['user'][0])
-            print(acceptedLessons)
-            print(notAcceptedLessons)#TODO send acceptedLessons and notAcceptedLessons to front
+            acceptedLessons,notAcceptedLessons,readyLessons = DB.getStudentLessons(session['user'][0])
 
-            acceptedLessonsData = []
-            for course in acceptedLessons :
-                courseName = course['lessonLOC'].split('/')[-1]
-                acceptedLessonsData.append({'courseName':courseName,'id':course['lessonID'],'location':course['lessonLOC'],'date':course['date'],'teacherID':course['teacherID'],'constructor':course['teacherEmail'],'statue':course['state'],'meeting':False})
-            acceptedLessonsData = sorted(acceptedLessonsData, key=lambda d: d['courseName'], reverse=True)
-            notAcceptedLessonsData = []
-            for course in notAcceptedLessons :
-                courseName = course['lessonLOC'].split('/')[-1]
-                notAcceptedLessonsData.append({'courseName':courseName,'id':course['lessonID'],'location':course['lessonLOC'],'date':course['date'],'teacherID':course['teacherID'],'constructor':'','statue':course['state'],'meeting':False})
-            notAcceptedLessonsData = sorted(notAcceptedLessonsData, key=lambda d: d['courseName'], reverse=True)
-            return render_template('profile.html',state = state, result = session['user'], myAcceptedLessons = acceptedLessonsData, myNotAcceptedLessons = notAcceptedLessonsData  )
+            acceptedLessons = sorted(acceptedLessons, key=lambda d: d['lessonID'], reverse=True)
+            notAcceptedLessons = sorted(notAcceptedLessons, key=lambda d: d['lessonID'], reverse=True)
+            readyLessons = sorted(readyLessons, key=lambda d: d['lessonID'], reverse=True)
+            
+            return render_template('profile.html',state = state, result = session['user'], myAcceptedLessons = acceptedLessons, myNotAcceptedLessons = notAcceptedLessons, myReadyLessons = readyLessons)
         
         elif session['user'][6] =='teachers':
             myLessons = DB.teacherLessons(session['user'][0])
@@ -121,7 +113,7 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        # serch for email in students and teachers table
+        # search for email in students and teachers table
         type_ = 'students'
         user = DB.search(type_,email)
         if not user :
@@ -164,14 +156,8 @@ def signup():
         if not emailExist :
             emailExist = DB.search('teachers',email,by='email')
 
-        # nameExist = DB.search('students',name,by='username')
-        # if not nameExist :
-        #     nameExist = DB.search('teachers',name,by='username')
-
         if emailExist :
             return render_template('sign-up.html', state = "The email is exist please sign in if you have an account")
-        # elif nameExist :
-        #     return render_template('sign-up.html', state = "The name is exist please sign in if you have an account")
         
         emailValide = emailer.valide_email(email)
         if not emailValide :
@@ -257,7 +243,7 @@ def Update_Profile():
         if session['user'][6] == 'teachers':
             courseType = request.form['course']
             if courseType == '':
-               courseType = session['user'][7]
+                courseType = session['user'][7]
         # check availability of data
         if email == '':
             email = session['user'][1]
@@ -301,17 +287,10 @@ def Update_Profile():
         
         # make suitable output
         if emailChangeFlag :
-            if session['user'][6] == 'students':
-                return render_template('profile.html',state = ["Your profile updated successfully and we send validation code to you email","",""], result = session['user'])
-            elif session['user'][6] =='teachers':
-                return render_template('teacher.html',state = ["Your profile updated successfully and we send validation code to you email","",""], result = session['user'])
+            _profile_(state = ["Your profile updated successfully and we send validation code to you email","",""])
         else:
-            if session['user'][6] == 'students':
-                return render_template('profile.html',state = ["Your profile updated successfully","",""], result = session['user'])
-            elif session['user'][6] =='teachers':
-                return render_template('teacher.html',state = ["Your profile updated successfully","",""], result = session['user'])
-        
-        
+            _profile_(state = ["Your profile updated successfully","",""])
+
     return redirect('/profile')
 
 
@@ -328,13 +307,9 @@ def Upload_PDF():
         uploaded_file.save(path)
         text = f" here is a request from {session['user'][2]} \n\n here is the student's contact information \n\n {session['user'][1]} \n {session['user'][4]}"                 
         message_ = {'To':emailer.Admin , 'title':'request lesson', 'message':text, 'attachment':path}
-        emailer.send(message_)
+        #emailer.send(message_)
         DB.addLesson('lessons',{'lessonLOC':path,'studentID':session['user'][0],'teacherID':None,'date':request.form['date'],'state':'0'})
-        # if session['user'][6] == 'students':
-        # return render_template('profile.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
         _profile_(state = ["","Your file uploaded and sent to Admin",""])
-        # elif session['user'][6] =='teachers':
-            # return render_template('teacher.html',state = ["","Your file uploaded and sent to Admin",""], result = session['user'])
         
     
 
@@ -383,8 +358,7 @@ def admin():
 #     # Use the access_token to fetch user information
 #     user_info_response = requests.get(f"{GOOGLE_USER_INFO_URI}?access_token={access_token}")
 #     user_info = user_info_response.json()
-#     print("User INFO")
-#     print(user_info)
+
 
 #     # Here, you can store user_info['email'] or other relevant information in your database
 #     # and then proceed to authenticate the user in your system.
@@ -437,10 +411,8 @@ def admin():
 def lessonAccepted():
     if request.method == 'POST':
         data = request.get_json()
+        print('accepted lesson:',data)
         my_variable = data.get('variable')
-
-
-        # DB.editLesson({'teacherID':session['user'][0],'state':'accepted','roomName':session['user'][1],'lessonID':int(my_variable)})
         studentID = DB.search('lessons',int(my_variable),by='id')
         DB.addLesson('st-tch-ls',{'studentID':studentID[1],'teacherID':session['user'][0],'lessonID':int(my_variable)})
         DB.editLesson({'state':1,'lessonID':int(my_variable)})
@@ -454,23 +426,21 @@ def lessonAccepted():
 def live():
     if request.method == 'POST':
         lessonID = request.form['selectLesson']
-        roomName = DB.get_all_table_data('lessons',condition=('ID',lessonID))
-        return render_template('index.html',roomName = roomName[0][7], result = session['user'])
+        roomName = DB.getRoomName(lessonID)
+        print(roomName)
+        token = video.getToken()
+        print(token)
+        return render_template('index.html',roomName = roomName, result = session['user'])
     return redirect('/profile')
 
 
 
 
-@app.route('/getLessonData', methods = ['POST'])
-def getLessonData():
-    if request.method == 'POST':
-        data = request.get_json()
-        my_variable = data.get('variable')
-        my_variable = DB.get_all_table_data('lessons',condition = ('ID',my_variable))
-        response_data = {'message': f'Received variable: {my_variable}'}
-        return jsonify(response_data), 200
-    return jsonify({'error': str('10')}), 500
-
+@app.route('/getLessonData/<int:id>', methods=['GET'])
+def get_data(id):
+    my_variable = DB.getLesson(id)
+    data = my_variable
+    return jsonify(data)
 
 @app.route('/finish_lesson', methods = ['POST'])
 def finishLesson():
@@ -491,12 +461,22 @@ def lesson_accept_student():
 
         data = request.get_json()
         print('accepted lesson:    ',data)
-        lessonID = data.get('variable')[0]
-        teacherID = data.get('variable')[1]
+        lessonID = data.get('variable')['lessonID']
+        teacherID = data.get('variable')['teacherID']
+        lessonAccepted = data.get('variable')['state']
 
-        lessonAccepted = data.get('variable')[2]
-        #TODO: if  lessonAccepted >>> remove from st-tch-cr and change its state in lessons to 2
-        #else >>> remove record [stID,tchID,lesID] from st-tch-cr
+        if lessonAccepted:
+
+
+            if lessonAccepted:
+                teacherName = data.get('variable')['teacherName']
+                lessonName = data.get('variable')['lessonName']
+                studentName = session['user'][2]
+                roomName = f"Meeting Between {teacherName} and {studentName} for {lessonName}"
+                DB.acceptLesson({'lessonID':lessonID,'teacherID':teacherID,'studentID':session['user'][0],'roomName':roomName})
+
+        else:
+            DB.rejectLesson({'lessonID':lessonID,'teacherID':teacherID,'studentID':session['user'][0]})
 
 
         
@@ -510,8 +490,9 @@ def lesson_accept_student():
 
 if __name__ == '__main__':
     emailPass = sys.argv[2]
-    DB = dataBase('users.db')
+    DB = DataBase('users.db')
     emailer = sender(emailPass)
+    video = Video()
     app.secret_key = 'Medad_WS@MishkaKids-2023_'
     port = sys.argv[1]
     app.run(host='localhost', port = port, debug=True)

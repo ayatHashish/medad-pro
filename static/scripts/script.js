@@ -319,12 +319,12 @@ function submitForm(event, loc, form) {
     form.submit();
 }
 
-function checkTS(check,butt){
+function checkTS(check, butt) {
     var checkbox = document.getElementById(check);
     var button = document.getElementById(butt);
 
-    checkbox.addEventListener('change', function() {
-    button.disabled = !checkbox.checked;
+    checkbox.addEventListener('change', function () {
+        button.disabled = !checkbox.checked;
     });
 }
 
@@ -406,71 +406,85 @@ function checkFileUpload(file, pic, name) {
 
 
 
-var loadFile = function (event,elementId) {
+var loadFile = function (event, elementId) {
     var image = document.getElementById(elementId);
     image.src = URL.createObjectURL(event.target.files[0]);
 };
 
-const signUpGoogle = () =>{
+const signUpGoogle = () => {
     let googleImage = document.getElementById('signupGoogle');
-    googleImage.onclick = ()=>{location.href = '/auth/google';}
+    googleImage.onclick = () => { location.href = '/auth/google'; }
 }
 // signUpGoogle();
 
 
 
-const acceptRequest = function(event,myVariable,target){
-        // console.log('data = ',myVariable)
-        let data = {
-            variable: myVariable
-        };
-        fetch(target, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+const acceptRequest = function (event, myVariable, target) {
+    let data = {
+        variable: myVariable
+    };
+    fetch(target, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json)
+        .then(data => {
+            window.location.reload()
         })
 
 
 };
 
-
-const showLessonData=function(event,target){
+const showLessonData = async (event, target) => {
     let selected = event.target.selectedIndex
-    selected = event.target.options[selected].value
+    id = event.target.options[selected].value
+    try {
+        const response = await fetch(`${target}/${id}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log('Received data:', data);
+        console.log('Received data1:', data.lessonLoc);
+        let lectureName = document.getElementById('lectureName')
+        let lectureDate = document.getElementById('lectureDate')
+        let lectureStudent = document.getElementById('lectureStudent')
+        let lectureStudentEmail = document.getElementById('lectureStudentEmail')
+        let lectureButton = document.getElementById('lectureButton')
+        let lectureButton2 = document.getElementById('lectureButton2')
 
-    selected = {
-        variable: selected
+        lectureName.textContent = data['lessonName'];
+        lectureName.href = data['lessonLoc'];
+        lectureDate.textContent = data['username'];
+        lectureStudent.textContent = data['email'];
+        lectureStudentEmail.textContent = data['date'];
+
+        if (data['state'] == 1) {
+            lectureButton.classList.add('invisible')
+        }
+        else if (data['state'] == 2) {
+            lectureButton.classList.remove('invisible')
+
+        }
+        else {
+            lectureButton.classList.add('invisible')
+            lectureButton2.classList.remove('invisible')
+
+        }
+    } catch (error) {
+        console.error('Error:', error);
     }
-
-    fetch(target,{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(selected) 
-    })
-    .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            let dataDiv = document.getElementById('lessonData')
-            dataDiv.innerText = JSON.stringify(data)
-            
-        })
-        .catch(error => {
-            console.log('error:',error)
-        })
-    
-
-}
+};
 
 function updateDateInput() {
-    var today = new Date().toISOString().split('T')[0]; 
+    var today = new Date().toISOString().split('T')[0];
     var datePicker = document.getElementById('datePicker');
     datePicker.setAttribute('min', today);
     if (datePicker.value <= today) {
-        datePicker.value == today; 
+        datePicker.value == today;
     }
     datePicker.style.display = 'none';
 }

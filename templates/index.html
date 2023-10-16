@@ -100,19 +100,21 @@
       </div>
     </header>
     <main>
+
+      <!-- <iframe height="850px" width="90%" src="https://video-agent.8x8.com?user=Maged.com&token=eyJiJIUzI1NiME5B87.qPWXyNNDHBx_LftaHarcSgm0c" allow="microphone; camera"></iframe> -->
+
       <script type="text/javascript">
         window.onload = () => {
+
           const api = new JitsiMeetExternalAPI("8x8.vc", {
             roomName: '{{roomName}}',
             parentNode: document.querySelector('#jaas-container')
             
             });
-          console.log('**********************',api)
         }
 
         let elem = document.getElementsByTagName('iframe')[0]
         elem.addEventListener('unload',(event)=>{
-          console.log('here we are *******************')
           event.preventDefault()
           alert('closing')
         })

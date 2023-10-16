@@ -8,34 +8,11 @@ import shutil
 # 1 >> accepted by one or more teacher 
 # 2 >> student choose one teacher
 # 3 >> admin accepted the course 
-class dataBase:
+class DataBase:
     def __init__(self,name):
         self.home = './'
         self.home = '/home/maged_khaled/workSpace/medadA/website/'
         self.name = f"{self.home}database/{name}"
-        # with sqlite3.connect(self.name) as conn:
-        #     cur = conn.cursor()
-        #     cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        #     tables = cur.fetchall()
-            
-        #     if ('students',) not in tables :
-        #         conn.execute('''CREATE TABLE students
-        #                     (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, phone TEXT, validation TEXT, Type_ TEXT DEFAULT students)''')
-        #     if ('lessons',) not in tables :
-        #         conn.execute('''CREATE TABLE lessons
-        #                     (id INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, teacherID INTEGER, lessonLOC TEXT, state TEXT, date TEXT, URL TEXT, coursType TEXT, roomName TEXT)''')
-                
-        #     if ('teachers',) not in tables :
-        #         conn.execute('''CREATE TABLE teachers
-        #         (id INTEGER PRIMARY KEY AUTOINCREMENT, 
-        #         email TEXT, 
-        #         username TEXT, 
-        #         password TEXT, 
-        #         phone TEXT, 
-        #         validation TEXT, 
-        #         Type_ TEXT DEFAULT 'teachers', 
-        #         coursType TEXT)''')
-
         
     def search(self,table, tofind, by = "email"):
         with sqlite3.connect(self.name) as conn:
@@ -97,7 +74,7 @@ class dataBase:
             
             
             user = self.search(table, email)
-           
+            
             
             os.makedirs(f'{self.home}static/Users_Data/{table}/{str(user[0])}/Pictures')
             os.makedirs(f'{self.home}static/Users_Data/{table}/{str(user[0])}/Lectures')
@@ -113,8 +90,6 @@ class dataBase:
     def __login__(self,table,user,password):
     
         password = hashlib.sha256(password.encode()).hexdigest()
-        # if bcrypt_sha256.verify(password, user[3]):
-        #     return user
         if password == user[3]:
             return user
         return None
@@ -195,43 +170,111 @@ class dataBase:
             
             update_query = f'''
                 UPDATE lessons
-                SET teacherID = ?,
-                    state = ?,
-                    roomName = ?
+                SET state = ?
                 WHERE id = ?
             '''
             
-            cursor.execute(update_query, (new_data['teacherID'], new_data['state'],new_data['roomName'], new_data['lessonID']))
+            cursor.execute(update_query, (new_data['state'],new_data['lessonID']))
             conn.commit()
 
 
     def getStudentLessons(self,studentID):
         with sqlite3.connect(self.name) as conn:
-        
-            query = f"SELECT c.lessonID,c.teacherID,l.lessonLOC,t.email,l.date,l.state, l.roomName \
-            FROM lessons AS l, 'st-tch-ls' AS c, teachers AS t\
-            WHERE c.lessonID = l.id AND c.studentID = ? AND c.teacherID = t.id;"
+            
+            query = f"SELECT id,lessonLOC,date FROM lessons \
+                        WHERE state = 0 AND studentID = ?;"
+            lessonsNotAccepted = conn.execute(query, (studentID,)).fetchall()
+
+
+            query = f"SELECT lessons.id,lessons.lessonLOC,teachers.username,lessons.date,teachers.id \
+                    FROM lessons,teachers,'st-tch-ls'\
+                    WHERE lessons.id = 'st-tch-ls'.lessonID AND \
+                    teachers.id = 'st-tch-ls'.teacherID AND\
+                    lessons.state = 1 AND lessons.studentID = ?;"
             lessonsAccepted = conn.execute(query, (studentID,)).fetchall()
 
-            query = f"SELECT * FROM lessons WHERE id not in (\
-                SELECT lessonID FROM 'st-tch-ls' WHERE studentID = ?);"
-            lessonsNotAccepted = conn.execute(query, (studentID,)).fetchall()
+            
+
+            query = f"SELECT lessons.id,lessons.lessonLOC,teachers.username,lessons.date,lessons.roomName \
+                    FROM lessons,teachers,'st-tch-ls'\
+                    WHERE lessons.id = 'st-tch-ls'.lessonID AND \
+                    teachers.id = 'st-tch-ls'.teacherID AND\
+                    lessons.state = 2 AND lessons.studentID = ?;"
+            readyLessons = conn.execute(query, (studentID,)).fetchall()
 
         lessonsAcceptedData = []
         lessonsNotAcceptedData = []
+        readyLessonsData = []
 
-        for lesson in lessonsAccepted:
-            lessonsAcceptedData.append({'teacherID':lesson[1],'lessonID':lesson[0],
-                    'lessonLOC':lesson[2],'teacherEmail':lesson[3],'state':lesson[5],
-                    'date':lesson[4],'roomName':lesson[6]})
-            
+
         for lesson in lessonsNotAccepted:
-            lessonsNotAcceptedData.append({'teacherID':lesson[2],'lessonID':lesson[0],
-                    'lessonLOC':lesson[3],'teacherEmail':None,'state':lesson[4],
-                    'date':lesson[5],'roomName':lesson[7]})
+            lessonName = lesson[1].split('/')[-1]
+            lessonsNotAcceptedData.append({'lessonID':lesson[0],'lessonName':lessonName,'lessonLOC':lesson[1],'date':lesson[2]})
         
-        return lessonsAcceptedData,lessonsNotAcceptedData #user tuple or none
+        for lesson in lessonsAccepted:
+            lessonName = lesson[1].split('/')[-1]
+            lessonsAcceptedData.append({'lessonID':lesson[0],'lessonName':lessonName,'lessonLOC':lesson[1],
+                                        'teacherName':lesson[2],'date':lesson[3],'teacherID':lesson[4]})
 
+        for lesson in readyLessons:
+            lessonName = lesson[1].split('/')[-1]
+            readyLessonsData.append({'lessonID':lesson[0],'lessonName':lessonName,'lessonLOC':lesson[1],
+                                        'teacherName':lesson[2],'date':lesson[3],'roomName':lesson[4]})
+            
+        return lessonsAcceptedData,lessonsNotAcceptedData,readyLessonsData #user tuple or none
+
+
+    def acceptLesson(self,data):
+        with sqlite3.connect(self.name) as conn:
+            query = f"DELETE FROM 'st-tch-ls'\
+                        WHERE lessonID = ? AND teacherID != ? AND studentID = ?;"
+            conn.execute(query, (data['lessonID'],data['teacherID'],data['studentID'],)).fetchall()
+
+
+            query = f"UPDATE lessons SET state = 2, teacherID = ?, roomName = ? \
+                    WHERE id = ?"
+            conn.execute(query, (data['teacherID'],data['roomName'],data['lessonID'],)).fetchall()
+
+
+
+    def rejectLesson(self,data):
+        with sqlite3.connect(self.name) as conn:
+            query = f"DELETE FROM 'st-tch-ls' \
+                    WHERE lessonID = ? AND teacherID = ? AND studentID = ?;"
+            conn.execute(query, (data['lessonID'],data['teacherID'],data['studentID'],)).fetchall()
+
+
+            query = f"UPDATE lessons SET state = 0 \
+                    WHERE state = 1 AND id NOT IN (SELECT lessonID from 'st-tch-ls')"
+            conn.execute(query, ()).fetchall()
+
+
+    def getRoomName(self,id):
+        with sqlite3.connect(self.name) as conn:
+
+            query = f"SELECT roomName FROM lessons \
+                    where id = ?;"
+            roomName = conn.execute(query, (id,)).fetchone()
+        return roomName[0]
+
+
+
+    def getLesson(self,id):
+        with sqlite3.connect(self.name) as conn:
+
+            query = f"SELECT l.lessonLOC, l.state,\
+                l.date, l.roomName, s.email, s.username\
+            from lessons as l, students as s \
+            WHERE l.id = ? AND l.studentID = s.id;"
+
+            data = conn.execute(query, (id,)).fetchone()
+
+            lessonName = data[0].split('/')[-1]
+
+            data = {'lessonName':lessonName,'lessonLoc':data[0],'state':data[1],
+                    'date':data[2],'roomName':data[3],
+                    'email':data[4],'username':data[5]}
+        print('data: ',data)
+        return data
 
         
-

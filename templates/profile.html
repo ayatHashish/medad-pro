@@ -309,17 +309,7 @@
 
                                     </div>
                                 </form>
-                                <!-- <form id="selectLessonForm">
-                                    <select name="selectLesson" onchange="showLessonData(event,'/getLessonData')">
-                                        {% for item in myLessons %}
-                                        <option id = 'lessonSelected' value={{myLessons[item][0]}}>{{item}}</option>
-                                        {% endfor %}
 
-                                    </select>
-                                    <button type="submit" onclick="submitForm(event,'/live','selectLessonForm')"
-                                        target="_blank">Start Meeting</button>
-                                </form>
-                                <div id="lessonData"></div> -->
                             </div>
                         </div>
                     </div>
@@ -341,85 +331,98 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- { increment = 0 } -->
-                                            {% for item in myAcceptedLessons %}
-                                            <!-- { increment = increment + 1 } -->
-                                            <!-- <option id = 'myAcceptedLessons' value={{item[0]}}>{{item}}</option> -->
-                                            <form id='{{item["id"]}}'>
+                                            <!-- Ready lessons -->
+                                            {% for item in myReadyLessons %}
+                                            <form id="{{item.lessonID}}">
                                                 <tr>
-                                                    <input type="text" name="selectLesson" value='{{item["id"]}}'
-                                                        style="display: none;" placeholder='{{item["id"]}}'>
-                                                    <td>1</td>
-                                                    <td><a><img src="../static/images/pdf.png">
-                                                            <p class="text-center">{{item['courseName']}}</p>
+                                                    <input type="hidden" name="selectLesson" value="{{item.lessonID}}">
+                                                    <td>{{item.lessonID}}</td>
+                                                    <td>
+                                                        <a href="#">
+                                                            <img src="../static/images/pdf.png" alt="PDF Image">
+                                                            <p class="text-center">{{item.lessonName}}</p>
                                                         </a>
                                                     </td>
-                                                    <td>{{item['date']}}</td>
-                                                    <td>{{item['constructor']}}</td>
+                                                    <td>{{item.date}}</td>
+                                                    <td>{{item.teacherName}}</td>
+                                                    <td></td>
                                                     <td>
-                                                        <a href="" class="settings" title="accept"
-                                                            data-toggle="tooltip">
-                                                            <i class="fa fa-check-circle" onclick="acceptRequest(event,
-                                                            ['{{item[" id"]}}','{{item["teacherID"]}}',
-                                                                true],'/lesson_accept_student')">
-                                                            </i>
-                                                        </a>
-
-                                                        <a href="" class="delete" title="Delete" data-toggle="tooltip">
-                                                            <i class="fa fa-times-circle" onclick="acceptRequest(event,
-                                                            ['{{item[" id"]}}','{{item["teacherID"]}}',
-                                                                false],'/lesson_accept_student')">
-                                                            </i>
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <!-- {% if item['meeting'] %}
                                                         <button title="Start Meeting" data-toggle="tooltip"
                                                             type="submit"
-                                                            onclick="submitForm(event,'/live','{{item["id"]}}' )" target="_blank">Start Meeting</button> -->
-                                                        <!-- <a href="#" title="Start Meeting" data-toggle="tooltip">Start -->
-                                                        <!-- </a> -->
-                                                        <!-- {% else %} -->
-                                                        <!-- No Meeting -->
-                                                        <!-- {% endif %} -->
+                                                            onclick="submitForm(event,'/live','{{item.lessonID}}')"
+                                                            target="_blank">Enter Meeting</button>
                                                     </td>
                                                     <td>
-                                                        <!-- {% if item['statue']=='finished' %}
-                                                        <button title="Finish Meeting" data-toggle="tooltip"
-                                                            onclick="acceptRequest(event,'{{item["id"]}}','/finish_lesson')">Finish</button>
-                                                        {% else %} -->
-                                                        <!-- On Progress -->
-                                                        <!-- {% endif %} -->
+                                                        <!-- Add your finish meeting button or relevant content here -->
                                                     </td>
                                                 </tr>
                                             </form>
                                             {% endfor %}
-                                            {% for item in myNotAcceptedLessons %}
-                                            <form id='{{item["id"]}}'>
+
+                                            <!-- Accepted lessons -->
+                                            {% for item in myAcceptedLessons %}
+                                            <form id="{{item.lessonID}}">
                                                 <tr>
-                                                    <input type="text" name="selectLesson" value='{{item["id"]}}'
-                                                        style="display: none;" placeholder='{{item["id"]}}'>
-                                                    <td>1</td>
-                                                    <td><a><img src="../static/images/pdf.png">
-                                                            <p class="text-center">{{item['courseName']}}</p>
+                                                    <input type="hidden" name="selectLesson" value="{{item.id}}">
+                                                    <td>{{item.lessonID}}</td>
+                                                    <td>
+                                                        <a href="#">
+                                                            <img src="../static/images/pdf.png" alt="PDF Image">
+                                                            <p class="text-center">{{item.lessonName}}</p>
                                                         </a>
                                                     </td>
-                                                    <td>{{item['date']}}</td>
-                                                    <td>{{item['constructor']}}</td>
+                                                    <td>{{item.date}}</td>
+                                                    <td>{{item.teacherName}}</td>
                                                     <td>
-
+                                                        <a href="" class="settings" title="accept"
+                                                            data-toggle="tooltip">
+                                                            <i class="fa fa-check-circle" onclick="acceptRequest(event, {
+                                                                    lessonID: '{{item.lessonID}}',
+                                                                    teacherID: '{{item.teacherID}}',
+                                                                    teacherName: '{{item.teacherName}}',
+                                                                    lessonName: '{{item.lessonName}}',
+                                                                    state: true
+                                                                }, '/lesson_accept_student')">
+                                                            </i>
+                                                        </a>
+                                                        <a href="" class="delete" title="Delete" data-toggle="tooltip">
+                                                            <i class="fa fa-times-circle" onclick="acceptRequest(event, {
+                                                                    lessonID: '{{item.lessonID}}',
+                                                                    teacherID: '{{item.teacherID}}',
+                                                                    state: false
+                                                                }, '/lesson_accept_student')">
+                                                            </i>
+                                                        </a>
                                                     </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </form>
+                                            {% endfor %}
+
+                                            <!-- Not accepted lessons -->
+                                            {% for item in myNotAcceptedLessons %}
+                                            <form id="{{item.lessonID}}">
+                                                <tr>
+                                                    <input type="hidden" name="selectLesson" value="{{item.id}}">
+                                                    <td>{{item.lessonID}}</td>
                                                     <td>
-
+                                                        <a href="#">
+                                                            <img src="../static/images/pdf.png" alt="PDF Image">
+                                                            <p class="text-center">{{item.lessonName}}</p>
+                                                        </a>
                                                     </td>
-                                                    <td>
-
-                                                    </td>
+                                                    <td>{{item.date}}</td>
+                                                    <td>{{item.teacherName}}</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
                                                 </tr>
                                             </form>
                                             {% endfor %}
                                         </tbody>
                                     </table>
+
                                 </div>
                             </div>
                         </div>
