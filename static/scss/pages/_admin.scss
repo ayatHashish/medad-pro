@@ -756,7 +756,9 @@ a {
   font-size: 11px;
   min-width: 0;
 }
-
+.n{
+    display: block;
+}
 // Mobile screen breakpoints (750px)
 @media only screen and (min-width: 46.875em) {
   // Break out to sidenav grid layout on medium + screens
