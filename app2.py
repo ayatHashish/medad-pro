@@ -1,5 +1,5 @@
 from flask import Flask,request,redirect,render_template,session,url_for,jsonify
-from functions.functions import dataBase
+from functions.database import dataBase
 from functions.mail_sender import sender
 import sys
 import random

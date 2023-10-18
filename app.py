@@ -1,34 +1,36 @@
 from flask import Flask,request,redirect,render_template,session,url_for,jsonify
-from functions.functions import DataBase
+from functions.database import DataBase
 from functions.mail_sender import sender
+from functions.log import Log
 import sys
 import random
+from datetime import datetime
 from functions.api import Video
 #*****************set server*****************
 homeDir = './'
 homeDir = '/home/maged_khaled/workSpace/medadA/website/'
 app = Flask(__name__)
 
-GOOGLE_CLIENT_ID = "361389956894-fikf8t93743htich35qalbib61kotq1q.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET = "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"
-GOOGLE_REDIRECT_URI = "http://www.medadd.eu.com/logwithgoogleserver"
-GOOGLE_AUTHORIZATION_URI = "https://accounts.google.com/o/oauth2/auth"
-GOOGLE_TOKEN_URI = "https://oauth2.googleapis.com/token"
-GOOGLE_USER_INFO_URI = 'https://www.googleapis.com/oauth2/v3/userinfo'
-
+# GOOGLE_CLIENT_ID = "361389956894-fikf8t93743htich35qalbib61kotq1q.apps.googleusercontent.com"
+# GOOGLE_CLIENT_SECRET = "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"
+# GOOGLE_REDIRECT_URI = "http://www.medadd.eu.com/logwithgoogleserver"
+# GOOGLE_AUTHORIZATION_URI = "https://accounts.google.com/o/oauth2/auth"
+# GOOGLE_TOKEN_URI = "https://oauth2.googleapis.com/token"
+# GOOGLE_USER_INFO_URI = 'https://www.googleapis.com/oauth2/v3/userinfo'
 
 @app.before_request 
 def setDefaultValue():
-    
     if 'user' not in session:
         session['user'] = None
-    
+    if not '.' in request.base_url:
+        LOG.addVisitLog()
 
 
 #*****************redirect url*****************
 @app.route("/",methods = ['GET','POST'])
 def main():
     print(session['user'])
+    
     return render_template('home.html',result = session['user'])
 
 @app.route("/home",methods = ['GET','POST'])
@@ -126,6 +128,7 @@ def login():
         user = DB.__login__(type_,user,password)
         if user :
             session['user'] = user
+            LOG.addLoginLog(user[1],datetime.now())
             return(redirect('/profile'))
         return render_template('sign-in.html', state = 'The password is not correct')
     return render_template('sign-in.html', state = "")
@@ -166,17 +169,15 @@ def signup():
         #Every thing is good ... create account
         code = random.randint(100000, 999999)
         message_ = {'To':email , 'title':'send config', 'message':'here is your code : '+str(code), 'attachment':None}
-        emailer.send(message_)
+        #emailer.send(message_)
         DB.__signup__(type_,name, email, password,code)
+        LOG.addSignUpLog(email,datetime.now())
         return render_template('sign-in.html', state = "")
         
         
         
     if session['user']!=None :
-        if session['user'][6] == 'students':
-            return render_template('profile.html',state = "", result = session['user'])
-        elif session['user'][6] =='teachers':
-            return render_template('teacher.html',state = "", result = session['user'])
+        return(redirect('/profile'))
     else :
         return render_template('sign-up.html', state = "")
     
@@ -230,7 +231,6 @@ def contactus():
     return redirect("/contactus")
 
 @app.route("/update_profile",methods = ['GET','POST'])
-
 def Update_Profile():
     if request.method == 'POST':
         emailChangeFlag = False
@@ -313,7 +313,7 @@ def Upload_PDF():
         
     
 
-            
+        LOG.addTaskLog(session['user'][1],uploaded_file.filename,datetime.now())
     return redirect("/profile")
 
 
@@ -411,13 +411,13 @@ def admin():
 def lessonAccepted():
     if request.method == 'POST':
         data = request.get_json()
-        print('accepted lesson:',data)
         my_variable = data.get('variable')
         studentID = DB.search('lessons',int(my_variable),by='id')
         DB.addLesson('st-tch-ls',{'studentID':studentID[1],'teacherID':session['user'][0],'lessonID':int(my_variable)})
         DB.editLesson({'state':1,'lessonID':int(my_variable)})
         
         response_data = {'message': f'Received variable: {my_variable}'}
+        LOG.addAcceptTeacherLog(session['user'][1],my_variable,datetime.now())
         return jsonify(response_data), 200
     return jsonify({'error': str('10')}), 500
     
@@ -465,18 +465,19 @@ def lesson_accept_student():
         teacherID = data.get('variable')['teacherID']
         lessonAccepted = data.get('variable')['state']
 
-        if lessonAccepted:
-
-
-            if lessonAccepted:
-                teacherName = data.get('variable')['teacherName']
-                lessonName = data.get('variable')['lessonName']
-                studentName = session['user'][2]
-                roomName = f"Meeting Between {teacherName} and {studentName} for {lessonName}"
-                DB.acceptLesson({'lessonID':lessonID,'teacherID':teacherID,'studentID':session['user'][0],'roomName':roomName})
+        teacherName = data.get('variable')['teacherName']
+        lessonName = data.get('variable')['lessonName']
+        studentName = session['user'][2]
+        
+        if lessonAccepted:                
+            roomName = f"Meeting Between {teacherName} and {studentName} for {lessonName}"
+            DB.acceptLesson({'lessonID':lessonID,'teacherID':teacherID,'studentID':session['user'][0],'roomName':roomName})
+            LOG.addAcceptStudentLog(teacherName,studentName,lessonName,datetime.now(),True)
 
         else:
             DB.rejectLesson({'lessonID':lessonID,'teacherID':teacherID,'studentID':session['user'][0]})
+            LOG.addAcceptStudentLog(teacherName,studentName,lessonName,datetime.now(),False)
+
 
 
         
@@ -489,6 +490,8 @@ def lesson_accept_student():
 
 
 if __name__ == '__main__':
+    logFolder = 'logs/'
+    LOG = Log(logFolder)
     emailPass = sys.argv[2]
     DB = DataBase('users.db')
     emailer = sender(emailPass)

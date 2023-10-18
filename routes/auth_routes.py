@@ -1,6 +1,6 @@
 from flask import Blueprint, session, render_template, request, redirect
 import random
-from functions.functions import dataBase
+from functions.database import dataBase
 DB = dataBase('users.db')
 # emailer = sender(emailPass)
 
