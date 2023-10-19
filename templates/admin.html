@@ -23,28 +23,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <link rel="stylesheet" href="static/css/inner.en.css" />
-    <title>Contact US</title>
+    <title>Admin</title>
 
 </head>
 
 <body class="en">
-    <h1>Student Data :</h1>
-    {% for i in data[0] %}
-    <h4>{{i}}</h4>
-    {% endfor %}
-    <br>
-    <br>
-    <h1>teachers Data :</h1>
-    {% for i in data[1] %}
-    <h4>{{i}}</h4>
-    {% endfor %}
-    <br>
-    <br>
-    <h1>lessons Data :</h1>
-    {% for i in data[2] %}
-    <h4>{{i}}</h4>
-    {% endfor %}
-    h1
+
     
     <div class="grid">
         <header class="header">
@@ -166,6 +150,43 @@
                         <p class="overviewCard-subtitle">+10</p>
                     </div>
                 </div>            
+            </div>
+            <div>
+                <!-- ******************************call all notification keys*********************************** -->
+                <h1>All notifications names:</h1>
+                {{notification.keys()}}
+
+
+
+
+                <!-- ******************************call all notification keys and values*********************************** -->
+                <h1>All notifications and its values :</h1>
+                {% for key,value in notification.items() %}
+                    {{key}} >>> {{value}}
+                    <br>
+                {% endfor %}
+
+
+
+
+                <!-- ********************************call specific key value********************************* -->
+                <h1>you can access each element like this:</h1>
+                Teacher Count: {{notification.teacherCount}}
+                <hr>
+
+
+
+
+                <!-- *******************************call specific key with list as value********************************** -->
+                <h1>and list content like this:</h1>
+                studentAccepted: 
+                <br>
+                {% for item in notification.studentAccepted %}
+                {{item}}
+                <br>
+                {% endfor %}
+                <!-- ***************************************************************** -->
+
             </div>
         </main>
 

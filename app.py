@@ -321,12 +321,32 @@ def Upload_PDF():
 def admin():
     if session['user']:
         if session['user'][1] == emailer.Admin or True:
+            studentCount=10
+            teacherCount=15
+            lessonCount=7
+            visitCount=30
+            loginNotification=['student maged made login','ahmed made login','student samy made login']
+            signUpNotification=['maged made signup as student','ahmed made signup as teacher','samy made signup student']
+            lessonUploadNotification=['maged made upload task math','samy made upload task english','maged made upload task myTask']
+            lessonAccepted=['teacher ahmed accepted maged task math','teacher ahmed accepted samy task english']
+            studentAccepted=['student maged accepted teacher ahmed for task math','student samy rejected teacher ahmed for task english']
+            finishLesson = ['teacher ahmed finished task math with student maged']
 
-            studentTable= DB.get_all_table_data('students')
-            teacherTable= DB.get_all_table_data('teachers')
-            lessonTable= DB.get_all_table_data('lessons')
+            notification = {
+                'studentCount':10,
+                'teacherCount':15,
+                'lessonCount':7,
+                'visitCount':30,
+                'loginNotification':['student maged made login','ahmed made login','student samy made login'],
+                'signUpNotification':['maged made signup as student','ahmed made signup as teacher','samy made signup student'],
+                'lessonUploadNotification':['maged made upload task math','samy made upload task english','maged made upload task myTask'],
+                'lessonAccepted':['teacher ahmed accepted maged task math','teacher ahmed accepted samy task english'],
+                'studentAccepted':['student maged accepted teacher ahmed for task math','student samy rejected teacher ahmed for task english'],
+                'finishLesson':['teacher ahmed finished task math with student maged']
+            }
+            
 
-            return render_template("admin.html",data = [studentTable, teacherTable, lessonTable])
+            return render_template("admin.html",notification = notification)
     return redirect('/home')
 
 
