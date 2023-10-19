@@ -366,7 +366,7 @@
                                                     <input type="hidden" name="selectLesson" value="{{item.id}}">
                                                     <td>{{item.lessonID}}</td>
                                                     <td>
-                                                        <a href="#">
+                                                        <a href="{{item.lessonLOC}}">
                                                             <img src="../static/images/pdf.png" alt="PDF Image">
                                                             <p class="text-center">{{item.lessonName}}</p>
                                                         </a>
@@ -374,9 +374,9 @@
                                                     <td>{{item.date}}</td>
                                                     <td>{{item.teacherName}}</td>
                                                     <td>
-                                                        <a href="" class="settings" title="accept"
-                                                            data-toggle="tooltip">
-                                                            <i class="fa fa-check-circle" onclick="acceptRequest(event, {
+                                                        <a href="" class="m-1" title="accept" data-toggle="tooltip">
+                                                            <i class="fa fa-check-circle" 
+                                                                onclick="acceptRequest(event, {
                                                                     lessonID: '{{item.lessonID}}',
                                                                     teacherID: '{{item.teacherID}}',
                                                                     teacherName: '{{item.teacherName}}',
@@ -386,7 +386,8 @@
                                                             </i>
                                                         </a>
                                                         <a href="" class="delete" title="Delete" data-toggle="tooltip">
-                                                            <i class="fa fa-times-circle" onclick="acceptRequest(event, {
+                                                            <i class="fa fa-times-circle" 
+                                                                onclick="acceptRequest(event, {
                                                                     lessonID: '{{item.lessonID}}',
                                                                     teacherID: '{{item.teacherID}}',
                                                                     state: false
