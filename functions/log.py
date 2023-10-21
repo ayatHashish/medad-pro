@@ -12,7 +12,7 @@ class Log:
         self.studentAccept = 'studentAccept.log'
 
         self.home = './'
-        self.home = '/home/maged_khaled/workSpace/medadA/website/'
+        #self.home = '/home/maged_khaled/workSpace/medadA/website/'
 
         
     def addVisitLog(self):
