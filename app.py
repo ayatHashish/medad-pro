@@ -317,7 +317,7 @@ def Upload_PDF():
     return redirect("/profile")
 
 
-@app.route("/Admin")
+@app.route("/admin")
 def admin():
     if session['user']:
         if session['user'][1] == emailer.Admin or True:

@@ -5094,9 +5094,6 @@ header {
   .edit .value {
     margin-left: 10px; }
 
-a {
-  text-decoration: none; }
-
 .text-light {
   font-weight: 300; }
 
@@ -5412,52 +5409,55 @@ a {
       text-align: center; }
 
 .main-overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
-  grid-auto-rows: 94px;
-  grid-gap: 30px;
   margin: 20px; }
-
-.overviewCard {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px;
-  background-color: #FFF;
-  transform: translateY(0);
-  transition: all .3s; }
-  .overviewCard-icon {
+  .main-overview .overviewCard {
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
-    font-size: 21px;
-    color: #fff; }
-    .overviewCard-icon--document {
-      background-color: #e67e22; }
-    .overviewCard-icon--calendar {
-      background-color: #27ae60; }
-    .overviewCard-icon--mail {
-      background-color: #e74c3c; }
-    .overviewCard-icon--photo {
-      background-color: #af64cc; }
-  .overviewCard-description {
-    display: flex;
-    flex-direction: column;
-    align-items: center; }
-  .overviewCard-title {
-    font-size: 18px;
-    color: #1BBAE1;
-    margin: 0; }
-  .overviewCard-subtitle {
-    margin: 2px;
-    color: #777; }
-  .overviewCard:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-    cursor: pointer; }
+    padding: 12px;
+    background-color: #FFF;
+    transform: translateY(0);
+    transition: all .3s;
+    margin: 1rem 0; }
+    .main-overview .overviewCard .titleNote {
+      max-width: 30%;
+      padding: 0 20px 0 0; }
+    .main-overview .overviewCard .overviewCard-description {
+      padding: 0 200px; }
+      .main-overview .overviewCard .overviewCard-description ul li {
+        font-size: 1.5rem; }
+    .main-overview .overviewCard-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      font-size: 21px;
+      color: #fff; }
+      .main-overview .overviewCard-icon--document {
+        background-color: #e67e22; }
+      .main-overview .overviewCard-icon--calendar {
+        background-color: #27ae60; }
+      .main-overview .overviewCard-icon--mail {
+        background-color: #e74c3c; }
+      .main-overview .overviewCard-icon--photo {
+        background-color: #af64cc; }
+    .main-overview .overviewCard-description {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+    .main-overview .overviewCard-title {
+      transform: capitalize;
+      font-size: 1.5rem;
+      color: #1BBAE1;
+      margin: 0 1rem; }
+    .main-overview .overviewCard-subtitle {
+      margin: 2px;
+      color: #777; }
+    .main-overview .overviewCard:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+      cursor: pointer; }
 
 .card {
   display: flex;
@@ -5628,9 +5628,6 @@ a {
   height: 300px;
   font-size: 11px;
   min-width: 0; }
-
-.n {
-  display: block; }
 
 @media only screen and (min-width: 46.875em) {
   .grid {
