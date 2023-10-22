@@ -10,9 +10,10 @@ class Log:
         self.login = 'login.log'
         self.taskAdded = 'taskAdded.log'
         self.studentAccept = 'studentAccept.log'
+        self.teacherAccept = 'teacherAccept.log'
+        self.finishLesson = 'finishLesson.log'
 
         self.home = './'
-        #self.home = '/home/maged_khaled/workSpace/medadA/website/'
 
         
     def addVisitLog(self):
@@ -41,14 +42,52 @@ class Log:
             file.write(f'The teacher with email: {email} accepted task with id {taskName} at {time}\n')
         
 
-    def addAcceptStudentLog(self,teacherName,studentName,time,state):
+    def addAcceptStudentLog(self,teacherName,studentName,lessonName,time,state):
         with open(f'{self.home}{self.folder}{self.studentAccept}','a') as file:
             if state:
-                file.write(f'The student {studentName} accepted teacher {teacherName} at {time}\n')
+                file.write(f'The student {studentName} accepted teacher {teacherName} for lesson {lessonName} at {time}\n')
             else:
-                file.write(f'The student {studentName} rejected teacher {teacherName} at {time}\n')
+                file.write(f'The student {studentName} rejected teacher {teacherName} for lesson {lessonName} at {time}\n')
 
         
 
     def addFinishLog(self):
         pass
+
+
+
+    
+
+
+
+
+    def getAll(self):
+        data = {}
+        data['visitCount'] = getData(f'{self.home}{self.folder}{self.visit}')[0]
+        data['loginNotification'] = getData(f'{self.home}{self.folder}{self.login}')
+        data['signUpNotification'] = getData(f'{self.home}{self.folder}{self.signup}')
+        data['lessonUploadNotification'] = getData(f'{self.home}{self.folder}{self.taskAdded}')
+        data['studentAccepted'] = getData(f'{self.home}{self.folder}{self.studentAccept}')
+        data['lessonAccepted'] = getData(f'{self.home}{self.folder}{self.teacherAccept}')
+        data['finishLesson'] = getData(f'{self.home}{self.folder}{self.finishLesson}')
+
+        return data
+
+
+
+
+
+
+
+def getData(file):
+    with open(file,'r') as file:
+        data = file.readlines()
+    return data
+
+
+
+
+
+
+
+

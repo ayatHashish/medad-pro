@@ -1,0 +1,3 @@
+cd ~/workspace/medadd 
+. ./.venv/bin/activate
+python3 ./app.py 8888 $ME

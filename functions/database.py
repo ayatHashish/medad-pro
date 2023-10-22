@@ -278,3 +278,29 @@ class DataBase:
         return data
 
         
+
+
+    def getAllCount(self):
+        data = {}
+        data['studentCount']=self.getCount('students')[0]
+        data['teacherCount']=self.getCount('teachers')[0]
+        data['lessonCount']=self.getCount('lessons')[0]
+
+        data['lessonAdded']=self.getCount('lessons','WHERE state=0')[0]
+        data['lessonAcceptedByTeacher']=self.getCount('lessons','WHERE state=1')[0]
+        data['lessonReadyToTeach']=self.getCount('lessons','WHERE state=2')[0]
+        data['lessonFinished']=self.getCount('lessons','WHERE state=3')[0]
+
+        return data
+
+
+            
+
+
+
+    def getCount(self,table,condition=''):
+        with sqlite3.connect(self.name) as conn:
+            query = f"SELECT count(id) from {table} {condition};"
+            data = conn.execute(query,()).fetchone()
+        
+        return data

@@ -83,7 +83,7 @@
         </div>
         <div class="sidenav__profile">
           <div class="sidenav__profile-avatar"></div>
-          <div class="sidenav__profile-title text-light">Ayat H</div>
+          <div class="sidenav__profile-title text-light">{{user[2]}}</div>
         </div>
         <div class="row row--align-v-center row--align-h-center">
           <ul class="navList">
@@ -111,40 +111,84 @@
           <div class="main-header__intro-wrapper">
             <div class="main-header__welcome">
               <div class="main-header__welcome-title text-light">
-                Welcome, <strong>Ayat</strong>
+                Welcome, <strong>{{user[2]}}</strong>
               </div>
               <div class="main-header__welcome-subtitle text-light">
                 How are you today?
               </div>
             </div>
-            <div class="quickview">
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.studentCount}}
+            <div class="d-flex flex-wrap">
+              <div class="quickview">
+                <div class="quickview__item">
+                  <div class="quickview__item-total">
+                    {{notification.studentCount}}
+                  </div>
+                  <div class="quickview__item-description">
+                    <span class="text-light">Student</span>
+                  </div>
                 </div>
-                <div class="quickview__item-description">
-                  <span class="text-light">Student</span>
+              
+                <div class="quickview__item">
+                  <div class="quickview__item-total">
+                    {{notification.teacherCount}}
+                  </div>
+                  <div class="quickview__item-description">
+                    <span class="text-light">Teacher</span>
+                  </div>
                 </div>
-              </div>
+              
+                <div class="quickview__item">
+                  <div class="quickview__item-total">
+                    {{notification.lessonCount}}
+                  </div>
+                  <div class="quickview__item-description">
+                    <i class="far fa-comment"></i>
+                    <span class="text-light">lesson</span>
+                  </div>
+                </div>
+              
+                <div class="quickview__item">
+                  <div class="quickview__item-total">
+                    {{notification.lessonAdded}}
+                  </div>
+                  <div class="quickview__item-description">
+                    <i class="far fa-comment"></i>
+                    <span class="text-light">lesson Added</span>
+                  </div>
+                </div>
+              
+                <div class="quickview__item">
+                  <div class="quickview__item-total">
+                    {{notification.lessonAcceptedByTeacher}}
+                  </div>
+                  <div class="quickview__item-description">
+                    <i class="far fa-comment"></i>
+                    <span class="text-light">lesson Accepted By Teacher</span>
+                  </div>
+                </div>
+              
+                <div class="quickview__item">
+                  <div class="quickview__item-total">
+                    {{notification.lessonReadyToTeach}}
+                  </div>
+                  <div class="quickview__item-description">
+                    <i class="far fa-comment"></i>
+                    <span class="text-light">lesson Ready To Teach</span>
+                  </div>
+                </div>
+              
+                <div class="quickview__item">
+                  <div class="quickview__item-total">
+                    {{notification.lessonFinished}}
+                  </div>
+                  <div class="quickview__item-description">
+                    <i class="far fa-comment"></i>
+                    <span class="text-light">lesson Finished</span>
+                  </div>
+                </div>
+            </div class="row">
 
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.teacherCount}}
-                </div>
-                <div class="quickview__item-description">
-                  <span class="text-light">Teacher</span>
-                </div>
-              </div>
 
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.lessonCount}}
-                </div>
-                <div class="quickview__item-description">
-                  <i class="far fa-comment"></i>
-                  <span class="text-light">lesson</span>
-                </div>
-              </div>
 
               <div class="quickview__item">
                 <div class="quickview__item-total">

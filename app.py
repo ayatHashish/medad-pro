@@ -320,33 +320,11 @@ def Upload_PDF():
 @app.route("/admin")
 def admin():
     if session['user']:
-        if session['user'][1] == emailer.Admin or True:
-            studentCount=10
-            teacherCount=15
-            lessonCount=7
-            visitCount=30
-            loginNotification=['student maged made login','ahmed made login','student samy made login']
-            signUpNotification=['maged made signup as student','ahmed made signup as teacher','samy made signup student']
-            lessonUploadNotification=['maged made upload task math','samy made upload task english','maged made upload task myTask']
-            lessonAccepted=['teacher ahmed accepted maged task math','teacher ahmed accepted samy task english']
-            studentAccepted=['student maged accepted teacher ahmed for task math','student samy rejected teacher ahmed for task english']
-            finishLesson = ['teacher ahmed finished task math with student maged']
-
-            notification = {
-                'studentCount':10,
-                'teacherCount':15,
-                'lessonCount':7,
-                'visitCount':30,
-                'loginNotification':['student maged made login','ahmed made login','student samy made login'],
-                'signUpNotification':['maged made signup as student','ahmed made signup as teacher','samy made signup student'],
-                'lessonUploadNotification':['maged made upload task math','samy made upload task english','maged made upload task myTask'],
-                'lessonAccepted':['teacher ahmed accepted maged task math','teacher ahmed accepted samy task english'],
-                'studentAccepted':['student maged accepted teacher ahmed for task math','student samy rejected teacher ahmed for task english'],
-                'finishLesson':['teacher ahmed finished task math with student maged']
-            }
+        if session['user'][1] == emailer.Admin or True: 
+            notification = {**DB.getAllCount(),**LOG.getAll()}
             
 
-            return render_template("admin.html",notification = notification)
+            return render_template("admin.html",notification = notification, user=session['user'])
     return redirect('/home')
 
 
@@ -484,9 +462,12 @@ def lesson_accept_student():
         lessonID = data.get('variable')['lessonID']
         teacherID = data.get('variable')['teacherID']
         lessonAccepted = data.get('variable')['state']
+        print(data)
+        teacher = DB.search('teachers',int(teacherID),by='id')
+        lesson = DB.search('lessons',int(lessonID),by='id')
 
-        teacherName = data.get('variable')['teacherName']
-        lessonName = data.get('variable')['lessonName']
+        teacherName = teacher[2]
+        lessonName = lesson[3].split('/')[-1]
         studentName = session['user'][2]
         
         if lessonAccepted:                
