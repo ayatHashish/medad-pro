@@ -76,6 +76,12 @@
                                 <a class="nav-link" href="#"
                                     onclick="location.href = getServerUrl() + '/contactus';">Contact Us</a>
                             </li>
+                            {% if result[1] == 'Medad.WS@gmail.com' %}
+                            <li class="nav-item nav-link">
+                                <a class="nav-link" href="#"
+                                    onclick="location.href = getServerUrl() + '/admin';">Admin View</a>
+                            </li>
+                            {% endif %}
 
                         </ul>
                         <ul class="navbar-nav ml-auto topnav">
@@ -343,10 +349,12 @@
 
 
                                 </div>
-                                <button id="lectureButton" type="submit" class="btn-action form-control invisible"
-                                    onclick="submitForm(event,'/live','selectLessonForm')" target="_blank">Start Meeting</button>
-                                <button id="lectureButton2" type="submit" class="btn-action form-control invisible"
-                                    onclick="submitForm(event,'/finish_lesson','selectLessonForm')">Finish</button>
+                                <div class="d-flex flex-row">
+                                    <button id="lectureButton" type="submit" class="btn-action form-control invisible m-2"
+                                        onclick="submitForm(event,'/live','selectLessonForm')" target="_blank">Start Meeting</button>
+                                    <button id="lectureButton2" type="submit" class="btn-action form-control invisible m-2"
+                                        onclick="finishLesson(event)">Finish</button>
+                                </div>
                             </form>
 
 

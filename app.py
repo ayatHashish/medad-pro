@@ -53,13 +53,14 @@ def _contactus_():
 def _profile_(state = ["","",""]):
     if (session['user'] != None) :
         if session['user'][6] == 'students':
-            acceptedLessons,notAcceptedLessons,readyLessons = DB.getStudentLessons(session['user'][0])
+            acceptedLessons,notAcceptedLessons,readyLessons,finishedLessons = DB.getStudentLessons(session['user'][0])
 
             acceptedLessons = sorted(acceptedLessons, key=lambda d: d['lessonID'], reverse=True)
             notAcceptedLessons = sorted(notAcceptedLessons, key=lambda d: d['lessonID'], reverse=True)
             readyLessons = sorted(readyLessons, key=lambda d: d['lessonID'], reverse=True)
+            finishedLessons = sorted(finishedLessons, key=lambda d: d['lessonID'], reverse=True)
             
-            return render_template('profile.html',state = state, result = session['user'], myAcceptedLessons = acceptedLessons, myNotAcceptedLessons = notAcceptedLessons, myReadyLessons = readyLessons)
+            return render_template('profile.html',state = state, result = session['user'], myAcceptedLessons = acceptedLessons, myNotAcceptedLessons = notAcceptedLessons, myReadyLessons = readyLessons, myFinishedLessons = finishedLessons)
         
         elif session['user'][6] =='teachers':
             myLessons = DB.teacherLessons(session['user'][0])
@@ -287,11 +288,13 @@ def Update_Profile():
         
         # make suitable output
         if emailChangeFlag :
-            _profile_(state = ["Your profile updated successfully and we send validation code to you email","",""])
+            _profile_(state = ["Your profile updated successfully and we send validation code to your email","",""])
         else:
             _profile_(state = ["Your profile updated successfully","",""])
 
-    return redirect('/profile')
+    return redirect(f'/profile')
+    
+
 
 
 
@@ -300,27 +303,52 @@ def Update_Profile():
 @app.route("/Upload_PDF",methods = ['GET','POST'])
 def Upload_PDF():
     if request.method == 'POST':
+        
+        acceptedLessons,notAcceptedLessons,readyLessons,finishedLessons = DB.getStudentLessons(session['user'][0])
+        acceptedLessons = sorted(acceptedLessons, key=lambda d: d['lessonID'], reverse=True)
+        notAcceptedLessons = sorted(notAcceptedLessons, key=lambda d: d['lessonID'], reverse=True)
+        readyLessons = sorted(readyLessons, key=lambda d: d['lessonID'], reverse=True)
+        finishedLessons = sorted(finishedLessons, key=lambda d: d['lessonID'], reverse=True)
+
+
         type_ = session['user'][6]
         uploaded_file = request.files['file']
         uploaded_file.filename=uploaded_file.filename.replace(' ','_')
-        path = f'{homeDir}static/Users_Data/{type_}/{str(session["user"][0])}/Lectures/{uploaded_file.filename}'
-        uploaded_file.save(path)
-        text = f" here is a request from {session['user'][2]} \n\n here is the student's contact information \n\n {session['user'][1]} \n {session['user'][4]}"                 
-        message_ = {'To':emailer.Admin , 'title':'request lesson', 'message':text, 'attachment':path}
-        #emailer.send(message_)
-        DB.addLesson('lessons',{'lessonLOC':path,'studentID':session['user'][0],'teacherID':None,'date':request.form['date'],'state':'0'})
-        _profile_(state = ["","Your file uploaded and sent to Admin",""])
-        
-    
 
-        LOG.addTaskLog(session['user'][1],uploaded_file.filename,datetime.now())
+        path = f'{homeDir}static/Users_Data/{type_}/{str(session["user"][0])}/Lectures/{uploaded_file.filename}'
+        isExist = DB.search('lessons',path,by='lessonLOC')
+        print('isExist: ',isExist)
+        if not isExist:
+
+            uploaded_file.save(path)
+            text = f" here is a request from {session['user'][2]} \n\n here is the student's contact information \n\n {session['user'][1]} \n {session['user'][4]}"                 
+            message_ = {'To':emailer.Admin , 'title':'request lesson', 'message':text, 'attachment':path}
+            #emailer.send(message_)
+            DB.addLesson('lessons',{'lessonLOC':path,'studentID':session['user'][0],'teacherID':None,'date':request.form['date'],'state':'0'})
+            LOG.addTaskLog(session['user'][1],uploaded_file.filename,datetime.now())
+            
+
+            
+            
+        
+
+            state ["","Your file uploaded and sent to Admin",""]
+            return render_template('profile.html',state = state, result = session['user'], myAcceptedLessons = acceptedLessons, myNotAcceptedLessons = notAcceptedLessons, myReadyLessons = readyLessons, myFinishedLessons = finishedLessons)
+
+        else:
+            state = ["","You have a file with the same Name, please change the file name ",""]
+            return render_template('profile.html',state = state, result = session['user'], myAcceptedLessons = acceptedLessons, myNotAcceptedLessons = notAcceptedLessons, myReadyLessons = readyLessons, myFinishedLessons = finishedLessons)
+
+
+    
     return redirect("/profile")
+
 
 
 @app.route("/admin")
 def admin():
     if session['user']:
-        if session['user'][1] == emailer.Admin or True: 
+        if session['user'][1] == emailer.Admin: 
             notification = {**DB.getAllCount(),**LOG.getAll()}
             
 
@@ -425,13 +453,25 @@ def live():
     if request.method == 'POST':
         lessonID = request.form['selectLesson']
         roomName = DB.getRoomName(lessonID)
-        print(roomName)
-        token = video.getToken()
-        print(token)
+        data = DB.getLessonData(lessonID)
+        state = False
+        if session['user'][6] == 'students':
+            state = True
+
+        LOG.addLiveLog(data['teacherName'],data['studentName'],data['lessonName'],datetime.now(),state)
+
         return render_template('index.html',roomName = roomName, result = session['user'])
     return redirect('/profile')
 
+@app.route('/student_finish_course', methods=['POST','GET'])
+def student_finish_course():
+    if request.method == 'POST':
+        lessonID = request.form['selectLesson']
+        data = DB.getLessonData(lessonID)
+        DB.studentLessonFinished(lessonID)
+        LOG.addFinishLog(data['teacherName'],data['studentName'],data['lessonName'],datetime.now(),False)
 
+    return redirect('/profile')
 
 
 @app.route('/getLessonData/<int:id>', methods=['GET'])
@@ -440,17 +480,14 @@ def get_data(id):
     data = my_variable
     return jsonify(data)
 
-@app.route('/finish_lesson', methods = ['POST'])
+@app.route('/finish_lesson', methods = ['GET','POST'])
 def finishLesson():
     if request.method == 'POST':
-
-        data = request.get_json()
-        my_variable = data.get('variable')
-
-
-        response_data = {'message': f'Received variable: {my_variable}'}
-        return jsonify(response_data), 200
-    return jsonify({'error': str('10')}), 500
+        lessonID = request.form['selectLesson']
+        data = DB.getLessonData(lessonID)
+        DB.lessonFinished(lessonID)
+        LOG.addFinishLog(data['teacherName'],data['studentName'],data['lessonName'],datetime.now(),True)
+    return redirect('/profile')
 
 
 @app.route('/lesson_accept_student', methods = ['POST'])
@@ -486,6 +523,13 @@ def lesson_accept_student():
         response_data = {'message': f'Received variable: {lessonID}'}
         return jsonify(response_data), 200
     return jsonify({'error': str('10')}), 500
+
+@app.route('/clear_logs',methods=['GET','POST'])
+def clear_logs():
+    if request.method == 'POST':
+        LOG.clearAll()
+    return redirect('/home')
+
 
 
 

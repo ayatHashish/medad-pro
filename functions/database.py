@@ -185,7 +185,6 @@ class DataBase:
                         WHERE state = 0 AND studentID = ?;"
             lessonsNotAccepted = conn.execute(query, (studentID,)).fetchall()
 
-
             query = f"SELECT lessons.id,lessons.lessonLOC,teachers.username,lessons.date,teachers.id \
                     FROM lessons,teachers,'st-tch-ls'\
                     WHERE lessons.id = 'st-tch-ls'.lessonID AND \
@@ -202,9 +201,17 @@ class DataBase:
                     lessons.state = 2 AND lessons.studentID = ?;"
             readyLessons = conn.execute(query, (studentID,)).fetchall()
 
+            query = f"SELECT lessons.id,lessons.lessonLOC,teachers.username,lessons.date,lessons.roomName \
+                    FROM lessons,teachers,'st-tch-ls'\
+                    WHERE lessons.id = 'st-tch-ls'.lessonID AND \
+                    teachers.id = 'st-tch-ls'.teacherID AND\
+                    lessons.state = 3 AND lessons.studentID = ?;"
+            finishedLessons = conn.execute(query, (studentID,)).fetchall()
+
         lessonsAcceptedData = []
         lessonsNotAcceptedData = []
         readyLessonsData = []
+        finishedLessonsData = []
 
 
         for lesson in lessonsNotAccepted:
@@ -221,7 +228,12 @@ class DataBase:
             readyLessonsData.append({'lessonID':lesson[0],'lessonName':lessonName,'lessonLOC':lesson[1],
                                         'teacherName':lesson[2],'date':lesson[3],'roomName':lesson[4]})
             
-        return lessonsAcceptedData,lessonsNotAcceptedData,readyLessonsData #user tuple or none
+        for lesson in finishedLessons:
+            lessonName = lesson[1].split('/')[-1]
+            finishedLessonsData.append({'lessonID':lesson[0],'lessonName':lessonName,'lessonLOC':lesson[1],
+                                        'teacherName':lesson[2],'date':lesson[3],'roomName':lesson[4]})
+        
+        return lessonsAcceptedData,lessonsNotAcceptedData,readyLessonsData,finishedLessonsData #user tuple or none
 
 
     def acceptLesson(self,data):
@@ -289,7 +301,7 @@ class DataBase:
         data['lessonAdded']=self.getCount('lessons','WHERE state=0')[0]
         data['lessonAcceptedByTeacher']=self.getCount('lessons','WHERE state=1')[0]
         data['lessonReadyToTeach']=self.getCount('lessons','WHERE state=2')[0]
-        data['lessonFinished']=self.getCount('lessons','WHERE state=3')[0]
+        data['lessonFinished']=self.getCount('lessons','WHERE state=3 OR state = 4')[0]
 
         return data
 
@@ -303,4 +315,45 @@ class DataBase:
             query = f"SELECT count(id) from {table} {condition};"
             data = conn.execute(query,()).fetchone()
         
+        return data
+    
+
+
+    def lessonFinished(self,id):
+        with sqlite3.connect(self.name) as conn:            
+            query = f"UPDATE lessons SET state=3 WHERE id={id};"
+            conn.execute(query,()).fetchall()
+
+
+
+
+
+
+    def studentLessonFinished(self,id):
+        with sqlite3.connect(self.name) as conn:
+
+            query = f"UPDATE lessons SET state=4 WHERE id={id};"
+            conn.execute(query,()).fetchone()
+
+            query = f"DELETE FROM 'st-tch-ls' WHERE lessonID={id};"
+            conn.execute(query,()).fetchone()
+
+        
+    
+
+    def getLessonData(self,id):
+        with sqlite3.connect(self.name) as conn:
+            print(id)
+            query = f"SELECT lessons.lessonLOC,students.username,teachers.username \
+                        FROM lessons,students,teachers,'st-tch-ls' \
+                        WHERE lessons.id='st-tch-ls'.lessonID AND \
+                        students.id='st-tch-ls'.studentID AND \
+                        teachers.id='st-tch-ls'.teacherID AND \
+                        lessons.id={id};"
+            
+            data = conn.execute(query,()).fetchone()
+
+            data = {'lessonName':data[0].split('/')[-1],
+                    'studentName':data[1],
+                    'teacherName':data[2]}
         return data

@@ -12,6 +12,7 @@ class Log:
         self.studentAccept = 'studentAccept.log'
         self.teacherAccept = 'teacherAccept.log'
         self.finishLesson = 'finishLesson.log'
+        self.liveRoom = 'liveRoom.log'
 
         self.home = './'
 
@@ -45,14 +46,32 @@ class Log:
     def addAcceptStudentLog(self,teacherName,studentName,lessonName,time,state):
         with open(f'{self.home}{self.folder}{self.studentAccept}','a') as file:
             if state:
-                file.write(f'The student {studentName} accepted teacher {teacherName} for lesson {lessonName} at {time}\n')
+                file.write(f'Student {studentName} accepted teacher {teacherName} for lesson {lessonName} at {time}\n')
             else:
-                file.write(f'The student {studentName} rejected teacher {teacherName} for lesson {lessonName} at {time}\n')
+                file.write(f'Student {studentName} rejected teacher {teacherName} for lesson {lessonName}at {time}\n')
 
         
 
-    def addFinishLog(self):
-        pass
+    def addFinishLog(self,teacherName,studentName,lessonName,time,state):
+        with open(f'{self.home}{self.folder}{self.finishLesson}','a') as file:
+            if state:
+                file.write(f'Teacher {teacherName} has finished lesson {lessonName} with student {studentName} at {time}\n')
+            else:
+                file.write(f'Student {studentName} has accepted the finish of lesson {lessonName} with teacher {teacherName} at {time}\n')
+
+
+
+
+    def addLiveLog(self,teacherName,studentName,lessonName,time,state):
+        with open(f'{self.home}{self.folder}{self.liveRoom}','a') as file:
+            if state:
+                file.write(f'Student {studentName} entered live room for lesson {lessonName} at {time}\n')
+            else:
+                file.write(f'Teacher {teacherName} entered live room for lesson {lessonName} at {time}\n')
+
+
+    
+    
 
 
 
@@ -70,8 +89,20 @@ class Log:
         data['studentAccepted'] = getData(f'{self.home}{self.folder}{self.studentAccept}')
         data['lessonAccepted'] = getData(f'{self.home}{self.folder}{self.teacherAccept}')
         data['finishLesson'] = getData(f'{self.home}{self.folder}{self.finishLesson}')
+        data['liveRoom'] = getData(f'{self.home}{self.folder}{self.liveRoom}')
 
         return data
+
+
+    def clearAll(self):
+        for fileName in [self.signup, self.login, self.taskAdded, self.studentAccept, self.teacherAccept, self.finishLesson, self.liveRoom]:
+            self.clearLog(fileName)
+            self.clearLog(self.visit,inp='0')
+
+
+    def clearLog(self,fileName,inp=''):
+        with open(f'{self.home}{self.folder}{fileName}','w') as file:
+            file.write(inp)
 
 
 

@@ -183,8 +183,8 @@
                                         learning more about our medical courses.</p>
                                 </div>
                                 <div class="border-bottom pt-3">
-                                    <h5 class="name fw-bold">Last Lecture</h5>
-                                    <p>Text form designer imagination can be replaced with other text</p>
+                                    <h5 class="name fw-bold">Upload New Course</h5>
+                                    <p></p>
                                     <div class="pdf">
                                         <div class="follow-btn">
                                             <form id="UploadPDF" action="#" method="post" enctype="multipart/form-data"
@@ -196,7 +196,7 @@
                                                         </label>
                                                         <label id='name' style="display:block"> </label>
                                                         <label id='dateL' style="display:block"> </label>
-                                                        <p id="password-text"> {{state[1]}} </p>
+                                                        <p id="password-text" class="text-danger"> {{state[1]}} </p>
                                                     </div>
                                                 </div>
                                                 <div class="text-center my-3">
@@ -331,6 +331,36 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <!-- finished lessons -->
+                                            {% for item in myFinishedLessons %}
+                                            <form id="{{item.lessonID}}">
+                                                <tr>
+                                                    <input type="hidden" name="selectLesson" value="{{item.lessonID}}">
+                                                    <td>{{item.lessonID}}</td>
+                                                    <td>
+                                                        <a href="#">
+                                                            <img src="../static/images/pdf.png" alt="PDF Image">
+                                                            <p class="text-center">{{item.lessonName}}</p>
+                                                        </a>
+                                                    </td>
+                                                    <td>{{item.date}}</td>
+                                                    <td>{{item.teacherName}}</td>
+                                                    <td></td>
+                                                    <td>
+                                                        <h6 class="text-secondary">this course is finished</h6>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <button title="Start Meeting" data-toggle="tooltip"
+                                                        class="btn-action form-control m-2"
+                                                            type="submit"
+                                                            onclick="submitForm(event,'/student_finish_course','{{item.lessonID}}')"
+                                                            target="_blank">Accept Finish</button>
+                                                    </td>
+                                                </tr>
+                                            </form>
+                                            {% endfor %}
+
                                             <!-- Ready lessons -->
                                             {% for item in myReadyLessons %}
                                             <form id="{{item.lessonID}}">
@@ -348,6 +378,7 @@
                                                     <td></td>
                                                     <td>
                                                         <button title="Start Meeting" data-toggle="tooltip"
+                                                            class="btn-action form-control m-2"
                                                             type="submit"
                                                             onclick="submitForm(event,'/live','{{item.lessonID}}')"
                                                             target="_blank">Enter Meeting</button>

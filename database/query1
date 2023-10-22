@@ -1,0 +1,33 @@
+-- database: /home/maged/workspace/medadd/database/users.db
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+SELECT * FROM "teachers";
+
+
+
+SELECT count(id) from students;
+SELECT count(id) from lessons;
+SELECT count(id) from teachers;
+
+
+
+
+SELECT count(id) from lessons
+WHERE state=0;
+
+SELECT count(id) from lessons
+WHERE state=1;
+
+SELECT count(id) from lessons
+WHERE state=2;
+
+SELECT count(id) from lessons
+WHERE state=3;
+
+
+UPDATE lessons 
+SET state = 0,teacherID = NULL, roomName = Null;
+
+DELETE FROM "st-tch-ls" 
+WHERE lessonID = 25;
