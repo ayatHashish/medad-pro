@@ -458,6 +458,7 @@ const showLessonData = async (event, target) => {
 
         lectureName.textContent = data['lessonName'];
         lectureName.href = data['lessonLoc'];
+        lectureName.target = 'blank_'
         lectureDate.textContent = data['username'];
         lectureStudent.textContent = data['email'];
         lectureStudentEmail.textContent = data['date'];

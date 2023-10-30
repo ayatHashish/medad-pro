@@ -31,7 +31,7 @@
     <header class="header">
       <i class="fas fa-bars header__menu"></i>
       <div class="header__search">
-        <input class="header__input" placeholder="Search..." />
+        <!-- <input class="header__input" placeholder="Search..." /> -->
       </div>
       <div class="header__avatar">
         <div class="dropdown">
@@ -177,7 +177,7 @@
         </div>
       </div>
       <div class="main-overview">
-        <div class="overviewCard">
+        <div class="overviewCard ">
           <div class="titleNote d-flex justify-content-center align-items-center">
 
             <div class="overviewCard-icon overviewCard-icon--calendar">
@@ -187,12 +187,9 @@
           </div>
 
           <div class="overviewCard-description">
-            <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
-
-
             <ul>
               {% for message in notification['loginNotification'] %}
-              <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
               {% endfor %}
             </ul>
           </div>
@@ -212,7 +209,7 @@
 
             <ul>
               {% for message in notification['signUpNotification'] %}
-              <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
               {% endfor %}
             </ul>
           </div>
@@ -230,7 +227,7 @@
 
             <ul>
               {% for message in notification['lessonUploadNotification'] %}
-              <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
               {% endfor %}
             </ul>
           </div>
@@ -248,7 +245,7 @@
 
             <ul>
               {% for message in notification['lessonAccepted'] %}
-              <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
               {% endfor %}
             </ul>
           </div>
@@ -267,7 +264,7 @@
 
             <ul>
               {% for message in notification['studentAccepted'] %}
-              <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
               {% endfor %}
             </ul>
           </div>
@@ -287,7 +284,7 @@
 
             <ul>
               {% for message in notification['finishLesson'] %}
-              <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
               {% endfor %}
             </ul>
 
@@ -314,7 +311,7 @@
 
             <ul>
               {% for message in notification['liveRoom'] %}
-              <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
               {% endfor %}
             </ul>
 
@@ -332,33 +329,6 @@
 
 
 
-
-      <!-- ******************************call all notification keys*********************************** -->
-      <!-- <h1>All notifications names:</h1>
-                {{notification.keys()}}
-
-  -->
-
-      <!-- ******************************call all notification keys and values*********************************** -->
-      <!-- <h1>All notifications and its values :</h1>
-          {% for key,value in notification.items() %} {{key}} >>> {{value}}
-          <br />
-          {% endfor %} -->
-
-      <!-- ********************************call specific key value********************************* -->
-      <!-- <h1>you can access each element like this:</h1>
-                Teacher Count: {{notification.teacherCount}}
-                <hr> -->
-
-      <!-- *******************************call specific key with list as value********************************** -->
-      <!-- <h1>and list content like this:</h1>
-          studentAccepted:
-          <br />
-          {% for item in notification.studentAccepted %} {{item}}
-          <br />
-          {% endfor %} -->
-      <!-- ***************************************************************** -->
-      <!-- </div> -->
     </main>
   </div>
   <script src="static/scripts/jquery-3.7.0.min.js"></script>

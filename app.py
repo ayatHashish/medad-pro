@@ -6,6 +6,9 @@ import sys
 import random
 from datetime import datetime
 from functions.api import Video
+from werkzeug.utils import secure_filename
+
+
 #*****************set server*****************
 homeDir = './'
 #homeDir = '/home/maged_khaled/workSpace/medadA/website/'
@@ -115,6 +118,7 @@ def logout():
 def login():
     if request.method == 'POST':
         email = request.form['email']
+        email = email.lower()
         password = request.form['password']
         # search for email in students and teachers table
         type_ = 'students'
@@ -145,6 +149,7 @@ def signup():
         name = request.form['username']
         password = request.form['password']
         email = request.form['email']
+        email = email.lower()
         type_ = request.form['type']
         # check availability of the input data
         if 'agreeTS' not in request.form :
@@ -237,9 +242,12 @@ def Update_Profile():
         emailChangeFlag = False
         code = session['user'][5]
         email = request.form['email']
+        email = email.lower()
         name = request.form['first_name']+' '+request.form['last_name']
         phone = request.form['whatsapp']
         image = request.files['image']
+        image.filename = secure_filename(image.filename)
+    
         type_ = session['user'][6]
         if session['user'][6] == 'teachers':
             courseType = request.form['course']
@@ -313,7 +321,7 @@ def Upload_PDF():
 
         type_ = session['user'][6]
         uploaded_file = request.files['file']
-        uploaded_file.filename=uploaded_file.filename.replace(' ','_')
+        uploaded_file.filename=secure_filename(uploaded_file.filename)
 
         path = f'{homeDir}static/Users_Data/{type_}/{str(session["user"][0])}/Lectures/{uploaded_file.filename}'
         isExist = DB.search('lessons',path,by='lessonLOC')
@@ -323,7 +331,7 @@ def Upload_PDF():
             uploaded_file.save(path)
             text = f" here is a request from {session['user'][2]} \n\n here is the student's contact information \n\n {session['user'][1]} \n {session['user'][4]}"                 
             message_ = {'To':emailer.Admin , 'title':'request lesson', 'message':text, 'attachment':path}
-            #emailer.send(message_)
+            emailer.send(message_)
             DB.addLesson('lessons',{'lessonLOC':path,'studentID':session['user'][0],'teacherID':None,'date':request.form['date'],'state':'0'})
             LOG.addTaskLog(session['user'][1],uploaded_file.filename,datetime.now())
             
@@ -332,7 +340,7 @@ def Upload_PDF():
             
         
 
-            state ["","Your file uploaded and sent to Admin",""]
+            state = ["","Your file uploaded and sent to Admin",""]
             return render_template('profile.html',state = state, result = session['user'], myAcceptedLessons = acceptedLessons, myNotAcceptedLessons = notAcceptedLessons, myReadyLessons = readyLessons, myFinishedLessons = finishedLessons)
 
         else:

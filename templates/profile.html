@@ -196,7 +196,12 @@
                                                         </label>
                                                         <label id='name' style="display:block"> </label>
                                                         <label id='dateL' style="display:block"> </label>
+                                                        {% if state[1] == 'Your file uploaded and sent to Admin' %}
+                                                        <p id="password-text" class="text-success"> {{state[1]}} </p>
+                                                        {% else %}
                                                         <p id="password-text" class="text-danger"> {{state[1]}} </p>
+                                                        {% endif %}
+
                                                     </div>
                                                 </div>
                                                 <div class="text-center my-3">
@@ -338,7 +343,7 @@
                                                     <input type="hidden" name="selectLesson" value="{{item.lessonID}}">
                                                     <td>{{item.lessonID}}</td>
                                                     <td>
-                                                        <a href="#">
+                                                        <a href="{{item.lessonLOC}}" target="_blank">
                                                             <img src="../static/images/pdf.png" alt="PDF Image">
                                                             <p class="text-center">{{item.lessonName}}</p>
                                                         </a>
@@ -368,7 +373,7 @@
                                                     <input type="hidden" name="selectLesson" value="{{item.lessonID}}">
                                                     <td>{{item.lessonID}}</td>
                                                     <td>
-                                                        <a href="#">
+                                                        <a href="{{item.lessonLOC}}" target="_blank">
                                                             <img src="../static/images/pdf.png" alt="PDF Image">
                                                             <p class="text-center">{{item.lessonName}}</p>
                                                         </a>
@@ -397,7 +402,7 @@
                                                     <input type="hidden" name="selectLesson" value="{{item.id}}">
                                                     <td>{{item.lessonID}}</td>
                                                     <td>
-                                                        <a href="{{item.lessonLOC}}">
+                                                        <a href="{{item.lessonLOC}}" target="_blank">
                                                             <img src="../static/images/pdf.png" alt="PDF Image">
                                                             <p class="text-center">{{item.lessonName}}</p>
                                                         </a>
@@ -416,7 +421,7 @@
                                                                 }, '/lesson_accept_student')">
                                                             </i>
                                                         </a>
-                                                        <a href="" class="delete" title="Delete" data-toggle="tooltip">
+                                                        <a href="{{item.lessonLOC}}" class="delete" title="Delete" data-toggle="tooltip">
                                                             <i class="fa fa-times-circle" 
                                                                 onclick="acceptRequest(event, {
                                                                     lessonID: '{{item.lessonID}}',
@@ -439,7 +444,7 @@
                                                     <input type="hidden" name="selectLesson" value="{{item.id}}">
                                                     <td>{{item.lessonID}}</td>
                                                     <td>
-                                                        <a href="#">
+                                                        <a href="{{item.lessonLOC}}" target="_blank">
                                                             <img src="../static/images/pdf.png" alt="PDF Image">
                                                             <p class="text-center">{{item.lessonName}}</p>
                                                         </a>
