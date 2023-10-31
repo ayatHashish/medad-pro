@@ -459,9 +459,9 @@ const showLessonData = async (event, target) => {
         lectureName.textContent = data['lessonName'];
         lectureName.href = data['lessonLoc'];
         lectureName.target = 'blank_'
-        lectureDate.textContent = data['username'];
-        lectureStudent.textContent = data['email'];
-        lectureStudentEmail.textContent = data['date'];
+        lectureDate.textContent = data['date'];
+        lectureStudent.textContent = data['username'];
+        lectureStudentEmail.textContent = data['email'];
 
         if (data['state'] == 1) {
             lectureButton.classList.add('invisible')

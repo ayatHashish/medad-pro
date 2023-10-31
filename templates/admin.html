@@ -1,3 +1,5 @@
+{% import 'macros/admin_macros.html' as adminMacros %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,238 +94,42 @@
               How are you today?
             </div>
           </div>
+
+
           <div class="d-flex flex-wrap">
             <div class="quickview">
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.studentCount}}
-                </div>
-                <div class="quickview__item-description">
-                  <span class="text-light">Student</span>
-                </div>
-              </div>
 
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.teacherCount}}
-                </div>
-                <div class="quickview__item-description">
-                  <span class="text-light">Teacher</span>
-                </div>
-              </div>
+              {{adminMacros.counts(notification.studentCount,'Student')}}
+              {{adminMacros.counts(notification.teacherCount,'Teacher')}}
+              <span style="width: 20px;"></span>
+              {{adminMacros.counts(notification.lessonCount,'All Lessons')}}
+              {{adminMacros.counts(notification.lessonAdded,'Waited')}}
+              {{adminMacros.counts(notification.lessonAcceptedByTeacher,'Accepted')}}
+              {{adminMacros.counts(notification.lessonReadyToTeach,'In Progress')}}
+              {{adminMacros.counts(notification.lessonFinished,'Finished')}}
+              {{adminMacros.counts(notification.visitCount,'visit')}}
 
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.lessonCount}}
-                </div>
-                <div class="quickview__item-description">
-                  <i class="far fa-comment"></i>
-                  <span class="text-light">lesson</span>
-                </div>
-              </div>
-
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.lessonAdded}}
-                </div>
-                <div class="quickview__item-description">
-                  <i class="far fa-comment"></i>
-                  <span class="text-light">lesson Added</span>
-                </div>
-              </div>
-
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.lessonAcceptedByTeacher}}
-                </div>
-                <div class="quickview__item-description">
-                  <i class="far fa-comment"></i>
-                  <span class="text-light">lesson Accepted By Teacher</span>
-                </div>
-              </div>
-
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.lessonReadyToTeach}}
-                </div>
-                <div class="quickview__item-description">
-                  <i class="far fa-comment"></i>
-                  <span class="text-light">lesson Ready To Teach</span>
-                </div>
-              </div>
-
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.lessonFinished}}
-                </div>
-                <div class="quickview__item-description">
-                  <i class="far fa-comment"></i>
-                  <span class="text-light">lesson Finished</span>
-                </div>
-              </div>
-            </div class="row">
-
-
-
-            <div class="quickview__item">
-              <div class="quickview__item-total">
-                {{notification.visitCount}}
-              </div>
-              <div class="quickview__item-description">
-                <span class="text-light">visit</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
+      </div>
+
+
       <div class="main-overview">
-        <div class="overviewCard ">
-          <div class="titleNote d-flex justify-content-center align-items-center">
-
-            <div class="overviewCard-icon overviewCard-icon--calendar">
-              <i class="fa-solid fa-bell"></i>
-            </div>
-            <h3 class="overviewCard-title">login Notification</h3>
-          </div>
-
-          <div class="overviewCard-description">
-            <ul>
-              {% for message in notification['loginNotification'] %}
-              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-        <div class="overviewCard">
-          <div class="titleNote d-flex justify-content-center align-items-center">
-
-            <div class="overviewCard-icon overviewCard-icon--calendar">
-              <i class="fa-solid fa-bell"></i>
-            </div>
-            <h3 class="overviewCard-title">signUp Notification</h3>
-          </div>
-
-          <div class="overviewCard-description">
-            <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
 
 
-            <ul>
-              {% for message in notification['signUpNotification'] %}
-              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-        <div class="overviewCard">
-          <div class="titleNote d-flex justify-content-center align-items-center">
-            <div class="overviewCard-icon overviewCard-icon--calendar">
-              <i class="fa-solid fa-bell"></i>
-            </div>
-            <h3 class="overviewCard-title">Lesson Upload Notification</h3>
-          </div>
-          <div class="overviewCard-description">
-            <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
+        {{adminMacros.notification(notification['loginNotification'],'Login')}}
+        {{adminMacros.notification(notification['signUpNotification'],'SignUp')}}
+        {{adminMacros.notification(notification['lessonUploadNotification'],'Lesson Upload')}}
+        {{adminMacros.notification(notification['lessonAccepted'],'Lesson Accepted')}}
+        {{adminMacros.notification(notification['studentAccepted'],'Student Accepted')}}
+        {{adminMacros.notification(notification['finishLesson'],'Finish Lesson')}}
+        {{adminMacros.notification(notification['liveRoom'],'Live Room')}}
 
-
-            <ul>
-              {% for message in notification['lessonUploadNotification'] %}
-              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-        <div class="overviewCard">
-          <div class="titleNote d-flex justify-content-center align-items-center">
-            <div class="overviewCard-icon overviewCard-icon--calendar">
-              <i class="fa-regular fa-circle-check"></i>
-            </div>
-            <h3 class="overviewCard-title">lesson Accepted </h3>
-          </div>
-          <div class="overviewCard-description">
-            <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
-
-
-            <ul>
-              {% for message in notification['lessonAccepted'] %}
-              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-        <div class="overviewCard">
-          <div class="titleNote d-flex justify-content-center align-items-center">
-            <div class="overviewCard-icon overviewCard-icon--calendar">
-              <i class="fa-regular fa-circle-check"></i>
-            </div>
-            <h3 class="overviewCard-title">Student Accepted </h3>
-          </div>
-
-          <div class="overviewCard-description">
-            <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
-
-
-            <ul>
-              {% for message in notification['studentAccepted'] %}
-              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-        <div class="overviewCard">
-          <div class="titleNote d-flex justify-content-center align-items-center">
-
-            <div class="overviewCard-icon overviewCard-icon--calendar">
-              <i class="fa-solid fa-bell"></i>
-            </div>
-            <h3 class="overviewCard-title">Finish Lesson</h3>
-          </div>
-
-          <div class="overviewCard-description">
-            <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
-
-
-            <ul>
-              {% for message in notification['finishLesson'] %}
-              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-              {% endfor %}
-            </ul>
-
-
-
-          </div>
-
-
-        </div>
-
-
-        <div class="overviewCard">
-          <div class="titleNote d-flex justify-content-center align-items-center">
-
-            <div class="overviewCard-icon overviewCard-icon--calendar">
-              <i class="fa-solid fa-bell"></i>
-            </div>
-            <h3 class="overviewCard-title">Live Room</h3>
-          </div>
-
-          <div class="overviewCard-description">
-            <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
-
-
-            <ul>
-              {% for message in notification['liveRoom'] %}
-              <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-              {% endfor %}
-            </ul>
-
-
-
-          </div>
-        </div>
         <form action="submit" id="logForm">
         <button id="lectureButton" type="submit" class="btn-action form-control m-2"
           onclick="submitForm(event,'/clear_logs','logForm')" target="_blank">Clear All Logs</button>
         </form>
-
       </div>
 
 

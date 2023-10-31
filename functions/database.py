@@ -343,7 +343,6 @@ class DataBase:
 
     def getLessonData(self,id):
         with sqlite3.connect(self.name) as conn:
-            print(id)
             query = f"SELECT lessons.lessonLOC,students.username,teachers.username \
                         FROM lessons,students,teachers,'st-tch-ls' \
                         WHERE lessons.id='st-tch-ls'.lessonID AND \
@@ -357,3 +356,79 @@ class DataBase:
                     'studentName':data[1],
                     'teacherName':data[2]}
         return data
+
+
+    def gitDataToAdmin(self,name):
+        switcher = {
+            'Student':'SELECT email,username,phone FROM students;',
+            'Teacher':'SELECT email,username,phone,coursType from teachers;',
+
+            'All Lessons':'SELECT l.lessonLOC,l.state,l.date,s.email as student_email,\
+                            s.username as student_name, \
+                            s.phone as student_phone\
+                            FROM lessons as l,students as s\
+                            WHERE s.id = l.studentID;',
+
+            'Waited':'SELECT l.lessonLOC,l.state,l.date,s.email as student_email,\
+                            s.username as student_name, \
+                            s.phone as student_phone\
+                            FROM lessons as l, students as s\
+                            WHERE s.id = l.studentID AND l.state = 0;',
+
+            'Accepted':'SELECT l.lessonLOC,l.state,l.date,s.email as student_email,\
+                            t.email as teacher_email, s.username as student_name, \
+                            t.username as teacher_name,s.phone as student_phone,t.phone as teacher_phone\
+                            FROM lessons as l,"st-tch-ls" as stl,teachers as t, students as s\
+                            WHERE l.id = stl.lessonID AND \
+                            t.id = stl.teacherID AND\
+                            s.id = stl.studentID AND l.state = 1;',
+
+            'In Progress':'SELECT l.lessonLOC,l.state,l.date,s.email as student_email,\
+                            t.email as teacher_email, s.username as student_name, \
+                            t.username as teacher_name,s.phone as student_phone,t.phone as teacher_phone\
+                            FROM lessons as l,"st-tch-ls" as stl,teachers as t, students as s\
+                            WHERE l.id = stl.lessonID AND \
+                            t.id = stl.teacherID AND\
+                            s.id = stl.studentID AND l.state = 2;',
+
+            'Finished':'SELECT l.lessonLOC,l.state,l.date,s.email as student_email,\
+                            t.email as teacher_email, s.username as student_name, \
+                            t.username as teacher_name,s.phone as student_phone,t.phone as teacher_phone\
+                            FROM lessons as l,teachers as t, students as s\
+                            WHERE t.id = l.teacherID AND\
+                            s.id = l.studentID AND l.state = 4;',
+        }
+
+        query = switcher[name]
+
+        with sqlite3.connect(self.name) as conn:
+
+            data = conn.execute(query,()).fetchall()
+
+        switcher = {
+            'Student':['email','username','phone'],
+            'Teacher':['email','username','phone','coursType'],
+
+            'All Lessons':['lessonLOC','state','date','student_email','student_name','student_phone'],
+
+            'Waited':['lessonLOC','state','date','student_email','student_name','student_phone'],
+
+            'Accepted':['lessonLOC','state','date','student_email','teacher_email','student_name','teacher_name','student_phone','teacher_phone'],
+
+            'In Progress':['lessonLOC','state','date','student_email','teacher_email','student_name','teacher_name','student_phone','teacher_phone'],
+
+            'Finished':['lessonLOC','state','date','student_email','teacher_email','student_name','teacher_name','student_phone','teacher_phone'],
+        }
+        finalData = []
+        for eachData in data:
+            newData = {}
+            for attr,value in zip(switcher[name],eachData):
+                newData[attr] = value
+            finalData.append(newData)
+            
+
+        return finalData
+
+
+
+

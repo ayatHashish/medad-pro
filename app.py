@@ -25,7 +25,8 @@ app = Flask(__name__)
 def setDefaultValue():
     if 'user' not in session:
         session['user'] = None
-    if not '.' in request.base_url:
+    baseURL = request.base_url.replace('www.medadd.eu.com','')
+    if not '.' in baseURL:
         LOG.addVisitLog()
 
 
@@ -52,37 +53,35 @@ def _teacher_():
 def _contactus_():       
     return render_template('contact-us.html',result = session['user'])
 
-@app.route("/profile")
+@app.route("/profile",endpoint='user.profile')
 def _profile_(state = ["","",""]):
     if (session['user'] != None) :
-        if session['user'][6] == 'students':
-            acceptedLessons,notAcceptedLessons,readyLessons,finishedLessons = DB.getStudentLessons(session['user'][0])
 
+        if session['user'][1] == emailer.Admin: 
+            notification = {**DB.getAllCount(),**LOG.getAll()}
+            return render_template("admin.html",notification = notification, user=session['user'])
+
+        elif session['user'][6] == 'students':
+            acceptedLessons,notAcceptedLessons,readyLessons,finishedLessons = DB.getStudentLessons(session['user'][0])
             acceptedLessons = sorted(acceptedLessons, key=lambda d: d['lessonID'], reverse=True)
             notAcceptedLessons = sorted(notAcceptedLessons, key=lambda d: d['lessonID'], reverse=True)
             readyLessons = sorted(readyLessons, key=lambda d: d['lessonID'], reverse=True)
             finishedLessons = sorted(finishedLessons, key=lambda d: d['lessonID'], reverse=True)
-            
             return render_template('profile.html',state = state, result = session['user'], myAcceptedLessons = acceptedLessons, myNotAcceptedLessons = notAcceptedLessons, myReadyLessons = readyLessons, myFinishedLessons = finishedLessons)
         
         elif session['user'][6] =='teachers':
             myLessons = DB.teacherLessons(session['user'][0])
             courses = DB.teacherNotLessons(session['user'][0])
-            
-
-
             coursesData = {}
             for course in courses :
                 courseName = course['lessonLOC'].split('/')[-1]
                 coursesData[courseName]=(course['lessonID'],course['lessonLOC'])
-
             myLessonData = {}
             for course in myLessons :
                 courseName = course['lessonLOC'].split('/')[-1]
                 myLessonData[courseName]=(course['lessonID'],course['lessonLOC'])
-            
-
             return render_template('teacher.html',state = state, result = session['user'], courses=coursesData, myLessons = myLessonData)
+
     else :
         return render_template('sign-in.html',state = "")
 
@@ -356,7 +355,7 @@ def Upload_PDF():
 @app.route("/admin")
 def admin():
     if session['user']:
-        if session['user'][1] == emailer.Admin or True: 
+        if session['user'][1] == emailer.Admin: 
             notification = {**DB.getAllCount(),**LOG.getAll()}
             
 
@@ -485,8 +484,7 @@ def student_finish_course():
 @app.route('/getLessonData/<int:id>', methods=['GET'])
 def get_data(id):
     my_variable = DB.getLesson(id)
-    data = my_variable
-    return jsonify(data)
+    return jsonify(my_variable)
 
 @app.route('/finish_lesson', methods = ['GET','POST'])
 def finishLesson():
@@ -537,6 +535,16 @@ def clear_logs():
     if request.method == 'POST':
         LOG.clearAll()
     return redirect('/home')
+
+
+
+
+
+@app.route('/admin/git_data/<name>',endpoint='admin.git_data')
+def adminGetData(name):
+    data = DB.gitDataToAdmin(name)
+    print(data)
+    return render_template('admin_data.html',result = session['user'],data = data, name = name)
 
 
 
