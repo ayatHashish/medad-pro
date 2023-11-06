@@ -168,14 +168,12 @@
             </div>
 
             <div class="overviewCard-description">
-              <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
-
-              
-              <ul>
-                {% for message in notification['loginNotification'] %}
-                <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-                {% endfor %}
-              </ul>
+              <ul id="coursesRequests"
+              style="padding-left: 10px; overflow-y: scroll; overflow-x: hidden; width: 500px; height: 200px;">
+          {% for message in notification['loginNotification'] %}
+          <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+          {% endfor %}
+        </ul>
             </div>
           </div>
           <div class="overviewCard">
@@ -191,7 +189,8 @@
               <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
 
               
-              <ul>
+              <ul id="coursesRequests"
+              style="padding-left: 10px; overflow-y: scroll; overflow-x: hidden; width: 500px; height: 200px;">
                 {% for message in notification['signUpNotification'] %}
                 <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
                 {% endfor %}
@@ -209,7 +208,8 @@
               <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
 
               
-              <ul>
+              <ul id="coursesRequests"
+              style="padding-left: 10px; overflow-y: scroll; overflow-x: hidden; width: 500px; height: 200px;">
                 {% for message in notification['lessonUploadNotification'] %}
                 <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
                 {% endfor %}
@@ -227,7 +227,8 @@
               <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
 
               
-              <ul>
+              <ul id="coursesRequests"
+              style="padding-left: 10px; overflow-y: scroll; overflow-x: hidden; width: 500px; height: 200px;">
                 {% for message in notification['lessonAccepted'] %}
                 <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
                 {% endfor %}
@@ -246,7 +247,8 @@
               <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
 
               
-              <ul>
+              <ul id="coursesRequests"
+              style="padding-left: 10px; overflow-y: scroll; overflow-x: hidden; width: 500px; height: 200px;">
                 {% for message in notification['studentAccepted'] %}
                 <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
                 {% endfor %}
@@ -264,9 +266,8 @@
 
             <div class="overviewCard-description">
               <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
-
-              
-              <ul>
+              <ul id="coursesRequests"
+              style="padding-left: 10px; overflow-y: scroll; overflow-x: hidden; width: 500px; height: 200px;">
                 {% for message in notification['finishLesson'] %}
                 <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
                 {% endfor %}
