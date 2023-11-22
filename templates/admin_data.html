@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %} 
+{% import 'macros/admin_macros.html' as adminMacros %}
+
+{% block body %}
+
+
+
+
+<div class="d-flex flex-column align-content-center justify-content-center">
+    {% for record in data %}
+        {{adminMacros.record(record)}}
+    {% endfor %}
+
+</div>
+
+{% endblock %}

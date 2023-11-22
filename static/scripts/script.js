@@ -458,20 +458,23 @@ const showLessonData = async (event, target) => {
 
         lectureName.textContent = data['lessonName'];
         lectureName.href = data['lessonLoc'];
-        lectureDate.textContent = data['username'];
-        lectureStudent.textContent = data['email'];
-        lectureStudentEmail.textContent = data['date'];
+        lectureName.target = 'blank_'
+        lectureDate.textContent = data['date'];
+        lectureStudent.textContent = data['username'];
+        lectureStudentEmail.textContent = data['email'];
 
         if (data['state'] == 1) {
             lectureButton.classList.add('invisible')
+            lectureButton2.classList.add('invisible')
         }
         else if (data['state'] == 2) {
+            lectureButton2.classList.remove('invisible')
             lectureButton.classList.remove('invisible')
 
         }
         else {
             lectureButton.classList.add('invisible')
-            lectureButton2.classList.remove('invisible')
+            lectureButton2.classList.add('invisible')
 
         }
     } catch (error) {
@@ -490,3 +493,18 @@ function updateDateInput() {
 }
 window.onload = updateDateInput;
 document.getElementById('datePicker').addEventListener('change', updateDateInput);
+
+
+
+
+
+function finishLesson(event){
+    let state = prompt('Are you sure for deleting this course?, you can not undo this action!\n type DELETE to confirm')
+    if (state == 'DELETE'){
+        alert('press ok to continue')
+        submitForm(event,'/finish_lesson','selectLessonForm')
+    }
+    else{
+        alert('the finish lesson process is canceled')
+    }
+}

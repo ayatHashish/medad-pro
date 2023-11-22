@@ -1,0 +1,27 @@
+-- database: /home/maged/mounted_workspace/medadd/database/users.db
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+SELECT * FROM "students";
+
+
+
+
+SELECT email,username,phone FROM students;
+
+
+SELECT email,username,phone,coursType from teachers;
+
+
+SELECT l.lessonLOC,l.state,l.date,s.email as student_email,t.email as teacher_email, s.username as student_name, t.username as teacher_name,s.phone as student_phone,t.phone as teacher_phone
+FROM lessons as l,"st-tch-ls" as stl,teachers as t, students as s
+WHERE l.id = stl.lessonID AND 
+t.id = stl.teacherID AND
+s.id = stl.studentID;
+
+
+SELECT l.lessonLOC,l.state,l.date,s.email as student_email,t.email as teacher_email, s.username as student_name, t.username as teacher_name,s.phone as student_phone,t.phone as teacher_phone
+FROM lessons as l,teachers as t, students as s
+WHERE t.id = l.teacherID AND
+s.id = l.studentID AND 
+l.state = 4;

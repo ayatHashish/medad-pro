@@ -1,160 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--start font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@300;1000&display=swap"
-      rel="stylesheet"
-    />
-    <!--end font -->
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--start font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@300;1000&display=swap"
+    rel="stylesheet" />
+  <!--end font -->
 
-    <!--start fonticon -->
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <!--end fonticon  -->
+  <!--start fonticon -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!--end fonticon  -->
 
-    <!--start animate -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <!--end animate -->
-    <!-- css -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-    />
-    <link
-      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-      rel="stylesheet"
-      id="bootstrap-css"
-    />
-    <link rel="stylesheet" href="static/css/inner.en.css" />
-    <title>Admin</title>
-  </head>
+  <!--start animate -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!--end animate -->
+  <!-- css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <link rel="stylesheet" href="static/css/inner.en.css" />
+  <title>Admin</title>
+</head>
 
-  <body class="en">
-    <div class="grid">
-      <header class="header">
-        <i class="fas fa-bars header__menu"></i>
-        <div class="header__search">
-          <input class="header__input" placeholder="Search..." />
-        </div>
-        <div class="header__avatar">
-          <div class="dropdown">
-            <ul class="dropdown__list">
-              <li class="dropdown__list-item">
-                <span class="dropdown__icon"><i class="far fa-user"></i></span>
-                <span class="dropdown__title">my profile</span>
-              </li>
-              <li class="dropdown__list-item">
-                <span class="dropdown__icon"
-                  ><i class="fas fa-clipboard-list"></i
-                ></span>
-                <span class="dropdown__title">my account</span>
-              </li>
-              <li class="dropdown__list-item">
-                <span class="dropdown__icon"
-                  ><i class="fas fa-sign-out-alt"></i
-                ></span>
-                <span class="dropdown__title">log out</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
-      <aside class="sidenav">
-        <div class="sidenav__brand">
-          <i class="fas fa-feather-alt sidenav__brand-icon"></i>
-          <a class="sidenav__brand-link" href="#"
-            >Me<span class="text-light">dadd</span></a
-          >
-          <i class="fas fa-times sidenav__brand-close"></i>
-        </div>
-        <div class="sidenav__profile">
-          <div class="sidenav__profile-avatar"></div>
-          <div class="sidenav__profile-title text-light">Ayat H</div>
-        </div>
-        <div class="row row--align-v-center row--align-h-center">
-          <ul class="navList">
-            <li class="navList__heading">
-              messages<i class="far fa-envelope"></i>
+<body class="en">
+  <div class="grid">
+    <header class="header">
+      <i class="fas fa-bars header__menu"></i>
+      <div class="header__search">
+        <!-- <input class="header__input" placeholder="Search..." /> -->
+      </div>
+      <div class="header__avatar">
+        <div class="dropdown">
+          <ul class="dropdown__list">
+            <li class="dropdown__list-item">
+              <span class="dropdown__icon"><i class="far fa-user"></i></span>
+              <span class="dropdown__title">my profile</span>
             </li>
-            <li>
-              <div class="navList__subheading row row--align-v-center">
-                <span class="navList__subheading-icon"
-                  ><i class="fas fa-envelope"></i
-                ></span>
-                <span class="navList__subheading-title">inbox</span>
-              </div>
-              <ul class="subList subList--hidden">
-                <li class="subList__item">primary</li>
-                <li class="subList__item">social</li>
-                <li class="subList__item">promotional</li>
-              </ul>
+            <li class="dropdown__list-item">
+              <span class="dropdown__icon"><i class="fas fa-clipboard-list"></i></span>
+              <span class="dropdown__title">my account</span>
+            </li>
+            <li class="dropdown__list-item">
+              <span class="dropdown__icon"><i class="fas fa-sign-out-alt"></i></span>
+              <span class="dropdown__title">log out</span>
             </li>
           </ul>
         </div>
-      </aside>
-      <main class="main">
-        <div class="main-header">
-          <div class="main-header__intro-wrapper">
-            <div class="main-header__welcome">
-              <div class="main-header__welcome-title text-light">
-                Welcome, <strong>Ayat</strong>
-              </div>
-              <div class="main-header__welcome-subtitle text-light">
-                How are you today?
-              </div>
+      </div>
+    </header>
+    <aside class="sidenav">
+      <div class="sidenav__brand">
+        <i class="fas fa-feather-alt sidenav__brand-icon"></i>
+        <a class="sidenav__brand-link" href="/home">Medadd</a>
+        <i class="fas fa-times sidenav__brand-close"></i>
+      </div>
+      <div class="sidenav__profile">
+        <div class="sidenav__profile-avatar"></div>
+        <div class="sidenav__profile-title text-light">{{user[2]}}</div>
+      </div>
+      <div class="row row--align-v-center row--align-h-center">
+        <ul class="navList">
+          <li class="navList__heading">
+            messages<i class="far fa-envelope"></i>
+          </li>
+          <li>
+            <div class="navList__subheading row row--align-v-center">
+              <span class="navList__subheading-icon"><i class="fas fa-envelope"></i></span>
+              <span class="navList__subheading-title">inbox</span>
             </div>
+            <ul class="subList subList--hidden">
+              <li class="subList__item">primary</li>
+              <li class="subList__item">social</li>
+              <li class="subList__item">promotional</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="main-header">
+        <div class="main-header__intro-wrapper">
+          <div class="main-header__welcome">
+            <div class="main-header__welcome-title text-light">
+              Welcome, <strong>{{user[2]}}</strong>
+            </div>
+            <div class="main-header__welcome-subtitle text-light">
+              How are you today?
+            </div>
+          </div>
+
+
+          <div class="d-flex flex-wrap">
             <div class="quickview">
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.studentCount}}
-                </div>
-                <div class="quickview__item-description">
-                  <span class="text-light">Student</span>
-                </div>
-              </div>
 
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.teacherCount}}
-                </div>
-                <div class="quickview__item-description">
-                  <span class="text-light">Teacher</span>
-                </div>
-              </div>
+              {{adminMacros.counts(notification.studentCount,'Student')}}
+              {{adminMacros.counts(notification.teacherCount,'Teacher')}}
+              <span style="width: 20px;"></span>
+              {{adminMacros.counts(notification.lessonCount,'All Lessons')}}
+              {{adminMacros.counts(notification.lessonAdded,'Waited')}}
+              {{adminMacros.counts(notification.lessonAcceptedByTeacher,'Accepted')}}
+              {{adminMacros.counts(notification.lessonReadyToTeach,'In Progress')}}
+              {{adminMacros.counts(notification.lessonFinished,'Finished')}}
+              {{adminMacros.counts(notification.visitCount,'visit')}}
 
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.lessonCount}}
-                </div>
-                <div class="quickview__item-description">
-                  <i class="far fa-comment"></i>
-                  <span class="text-light">lesson</span>
-                </div>
-              </div>
-
-              <div class="quickview__item">
-                <div class="quickview__item-total">
-                  {{notification.visitCount}}
-                </div>
-                <div class="quickview__item-description">
-                  <span class="text-light">visit</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div class="main-overview">
@@ -274,43 +225,38 @@
               </ul>
             </div>
           </div>
+      </div>
+      </div>
 
 
-        </div>
-        <div>
-          <!-- ******************************call all notification keys*********************************** -->
-          <!-- <h1>All notifications names:</h1>
-                {{notification.keys()}}
+      <div class="main-overview">
 
-  -->
 
-          <!-- ******************************call all notification keys and values*********************************** -->
-          <!-- <h1>All notifications and its values :</h1>
-          {% for key,value in notification.items() %} {{key}} >>> {{value}}
-          <br />
-          {% endfor %} -->
+        {{adminMacros.notification(notification['loginNotification'],'Login')}}
+        {{adminMacros.notification(notification['signUpNotification'],'SignUp')}}
+        {{adminMacros.notification(notification['lessonUploadNotification'],'Lesson Upload')}}
+        {{adminMacros.notification(notification['lessonAccepted'],'Lesson Accepted')}}
+        {{adminMacros.notification(notification['studentAccepted'],'Student Accepted')}}
+        {{adminMacros.notification(notification['finishLesson'],'Finish Lesson')}}
+        {{adminMacros.notification(notification['liveRoom'],'Live Room')}}
 
-          <!-- ********************************call specific key value********************************* -->
-          <!-- <h1>you can access each element like this:</h1>
-                Teacher Count: {{notification.teacherCount}}
-                <hr> -->
+        <form action="submit" id="logForm">
+        <button id="lectureButton" type="submit" class="btn-action form-control m-2"
+          onclick="submitForm(event,'/clear_logs','logForm')" target="_blank">Clear All Logs</button>
+        </form>
+      </div>
 
-          <!-- *******************************call specific key with list as value********************************** -->
-          <!-- <h1>and list content like this:</h1>
-          studentAccepted:
-          <br />
-          {% for item in notification.studentAccepted %} {{item}}
-          <br />
-          {% endfor %} -->
-          <!-- ***************************************************************** -->
-        <!-- </div> -->
-      </main>
-    </div>
-    <script src="static/scripts/jquery-3.7.0.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="static/scripts/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="static/scripts/owl.carousel.min.js"></script>
-    <script src="static/scripts/script.js"></script>
-  </body>
+
+
+
+    </main>
+  </div>
+  <script src="static/scripts/jquery-3.7.0.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="static/scripts/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="static/scripts/owl.carousel.min.js"></script>
+  <script src="static/scripts/script.js"></script>
+</body>
+
 </html>

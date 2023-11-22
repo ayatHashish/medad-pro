@@ -1,0 +1,13 @@
+-- database: /home/maged/workspace/medadd/database/users.db
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+SELECT * FROM "lessons";
+
+
+SELECT lessons.lessonLOC,students.username,teachers.username
+FROM lessons,students,teachers,"st-tch-ls"
+WHERE lessons.id="st-tch-ls".lessonID AND
+students.id="st-tch-ls".studentID AND
+teachers.id="st-tch-ls".teacherID AND
+lessons.id=25;

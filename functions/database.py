@@ -185,7 +185,6 @@ class DataBase:
                         WHERE state = 0 AND studentID = ?;"
             lessonsNotAccepted = conn.execute(query, (studentID,)).fetchall()
 
-
             query = f"SELECT lessons.id,lessons.lessonLOC,teachers.username,lessons.date,teachers.id \
                     FROM lessons,teachers,'st-tch-ls'\
                     WHERE lessons.id = 'st-tch-ls'.lessonID AND \
@@ -202,9 +201,17 @@ class DataBase:
                     lessons.state = 2 AND lessons.studentID = ?;"
             readyLessons = conn.execute(query, (studentID,)).fetchall()
 
+            query = f"SELECT lessons.id,lessons.lessonLOC,teachers.username,lessons.date,lessons.roomName \
+                    FROM lessons,teachers,'st-tch-ls'\
+                    WHERE lessons.id = 'st-tch-ls'.lessonID AND \
+                    teachers.id = 'st-tch-ls'.teacherID AND\
+                    lessons.state = 3 AND lessons.studentID = ?;"
+            finishedLessons = conn.execute(query, (studentID,)).fetchall()
+
         lessonsAcceptedData = []
         lessonsNotAcceptedData = []
         readyLessonsData = []
+        finishedLessonsData = []
 
 
         for lesson in lessonsNotAccepted:
@@ -221,7 +228,12 @@ class DataBase:
             readyLessonsData.append({'lessonID':lesson[0],'lessonName':lessonName,'lessonLOC':lesson[1],
                                         'teacherName':lesson[2],'date':lesson[3],'roomName':lesson[4]})
             
-        return lessonsAcceptedData,lessonsNotAcceptedData,readyLessonsData #user tuple or none
+        for lesson in finishedLessons:
+            lessonName = lesson[1].split('/')[-1]
+            finishedLessonsData.append({'lessonID':lesson[0],'lessonName':lessonName,'lessonLOC':lesson[1],
+                                        'teacherName':lesson[2],'date':lesson[3],'roomName':lesson[4]})
+        
+        return lessonsAcceptedData,lessonsNotAcceptedData,readyLessonsData,finishedLessonsData #user tuple or none
 
 
     def acceptLesson(self,data):
@@ -278,3 +290,145 @@ class DataBase:
         return data
 
         
+
+
+    def getAllCount(self):
+        data = {}
+        data['studentCount']=self.getCount('students')[0]
+        data['teacherCount']=self.getCount('teachers')[0]
+        data['lessonCount']=self.getCount('lessons')[0]
+
+        data['lessonAdded']=self.getCount('lessons','WHERE state=0')[0]
+        data['lessonAcceptedByTeacher']=self.getCount('lessons','WHERE state=1')[0]
+        data['lessonReadyToTeach']=self.getCount('lessons','WHERE state=2')[0]
+        data['lessonFinished']=self.getCount('lessons','WHERE state=3 OR state = 4')[0]
+
+        return data
+
+
+            
+
+
+
+    def getCount(self,table,condition=''):
+        with sqlite3.connect(self.name) as conn:
+            query = f"SELECT count(id) from {table} {condition};"
+            data = conn.execute(query,()).fetchone()
+        
+        return data
+    
+
+
+    def lessonFinished(self,id):
+        with sqlite3.connect(self.name) as conn:            
+            query = f"UPDATE lessons SET state=3 WHERE id={id};"
+            conn.execute(query,()).fetchall()
+
+
+
+
+
+
+    def studentLessonFinished(self,id):
+        with sqlite3.connect(self.name) as conn:
+
+            query = f"UPDATE lessons SET state=4 WHERE id={id};"
+            conn.execute(query,()).fetchone()
+
+            query = f"DELETE FROM 'st-tch-ls' WHERE lessonID={id};"
+            conn.execute(query,()).fetchone()
+
+        
+    
+
+    def getLessonData(self,id):
+        with sqlite3.connect(self.name) as conn:
+            query = f"SELECT lessons.lessonLOC,students.username,teachers.username \
+                        FROM lessons,students,teachers,'st-tch-ls' \
+                        WHERE lessons.id='st-tch-ls'.lessonID AND \
+                        students.id='st-tch-ls'.studentID AND \
+                        teachers.id='st-tch-ls'.teacherID AND \
+                        lessons.id={id};"
+            
+            data = conn.execute(query,()).fetchone()
+
+            data = {'lessonName':data[0].split('/')[-1],
+                    'studentName':data[1],
+                    'teacherName':data[2]}
+        return data
+
+
+    def gitDataToAdmin(self,name):
+        switcher = {
+            'Student':'SELECT email,username,phone FROM students;',
+            'Teacher':'SELECT email,username,phone,coursType from teachers;',
+
+            'All Lessons':'SELECT l.lessonLOC,l.state,l.date,s.email as student_email,\
+                            s.username as student_name, \
+                            s.phone as student_phone\
+                            FROM lessons as l,students as s\
+                            WHERE s.id = l.studentID;',
+
+            'Waited':'SELECT l.lessonLOC,l.state,l.date,s.email as student_email,\
+                            s.username as student_name, \
+                            s.phone as student_phone\
+                            FROM lessons as l, students as s\
+                            WHERE s.id = l.studentID AND l.state = 0;',
+
+            'Accepted':'SELECT l.lessonLOC,l.state,l.date,s.email as student_email,\
+                            t.email as teacher_email, s.username as student_name, \
+                            t.username as teacher_name,s.phone as student_phone,t.phone as teacher_phone\
+                            FROM lessons as l,"st-tch-ls" as stl,teachers as t, students as s\
+                            WHERE l.id = stl.lessonID AND \
+                            t.id = stl.teacherID AND\
+                            s.id = stl.studentID AND l.state = 1;',
+
+            'In Progress':'SELECT l.lessonLOC,l.state,l.date,s.email as student_email,\
+                            t.email as teacher_email, s.username as student_name, \
+                            t.username as teacher_name,s.phone as student_phone,t.phone as teacher_phone\
+                            FROM lessons as l,"st-tch-ls" as stl,teachers as t, students as s\
+                            WHERE l.id = stl.lessonID AND \
+                            t.id = stl.teacherID AND\
+                            s.id = stl.studentID AND l.state = 2;',
+
+            'Finished':'SELECT l.lessonLOC,l.state,l.date,s.email as student_email,\
+                            t.email as teacher_email, s.username as student_name, \
+                            t.username as teacher_name,s.phone as student_phone,t.phone as teacher_phone\
+                            FROM lessons as l,teachers as t, students as s\
+                            WHERE t.id = l.teacherID AND\
+                            s.id = l.studentID AND l.state = 4;',
+        }
+
+        query = switcher[name]
+
+        with sqlite3.connect(self.name) as conn:
+
+            data = conn.execute(query,()).fetchall()
+
+        switcher = {
+            'Student':['email','username','phone'],
+            'Teacher':['email','username','phone','coursType'],
+
+            'All Lessons':['lessonLOC','state','date','student_email','student_name','student_phone'],
+
+            'Waited':['lessonLOC','state','date','student_email','student_name','student_phone'],
+
+            'Accepted':['lessonLOC','state','date','student_email','teacher_email','student_name','teacher_name','student_phone','teacher_phone'],
+
+            'In Progress':['lessonLOC','state','date','student_email','teacher_email','student_name','teacher_name','student_phone','teacher_phone'],
+
+            'Finished':['lessonLOC','state','date','student_email','teacher_email','student_name','teacher_name','student_phone','teacher_phone'],
+        }
+        finalData = []
+        for eachData in data:
+            newData = {}
+            for attr,value in zip(switcher[name],eachData):
+                newData[attr] = value
+            finalData.append(newData)
+            
+
+        return finalData
+
+
+
+

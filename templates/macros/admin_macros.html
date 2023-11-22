@@ -1,0 +1,67 @@
+{% macro notification(ntf,name) %}
+
+<div class="overviewCard">
+  <div
+    class="titleNote d-flex justify-content-start align-items-center"
+    style="padding-left: 20px; width: 20%"
+  >
+    <div class="overviewCard-icon overviewCard-icon--calendar">
+      <i class="fa-solid fa-bell"></i>
+    </div>
+    <h3 class="overviewCard-title">{{name}}</h3>
+  </div>
+
+  <div
+    class="overviewCard-description"
+    style="
+      height: 100px;
+      overflow-y: scroll;
+      width: 80%;
+      display: flex;
+      justify-content: start;
+      align-items: start;
+    "
+  >
+    <ul>
+      {% for message in ntf %}
+      <li class="fs-6"><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endmacro %} 
+
+
+
+{% macro counts(ntf,name) %}
+
+<div class="quickview__item">
+  <div class="quickview__item-total">{{ntf}}</div>
+  <div class="quickview__item-description">
+    <a href="{{ url_for('admin.git_data', name=name) }}">
+        <span class="text-light">{{name}}</span>
+    </a>
+  </div>
+</div>
+
+{% endmacro %}
+
+
+
+{% macro record(record) %}
+<center>
+    <div class="m-3 p-2 container p-5" style="border: 1px solid black; overflow: scroll;">
+        
+        {% for key,value in record.items() %}
+        <div class="row ms-5">
+            <span for="" class="col-3 text-left">{{key}}</span>
+            <span class="col-5 text-left">{{value}}</span>
+        </div>
+        
+        
+        {% endfor %}
+        
+    </div>
+</center>
+{% endmacro %}
