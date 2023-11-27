@@ -1,5 +1,7 @@
+{% import 'macros/admin_macros.html' as adminMacros%}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -91,11 +93,8 @@
               How are you today?
             </div>
           </div>
-
-
           <div class="d-flex flex-wrap">
             <div class="quickview">
-
               {{adminMacros.counts(notification.studentCount,'Student')}}
               {{adminMacros.counts(notification.teacherCount,'Teacher')}}
               <span style="width: 20px;"></span>
@@ -106,132 +105,11 @@
               {{adminMacros.counts(notification.lessonFinished,'Finished')}}
               {{adminMacros.counts(notification.visitCount,'visit')}}
 
+            </div>
           </div>
+
         </div>
-        <div class="main-overview">
-          <div class="overviewCard">
-            <div class="titleNote d-flex justify-content-center align-items-center">
-           
-              <div class="overviewCard-icon overviewCard-icon--calendar">
-                <i class="fa-solid fa-bell"></i>
-              </div>  
-               <h3 class="overviewCard-title">login  Notification</h3>
-            </div>
-
-            <div class="overviewCard-description">
-              <ul id="coursesRequests"
-              style="padding-left: 10px; overflow-y: scroll; overflow-x: hidden; width: 500px; height: 200px;">
-          {% for message in notification['loginNotification'] %}
-          <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-          {% endfor %}
-        </ul>
-            </div>
-          </div>
-          <div class="overviewCard">
-            <div class="titleNote d-flex justify-content-center align-items-center">
-           
-              <div class="overviewCard-icon overviewCard-icon--calendar">
-                <i class="fa-solid fa-bell"></i>
-              </div> 
-                <h3 class="overviewCard-title">signUp Notification</h3>
-            </div>
-
-            <div class="overviewCard-description">
-              <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
-
-              
-              <ul id="coursesRequests"
-              style="padding-left: 10px; overflow-y: scroll; overflow-x: hidden; width: 500px; height: 200px;">
-                {% for message in notification['signUpNotification'] %}
-                <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-          <div class="overviewCard">
-            <div class="titleNote d-flex justify-content-center align-items-center">
-              <div class="overviewCard-icon overviewCard-icon--calendar">
-                <i class="fa-solid fa-bell"></i>
-              </div>   
-                <h3 class="overviewCard-title">Lesson Upload Notification</h3>
-            </div>
-            <div class="overviewCard-description">
-              <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
-
-              
-              <ul id="coursesRequests"
-              style="padding-left: 10px; overflow-y: scroll; overflow-x: hidden; width: 500px; height: 200px;">
-                {% for message in notification['lessonUploadNotification'] %}
-                <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-          <div class="overviewCard">
-            <div class="titleNote d-flex justify-content-center align-items-center">
-               <div class="overviewCard-icon overviewCard-icon--calendar">
-                <i class="fa-regular fa-circle-check"></i>
-              </div> 
-              <h3 class="overviewCard-title">lesson Accepted </h3>
-            </div>
-            <div class="overviewCard-description">
-              <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
-
-              
-              <ul id="coursesRequests"
-              style="padding-left: 10px; overflow-y: scroll; overflow-x: hidden; width: 500px; height: 200px;">
-                {% for message in notification['lessonAccepted'] %}
-                <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-          <div class="overviewCard">
-            <div class="titleNote d-flex justify-content-center align-items-center">
-              <div class="overviewCard-icon overviewCard-icon--calendar">
-                <i class="fa-regular fa-circle-check"></i>
-              </div> 
-                <h3 class="overviewCard-title">Student Accepted  </h3>
-            </div>
-
-            <div class="overviewCard-description">
-              <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
-
-              
-              <ul id="coursesRequests"
-              style="padding-left: 10px; overflow-y: scroll; overflow-x: hidden; width: 500px; height: 200px;">
-                {% for message in notification['studentAccepted'] %}
-                <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-          <div class="overviewCard">
-            <div class="titleNote d-flex justify-content-center align-items-center">
-          
-              <div class="overviewCard-icon overviewCard-icon--calendar">
-                <i class="fa-solid fa-bell"></i>
-              </div> 
-                 <h3 class="overviewCard-title">Finish Lesson</h3>
-            </div>
-
-            <div class="overviewCard-description">
-              <!-- <p class="overviewCard-subtitle"><li>{{ message }}</li></p> -->
-              <ul id="coursesRequests"
-              style="padding-left: 10px; overflow-y: scroll; overflow-x: hidden; width: 500px; height: 200px;">
-                {% for message in notification['finishLesson'] %}
-                <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-      </div>
-      </div>
-
-
-      <div class="main-overview">
-
-
+        <!-- <div class="main-overview">
         {{adminMacros.notification(notification['loginNotification'],'Login')}}
         {{adminMacros.notification(notification['signUpNotification'],'SignUp')}}
         {{adminMacros.notification(notification['lessonUploadNotification'],'Lesson Upload')}}
@@ -244,13 +122,257 @@
         <button id="lectureButton" type="submit" class="btn-action form-control m-2"
           onclick="submitForm(event,'/clear_logs','logForm')" target="_blank">Clear All Logs</button>
         </form>
+      </div> -->
       </div>
 
+      <div id="tabs" class="p-4">
+        <div class="container-flude">
+          <div class="row">
+            <div class="col-md-12">
+              <nav>
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-login-tab" data-toggle="tab" href="#nav-login" role="tab"
+                    aria-controls="nav-home" aria-selected="true">login Notification</a>
+                  <a class="nav-item nav-link" id="nav-accepted-tab" data-toggle="tab" href="#nav-accepted" role="tab"
+                    aria-controls="nav-accepted" aria-selected="false">
+                    lesson Accepted</a>
+                  <a class="nav-item nav-link" id="nav-student-tab" data-toggle="tab" href="#nav-student" role="tab"
+                    aria-controls="nav-student" aria-selected="false">
+                    Student Accepted</a>
+
+                  <a class="nav-item nav-link" id="nav-finish" data-toggle="tab" href="#nav-finish" role="tab"
+                    aria-controls="nav-finish" aria-selected="false">
+                    Finish Lesson</a>
+
+                  <a class="nav-item nav-link" id="nav-signUp-tab" data-toggle="tab" href="#nav-signUp" role="tab"
+                    aria-controls="nav-signUp" aria-selected="false">
+                    signUp Notification</a>
+                  <a class="nav-item nav-link" id="nav-upload-tab" data-toggle="tab" href="#nav-upload" role="tab"
+                    aria-controls="nav-upload" aria-selected="false">
+                    Lesson Upload Notification</a>
+                </div>
+              </nav>
+              <div class="tab-content tab-content-tab" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-login" role="tabpanel" aria-labelledby="nav-login-tab">
+                  <table class="table" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Project Name</th>
+                        <th>Employer</th>
+                        <th>Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                        
+                          {% for message in notification['signUpNotification'] %}
+                    <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+                    {% endfor %}</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                      </tr>
+                 
+                    </tbody>
+                  </table>
+                  {% for message in notification['signUpNotification'] %}
+                    <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+                    {% endfor %}
+                </div>
+                <div class="tab-pane fade" id="nav-accepted" role="tabpanel" aria-labelledby="nav-accepted-tab">
+                  <table class="table" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Project Name</th>
+                        <th>Employer</th>
+                        <th>Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="#">Work 1</a></td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">Work 2</a></td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">Work 3</a></td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tab-pane fade" id="nav-student" role="tabpanel" aria-labelledby="nav-student-tab">
+                  <table class="table" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Contest Name</th>
+                        <th>Date</th>
+                        <th>Award Position</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="#">Work 1</a></td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">Work 2</a></td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">Work 3</a></td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="tab-pane fade" id="nav-signUp" role="tabpanel" aria-labelledby="nav-signUp-tab">
+
+                    <ul>
+                      {% for message in notification['signUpNotification'] %}
+                      <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+                      {% endfor %}
+                    </ul>
+
+                    <table class="table" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>Contest Name</th>
+                          <th>Date</th>
+                          <th>Award Position</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><a href="#">Work 1</a></td>
+                          <td>Doe</td>
+                          <td>john@example.com</td>
+                        </tr>
+                        <tr>
+                          <td><a href="#">Work 2</a></td>
+                          <td>Moe</td>
+                          <td>mary@example.com</td>
+                        </tr>
+                        <tr>
+                          <td><a href="#">Work 3</a></td>
+                          <td>Dooley</td>
+                          <td>july@example.com</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="tab-pane fade" id="nav-upload" role="tabpanel" aria-labelledby="nav-upload-tab">
+                    <table class="table" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>Contest Name</th>
+                          <th>Date</th>
+                          <th>Award Position</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><a href="#">Work 1</a></td>
+                          <td>Doe</td>
+                          <td>john@example.com</td>
+                        </tr>
+                        <tr>
+                          <td><a href="#">Work 2</a></td>
+                          <td>Moe</td>
+                          <td>mary@example.com</td>
+                        </tr>
+                        <tr>
+                          <td><a href="#">Work 3</a></td>
+                          <td>Dooley</td>
+                          <td>july@example.com</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-finish" role="tabpanel" aria-labelledby="nav-finish-tab">
+                  <table class="table" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Contest Name</th>
+                        <th>Date</th>
+                        <th>Award Position</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="#">Work 1</a></td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">Work 2</a></td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">Work 3</a></td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tab-pane fade" id="nav-signUp" role="tabpanel" aria-labelledby="nav-signUp-tab">
+
+                  <ul>
+                    {% for message in notification['signUpNotification'] %}
+                    <li><i class="fa-solid fa-user ms-1"></i> {{ message }}</li>
+                    {% endfor %}
+                  </ul>
 
 
-
+                </div>
+                <div class="tab-pane fade" id="nav-upload" role="tabpanel" aria-labelledby="nav-upload-tab">
+                  <table class="table" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Contest Name</th>
+                        <th>Date</th>
+                        <th>Award Position</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="#">Work 1</a></td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">Work 2</a></td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">Work 3</a></td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </main>
   </div>
+
+
   <script src="static/scripts/jquery-3.7.0.min.js"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="static/scripts/aos.js"></script>

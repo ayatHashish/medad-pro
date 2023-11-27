@@ -821,3 +821,23 @@
     }
   }
 }
+
+.tab-content>.active { 
+  // margin: 30px !important;
+}
+.nav-tabs .nav-link.active{
+  color: #495057;
+}
+
+.nav-item{
+  color: #394263 !important;
+  text-transform: uppercase;
+}
+.project-tab {
+  padding: 10%;
+  margin-top: 0; 
+}
+.tab-content-tab .table thead th {
+  background-color: #394263 !important;
+  color: #fff;
+}
